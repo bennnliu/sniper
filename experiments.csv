@@ -34,3 +34,13 @@ it04-IMOM-06-ES,2026-11-22,d289e48,iter04,1,32,"IC -0.0052 t -0.31 -> FAIL; 0.46
 it04-TREND-03-ES,2026-11-22,d289e48,iter04,1,33,"IC -0.0082 t -0.45 -> FAIL; 0.64x cost, t$ 0.51"
 it04-IMOM-06-NQ,2026-11-22,d289e48,iter04,1,34,"IC -0.0138 t -0.82 -> FAIL; 0.22x cost, t$ 0.11"
 it04-TREND-03-NQ,2026-11-22,d289e48,iter04,1,35,"IC -0.0154 t -0.85 -> FAIL; -2.74x cost, t$ -1.13"
+it05-OFI-01/1m-ES,2026-11-22,61a2631,iter05,1,36,IC +0.0042 t +0.55 -> FAIL; 0.02x cost
+it05-OFI-01/5m-ES,2026-11-22,61a2631,iter05,1,37,IC +0.0070 t +0.52 -> FAIL; -0.89x cost
+it05-OFI-04-ES,2026-11-22,61a2631,iter05,1,38,IC -0.0068 t -0.28 -> FAIL; -0.84x cost
+it05-MR-04L-ES,2026-11-22,61a2631,iter05,1,39,"fill 0%, net $nan/trade, t$ nan"
+it05-OFI-01/1m-NQ,2026-11-22,61a2631,iter05,1,40,IC -0.0026 t -0.09 -> FAIL; -0.12x cost
+it05-OFI-01/5m-NQ,2026-11-22,61a2631,iter05,1,41,IC -0.0010 t -0.10 -> FAIL; 0.11x cost
+it05-OFI-04-NQ,2026-11-22,61a2631,iter05,1,42,IC +0.0241 t -0.17 -> FAIL; 2.28x cost
+it05-MR-04L-NQ,2026-11-22,61a2631,iter05,1,43,"fill 0%, net $nan/trade, t$ nan"
+it05-MR-04L-ES-rerun,2026-11-22,61a2631,iter05,1,44,"fill 89%, net $-26.82/trade, t$ -2.01 (re-run; first run void: volatility window bug gave 0 signals)"
+it05-MR-04L-NQ-rerun,2026-11-22,61a2631,iter05,1,45,"fill 98%, net $-1.83/trade, t$ -0.08 (re-run; first run void)"
