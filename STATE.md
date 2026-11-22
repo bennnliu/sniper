@@ -31,15 +31,17 @@ _Last updated: 22 Nov 2026_
 - The opening-range breakout's published 33% was net of commissions only; a replication found about zero after spread and slippage on NQ.
 - Micros cost about 3.2 times more in fees per dollar of exposure than minis (MNQ 4.4 ticks round trip all-in vs NQ 2.8, assumed).
 
-## Status: search paused (22 Nov 2026, Ben's decision)
+## Status: search resumed (22 Nov 2026, Ben's request); one candidate under revision
 
-Ben declined the options-positioning data purchase and paused the search. Overall summary: `reports/SUMMARY.md`. Nothing is promoted.
+Iteration 8 (reports/iter_08.md): second literature pass (2024 onward) and five niche features. **NOISE-01B on NQ** (noise-area breakout with a VWAP stop) passes the dollar test (t 3.30), parameter sensitivity and the walk-forward check (+$296 per traded day per NQ, t 0.93). Simulated on MNQ: $50K Combine pass 47% (development) and 27% (walk-forward year) against a 22% zero-edge baseline. **Not promotable:** deflated Sharpe 0.81 (bar 0.95), edge concentrated in 2018 and later. The walk-forward year has now been used for this rule; do not tune on it. 85 trials in total.
 
-## If the search resumes
+Also in iteration 8: overnight drift (OD-01) replicates but is below cost; EOD-01, IMOM-07, REG-01 fail. Features live in `sniper/features.py` and `sniper/noise.py`.
 
-1. NQ options open interest from Databento for a dealer-gamma test ($47.63, priced in DATA.md, needs approval).
-2. Remaining free bar tests: CAL-03, VOL filters.
-3. Re-verify `topstep_rules.yaml` if after 22 Dec 2026.
+## Next three actions
+
+1. Free critique tests on NOISE-01B: dependence on volatility, results in volatility units, slippage at the fill times on the tick data.
+2. Exits and sizing for NOISE-01B under Topstep rules, purged cross-validation, development period only.
+3. If it stands, ask Ben about buying the holdout year of NQ bars for the single final test.
 
 ## Open questions for Ben
 

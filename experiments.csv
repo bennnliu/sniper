@@ -83,3 +83,4 @@ it08-NOISE-01B-NQ-lookback17,2026-11-22,467581b,iter08,1,81,"$95/traded day, t 3
 it08-NOISE-01B-NQ-vm0.8,2026-11-22,467581b,iter08,1,82,"$80/traded day, t 3.30, n 2430"
 it08-NOISE-01B-NQ-vm1.2,2026-11-22,467581b,iter08,1,83,"$83/traded day, t 3.08, n 1777"
 it08-NOISE-01B-NQ-no_vwap,2026-11-22,467581b,iter08,1,84,"$78/traded day, t 3.05, n 2103"
+it08-NOISE-01B-NQ-walkforward-cost1x,2026-11-22,63ec2dd,iter08,1,85,"$296/traded day, t 0.93, n 136"
