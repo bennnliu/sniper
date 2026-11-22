@@ -34,9 +34,10 @@ def test_xfa_scaling_caps_contracts_and_pays_out():
     r = rec([20.0])  # $20 per MNQ; 50K starts at 2 lots = 20 MNQ
     idx = np.zeros((1, 5), dtype=int)
     x = simulate_xfa(r, idx, 50, "50K", "standard", R)
-    # Capped at 20 MNQ: $400 - $24.40 fees = $375.60/day; 5 winning days -> $1,878; payout 50% = $939
+    # Days 1-4 capped at 20 MNQ: $400 - $24.40 = $375.60/day -> $1,502.40 (>= $1,500 -> 3 lots).
+    # Day 5 at 30 MNQ: $600 - $36.60 = $563.40 -> balance $2,065.80; payout 50% = $1,032.90.
     assert x.first_payout[0] and x.days_to_first[0] == 5 and x.n_payouts[0] == 1
-    assert abs(x.to_trader[0] - 0.9 * 939.0) < 1e-6
+    assert abs(x.to_trader[0] - 0.9 * 1032.9) < 1e-6
 
 
 def test_block_bootstrap_shape_and_range():
