@@ -52,3 +52,19 @@ The live bot will trade on TopstepX's feed, not Databento's. Once a strategy rea
 ## Access from this cloud environment
 
 The Databento API host is blocked by this project's cloud network policy today. To pull data from here, Ben needs to (1) allow `hist.databento.com` in the environment's network settings and (2) store the Databento API key as an environment secret named `DATABENTO_API_KEY`. The key must never be pasted into chat or committed.
+
+## Options-positioning data: price check (22 Nov 2026)
+
+Purpose: test whether dealer gamma positioning explains when late-day momentum (IMOM-04) works, as Baltussen et al. propose. Needs daily open interest per strike plus a price or implied volatility per strike.
+
+| Source | What it gives | History | Price | Note |
+|---|---|---|---|---|
+| Databento GLBX.MDP3, ES options on futures (`statistics` + `definition`) | Daily open interest and settlement per strike | Jun 2010 on | **$56.60** one-off ($35.01 + $21.59); 2019 on only: $28.56 | Quoted by `metadata.get_cost`, 22 Nov 2026 |
+| Databento GLBX.MDP3, NQ options on futures | Same | Jun 2010 on | **$47.63** one-off ($37.12 + $10.51); 2019 on only: $22.97 | Same |
+| ThetaData | SPX and NDX index options | 6, 10 or 14 years | $40, $80 or $160 a month | Open-interest history not stated on the pricing page |
+| Cboe DataShop | SPX end-of-day with open interest, optional greeks | Jan 2012 on | Not shown without a cart; SPX quotes need an index licence "from $1k/month" | Too expensive |
+| ORATS | Full chains with greeks | 2007 on | Not on the page read | One-off purchase |
+| SpotGamma | Dealer-gamma levels (dashboard) | Not stated | $99 or $299 a month | No stated historical export |
+| SqueezeMetrics | Daily gamma index | 2011 on | $720 a month per a competitor's article (unverified) | Free chart CSV possibly available; terms unclear |
+
+Limits of the Databento route: options on futures are only part of the positioning (SPX index options are larger), dealer direction is **assumed** (dealers long calls, short puts), and gamma must be computed here from settlement prices.
