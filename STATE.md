@@ -43,12 +43,14 @@ Iteration 10 (reports/iter_10.md): **holdout test PASSED** on the three pre-writ
 
 Iteration 11 (reports/iter_11.md): Ben's new goals applied (sessions tested separately, 30-day limit, payout/(cost x accounts x days) measure in `sniper/propscore.py`, news filter). The rule works only in New York hours. Within 30 days the best plan is 8 MNQ on $50K: 28.9% pass on development data, 12.5% on the walk-forward year, random-direction control 15%. News skipping, entry/exit limits and the ML filter do not help (ML filter failed its walk-forward check). A 30-day pass above 50% needs about 3x this edge. 105 trials. Walk-forward year used three times for this rule.
 
+Iteration 12 (reports/iter_12.md): search for a second unrelated edge on ES/NQ bars. Overnight and session drift, day/night reversal, turn of month, London fade and NQ-over-ES continuation all fail (25 tests, news days skipped, micro costs). 130 trials. Conclusion: ES/NQ bars are exhausted; an unrelated edge needs another market.
+
 ## Next actions
 
-1. Waiting on Ben: search for a second unrelated edge, relax the 30-day goal for this rule and paper trade, or stop on this rule.
+1. Waiting on Ben: approve buying 1-minute bars for other Topstep-permitted markets (CL, GC, RTY, ZN, 6E; $42.76 from 2018 or $80.02 full history) to test the frozen breakout rule there.
+2. Before that test: read Topstep's "Prohibited Conduct" page for the restrictions on micro contracts, and add the products and fees to `topstep_rules.yaml`.
 
 ## Open questions for Ben
 
-1. The direction above, and whether "30 days" means trading days (assumed) or calendar days.
-2. Whether to keep the news-day filter for this rule despite the evidence against it.
-3. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).
+1. The data purchase above.
+2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).

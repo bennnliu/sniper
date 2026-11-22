@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 SESSIONS = {"NY": (510, 900), "ASIA": (18 * 60, 60), "LONDON": (120, 510)}  # CT minutes; ASIA crosses midnight
+WINDOWS = {**SESSIONS, "OVERNIGHT": (18 * 60, 510)}  # extra hold windows that are not sessions of their own
 DAY0 = 17 * 60  # the trading day starts at 17:00 CT
 
 
@@ -38,7 +39,7 @@ class SessionData:
 
 
 def build_session(df: pd.DataFrame, name: str, min_coverage: float = 0.8) -> SessionData:
-    start, end = SESSIONS[name]
+    start, end = WINDOWS[name]
     s0, s1 = int(_smin(start)), int(_smin(end))
     n = s1 - s0
     d = df.assign(s_end=_smin(df["minute_ct"].to_numpy()) + 1)
@@ -213,3 +214,18 @@ def run_session(sd: SessionData, cost_pts: float, lookback: int = 14, vm: float 
     tdf = pd.DataFrame(trades)
     ddf = pd.DataFrame(drows, columns=["day", "net_pts", "round_trips", "mae_pts", "mfe_pts", "dvol_pts"]).set_index("day")
     return tdf, ddf
+
+
+def hold(sd: SessionData, position, cost_pts: float, skip_days: set | None = None) -> pd.DataFrame:
+    """One position per day held from the window's start to its end. ``position`` is a Series or array of
+    -1 / 0 / +1 by day (NaN = no trade). Returns daily net points, worst and best open result, and dvol_pts."""
+    pos = pd.Series(position, index=sd.days).reindex(sd.days).fillna(0).to_numpy(dtype=float)
+    if skip_days:
+        pos = np.where(sd.days.isin(list(skip_days)), 0.0, pos)
+    path = pos[:, None] * (sd.px - sd.px[:, :1])
+    net = np.where(pos != 0, path[:, -1] - cost_pts, 0.0)
+    dvol = np.where(np.isfinite(sd.prev_close), sd.prev_close, sd.px[:, 0]) * sd.rv20
+    return pd.DataFrame({"net_pts": net, "round_trips": (pos != 0).astype(float),
+                         "mae_pts": np.where(pos != 0, np.minimum(path.min(axis=1) - cost_pts, 0), 0.0),
+                         "mfe_pts": np.where(pos != 0, np.maximum(path.max(axis=1), 0), 0.0),
+                         "dvol_pts": dvol, "pos": pos}, index=sd.days)
