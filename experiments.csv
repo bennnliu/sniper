@@ -102,3 +102,5 @@ it11-NOISE-NQ-NY-V12,2026-11-22,9662b50,iter11,1,100,"V12 skip news + one entry:
 it11-NOISE-NQ-NY-V13,2026-11-22,9662b50,iter11,1,101,"V13 skip news + one entry + session stop 0.50: t(vu) 1.76; best 15 MNQ pass 19.2% in 27d, score x1000 68.17"
 it11-META-01-logistic,2026-11-22,9662b50,iter11,1,102,OOS IC +0.120 t +5.45; kept $130 vs all $88 per trade; improvement t 1.32
 it11-META-01-boosted,2026-11-22,9662b50,iter11,1,103,OOS IC +0.045 t +2.03; kept $103 vs all $88 per trade; improvement t -0.70
+it11-WF-check-news-ml,2026-11-22,5cdab7c,iter11,1,104,WF year: kept $206 vs skipped $181 per trade; ML adopted: False
+it11-WF-sizing-posthoc,2026-11-22,post-hoc,iter11,1,105,post hoc look at fixed vs vol-scaled sizing on the walk-forward year (not pre-committed)

@@ -41,11 +41,14 @@ Iteration 9 (reports/iter_09.md): in volatility units the development t falls to
 
 Iteration 10 (reports/iter_10.md): **holdout test PASSED** on the three pre-written conditions (NQ, Nov 2025 to Oct 2026: +$287 per traded day per contract, t 1.05; +$267 at 2x cost; simulated $50K Combine pass 35% at 2 MNQ against a 22% baseline). Not promoted: development deflated Sharpe 0.81 is below the 0.95 bar, and Dec 2025 to Jan 2026 would have breached a $50K account. **The NQ holdout year is now spent (use number 1).** 87 trials.
 
+Iteration 11 (reports/iter_11.md): Ben's new goals applied (sessions tested separately, 30-day limit, payout/(cost x accounts x days) measure in `sniper/propscore.py`, news filter). The rule works only in New York hours. Within 30 days the best plan is 8 MNQ on $50K: 28.9% pass on development data, 12.5% on the walk-forward year, random-direction control 15%. News skipping, entry/exit limits and the ML filter do not help (ML filter failed its walk-forward check). A 30-day pass above 50% needs about 3x this edge. 105 trials. Walk-forward year used three times for this rule.
+
 ## Next actions
 
-1. Waiting on Ben: build the bot and paper trade, study sizing first, or keep searching.
+1. Waiting on Ben: search for a second unrelated edge, relax the 30-day goal for this rule and paper trade, or stop on this rule.
 
 ## Open questions for Ben
 
-1. The direction above.
-2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).
+1. The direction above, and whether "30 days" means trading days (assumed) or calendar days.
+2. Whether to keep the news-day filter for this rule despite the evidence against it.
+3. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).
