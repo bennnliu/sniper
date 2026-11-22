@@ -5,7 +5,7 @@ _Last updated: 22 Nov 2026_
 ## Where we are
 
 - **Phase:** loop iteration 3 done. Next: Level 1 data (needs Ben's approval) or the remaining low-priority bar hypotheses.
-- **Last verdict:** KILL (reports/iter_03.md). Trend, overnight-level reversal, 5-minute reversal and NQ/ES spread all fail costs; three are real but at most 0.22x cost. Trials run: 31.
+- **Last verdict:** KILL (reports/iter_03.md). Trend, overnight-level reversal, 5-minute reversal and NQ/ES spread all fail costs; three are real but at most 0.22x cost. Trials run: 35 (iteration 4 bar checks: IMOM-06 and TREND-03 also fail, t below 1).
 - **Account sizes:** test all three ($50K, $100K, $150K) and compare outcomes (Ben, 22 Nov 2026).
 - **Validity bar:** the defaults in the project brief, confirmed by Ben on 22 Nov 2026.
 - **Data budget:** Databento; bars from the $125 free credit (expires 6 months after signup); hard cap of $50 paid before any tick data (Ben, 22 Nov 2026).
@@ -31,7 +31,7 @@ _Last updated: 22 Nov 2026_
 ## Next three actions
 
 1. If Ben approves: buy about 3 months of ES and NQ `trades` (~$62) and test OFI-01 and a limit-order MR-04, with a limit-order fill simulator.
-2. With no spend: IMOM-06, CAL-02, TREND-03 on bars.
+2. With no spend: CAL-02 (needs a macro-release calendar), MR-05, RV-02, RV-03 (needs RTY/YM bars).
 3. Register IMOM-07 (late-day reversal since 2023), flagged as suggested by iteration 2.
 
 ## Open questions for Ben
