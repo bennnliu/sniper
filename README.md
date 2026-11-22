@@ -12,6 +12,11 @@ Research lab for an intraday NQ/ES (and MNQ/MES) strategy aimed at passing Topst
 | `sniper/sim.py` | **TopstepSim**: replays fills and marks under Combine or XFA rules |
 | `sniper/economics.py` | Cost per attempt and break-even pass rate; `python -m sniper.economics` |
 | `ECONOMICS.md` | The economics write-up |
+| `METHOD.md` | How a feature is tested: signal test, cost test, overfitting guards, data split |
+| `LITERATURE.md` | One verified note per source |
+| `feature_registry.csv` | Every hypothesis with mechanism, sign, horizon and kill criterion |
+| `DATA.md` | Databento plan, budget, roll rule, Level 1 vs Level 2 |
+| `sniper/signal.py` | Stage 1 signal-test harness: IC, overlap-corrected t, Holm, decay, look-ahead guard |
 | `tests/` | One hand-built test per rule, for all three account sizes |
 
 ## Setup

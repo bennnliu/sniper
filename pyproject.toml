@@ -3,7 +3,7 @@ name = "sniper"
 version = "0.1.0"
 description = "Research lab for an intraday NQ/ES strategy aimed at Topstep Combines and XFA payouts"
 requires-python = ">=3.11"
-dependencies = ["pyyaml>=6", "numpy>=1.26"]
+dependencies = ["pyyaml>=6", "numpy>=1.26", "pandas>=2.1", "scipy>=1.11"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
