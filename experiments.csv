@@ -49,3 +49,13 @@ it06-zero-edge-stop20_target40,2026-11-22,129c024,iter06,1,47,"zero-edge baselin
 it06-zero-edge-stop40_target20,2026-11-22,129c024,iter06,1,48,"zero-edge baseline (simulated): 50K pass 22.3%, EV $10 at best size"
 it06-zero-edge-stop40_target80,2026-11-22,129c024,iter06,1,49,"zero-edge baseline (simulated): 50K pass 22.9%, EV $35 at best size"
 it06-zero-edge-stop60_target30,2026-11-22,129c024,iter06,1,50,"zero-edge baseline (simulated): 50K pass 23.0%, EV $37 at best size"
+it07-CAL-01-ES,2026-11-22,2be3243,iter07,1,51,"FOMC 8:30-12:55 CT mean -1.4 bp, t -0.35, n 67; t$ -0.41"
+it07-CAL-02-ES,2026-11-22,2be3243,iter07,1,52,"CPI rv x1.10, MR-04 -0.17x cost; NFP rv x1.10, MR-04 0.11x cost; FOMC rv x1.27, MR-04 -0.10x cost"
+it07-CAL-05-CPI-ES,2026-11-22,2be3243,iter07,1,53,IC +0.060 t +0.78 n 171 -> FAIL; t$ -0.28
+it07-CAL-05-NFP-ES,2026-11-22,2be3243,iter07,1,54,IC -0.061 t -0.78 n 167 -> FAIL; t$ -1.26
+it07-CAL-05-FOMC-ES,2026-11-22,2be3243,iter07,1,55,IC +0.157 t +1.28 n 67 -> FAIL; t$ -0.28
+it07-CAL-01-NQ,2026-11-22,2be3243,iter07,1,56,"FOMC 8:30-12:55 CT mean -7.5 bp, t -1.62, n 67; t$ -0.66"
+it07-CAL-02-NQ,2026-11-22,2be3243,iter07,1,57,"CPI rv x1.08, MR-04 -0.07x cost; NFP rv x1.04, MR-04 0.32x cost; FOMC rv x1.25, MR-04 0.08x cost"
+it07-CAL-05-CPI-NQ,2026-11-22,2be3243,iter07,1,58,IC +0.020 t +0.25 n 171 -> FAIL; t$ -0.47
+it07-CAL-05-NFP-NQ,2026-11-22,2be3243,iter07,1,59,IC -0.088 t -1.14 n 167 -> FAIL; t$ -1.60
+it07-CAL-05-FOMC-NQ,2026-11-22,2be3243,iter07,1,60,IC +0.103 t +0.83 n 67 -> FAIL; t$ -0.02

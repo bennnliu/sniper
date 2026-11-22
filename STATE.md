@@ -20,6 +20,7 @@ _Last updated: 22 Nov 2026_
 - Iteration 1: 7 hypotheses on ES and NQ. Gao et al.'s first-half-hour effect does not replicate; VWAP and gap reversion show nothing.
 - Iteration 2: IMOM-04 robust in-sample, built into a strategy, replayed through TopstepSim (fast engine validated 30/30 against it) for all three sizes, then killed by the walk-forward year. Account size changed the best size, not the best pass rate (35-43% on all three).
 - `sniper/montecarlo.py`: block-bootstrap Monte Carlo for Combine and XFA outcomes.
+- Iteration 7: FOMC drift (CAL-01) and post-release continuation (CAL-05) fail on ES and NQ. Release windows are 2 to 3.6 times as volatile (CAL-02), kept as a no-trade and sizing rule. 62 trials in total. Event dates in `calendar_data/events.csv` (FOMC 2021-2023 unverified).
 - Iteration 6: zero-edge baseline. No-edge trading passes the $50K Combine about 22% of the time and is worth about $0 per attempt after fees (simulated). This is the bar a strategy must beat.
 - Iteration 5: Aug-Oct 2024 ES and NQ trades bought ($64.08, approved by Ben). OFI-01, OFI-04 fail; limit-order MR-04 loses to adverse selection.
 - Iteration 3: TREND-01/02, MR-02 fail; MR-04 (5-minute reversal) and RV-01 (NQ/ES spread) are real but not tradable.
@@ -32,11 +33,11 @@ _Last updated: 22 Nov 2026_
 
 ## Next three actions (Ben to choose direction)
 
-1. Event and calendar conditioning on existing data: CAL-01, CAL-02.
-2. Price a dealer-gamma / options-positioning data source for a direct test of IMOM-04's mechanism.
-3. (Done in iteration 6) Zero-edge baseline.
+1. Price a dealer-gamma / options-positioning data source for a direct test of IMOM-04's mechanism (needs a spend approval).
+2. Or accept the null result for directional signals on bar and trade data and pause the search.
+3. Or run the remaining low-prior bar tests (CAL-03, VOL filters), no spend.
 
 ## Open questions for Ben
 
-1. Which of the three directions above to take next (reports/iter_05.md, section 10).
+1. Which of the three directions above to take next (reports/iter_07.md, section 10).
 2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).
