@@ -12,7 +12,7 @@ _22 Nov 2026. Development period only (to 31 Oct 2024). Holdout and walk-forward
 - **CAL-02:** CPI, payrolls and FOMC days differ in volatility, and the 5-minute reversal (MR-04) behaves differently on them.
 - **CAL-05** (registered in this iteration, before the run): the first reaction continues. The 7:30-8:30 CT move on CPI and payrolls days predicts 8:30-15:00 CT, and the 13:00-13:30 CT move on FOMC days predicts 13:30-15:00 CT.
 
-Trials: 12 this iteration, **62 in total**.
+Trials: 10 this iteration, **60 in total**.
 
 **Dates.** `calendar_data/events.csv`. CPI and payrolls dates come from the BLS release schedules (verified, 171 and 172 days). FOMC dates come from the Federal Reserve's per-year pages for 2010-2020 and its calendar page for January-July 2024 (verified). FOMC dates for 2021-2023 and September 2024 could only be read from a truncated page and are marked **unverified**; headline FOMC numbers use verified dates only, and the all-dates figure is shown beside them. The 1:00 PM CT statement time is **assumed** from March 2013 onward; earlier meetings had varying times and are shown separately.
 
@@ -74,7 +74,7 @@ Not applicable: nothing passed stage 1.
 
 ## 9. Suggestions
 
-**Finding features:** every bar-based family registered so far has now been tested, 62 trials, and nothing predicts direction after costs. Remaining untested ideas need new data (dealer gamma and options positioning for IMOM-04's mechanism and CAL-04, Level 2 for OFI-03) or are low-prior (CAL-03 turn of month, VOL filters).
+**Finding features:** every bar-based family registered so far has now been tested, 60 trials, and nothing predicts direction after costs. Remaining untested ideas need new data (dealer gamma and options positioning for IMOM-04's mechanism and CAL-04, Level 2 for OFI-03) or are low-prior (CAL-03 turn of month, VOL filters).
 
 **Testing features:** use CAL-02 as a design rule for any future strategy: no entries in the 30 minutes after CPI, payrolls or FOMC releases, and treat FOMC afternoons as roughly 2.5× normal risk when sizing against the Maximum Loss Limit.
 
