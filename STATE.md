@@ -4,8 +4,8 @@ _Last updated: 22 Nov 2026_
 
 ## Where we are
 
-- **Phase:** loop iteration 2 done. Next: iteration 3 on new hypotheses (Phase 2 signal tests).
-- **Last verdict:** KILL (reports/iter_02.md). IMOM-04 lost $38 per MNQ trade (t −2.32) in the walk-forward year; in-sample Combine pass rate peaked at 43%. Trials run: 22.
+- **Phase:** loop iteration 3 done. Next: Level 1 data (needs Ben's approval) or the remaining low-priority bar hypotheses.
+- **Last verdict:** KILL (reports/iter_03.md). Trend, overnight-level reversal, 5-minute reversal and NQ/ES spread all fail costs; three are real but at most 0.22x cost. Trials run: 31.
 - **Account sizes:** test all three ($50K, $100K, $150K) and compare outcomes (Ben, 22 Nov 2026).
 - **Validity bar:** the defaults in the project brief, confirmed by Ben on 22 Nov 2026.
 - **Data budget:** Databento; bars from the $125 free credit (expires 6 months after signup); hard cap of $50 paid before any tick data (Ben, 22 Nov 2026).
@@ -20,6 +20,7 @@ _Last updated: 22 Nov 2026_
 - Iteration 1: 7 hypotheses on ES and NQ. Gao et al.'s first-half-hour effect does not replicate; VWAP and gap reversion show nothing.
 - Iteration 2: IMOM-04 robust in-sample, built into a strategy, replayed through TopstepSim (fast engine validated 30/30 against it) for all three sizes, then killed by the walk-forward year. Account size changed the best size, not the best pass rate (35-43% on all three).
 - `sniper/montecarlo.py`: block-bootstrap Monte Carlo for Combine and XFA outcomes.
+- Iteration 3: TREND-01/02, MR-02 fail; MR-04 (5-minute reversal) and RV-01 (NQ/ES spread) are real but not tradable.
 
 ## Findings so far (from reading, not data)
 
@@ -29,10 +30,10 @@ _Last updated: 22 Nov 2026_
 
 ## Next three actions
 
-1. Stage 1 and 2 (with the new dollar-t gate) on TREND-01, TREND-02, MR-02, MR-04, RV-01 using the existing bars.
-2. Register IMOM-07 (late-day reversal since 2023) as a new, flagged hypothesis suggested by iteration 2.
-3. Price ES and NQ 1-second bars for 2022-2024 (LEADLAG-01) against the remaining budget.
+1. If Ben approves: buy about 3 months of ES and NQ `trades` (~$62) and test OFI-01 and a limit-order MR-04, with a limit-order fill simulator.
+2. With no spend: IMOM-06, CAL-02, TREND-03 on bars.
+3. Register IMOM-07 (late-day reversal since 2023), flagged as suggested by iteration 2.
 
 ## Open questions for Ben
 
-1. None blocking. Data spend so far is about $49 estimated, expected to come from the $125 free credit; the $50 paid cap is untouched unless Databento billed it.
+1. Approve Level 1 (tick) data spend? About 3 months of ES and NQ trades is roughly $62; a full year is about $205.

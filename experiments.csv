@@ -21,3 +21,12 @@ it02-IMOM-04-NQ-delay1,2026-11-22,72fb747,iter02,1,19,entry 14:31 exit 14:59: IC
 it02-IMOM-04-ESNQ,2026-11-22,72fb747,iter02,1,20,1 ES + 1 NQ: $92/day t 2.79
 it02-IMOM-04-strategyA,2026-11-22,72fb747,iter02,1,21,"no stop, MNQ: dev $3.75/trade t 1.68; best Combine pass 40% (50K, 2 MNQ); walk-forward $-38.26/trade t -2.32 -> KILL"
 it02-IMOM-04-strategyB,2026-11-22,72fb747,iter02,1,22,"40pt stop, MNQ: dev $4.18/trade t 2.30; best Combine pass 43%; walk-forward $-16.52/trade t -1.71 -> KILL"
+it03-TREND-01-ES,2026-11-22,4db1817,iter03,1,23,stage1 IC +0.0109 t +0.98 h 60 -> FAIL; rule x_cost 0.38 t$ -13.89
+it03-TREND-02-ES,2026-11-22,4db1817,iter03,1,24,stage1 IC -0.0048 t -0.51 h 60 -> FAIL; rule x_cost 0.03 t$ -3.56
+it03-MR-02-ES,2026-11-22,4db1817,iter03,1,25,stage1 IC -0.0391 t -2.16 h 15 -> FAIL; rule x_cost 0.50 t$ -0.07
+it03-MR-04-ES,2026-11-22,4db1817,iter03,1,26,stage1 IC -0.0334 t -16.15 h 5 -> PASS; rule x_cost 0.20 t$ 7.96
+it03-TREND-01-NQ,2026-11-22,4db1817,iter03,1,27,stage1 IC +0.0169 t +1.86 h 60 -> FAIL; rule x_cost 1.36 t$ -11.98
+it03-TREND-02-NQ,2026-11-22,4db1817,iter03,1,28,stage1 IC -0.0028 t -1.07 h 60 -> FAIL; rule x_cost -0.13 t$ -3.59
+it03-MR-02-NQ,2026-11-22,4db1817,iter03,1,29,stage1 IC -0.0136 t -0.80 h 15 -> FAIL; rule x_cost 0.38 t$ -1.78
+it03-MR-04-NQ,2026-11-22,4db1817,iter03,1,30,stage1 IC -0.0185 t -8.92 h 5 -> PASS; rule x_cost 0.22 t$ 4.80
+it03-RV-01-NQ/ES,2026-11-22,4db1817,iter03,1,31,stage1 IC -0.0182 t -4.80 h 15 -> PASS; rule x_cost 0.05 t$ 5.64

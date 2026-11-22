@@ -1,0 +1,86 @@
+[
+ {
+  "feature": "TREND-01",
+  "symbol": "ES",
+  "h": 60,
+  "ic": 0.010915428265922707,
+  "t": 0.9771337218855385,
+  "yrs_right": 0.6,
+  "stage1": false,
+  "why": [
+   "best t in expected direction 0.98 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 60% of years < 70%"
+  ],
+  "dollar": {
+   "trades": 90757,
+   "mean_pts": 0.12251672047335192,
+   "cost_pts": 0.325,
+   "x_cost": 0.37697452453339053,
+   "t_daily": -13.885200777866515,
+   "days": 3229
+  }
+ },
+ {
+  "feature": "TREND-02",
+  "symbol": "ES",
+  "h": 60,
+  "ic": -0.0047876028420103045,
+  "t": -0.5117101338579524,
+  "yrs_right": 0.3333333333333333,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -0.51 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 33% of years < 70%"
+  ],
+  "dollar": {
+   "trades": 12119,
+   "mean_pts": 0.0105000412575295,
+   "cost_pts": 0.325,
+   "x_cost": 0.03230781925393692,
+   "t_daily": -3.5567078695414174,
+   "days": 3462
+  }
+ },
+ {
+  "feature": "MR-02",
+  "symbol": "ES",
+  "h": 15,
+  "ic": -0.03914109451396889,
+  "t": -2.158612099438354,
+  "yrs_right": 0.6,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -2.16 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 60% of years < 70%"
+  ],
+  "dollar": {
+   "trades": 3068,
+   "mean_pts": 0.1609354628422425,
+   "cost_pts": 0.325,
+   "x_cost": 0.4951860395145923,
+   "t_daily": -0.07271735278204497,
+   "days": 2859
+  }
+ },
+ {
+  "feature": "MR-04",
+  "symbol": "ES",
+  "h": 5,
+  "ic": -0.03341278891624605,
+  "t": -16.14793303440804,
+  "yrs_right": 1.0,
+  "stage1": true,
+  "why": [],
+  "dollar": {
+   "trades": 103018,
+   "mean_pts": 0.06448387660408861,
+   "cost_pts": 0.325,
+   "x_cost": 0.1984119280125803,
+   "t_daily": 7.962973794501625,
+   "days": 3577
+  }
+ }
+]
