@@ -1,1 +1,15 @@
 run_id,date,commit,config,trials_this_run,trials_total,headline
+it01-IMOM-01-ES,2026-11-22,88aa341,1bd71cfab8,1,1,stage1 IMOM-01 ES: IC -0.0058 t -0.32 at last30 -> FAIL
+it01-IMOM-02-ES,2026-11-22,88aa341,1bd71cfab8,1,2,stage1 IMOM-02 ES: IC 0.0438 t 2.36 at last30 -> FAIL
+it01-IMOM-03-ES,2026-11-22,88aa341,1bd71cfab8,1,3,stage1 IMOM-03 ES: IC -0.002 t -0.11 at last30 -> FAIL
+it01-IMOM-05-ES,2026-11-22,88aa341,1bd71cfab8,1,4,stage1 IMOM-05 ES: IC 0.0476 t 2.59 at to_close -> FAIL
+it01-MR-03-ES,2026-11-22,88aa341,1bd71cfab8,1,5,stage1 MR-03 ES: IC 0.0016 t 0.08 at 30m -> FAIL
+it01-MR-01-ES,2026-11-22,88aa341,1bd71cfab8,1,6,stage1 MR-01 ES: IC -0.004 t -0.9 at 15 -> FAIL
+it01-IMOM-01-NQ,2026-11-22,88aa341,fc00b4723f,1,7,stage1 IMOM-01 NQ: IC -0.0087 t -0.48 at last30 -> FAIL
+it01-IMOM-02-NQ,2026-11-22,88aa341,fc00b4723f,1,8,stage1 IMOM-02 NQ: IC 0.0247 t 1.34 at last30 -> FAIL
+it01-IMOM-03-NQ,2026-11-22,88aa341,fc00b4723f,1,9,stage1 IMOM-03 NQ: IC -0.0011 t -0.06 at last30 -> FAIL
+it01-IMOM-05-NQ,2026-11-22,88aa341,fc00b4723f,1,10,stage1 IMOM-05 NQ: IC 0.0709 t 3.9 at to_close -> PASS
+it01-MR-03-NQ,2026-11-22,88aa341,fc00b4723f,1,11,stage1 MR-03 NQ: IC -0.0308 t -1.69 at 30m -> FAIL
+it01-MR-01-NQ,2026-11-22,88aa341,fc00b4723f,1,12,stage1 MR-01 NQ: IC 0.0002 t 0.08 at 15 -> FAIL
+it01-IMOM-04-NQ,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,13,stage1 IMOM-04 NQ: IC high-vol +0.114 t 4.10 vs rest -0.063; diff z 5.08; years right 71% -> PASS
+it01-IMOM-04-ES,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,14,stage1 IMOM-04 ES: IC high-vol +0.104 t 3.43 vs rest -0.006; diff z 3.01; years right 69% -> FAIL (stability)
