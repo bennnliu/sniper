@@ -1,0 +1,155 @@
+[
+ {
+  "feature": "OFI-01/1m",
+  "symbol": "ES",
+  "h": 15,
+  "ic": 0.004219845308800927,
+  "t": 0.5483648244546856,
+  "stage1": false,
+  "why": [
+   "best t in expected direction 0.55 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 67% of years < 70%"
+  ],
+  "months": {
+   "8": 0.009074314175172475,
+   "9": 0.004485992368870391,
+   "10": -0.0012710426056984179
+  },
+  "rule_mean_pts": 0.007890609684375613,
+  "x_cost": 0.02427879902884804,
+  "t_dollar": -0.2828311474893945,
+  "n_rule": 5101
+ },
+ {
+  "feature": "OFI-01/5m",
+  "symbol": "ES",
+  "h": 15,
+  "ic": 0.006997660067968909,
+  "t": 0.5161321058637919,
+  "stage1": false,
+  "why": [
+   "best t in expected direction 0.52 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 67% of years < 70%"
+  ],
+  "months": {
+   "8": 0.00869359756861184,
+   "9": 0.0208340978168363,
+   "10": -0.007499019595164437
+  },
+  "rule_mean_pts": -0.2881937634830359,
+  "x_cost": -0.8867500414862642,
+  "t_dollar": -1.4422492600771928,
+  "n_rule": 5099
+ },
+ {
+  "feature": "OFI-04",
+  "symbol": "ES",
+  "h": 5,
+  "ic": -0.006779880350158663,
+  "t": -0.2773824988520252,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -0.28 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 67% of years < 70%"
+  ],
+  "months": {
+   "8": 0.001986312833267536,
+   "9": 0.01660281077515438,
+   "10": -0.03644215802662
+  },
+  "rule_mean_pts": -0.2745317986734296,
+  "x_cost": -0.8447132266874756,
+  "t_dollar": -2.821254782516247,
+  "n_rule": 5126
+ },
+ {
+  "feature": "MR-04L",
+  "symbol": "ES",
+  "signals": 0,
+  "fills": 0,
+  "fill_rate": 0.0,
+  "mean_pts": NaN,
+  "mean_usd_net": NaN,
+  "t_dollar": NaN,
+  "hit": NaN
+ },
+ {
+  "feature": "OFI-01/1m",
+  "symbol": "NQ",
+  "h": 5,
+  "ic": -0.0026021631907727364,
+  "t": -0.09335263049283492,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -0.09 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 33% of years < 70%"
+  ],
+  "months": {
+   "8": -0.010787524858709025,
+   "9": -0.004057138823035012,
+   "10": 0.00587079242954597
+  },
+  "rule_mean_pts": -0.0811313368565277,
+  "x_cost": -0.1175816476181561,
+  "t_dollar": 1.6541801292413008,
+  "n_rule": 5109
+ },
+ {
+  "feature": "OFI-01/5m",
+  "symbol": "NQ",
+  "h": 5,
+  "ic": -0.0010071078003358726,
+  "t": -0.10338730773123281,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -0.10 < 3.0",
+   "Holm-adjusted p >= 0.05",
+   "right sign in 33% of years < 70%"
+  ],
+  "months": {
+   "8": -0.0024346130858883255,
+   "9": 0.00640880527807035,
+   "10": -0.00876866759747253
+  },
+  "rule_mean_pts": 0.0789628180039139,
+  "x_cost": 0.11443886667233899,
+  "t_dollar": -0.34617748573490537,
+  "n_rule": 5110
+ },
+ {
+  "feature": "OFI-04",
+  "symbol": "NQ",
+  "h": 15,
+  "ic": 0.024125098014774048,
+  "t": -0.16617149682195334,
+  "stage1": false,
+  "why": [
+   "best t in expected direction -0.17 < 3.0",
+   "Holm-adjusted p >= 0.05"
+  ],
+  "months": {
+   "8": 0.03039589450936958,
+   "9": 0.033607563274209044,
+   "10": 0.008016151138680644
+  },
+  "rule_mean_pts": 1.5712135922330097,
+  "x_cost": 2.2771211481637823,
+  "t_dollar": 1.0673011155285046,
+  "n_rule": 5150
+ },
+ {
+  "feature": "MR-04L",
+  "symbol": "NQ",
+  "signals": 0,
+  "fills": 0,
+  "fill_rate": 0.0,
+  "mean_pts": NaN,
+  "mean_usd_net": NaN,
+  "t_dollar": NaN,
+  "hit": NaN
+ }
+]

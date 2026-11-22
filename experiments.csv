@@ -1,0 +1,51 @@
+run_id,date,commit,config,trials_this_run,trials_total,headline
+it01-IMOM-01-ES,2026-11-22,88aa341,1bd71cfab8,1,1,stage1 IMOM-01 ES: IC -0.0058 t -0.32 at last30 -> FAIL
+it01-IMOM-02-ES,2026-11-22,88aa341,1bd71cfab8,1,2,stage1 IMOM-02 ES: IC 0.0438 t 2.36 at last30 -> FAIL
+it01-IMOM-03-ES,2026-11-22,88aa341,1bd71cfab8,1,3,stage1 IMOM-03 ES: IC -0.002 t -0.11 at last30 -> FAIL
+it01-IMOM-05-ES,2026-11-22,88aa341,1bd71cfab8,1,4,stage1 IMOM-05 ES: IC 0.0476 t 2.59 at to_close -> FAIL
+it01-MR-03-ES,2026-11-22,88aa341,1bd71cfab8,1,5,stage1 MR-03 ES: IC 0.0016 t 0.08 at 30m -> FAIL
+it01-MR-01-ES,2026-11-22,88aa341,1bd71cfab8,1,6,stage1 MR-01 ES: IC -0.004 t -0.9 at 15 -> FAIL
+it01-IMOM-01-NQ,2026-11-22,88aa341,fc00b4723f,1,7,stage1 IMOM-01 NQ: IC -0.0087 t -0.48 at last30 -> FAIL
+it01-IMOM-02-NQ,2026-11-22,88aa341,fc00b4723f,1,8,stage1 IMOM-02 NQ: IC 0.0247 t 1.34 at last30 -> FAIL
+it01-IMOM-03-NQ,2026-11-22,88aa341,fc00b4723f,1,9,stage1 IMOM-03 NQ: IC -0.0011 t -0.06 at last30 -> FAIL
+it01-IMOM-05-NQ,2026-11-22,88aa341,fc00b4723f,1,10,stage1 IMOM-05 NQ: IC 0.0709 t 3.9 at to_close -> PASS
+it01-MR-03-NQ,2026-11-22,88aa341,fc00b4723f,1,11,stage1 MR-03 NQ: IC -0.0308 t -1.69 at 30m -> FAIL
+it01-MR-01-NQ,2026-11-22,88aa341,fc00b4723f,1,12,stage1 MR-01 NQ: IC 0.0002 t 0.08 at 15 -> FAIL
+it01-IMOM-04-NQ,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,13,stage1 IMOM-04 NQ: IC high-vol +0.114 t 4.10 vs rest -0.063; diff z 5.08; years right 71% -> PASS
+it01-IMOM-04-ES,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,14,stage1 IMOM-04 ES: IC high-vol +0.104 t 3.43 vs rest -0.006; diff z 3.01; years right 69% -> FAIL (stability)
+it02-IMOM-04-NQ-q0.50,2026-11-22,72fb747,iter02,1,15,IC +0.077 t 3.25; pts t 2.21
+it02-IMOM-04-NQ-q0.60,2026-11-22,72fb747,iter02,1,16,IC +0.090 t 3.47; pts t 2.33
+it02-IMOM-04-NQ-q0.75,2026-11-22,72fb747,iter02,1,17,IC +0.135 t 4.41; pts t 2.83
+it02-IMOM-04-NQ-q0.80,2026-11-22,72fb747,iter02,1,18,IC +0.116 t 3.52; pts t 2.36
+it02-IMOM-04-NQ-delay1,2026-11-22,72fb747,iter02,1,19,entry 14:31 exit 14:59: IC +0.110 t 3.96; pts t 2.21
+it02-IMOM-04-ESNQ,2026-11-22,72fb747,iter02,1,20,1 ES + 1 NQ: $92/day t 2.79
+it02-IMOM-04-strategyA,2026-11-22,72fb747,iter02,1,21,"no stop, MNQ: dev $3.75/trade t 1.68; best Combine pass 40% (50K, 2 MNQ); walk-forward $-38.26/trade t -2.32 -> KILL"
+it02-IMOM-04-strategyB,2026-11-22,72fb747,iter02,1,22,"40pt stop, MNQ: dev $4.18/trade t 2.30; best Combine pass 43%; walk-forward $-16.52/trade t -1.71 -> KILL"
+it03-TREND-01-ES,2026-11-22,4db1817,iter03,1,23,stage1 IC +0.0109 t +0.98 h 60 -> FAIL; rule x_cost 0.38 t$ -13.89
+it03-TREND-02-ES,2026-11-22,4db1817,iter03,1,24,stage1 IC -0.0048 t -0.51 h 60 -> FAIL; rule x_cost 0.03 t$ -3.56
+it03-MR-02-ES,2026-11-22,4db1817,iter03,1,25,stage1 IC -0.0391 t -2.16 h 15 -> FAIL; rule x_cost 0.50 t$ -0.07
+it03-MR-04-ES,2026-11-22,4db1817,iter03,1,26,stage1 IC -0.0334 t -16.15 h 5 -> PASS; rule x_cost 0.20 t$ 7.96
+it03-TREND-01-NQ,2026-11-22,4db1817,iter03,1,27,stage1 IC +0.0169 t +1.86 h 60 -> FAIL; rule x_cost 1.36 t$ -11.98
+it03-TREND-02-NQ,2026-11-22,4db1817,iter03,1,28,stage1 IC -0.0028 t -1.07 h 60 -> FAIL; rule x_cost -0.13 t$ -3.59
+it03-MR-02-NQ,2026-11-22,4db1817,iter03,1,29,stage1 IC -0.0136 t -0.80 h 15 -> FAIL; rule x_cost 0.38 t$ -1.78
+it03-MR-04-NQ,2026-11-22,4db1817,iter03,1,30,stage1 IC -0.0185 t -8.92 h 5 -> PASS; rule x_cost 0.22 t$ 4.80
+it03-RV-01-NQ/ES,2026-11-22,4db1817,iter03,1,31,stage1 IC -0.0182 t -4.80 h 15 -> PASS; rule x_cost 0.05 t$ 5.64
+it04-IMOM-06-ES,2026-11-22,d289e48,iter04,1,32,"IC -0.0052 t -0.31 -> FAIL; 0.46x cost, t$ 0.41"
+it04-TREND-03-ES,2026-11-22,d289e48,iter04,1,33,"IC -0.0082 t -0.45 -> FAIL; 0.64x cost, t$ 0.51"
+it04-IMOM-06-NQ,2026-11-22,d289e48,iter04,1,34,"IC -0.0138 t -0.82 -> FAIL; 0.22x cost, t$ 0.11"
+it04-TREND-03-NQ,2026-11-22,d289e48,iter04,1,35,"IC -0.0154 t -0.85 -> FAIL; -2.74x cost, t$ -1.13"
+it05-OFI-01/1m-ES,2026-11-22,61a2631,iter05,1,36,IC +0.0042 t +0.55 -> FAIL; 0.02x cost
+it05-OFI-01/5m-ES,2026-11-22,61a2631,iter05,1,37,IC +0.0070 t +0.52 -> FAIL; -0.89x cost
+it05-OFI-04-ES,2026-11-22,61a2631,iter05,1,38,IC -0.0068 t -0.28 -> FAIL; -0.84x cost
+it05-MR-04L-ES,2026-11-22,61a2631,iter05,1,39,"fill 0%, net $nan/trade, t$ nan"
+it05-OFI-01/1m-NQ,2026-11-22,61a2631,iter05,1,40,IC -0.0026 t -0.09 -> FAIL; -0.12x cost
+it05-OFI-01/5m-NQ,2026-11-22,61a2631,iter05,1,41,IC -0.0010 t -0.10 -> FAIL; 0.11x cost
+it05-OFI-04-NQ,2026-11-22,61a2631,iter05,1,42,IC +0.0241 t -0.17 -> FAIL; 2.28x cost
+it05-MR-04L-NQ,2026-11-22,61a2631,iter05,1,43,"fill 0%, net $nan/trade, t$ nan"
+it05-MR-04L-ES-rerun,2026-11-22,61a2631,iter05,1,44,"fill 89%, net $-26.82/trade, t$ -2.01 (re-run; first run void: volatility window bug gave 0 signals)"
+it05-MR-04L-NQ-rerun,2026-11-22,61a2631,iter05,1,45,"fill 98%, net $-1.83/trade, t$ -0.08 (re-run; first run void)"
+it06-zero-edge-stop20_target20,2026-11-22,129c024,iter06,1,46,"zero-edge baseline (simulated): 50K pass 20.6%, EV -$8 at best size"
+it06-zero-edge-stop20_target40,2026-11-22,129c024,iter06,1,47,"zero-edge baseline (simulated): 50K pass 21.5%, EV $4 at best size"
+it06-zero-edge-stop40_target20,2026-11-22,129c024,iter06,1,48,"zero-edge baseline (simulated): 50K pass 22.3%, EV $10 at best size"
+it06-zero-edge-stop40_target80,2026-11-22,129c024,iter06,1,49,"zero-edge baseline (simulated): 50K pass 22.9%, EV $35 at best size"
+it06-zero-edge-stop60_target30,2026-11-22,129c024,iter06,1,50,"zero-edge baseline (simulated): 50K pass 23.0%, EV $37 at best size"

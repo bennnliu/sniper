@@ -1,0 +1,192 @@
+# Topstep rule spec. Machine-readable; loaded by sniper/rules.py.
+# Each value carries its source and the date it was read.
+# status: verified = read on a first-party Topstep page on the date shown
+#         secondary = read on third-party pages only (first-party is an image or missing)
+#         interpretation = our reading where Topstep's text is ambiguous
+# Re-verify every value at the start of each loop iteration if older than 30 days.
+
+meta:
+  last_full_verification: "2026-11-22"
+  verified_by: "research loop iteration 0"
+  sources:
+    combine_params: https://help.topstep.com/en/articles/8284197-trading-combine-parameters
+    mll: https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit
+    consistency: https://help.topstep.com/en/articles/8284208-consistency-at-topstep
+    program_overview: https://help.topstep.com/en/articles/8284099-topstep-program-overview
+    xfa_params: https://intercom.help/topstep-llc/en/articles/8284215-express-funded-account-parameters
+    scaling_plan: https://help.topstep.com/en/articles/8284223-what-is-the-scaling-plan
+    payout_policy: https://help.topstep.com/en/articles/8284233-topstep-payout-policy
+    payout_faq: https://intercom.help/topstep-llc/en/articles/8284234-payout-faqs
+    commissions: https://help.topstep.com/en/articles/8284213-topstepx-commissions-and-fees
+    pricing: https://help.topstep.com/en/articles/9208217-topstep-pricing
+    activation: https://intercom.help/topstep-llc/en/articles/8284217-express-funded-account-activation-fee
+    api: https://help.topstep.com/en/articles/11187768-topstepx-api-access
+    prohibited_strategies: https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep
+    prohibited_conduct: https://help.topstep.com/en/articles/10296582-prohibited-conduct
+    scaling_secondary:
+      - https://proptradingvibes.com/blog/topstep-maximum-contracts
+      - https://www.futureshive.com/blog/topstep-scaling-plan-explained
+      - https://proea.app/en/blog/topstep-xfa-rules
+
+session:
+  timezone: {value: America/Chicago, source: combine_params, verified: "2026-11-22", status: verified}
+  open_ct: {value: "17:00", source: combine_params, verified: "2026-11-22", status: verified}
+  flat_by_ct: {value: "15:10", source: combine_params, verified: "2026-11-22", status: verified,
+               note: "All positions must be closed by 3:10 PM CT"}
+  no_new_positions_after_ct: {value: "15:08", source: combine_params, verified: "2026-11-22", status: verified,
+                              note: "Page says 'Avoid opening new positions after 3:08 PM CT' (guidance, not a hard rule)"}
+  winning_day_locks_ct: {value: "16:00", source: payout_policy, verified: "2026-11-22", status: verified}
+  weekly: "Friday closes 3:10 PM CT; reopens Sunday 5:00 PM CT"
+
+combine:
+  consistency_fraction: {value: 0.55, source: consistency, verified: "2026-11-22", status: verified,
+                         note: "Hard line, no rounding. Exceeding it raises target to best_day / 0.55. Best day locks 3:10 PM CT. Losses do not reset it."}
+  min_trading_days: {value: 2, source: combine_params, verified: "2026-11-22", status: verified}
+  time_limit: {value: null, source: combine_params, verified: "2026-11-22", status: verified, note: "No time limit; subscription rebills every 30 days"}
+  mll_type: {value: trailing_eod, source: mll, verified: "2026-11-22", status: verified,
+             note: "Trails highest end-of-day balance, never moves down, enforced in real time on realized + unrealized P&L. Locks permanently once it reaches the starting balance."}
+  mll_breach: {value: "liquidated, account ineligible until Reset", source: mll, verified: "2026-11-22", status: verified}
+  dll_breach: {value: "liquidated and locked for the rest of the trading day; account not failed", source: program_overview, verified: "2026-11-22", status: interpretation,
+               note: "DLL is optional at checkout and carries into the XFA"}
+  breach_comparison: {value: "<=", source: combine_params, verified: "2026-11-22", status: interpretation,
+                      note: "Pages say 'hit or go below' / 'hit or exceed'; we treat touching the MLL as a breach"}
+  accounts:
+    50K:
+      starting_balance: {value: 50000, source: combine_params, verified: "2026-11-22", status: verified}
+      profit_target: {value: 3000, source: combine_params, verified: "2026-11-22", status: verified}
+      mll: {value: 2000, source: combine_params, verified: "2026-11-22", status: verified}
+      max_lots: {value: 5, source: combine_params, verified: "2026-11-22", status: verified, note: "5 minis or 50 micros, shared at 10:1"}
+      daily_loss_limit_optional: {value: 1000, source: combine_params, verified: "2026-11-22", status: verified}
+      best_day_max: {value: 1650, source: combine_params, verified: "2026-11-22", status: verified}
+    100K:
+      starting_balance: {value: 100000, source: combine_params, verified: "2026-11-22", status: verified}
+      profit_target: {value: 6000, source: combine_params, verified: "2026-11-22", status: verified}
+      mll: {value: 3000, source: combine_params, verified: "2026-11-22", status: verified}
+      max_lots: {value: 10, source: combine_params, verified: "2026-11-22", status: verified}
+      daily_loss_limit_optional: {value: 2000, source: combine_params, verified: "2026-11-22", status: verified}
+      best_day_max: {value: 3300, source: combine_params, verified: "2026-11-22", status: verified}
+    150K:
+      starting_balance: {value: 150000, source: combine_params, verified: "2026-11-22", status: verified}
+      profit_target: {value: 9000, source: combine_params, verified: "2026-11-22", status: verified}
+      mll: {value: 4500, source: combine_params, verified: "2026-11-22", status: verified}
+      max_lots: {value: 15, source: combine_params, verified: "2026-11-22", status: verified}
+      daily_loss_limit_optional: {value: 3000, source: combine_params, verified: "2026-11-22", status: verified}
+      best_day_max: {value: 4950, source: combine_params, verified: "2026-11-22", status: verified}
+
+xfa:
+  starting_balance: {value: 0, source: mll, verified: "2026-11-22", status: verified,
+                     note: "Size label is buying power, not balance"}
+  mll_type: {value: trailing_eod_lock_at_zero, source: mll, verified: "2026-11-22", status: verified,
+             note: "Starts at -MLL. Trails EOD balance; locks at $0 once balance reaches the MLL amount (stated explicitly for 50K; applied to all sizes, see open item). Set to $0 permanently after the first payout. Breach closes the account permanently."}
+  scaling_plan_rule: {value: "set from balance at session start; does not increase mid-session", source: scaling_plan, verified: "2026-11-22", status: verified}
+  payout:
+    standard_winning_days: {value: 5, source: program_overview, verified: "2026-11-22", status: verified, note: "non-consecutive"}
+    standard_winning_day_min_net: {value: 150, source: program_overview, verified: "2026-11-22", status: verified}
+    standard_requires_net_profit_since_last: {value: true, source: payout_policy, verified: "2026-11-22", status: verified, note: "at least $0.01 since last payout; not required for the first"}
+    consistency_min_days: {value: 3, source: consistency, verified: "2026-11-22", status: verified, note: "trading days with at least one trade"}
+    consistency_max_day_fraction: {value: 0.40, source: consistency, verified: "2026-11-22", status: verified}
+    max_fraction_of_balance: {value: 0.50, source: payout_policy, verified: "2026-11-22", status: verified}
+    minimum: {value: 125, source: payout_policy, verified: "2026-11-22", status: verified}
+    trader_split: {value: 0.90, source: payout_policy, verified: "2026-11-22", status: verified, note: "traders joining on/after 2026-01-12"}
+    transfer_fee: {value: 0, source: payout_policy, verified: "2026-11-22", status: verified, note: "Prop-to-Brokerage and Aeropay free; ACH or wire $30"}
+    request_window: "CME hours, Sunday 5 PM CT to Friday 5 PM CT"
+    dll_promo: {value: "caps doubled if DLL added at Combine purchase (limited-time offer)", source: payout_policy, verified: "2026-11-22", status: verified, note: "Not modelled; promotion may end"}
+  accounts:
+    50K:
+      mll: {value: 2000, source: xfa_params, verified: "2026-11-22", status: verified}
+      payout_cap_standard: {value: 2000, source: payout_policy, verified: "2026-11-22", status: verified}
+      payout_cap_consistency: {value: 3000, source: payout_policy, verified: "2026-11-22", status: verified}
+      scaling_plan:
+        value:
+          - {min_balance: -.inf, max_lots: 2}
+          - {min_balance: 1500, max_lots: 3, inclusive: true}
+          - {min_balance: 2000, max_lots: 5}
+        source: scaling_plan
+        verified: "2026-11-22"
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
+    100K:
+      mll: {value: 3000, source: xfa_params, verified: "2026-11-22", status: verified}
+      payout_cap_standard: {value: 3000, source: payout_policy, verified: "2026-11-22", status: verified}
+      payout_cap_consistency: {value: 4000, source: payout_policy, verified: "2026-11-22", status: verified}
+      scaling_plan:
+        value:
+          - {min_balance: -.inf, max_lots: 3}
+          - {min_balance: 1500, max_lots: 4, inclusive: true}
+          - {min_balance: 2000, max_lots: 5}
+          - {min_balance: 3000, max_lots: 10}
+        source: scaling_plan
+        verified: "2026-11-22"
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
+    150K:
+      mll: {value: 4500, source: xfa_params, verified: "2026-11-22", status: verified}
+      payout_cap_standard: {value: 5000, source: payout_policy, verified: "2026-11-22", status: verified}
+      payout_cap_consistency: {value: 6000, source: payout_policy, verified: "2026-11-22", status: verified}
+      scaling_plan:
+        value:
+          - {min_balance: -.inf, max_lots: 3}
+          - {min_balance: 1500, max_lots: 4, inclusive: true}
+          - {min_balance: 2000, max_lots: 5}
+          - {min_balance: 3000, max_lots: 10}
+          - {min_balance: 4500, max_lots: 15}
+        source: scaling_plan
+        verified: "2026-11-22"
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
+
+fees:
+  # Round turn per contract on TopstepX: commission + exchange + NFA.
+  round_turn_per_contract:
+    ES: {value: 3.78, source: commissions, verified: "2026-11-22", status: verified}
+    NQ: {value: 3.78, source: commissions, verified: "2026-11-22", status: verified}
+    MES: {value: 1.22, source: commissions, verified: "2026-11-22", status: verified}
+    MNQ: {value: 1.22, source: commissions, verified: "2026-11-22", status: verified}
+  api_monthly: {value: 29, source: api, verified: "2026-11-22", status: verified, note: "$14.50/month with code 'topstep'; billed by Sim2Funded Solutions"}
+  level2_data_monthly: {value: 38, source: pricing, verified: "2026-11-22", status: verified}
+  accounts:
+    50K:
+      combine_monthly_standard_path: {value: 49, source: pricing, verified: "2026-11-22", status: verified}
+      combine_monthly_no_activation_path: {value: 95, source: pricing, verified: "2026-11-22", status: verified}
+      xfa_activation_standard_path: {value: 149, source: activation, verified: "2026-11-22", status: verified}
+      reset_standard_path: {value: 49, source: pricing, verified: "2026-11-22", status: verified}
+    100K:
+      combine_monthly_standard_path: {value: 99, source: pricing, verified: "2026-11-22", status: verified}
+      combine_monthly_no_activation_path: {value: 149, source: pricing, verified: "2026-11-22", status: verified}
+      xfa_activation_standard_path: {value: 149, source: activation, verified: "2026-11-22", status: verified}
+      reset_standard_path: {value: 99, source: pricing, verified: "2026-11-22", status: verified}
+    150K:
+      combine_monthly_standard_path: {value: 199, source: pricing, verified: "2026-11-22", status: verified}
+      combine_monthly_no_activation_path: {value: 229, source: pricing, verified: "2026-11-22", status: verified}
+      xfa_activation_standard_path: {value: 149, source: activation, verified: "2026-11-22", status: verified}
+      reset_standard_path: {value: 199, source: pricing, verified: "2026-11-22", status: verified}
+
+automation:
+  api_sandbox: {value: false, source: api, verified: "2026-11-22", status: verified, note: "Use a Practice account; same endpoints"}
+  vps_vpn_remote_orders: {value: prohibited, source: api, verified: "2026-11-22", status: verified,
+                          note: "Orders must come from personal device. A server may do data, backtests, logging, read-only dashboards."}
+  live_funded_via_api: {value: false, source: api, verified: "2026-11-22", status: verified}
+  orders_final: {value: true, source: api, verified: "2026-11-22", status: verified}
+  rate_limits: {value: "unquantified fair use; back off and retry", source: api, verified: "2026-11-22", status: verified}
+
+prohibited:
+  hft_definition: {value: null, source: prohibited_strategies, verified: "2026-11-22", status: verified,
+                   note: "No numeric threshold. SIM-abuse examples describe 'hundreds or thousands of trades per day, with average durations measured in seconds, not minutes'. Our bot-side guard: average hold >= 1 minute and well under 100 orders/day."}
+  list:
+    - account stacking
+    - intentionally depleting a Live Funded Account
+    - unfair technology (ultra-high speed systems, mass data entry)
+    - exploiting unrealistic SIM fills or SIM queue position
+    - trading outside the best bid or offer
+    - trading maximum position size into major scheduled news events
+    - coordinated trading or cross-account hedging
+    - using an external or slow data feed to trade
+    - holding a position within 2% of a product's price-limit lock
+    - using a VPN
+  position_limit_news: {value: "max position can be tightened temporarily around Tier 1 news", source: combine_params, verified: "2026-11-22", status: verified}
+
+open_items:
+  - "XFA MLL lock point for 100K/150K: text states the $0 lock only for 50K (at $2,000). We assume lock at $0 once balance reaches the MLL amount for all sizes."
+  - "Scaling-tier edges: 'Below $1,500' means $1,500 itself is in the next tier (inclusive). Every other rung reads 'Above $X' or overlaps the rung below ('$1,500 - $2,000' then '$2,000 - $3,000'), so at exactly $X we give the LOWER tier (conservative)."
+  - "Back2Funded reactivation window: 30 days (pricing page) vs seven calendar days (rules page)."
+  - "Payout caps: rules page says flat up to $5,000/$6,000; payout policy gives per-size caps. We use per-size caps (conservative)."

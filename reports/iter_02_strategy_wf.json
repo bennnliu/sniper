@@ -1,0 +1,16 @@
+{
+ "A_no_stop": {
+  "trades": 95,
+  "days": 247,
+  "mean_net_per_mnq": -38.256842105263146,
+  "hit": 0.37894736842105264,
+  "worst_per_mnq": -550.72
+ },
+ "B_stop40": {
+  "trades": 95,
+  "days": 247,
+  "mean_net_per_mnq": -16.520000000000003,
+  "hit": 0.29473684210526313,
+  "worst_per_mnq": -81.72
+ }
+}
