@@ -4,8 +4,8 @@ _Last updated: 22 Nov 2026_
 
 ## Where we are
 
-- **Phase:** loop iteration 1 done (stage 1 and 2 signal tests). Next: robustness and stage 3 strategy test for IMOM-04 on NQ.
-- **Last verdict:** REVISE (reports/iter_01.md). IMOM-04 NQ: high-volatility-day late momentum, IC +0.114, t 4.10, 4.3x NQ cost. Trials run: 14.
+- **Phase:** loop iteration 2 done. Next: iteration 3 on new hypotheses (Phase 2 signal tests).
+- **Last verdict:** KILL (reports/iter_02.md). IMOM-04 lost $38 per MNQ trade (t −2.32) in the walk-forward year; in-sample Combine pass rate peaked at 43%. Trials run: 22.
 - **Account sizes:** test all three ($50K, $100K, $150K) and compare outcomes (Ben, 22 Nov 2026).
 - **Validity bar:** the defaults in the project brief, confirmed by Ben on 22 Nov 2026.
 - **Data budget:** Databento; bars from the $125 free credit (expires 6 months after signup); hard cap of $50 paid before any tick data (Ben, 22 Nov 2026).
@@ -18,6 +18,8 @@ _Last updated: 22 Nov 2026_
 - Phase 4 groundwork: `DATA.md`; `sniper/signal.py` signal-test harness; `sniper/data.py` loader with holdout guard.
 - Data: ES and NQ 1-minute bars, June 2010 to 31 Oct 2025 (holdout not bought). Estimated spend $49.49 (log in `data_spend.csv`), expected from the free credit. Raw files also in project files under `data/raw/`.
 - Iteration 1: 7 hypotheses on ES and NQ. Gao et al.'s first-half-hour effect does not replicate; VWAP and gap reversion show nothing.
+- Iteration 2: IMOM-04 robust in-sample, built into a strategy, replayed through TopstepSim (fast engine validated 30/30 against it) for all three sizes, then killed by the walk-forward year. Account size changed the best size, not the best pass rate (35-43% on all three).
+- `sniper/montecarlo.py`: block-bootstrap Monte Carlo for Combine and XFA outcomes.
 
 ## Findings so far (from reading, not data)
 
@@ -27,9 +29,9 @@ _Last updated: 22 Nov 2026_
 
 ## Next three actions
 
-1. IMOM-04 robustness: volatility cut-off sweep, leave-one-year-out, one-bar entry delay, ES+NQ combined (each counted as a trial).
-2. Stage 3: rule for IMOM-04, event-driven backtest with conservative fills, replay through TopstepSim for $50K/$100K/$150K, Monte Carlo on resampled days.
-3. Apply the METHOD change proposed in iter_01 (report dollar t next to IC) and test TREND-01/02, MR-02, MR-04, RV-01.
+1. Stage 1 and 2 (with the new dollar-t gate) on TREND-01, TREND-02, MR-02, MR-04, RV-01 using the existing bars.
+2. Register IMOM-07 (late-day reversal since 2023) as a new, flagged hypothesis suggested by iteration 2.
+3. Price ES and NQ 1-second bars for 2022-2024 (LEADLAG-01) against the remaining budget.
 
 ## Open questions for Ben
 

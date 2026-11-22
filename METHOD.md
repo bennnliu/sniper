@@ -73,7 +73,9 @@ All-in round-trip cost per contract, **assumed** until calibrated from tick data
 
 **Micros cost far more per dollar of exposure.** One MNQ trade costs $1.22 for $2 a point; one NQ trade costs $3.78 for $20 a point, so the micro pays about 3.2 times as much in fees for the same exposure. Micros give sizing granularity (Phase 6), but a signal that only clears costs on minis cannot be traded in micros.
 
-Pass rule: the mean absolute forward move conditional on the signal, in the signal's direction, must exceed **2 × total cost** at the chosen horizon, and the gross expectancy of a naive "trade every signal" rule must stay positive at **double** cost. A real effect that fails is recorded as `not_tradable`.
+Pass rule: the mean forward move in the signal's direction must exceed **2 × total cost** at the chosen horizon, the gross expectancy of a naive "trade every signal" rule must stay positive at **double** cost, and the **t-statistic of that rule's dollar P&L must be at least 3** in the development period. Rank IC ignores the size of moves; dollars do not. A real effect that fails is recorded as `not_tradable`.
+
+Before any Monte Carlo work, the frozen naive rule is run once on the walk-forward year. A negative mean there ends the candidate.
 
 ## 5. Stage 3: strategy test
 
@@ -140,3 +142,4 @@ One config file per experiment; fixed random seed; git commit hash stored with e
 | Date | Change | Reason |
 |---|---|---|
 | 2026-11-22 | First version | Written before any feature was tested |
+| 2026-11-22 | Stage 2 requires dollar P&L t ≥ 3; walk-forward check moved before the Monte Carlo | Iterations 1-2: IMOM-05 and IMOM-04 passed on rank IC with dollar t of 0.9 and 2.7, and IMOM-04 lost money in the walk-forward year |

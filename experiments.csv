@@ -13,3 +13,11 @@ it01-MR-03-NQ,2026-11-22,88aa341,fc00b4723f,1,11,stage1 MR-03 NQ: IC -0.0308 t -
 it01-MR-01-NQ,2026-11-22,88aa341,fc00b4723f,1,12,stage1 MR-01 NQ: IC 0.0002 t 0.08 at 15 -> FAIL
 it01-IMOM-04-NQ,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,13,stage1 IMOM-04 NQ: IC high-vol +0.114 t 4.10 vs rest -0.063; diff z 5.08; years right 71% -> PASS
 it01-IMOM-04-ES,2026-11-22,88aa341,adhoc-imom04-expanding-tercile,1,14,stage1 IMOM-04 ES: IC high-vol +0.104 t 3.43 vs rest -0.006; diff z 3.01; years right 69% -> FAIL (stability)
+it02-IMOM-04-NQ-q0.50,2026-11-22,72fb747,iter02,1,15,IC +0.077 t 3.25; pts t 2.21
+it02-IMOM-04-NQ-q0.60,2026-11-22,72fb747,iter02,1,16,IC +0.090 t 3.47; pts t 2.33
+it02-IMOM-04-NQ-q0.75,2026-11-22,72fb747,iter02,1,17,IC +0.135 t 4.41; pts t 2.83
+it02-IMOM-04-NQ-q0.80,2026-11-22,72fb747,iter02,1,18,IC +0.116 t 3.52; pts t 2.36
+it02-IMOM-04-NQ-delay1,2026-11-22,72fb747,iter02,1,19,entry 14:31 exit 14:59: IC +0.110 t 3.96; pts t 2.21
+it02-IMOM-04-ESNQ,2026-11-22,72fb747,iter02,1,20,1 ES + 1 NQ: $92/day t 2.79
+it02-IMOM-04-strategyA,2026-11-22,72fb747,iter02,1,21,"no stop, MNQ: dev $3.75/trade t 1.68; best Combine pass 40% (50K, 2 MNQ); walk-forward $-38.26/trade t -2.32 -> KILL"
+it02-IMOM-04-strategyB,2026-11-22,72fb747,iter02,1,22,"40pt stop, MNQ: dev $4.18/trade t 2.30; best Combine pass 43%; walk-forward $-16.52/trade t -1.71 -> KILL"
