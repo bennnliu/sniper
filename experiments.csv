@@ -86,3 +86,19 @@ it08-NOISE-01B-NQ-no_vwap,2026-11-22,467581b,iter08,1,84,"$78/traded day, t 3.05
 it08-NOISE-01B-NQ-walkforward-cost1x,2026-11-22,63ec2dd,iter08,1,85,"$296/traded day, t 0.93, n 136"
 it09-NOISE-01B-NQ-vol-units,2026-11-22,7f241a1,iter09,1,86,vol-unit t 2.21; early -0.36 late 3.94
 it10-NOISE-01B-NQ-HOLDOUT,2026-11-22,9e1b3c6,iter10,1,87,"HOLDOUT PASS: $287/traded day, t 1.05, n 136; 50K pass at 2 MNQ 35.2%"
+it11-NOISE-NQ-NY-V0,2026-11-22,9662b50,iter11,1,88,"V0 base (frozen rule): t(vu) 1.15; best 15 MNQ pass 21.0% in 19d, score x1000 262.98"
+it11-NOISE-NQ-NY-V1,2026-11-22,9662b50,iter11,1,89,"V1 skip CPI/NFP/FOMC days: t(vu) 1.30; best 15 MNQ pass 20.3% in 19d, score x1000 210.54"
+it11-NOISE-NQ-NY-V2,2026-11-22,9662b50,iter11,1,90,"V2 skip FOMC days only: t(vu) 1.64; best 15 MNQ pass 21.6% in 20d, score x1000 258.89"
+it11-NOISE-NQ-NY-V3,2026-11-22,9662b50,iter11,1,91,"V3 one entry a day: t(vu) 1.87; best 15 MNQ pass 20.5% in 27d, score x1000 79.34"
+it11-NOISE-NQ-NY-V4,2026-11-22,9662b50,iter11,1,92,"V4 two entries a day: t(vu) 1.16; best 15 MNQ pass 20.8% in 21d, score x1000 222.81"
+it11-NOISE-NQ-NY-V5,2026-11-22,9662b50,iter11,1,93,"V5 9:00 CT check only: t(vu) 2.03; best 10 MNQ pass 26.6% in 70d, score x1000 22.72"
+it11-NOISE-NQ-NY-V6,2026-11-22,9662b50,iter11,1,94,"V6 no entries after 11:00 CT: t(vu) 1.78; best 15 MNQ pass 20.2% in 27d, score x1000 65.51"
+it11-NOISE-NQ-NY-V7,2026-11-22,9662b50,iter11,1,95,"V7 trade stop 0.25 daily moves: t(vu) 0.39; best 15 MNQ pass 21.2% in 21d, score x1000 249.20"
+it11-NOISE-NQ-NY-V8,2026-11-22,9662b50,iter11,1,96,"V8 trade stop 0.40 daily moves: t(vu) 0.99; best 15 MNQ pass 21.3% in 19d, score x1000 283.86"
+it11-NOISE-NQ-NY-V9,2026-11-22,9662b50,iter11,1,97,"V9 session stop 0.30 daily moves: t(vu) 1.72; best 15 MNQ pass 23.1% in 25d, score x1000 121.99"
+it11-NOISE-NQ-NY-V10,2026-11-22,9662b50,iter11,1,98,"V10 session stop 0.50 daily moves: t(vu) 0.92; best 15 MNQ pass 20.7% in 21d, score x1000 227.53"
+it11-NOISE-NQ-NY-V11,2026-11-22,9662b50,iter11,1,99,"V11 long only: t(vu) 1.59; best 15 MNQ pass 26.9% in 37d, score x1000 81.18"
+it11-NOISE-NQ-NY-V12,2026-11-22,9662b50,iter11,1,100,"V12 skip news + one entry: t(vu) 2.07; best 15 MNQ pass 19.7% in 26d, score x1000 76.24"
+it11-NOISE-NQ-NY-V13,2026-11-22,9662b50,iter11,1,101,"V13 skip news + one entry + session stop 0.50: t(vu) 1.76; best 15 MNQ pass 19.2% in 27d, score x1000 68.17"
+it11-META-01-logistic,2026-11-22,9662b50,iter11,1,102,OOS IC +0.120 t +5.45; kept $130 vs all $88 per trade; improvement t 1.32
+it11-META-01-boosted,2026-11-22,9662b50,iter11,1,103,OOS IC +0.045 t +2.03; kept $103 vs all $88 per trade; improvement t -0.70
