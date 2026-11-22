@@ -99,11 +99,12 @@ xfa:
       scaling_plan:
         value:
           - {min_balance: -.inf, max_lots: 2}
-          - {min_balance: 1500, max_lots: 3}
+          - {min_balance: 1500, max_lots: 3, inclusive: true}
           - {min_balance: 2000, max_lots: 5}
-        source: scaling_secondary
+        source: scaling_plan
         verified: "2026-11-22"
-        status: secondary
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
     100K:
       mll: {value: 3000, source: xfa_params, verified: "2026-11-22", status: verified}
       payout_cap_standard: {value: 3000, source: payout_policy, verified: "2026-11-22", status: verified}
@@ -111,12 +112,13 @@ xfa:
       scaling_plan:
         value:
           - {min_balance: -.inf, max_lots: 3}
-          - {min_balance: 1500, max_lots: 4}
+          - {min_balance: 1500, max_lots: 4, inclusive: true}
           - {min_balance: 2000, max_lots: 5}
           - {min_balance: 3000, max_lots: 10}
-        source: scaling_secondary
+        source: scaling_plan
         verified: "2026-11-22"
-        status: secondary
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
     150K:
       mll: {value: 4500, source: xfa_params, verified: "2026-11-22", status: verified}
       payout_cap_standard: {value: 5000, source: payout_policy, verified: "2026-11-22", status: verified}
@@ -124,13 +126,14 @@ xfa:
       scaling_plan:
         value:
           - {min_balance: -.inf, max_lots: 3}
-          - {min_balance: 1500, max_lots: 4}
+          - {min_balance: 1500, max_lots: 4, inclusive: true}
           - {min_balance: 2000, max_lots: 5}
           - {min_balance: 3000, max_lots: 10}
           - {min_balance: 4500, max_lots: 15}
-        source: scaling_secondary
+        source: scaling_plan
         verified: "2026-11-22"
-        status: secondary
+        status: verified
+        note: "Checked against Topstep's Scaling Plan chart (image) supplied by Ben on 2026-11-22; matches secondary sources"
 
 fees:
   # Round turn per contract on TopstepX: commission + exchange + NFA.
@@ -184,7 +187,6 @@ prohibited:
 
 open_items:
   - "XFA MLL lock point for 100K/150K: text states the $0 lock only for 50K (at $2,000). We assume lock at $0 once balance reaches the MLL amount for all sizes."
-  - "XFA Scaling Plan table is an image on help.topstep.com; values here come from three agreeing secondary sources (Aug to Nov 2026). Confirm against the image."
-  - "Scaling-tier edges are ambiguous on 100K/150K (rungs repeated in Topstep's chart). We use >= min_balance."
+  - "Scaling-tier edges: 'Below $1,500' means $1,500 itself is in the next tier (inclusive). Every other rung reads 'Above $X' or overlaps the rung below ('$1,500 - $2,000' then '$2,000 - $3,000'), so at exactly $X we give the LOWER tier (conservative)."
   - "Back2Funded reactivation window: 30 days (pricing page) vs seven calendar days (rules page)."
   - "Payout caps: rules page says flat up to $5,000/$6,000; payout policy gives per-size caps. We use per-size caps (conservative)."

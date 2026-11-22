@@ -29,8 +29,14 @@ def _t(text: str) -> time:
 
 @dataclass(frozen=True)
 class ScalingTier:
-    min_balance: float  # tier applies when end-of-day balance >= this
+    min_balance: float  # tier applies when start-of-day balance is above this
     max_lots: float  # mini-equivalent contracts
+    inclusive: bool = False  # True: applies at exactly min_balance too
+
+    def applies(self, balance: float) -> bool:
+        if self.inclusive:
+            return balance >= self.min_balance - 1e-6
+        return balance > self.min_balance + 1e-6
 
 
 @dataclass(frozen=True)
@@ -99,7 +105,7 @@ def load_rules(path: str | Path = DEFAULT_PATH) -> RuleSpec:
         x = xfa["accounts"][size]
         f = fees["accounts"][size]
         tiers = tuple(
-            ScalingTier(float(t["min_balance"]), float(t["max_lots"]))
+            ScalingTier(float(t["min_balance"]), float(t["max_lots"]), bool(t.get("inclusive", False)))
             for t in _v(x["scaling_plan"])
         )
         accounts[size] = AccountSpec(

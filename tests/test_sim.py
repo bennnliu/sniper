@@ -287,13 +287,13 @@ def test_xfa_scaling_plan_by_start_of_day_balance(size):
     assert not sim.process(Fill(ct(d, 9), "MES", int(first * 10), 5000))
     ev = sim.process(Fill(ct(d, 9, 1), "MES", 1, 5000))
     assert ev[0].kind == EventKind.REJECTED
-    # Bank +$2,000 intraday: the limit must not rise mid-session.
-    sim.process(Fill(ct(d, 9, 2), "MES", -int(first * 10), 5000 + 2000 / (5.0 * first * 10)))
-    assert sim.balance == pytest.approx(2000)
+    # Bank +$2,100 intraday: the limit must not rise mid-session.
+    sim.process(Fill(ct(d, 9, 2), "MES", -int(first * 10), 5000 + 2100 / (5.0 * first * 10)))
+    assert sim.balance == pytest.approx(2100)
     sim.process(Fill(ct(d, 10), "MES", int(first * 10), 5000))
     assert sim.process(Fill(ct(d, 10, 1), "MES", 1, 5000))[0].kind == EventKind.REJECTED
     sim.process(Fill(ct(d, 10, 2), "MES", -int(first * 10), 5000))
-    # Next session uses the $2,000 tier.
+    # Next session uses the above-$2,000 tier.
     nxt = sim.process(Mark(ct(DAYS[1], 8), "ES", 5000))
     assert sim.max_lots_today == 5
     assert nxt[0].kind == EventKind.DAY_CLOSE
@@ -354,3 +354,17 @@ def test_xfa_payout_below_minimum_not_paid():
     for i in range(3):
         es_round_trip(sim, DAYS[i], 80)  # 50% of $240 = $120 < $125
     assert sim.finish().payouts_gross == 0
+
+
+@pytest.mark.parametrize(
+    "size,balance,lots",
+    [
+        ("50K", 1499.99, 2), ("50K", 1500, 3), ("50K", 2000, 3), ("50K", 2000.01, 5),
+        ("100K", 1500, 4), ("100K", 2000, 4), ("100K", 2500, 5), ("100K", 3000, 5), ("100K", 3000.01, 10),
+        ("150K", 1000, 3), ("150K", 3500, 10), ("150K", 4500, 10), ("150K", 4500.01, 15), ("150K", -500, 3),
+    ],
+)
+def test_scaling_plan_tier_edges_match_topstep_chart(size, balance, lots):
+    sim = sim_nofee(size, mode="xfa")
+    sim.balance = balance
+    assert sim._max_lots() == lots

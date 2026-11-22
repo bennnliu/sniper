@@ -255,7 +255,7 @@ class TopstepSim:
             return self.spec.max_lots
         allowed = self.spec.scaling_plan[0].max_lots
         for tier in self.spec.scaling_plan:
-            if self.balance >= tier.min_balance - 1e-6:
+            if tier.applies(self.balance):
                 allowed = tier.max_lots
         return min(allowed, self.spec.max_lots)
 
