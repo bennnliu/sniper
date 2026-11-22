@@ -4,3 +4,4 @@ date,dataset,schema,symbols,stype,start,end,estimate_usd,billable_mb,paid_from,n
 2026-11-22,GLBX.MDP3,ohlcv-1m,NQ.v.0,continuous,2017-05-29T08:40,2025-11-01,10.83,,free credit (expected),re-pull of the missing NQ range
 2026-11-22,GLBX.MDP3,trades,ES.v.0,continuous,2024-08-01,2024-11-01,35.01,,free credit (expected),Level 1 for OFI-01 / limit-order MR-04; approved by Ben (3 months ES+NQ ~$62)
 2026-11-22,GLBX.MDP3,trades,NQ.v.0,continuous,2024-08-01,2024-11-01,29.07,,free credit (expected),same; batch job
+2026-11-22,GLBX.MDP3,ohlcv-1m,NQ.v.0,continuous,2025-11-01,2026-11-01,1.29,,free credit (expected),HOLDOUT year for the one-time NOISE-01B test; approved by Ben

@@ -39,12 +39,13 @@ Also in iteration 8: overnight drift (OD-01) replicates but is below cost; EOD-0
 
 Iteration 9 (reports/iter_09.md): in volatility units the development t falls to 2.21 (below 3); the edge is absent in 2010-2017 and present in 2018-2024. Measured spread at fill times is about 2 ticks, matching the assumption. 86 trials.
 
+Iteration 10 (reports/iter_10.md): **holdout test PASSED** on the three pre-written conditions (NQ, Nov 2025 to Oct 2026: +$287 per traded day per contract, t 1.05; +$267 at 2x cost; simulated $50K Combine pass 35% at 2 MNQ against a 22% baseline). Not promoted: development deflated Sharpe 0.81 is below the 0.95 bar, and Dec 2025 to Jan 2026 would have breached a $50K account. **The NQ holdout year is now spent (use number 1).** 87 trials.
+
 ## Next actions
 
-1. Waiting on Ben: buy the NQ holdout year ($1.29 quote) and run the single holdout test on the frozen rule, or keep working on development data first.
-2. If the holdout passes: exits and sizing under Topstep rules, then paper trading.
+1. Waiting on Ben: build the bot and paper trade, study sizing first, or keep searching.
 
 ## Open questions for Ben
 
-1. The holdout decision above.
-2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).
+1. The direction above.
+2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).
