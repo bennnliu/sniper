@@ -44,3 +44,8 @@ it05-OFI-04-NQ,2026-11-22,61a2631,iter05,1,42,IC +0.0241 t -0.17 -> FAIL; 2.28x 
 it05-MR-04L-NQ,2026-11-22,61a2631,iter05,1,43,"fill 0%, net $nan/trade, t$ nan"
 it05-MR-04L-ES-rerun,2026-11-22,61a2631,iter05,1,44,"fill 89%, net $-26.82/trade, t$ -2.01 (re-run; first run void: volatility window bug gave 0 signals)"
 it05-MR-04L-NQ-rerun,2026-11-22,61a2631,iter05,1,45,"fill 98%, net $-1.83/trade, t$ -0.08 (re-run; first run void)"
+it06-zero-edge-stop20_target20,2026-11-22,129c024,iter06,1,46,"zero-edge baseline (simulated): 50K pass 20.6%, EV -$8 at best size"
+it06-zero-edge-stop20_target40,2026-11-22,129c024,iter06,1,47,"zero-edge baseline (simulated): 50K pass 21.5%, EV $4 at best size"
+it06-zero-edge-stop40_target20,2026-11-22,129c024,iter06,1,48,"zero-edge baseline (simulated): 50K pass 22.3%, EV $10 at best size"
+it06-zero-edge-stop40_target80,2026-11-22,129c024,iter06,1,49,"zero-edge baseline (simulated): 50K pass 22.9%, EV $35 at best size"
+it06-zero-edge-stop60_target30,2026-11-22,129c024,iter06,1,50,"zero-edge baseline (simulated): 50K pass 23.0%, EV $37 at best size"

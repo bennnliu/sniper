@@ -5,7 +5,7 @@ _Last updated: 22 Nov 2026_
 ## Where we are
 
 - **Phase:** loop iteration 5 done. All tested families have failed; waiting on Ben's direction for iteration 6.
-- **Last verdict:** KILL (reports/iter_05.md). Order-flow imbalance has no forecast power at 1-15 minutes (best IC +0.007, t 0.5); limit-order reversal loses after fees. Trials run: 45.
+- **Last verdict:** KILL (reports/iter_05.md). Order-flow imbalance has no forecast power at 1-15 minutes (best IC +0.007, t 0.5); limit-order reversal loses after fees. Trials run: 50.
 - **Account sizes:** test all three ($50K, $100K, $150K) and compare outcomes (Ben, 22 Nov 2026).
 - **Validity bar:** the defaults in the project brief, confirmed by Ben on 22 Nov 2026.
 - **Data budget:** Databento; bars from the $125 free credit (expires 6 months after signup); hard cap of $50 paid before any tick data (Ben, 22 Nov 2026).
@@ -20,6 +20,7 @@ _Last updated: 22 Nov 2026_
 - Iteration 1: 7 hypotheses on ES and NQ. Gao et al.'s first-half-hour effect does not replicate; VWAP and gap reversion show nothing.
 - Iteration 2: IMOM-04 robust in-sample, built into a strategy, replayed through TopstepSim (fast engine validated 30/30 against it) for all three sizes, then killed by the walk-forward year. Account size changed the best size, not the best pass rate (35-43% on all three).
 - `sniper/montecarlo.py`: block-bootstrap Monte Carlo for Combine and XFA outcomes.
+- Iteration 6: zero-edge baseline. No-edge trading passes the $50K Combine about 22% of the time and is worth about $0 per attempt after fees (simulated). This is the bar a strategy must beat.
 - Iteration 5: Aug-Oct 2024 ES and NQ trades bought ($64.08, approved by Ben). OFI-01, OFI-04 fail; limit-order MR-04 loses to adverse selection.
 - Iteration 3: TREND-01/02, MR-02 fail; MR-04 (5-minute reversal) and RV-01 (NQ/ES spread) are real but not tradable.
 
@@ -33,7 +34,7 @@ _Last updated: 22 Nov 2026_
 
 1. Event and calendar conditioning on existing data: CAL-01, CAL-02.
 2. Price a dealer-gamma / options-positioning data source for a direct test of IMOM-04's mechanism.
-3. Zero-edge baseline: what pass rate and expected dollars Topstep's rules give a no-edge strategy under different sizing and stop policies.
+3. (Done in iteration 6) Zero-edge baseline.
 
 ## Open questions for Ben
 
