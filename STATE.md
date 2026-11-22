@@ -31,13 +31,16 @@ _Last updated: 22 Nov 2026_
 - The opening-range breakout's published 33% was net of commissions only; a replication found about zero after spread and slippage on NQ.
 - Micros cost about 3.2 times more in fees per dollar of exposure than minis (MNQ 4.4 ticks round trip all-in vs NQ 2.8, assumed).
 
-## Next three actions (Ben to choose direction)
+## Status: search paused (22 Nov 2026, Ben's decision)
 
-1. Price a dealer-gamma / options-positioning data source for a direct test of IMOM-04's mechanism (needs a spend approval).
-2. Or accept the null result for directional signals on bar and trade data and pause the search.
-3. Or run the remaining low-prior bar tests (CAL-03, VOL filters), no spend.
+Ben declined the options-positioning data purchase and paused the search. Overall summary: `reports/SUMMARY.md`. Nothing is promoted.
+
+## If the search resumes
+
+1. NQ options open interest from Databento for a dealer-gamma test ($47.63, priced in DATA.md, needs approval).
+2. Remaining free bar tests: CAL-03, VOL filters.
+3. Re-verify `topstep_rules.yaml` if after 22 Dec 2026.
 
 ## Open questions for Ben
 
-1. Which of the three directions above to take next (reports/iter_07.md, section 10).
-2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).
+1. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).
