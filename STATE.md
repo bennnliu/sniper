@@ -37,12 +37,14 @@ Iteration 8 (reports/iter_08.md): second literature pass (2024 onward) and five 
 
 Also in iteration 8: overnight drift (OD-01) replicates but is below cost; EOD-01, IMOM-07, REG-01 fail. Features live in `sniper/features.py` and `sniper/noise.py`.
 
-## Next three actions
+Iteration 9 (reports/iter_09.md): in volatility units the development t falls to 2.21 (below 3); the edge is absent in 2010-2017 and present in 2018-2024. Measured spread at fill times is about 2 ticks, matching the assumption. 86 trials.
 
-1. Free critique tests on NOISE-01B: dependence on volatility, results in volatility units, slippage at the fill times on the tick data.
-2. Exits and sizing for NOISE-01B under Topstep rules, purged cross-validation, development period only.
-3. If it stands, ask Ben about buying the holdout year of NQ bars for the single final test.
+## Next actions
+
+1. Waiting on Ben: buy the NQ holdout year ($1.29 quote) and run the single holdout test on the frozen rule, or keep working on development data first.
+2. If the holdout passes: exits and sizing under Topstep rules, then paper trading.
 
 ## Open questions for Ben
 
-1. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).
+1. The holdout decision above.
+2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $113.57 in total).

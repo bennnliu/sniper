@@ -143,4 +143,5 @@ One config file per experiment; fixed random seed; git commit hash stored with e
 |---|---|---|
 | 2026-11-22 | First version | Written before any feature was tested |
 | 2026-11-22 | Stage 2 requires dollar P&L t ≥ 3; walk-forward check moved before the Monte Carlo | Iterations 1-2: IMOM-05 and IMOM-04 passed on rank IC with dollar t of 0.9 and 2.7, and IMOM-04 lost money in the walk-forward year |
+| 2026-11-22 | Any rule tested over many years must also be reported in volatility units (net points ÷ prior close × trailing daily volatility) | Iteration 9: the dollar t of NOISE-01B was inflated by the rise in the index level |
 | 2026-11-22 | Rule-based ideas (entry and exit defined by the source) may skip the rank-IC test and go straight to the dollar test with the same t ≥ 3 bar, fills delayed one minute after the decision | Iteration 8: practitioner rules such as the noise-area breakout are not a single feature with a forecast horizon. Applies from the next iteration |
