@@ -16,6 +16,8 @@ _Started 23 Nov 2026 at Ben's request ("start from scratch again"). One running 
 
 | Date | What | Quoted cost | Running total |
 |---|---|---|---|
+| 23 Nov 2026 | One-minute bars, CL GC NG RTY YM ZN 6E 6J 6B (front contract by volume), 1 Jan 2018 to 31 Oct 2025, nine batch jobs | $87.31 | $87.31 |
+| 23 Nov 2026 | Aborted first attempt by streaming (about 2 MB of crude bars before I switched to batch jobs) | about $0.30 (estimate) | $87.61 |
 
 ## Topstep rules for other markets (read 23 Nov 2026)
 
@@ -51,3 +53,28 @@ Sources: help.topstep.com articles 8284206 (products), 10296582 (prohibited cond
 If all four hold, one run on the walk-forward year (mean must be positive), then the Combine simulation with NQ added, against a random-direction control. If they fail, the per-market table decides whether anything is worth a narrower, separately registered test.
 
 **Trials:** 9 markets + 1 portfolio = 10. Total after this iteration: 242.
+
+### Iteration 32 result: FAIL on all four criteria. The breakout does not travel.
+
+Development data, 1 Jan 2018 to 31 Oct 2024, news days skipped, costs on. Measured. Files: `reports/xm01/`. Code: `research/xm01.py`.
+
+| Market (contract) | Days | Net t | Gross t (no costs) | Win rate | Cost as share of the daily move | Years positive |
+|---|---|---|---|---|---|---|
+| Crude (MCL) | 1,390 | -2.22 | 0.39 | 39% | 2.4% | 1 of 7 |
+| Gold (MGC) | 1,417 | -1.68 | 1.32 | 38% | 2.5% | 2 of 7 |
+| Natural gas (MNG) | 1,387 | -6.70 | -1.29 | 35% | 3.3% | 0 of 7 |
+| Russell (M2K) | 1,446 | -1.51 | 0.21 | 37% | 1.8% | 2 of 7 |
+| Dow (MYM) | 1,448 | -0.02 | 1.38 | 38% | 1.5% | 4 of 7 |
+| 10-year note (ZN) | 1,443 | -8.10 | 0.69 | 33% | 8.3% | 0 of 7 |
+| Euro (M6E) | 1,465 | -6.05 | 0.72 | 38% | 5.8% | 0 of 7 |
+| Yen (6J) | 1,444 | -2.80 | 1.36 | 37% | 3.3% | 2 of 7 |
+| Pound (6B) | 1,430 | -5.36 | -0.99 | 36% | 3.9% | 0 of 7 |
+| **Equal-risk portfolio** | 1,494 | **-8.78** | | | | **0 of 7** |
+
+- Before costs no market has a t above 1.4, and two are negative. There is nothing to rescue with cheaper execution or a different contract.
+- After costs every market loses. Rates and currencies lose most because their daily move is small against a one-tick spread: one round trip costs 4 to 8% of a day's expected move, against 1.5% for the Dow.
+- The diversification half of the hypothesis was right: daily results are nearly uncorrelated across asset classes (0.00 to 0.17; Russell and Dow 0.44). Breadth would work if there were an edge to spread. There is not.
+- It is not a mirror-image fade either: gross results sit at zero, not below it.
+- Reading: the NQ result of 2018 to 2024 looks more like one market's good run than a general hedging-demand effect. That fits its failure after October 2024.
+
+**Verdict: KILL XM-01.** The walk-forward year for these markets was not opened. Trials: 10, total 242.
