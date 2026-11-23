@@ -683,3 +683,28 @@ Also reported for every method: average win, average loss, win rate, profit fact
 - The profit target (S3) did not hurt as predicted; it was roughly neutral (t 0.56).
 - Near misses: exiting on VWAP alone (X1) raised profit by $27,123 and held at double cost, by letting more trades reach the close (50% against 35%), but with a larger average loss, a deeper drawdown and a t of 1.81. The confirmed entry (N1) met five of six and failed only on significance (t 0.61).
 - Reading: losses in this rule are the price of staying in for the trend days. Methods that shrink the average loss shrink the gains by more; the one direction with support is the opposite, a looser exit. **Trials: 218.**
+
+---
+
+## Iteration 29 (23 Nov 2026): LOSS-01, minimising loss through entries and exits
+
+**Direction from Ben (23 Nov 2026, 3:30 AM ET):** focus on minimising loss through optimal entries and exits. My reading, stated to him: loss reduction is now the primary objective and profit is a constraint, not the target. "Loss" is measured four ways: worst drawdown, the sum of all losing days, the worst single day, and how often a $50K Combine hits its loss limit.
+
+**Starting point from iteration 28 (development data, one set):** base rule drawdown −$18,383, worst day −$5,151. Methods that lowered a loss measure without wrecking profit: wide trailing stop 0.5 daily moves (drawdown −$15,790, worst day −$4,064), entry confirmed five minutes earlier (drawdown −$16,831), first half hour's direction only (drawdown −$13,942). Methods that cut the average loss per trade by exiting faster made drawdown worse, because they multiplied the number of losing trades. So the target is the losing day, not the losing trade.
+
+**Methods (8 trials, total 226). Each is the base rule plus:**
+- C1 confirmed entry + trailing stop 0.5. C2 confirmed entry + first half hour's direction. C3 all three.
+- T1 trailing stop 0.35. T2 trailing stop 0.75. (Brackets the 0.5 already tested; Lo and Remorov: width decides whether a stop pays.)
+- D1 daily loss stop: once the whole set is down 0.5 expected daily moves (per contract, times nine) on the day, open positions included, flatten and stop for the day. D2 the same at 0.75. (Kaminski and Lo: a stop helps only if losses persist within the day; iteration 11 rejected a per-trade stop, this is a per-day stop on the combined position.)
+- E1 no entries at the first check (10:00 AM ET); first entry at 10:30. (Iteration 24: later entries win more often.)
+
+**Adopt only if all hold on development data, against the base rule:**
+1. Worst drawdown at least 15% shallower.
+2. Sum of losing days at least 10% smaller.
+3. Worst day not worse.
+4. Net profit at least 90% of the base rule, and Sharpe higher.
+5. Criteria 1 and 4 also hold at double cost.
+6. Drawdown shallower in both halves of the development period.
+7. $50K Combine at 9 MNQ (simulated, days from 2016 to October 2024): loss limit hit less often and 30-day pass rate not lower.
+8. Then the walk-forward year (seen many times): drawdown not deeper and Sharpe not lower.
+The three single methods from iteration 28 are shown against the same criteria for reference; they were chosen for this list after their results were seen, so they are not fresh tests.
