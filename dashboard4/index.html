@@ -1,0 +1,211 @@
+<meta name="dash-one-writer">
+<style>
+/* Layout: one column of sections, each a heading, one plain sentence, then charts and tables. */
+.nq { display: flex; flex-direction: column; gap: var(--cds-gap-xl, 32px); font-family: var(--font-anthropic-sans); color: var(--color-fg); font-size: var(--cds-font-size-body); }
+.nq h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.nq h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.nq h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.nq p { margin: 0; max-width: 72ch; line-height: 1.5; }
+.nq .nq-muted { color: var(--color-fg-muted); }
+.nq .nq-cap { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 80ch; }
+.nq section { display: flex; flex-direction: column; gap: var(--cds-gap-md, 12px); min-width: 0; }
+.nq .nq-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--cds-gap-md, 12px); }
+.nq .nq-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg, 16px); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.nq .nq-tile .nq-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.nq .nq-tile .nq-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.7em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.nq .nq-tile .nq-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.nq .nq-tag { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 8px; color: var(--color-fg-muted); white-space: nowrap; }
+.nq .nq-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md, 12px); align-items: center; }
+.nq .nq-row label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nq .nq-row select { max-width: 100%; }
+.nq .nq-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg, 20px); }
+.nq .nq-grid2 > div { min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-chart { position: relative; min-height: 240px; min-width: 0; }
+.nq .nq-chart.nq-short { min-height: 170px; }
+.nq .nq-chart svg { display: block; width: 100%; overflow: visible; }
+.nq .nq-chart svg text { fill: var(--cds-text-secondary, var(--color-fg-muted)); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.nq .nq-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: 4px; }
+.nq .nq-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.nq .nq-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.nq .nq-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover, var(--color-panel)); border: 1px solid var(--cds-border, var(--color-border-line)); box-shadow: var(--cds-shadow-popover, none); border-radius: var(--cds-radius); padding: 6px 9px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; z-index: 3; white-space: nowrap; color: var(--color-fg); }
+.nq .nq-tip b { font-weight: var(--cds-font-weight-medium); }
+.nq .nq-tip div { display: flex; justify-content: space-between; gap: 14px; }
+.nq .nq-tip div span:first-child { color: var(--cds-text-secondary, var(--color-fg-muted)); }
+.nq .nq-scroll { overflow-x: auto; min-width: 0; }
+.nq table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-caption); }
+.nq th, .nq td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.nq th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.nq th:first-child, .nq td:first-child { text-align: left; white-space: normal; min-width: 150px; }
+.nq td.nq-l, .nq th.nq-l { text-align: left; }
+.nq tr.nq-group td { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); background: var(--color-panel); text-align: left; }
+.nq .nq-pos { color: var(--color-ok); }
+.nq .nq-neg { color: var(--color-bad); }
+.nq .nq-heat td { text-align: center; padding: 4px 6px; border-bottom: 0; min-width: 44px; }
+.nq .nq-heat td:first-child, .nq .nq-heat th:first-child { min-width: 48px; text-align: left; white-space: nowrap; }
+.nq .nq-heat th { text-align: center; }
+.nq .nq-note { border-left: 3px solid var(--color-warn); padding: 6px 12px; background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+.nq details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.nq details ul { margin: 8px 0 0; padding-left: 20px; max-width: 80ch; line-height: 1.5; }
+.nq .nq-pass { color: var(--color-ok); font-weight: var(--cds-font-weight-medium); }
+.nq .nq-fail { color: var(--color-bad); font-weight: var(--cds-font-weight-medium); }
+.nq td.nq-wrap { white-space: normal; min-width: 220px; text-align: left; }
+</style>
+<div class="nq">
+  <div class="nq-head">
+    <h1 id="title">Middle and high volatility strategy</h1>
+    <p id="takeaway">The strategy is profitable on the test years but does not beat simply trading every day. It made <b data-draw="t-total">—</b> per baseline set with a Sharpe ratio of <b data-draw="t-sharpe">—</b>, against <b data-draw="t-bench-sharpe">—</b> for all days with the filter everywhere, and it met <b data-draw="t-crit">—</b> of the criteria written before the test. A simulated $50K Combine passed within 30 trading days <b data-draw="t-p30">—</b> of the time against <b data-draw="t-bench-p30">—</b> for that benchmark. In the walk-forward year it passed <b data-draw="t-p30wf">—</b>, below the coin-flip control at <b data-draw="t-c30wf">—</b>.</p>
+    <p class="nq-cap">The rule: trade the nine-setting NQ breakout ensemble in New York hours on middle- and high-volatility days only. Apply the logistic filter on middle-volatility days. Hold the baseline size on middle days, and on high days hold baseline times 1.28 divided by that morning's volatility ratio, so size shrinks as volatility rises. One baseline set is one MNQ per setting. Test years 2016 to October 2024 use out-of-sample filter scores, but the rule itself was put together after looking at those years. The walk-forward year (November 2024 to October 2025) has been looked at before. Costs are an assumed 1.11 NQ points per round trip; pass and payout rates are simulated. Research, not financial advice.</p>
+  </div>
+
+  <section id="verdict">
+    <h2>Against the criteria written before the test</h2>
+    <div class="nq-scroll">
+      <table id="criteria-table" data-source="criteria" data-row-key="id">
+        <thead><tr><th data-field="criterion">Criterion</th><th data-field="result" class="nq-l">Result</th><th data-field="evidence" class="nq-l">Evidence, $50K account</th></tr></thead>
+        <tbody data-draw="crit-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-note" id="caution" data-draw="caution" data-source="summary montecarlo"></p>
+  </section>
+
+  <section id="compare">
+    <h2>The strategy against its alternatives</h2>
+    <p class="nq-cap">Dollars are for one baseline set. The two variants next to the strategy remove one piece each, so you can see what the size reduction and the filter contribute. The last two are the earlier baselines.</p>
+    <div class="nq-row"><label>Sample
+<select class="dash-select" id="cmp-source" aria-label="Sample"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label></div>
+    <div class="nq-grid2">
+      <div><h3>Sharpe ratio, annualised</h3><div class="nq-chart" id="cmp-sharpe" data-draw="cmp-sharpe" data-source="summary"></div></div>
+      <div><h3>Worst drawdown</h3><div class="nq-chart" id="cmp-dd" data-draw="cmp-dd" data-source="summary"></div></div>
+    </div>
+    <div class="nq-scroll">
+      <table id="summary-table" data-source="summary" data-row-key="id">
+        <thead><tr><th data-field="variant">Variant</th><th data-field="traded_days">Traded days</th><th data-field="trades">Trades</th><th data-field="total">Total</th><th data-field="per_traded_day">Per traded day</th><th data-field="std_day">Daily swing</th><th data-field="sharpe">Sharpe</th><th data-field="t">t</th><th data-field="drawdown">Worst drawdown</th><th data-field="profit_over_drawdown">Profit over drawdown</th><th data-field="win_days">Winning days</th><th data-field="per_trade">Per trade</th><th data-field="win_trades">Winning trades</th><th data-field="worst_day">Worst day</th><th data-field="best_day">Best day</th><th data-field="avg_size">Average size, share of baseline</th></tr></thead>
+        <tbody data-draw="summary-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pnl">
+    <h2>Profit and loss over time</h2>
+    <p class="nq-cap">Cumulative dollars for one baseline set. The shaded year is the walk-forward year.</p>
+    <div class="nq-row"><label>Costs
+<select class="dash-select" id="eq-cost" aria-label="Costs"><option value="1">Assumed cost</option><option value="2">Double cost</option></select></label></div>
+    <div class="nq-chart" id="equity-chart" data-draw="equity" data-source="daily"></div>
+    <h3>Drawdown from the previous high</h3>
+    <div class="nq-chart nq-short" id="drawdown-chart" data-draw="drawdown" data-source="daily"></div>
+    <h3>Size held each day, as a share of the baseline</h3>
+    <p class="nq-cap">Zero on low-volatility days, 100% on middle days, less on high days.</p>
+    <div class="nq-chart nq-short" id="size-chart" data-draw="sizeline" data-source="daily"></div>
+    <h3>Profit by month</h3>
+    <div class="nq-chart" id="monthly-chart" data-draw="monthly" data-source="monthly"></div>
+  </section>
+
+  <section id="years">
+    <h2>Year by year</h2>
+    <div class="nq-scroll">
+      <table id="yearly-table" data-source="yearly" data-row-key="id">
+        <thead><tr><th data-field="year">Year</th><th data-field="period" class="nq-l">Sample</th><th data-field="traded_days">Traded days</th><th data-field="trades">Trades</th><th data-field="pnl_strat">The strategy</th><th data-field="sharpe_strat">Sharpe</th><th data-field="pnl_noreduce">No size reduction</th><th data-field="pnl_nofilter">No filter</th><th data-field="pnl_bench">All days, filtered</th><th data-field="pnl_raw">All days, unfiltered</th><th data-field="avg_size_high">Average size on high days</th><th data-field="worst_day">Worst day</th><th data-field="best_day">Best day</th></tr></thead>
+        <tbody data-draw="yearly-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="parts">
+    <h2>The two halves of the strategy</h2>
+    <p class="nq-cap">What each environment contributes, and what the size reduction does on high-volatility days.</p>
+    <div class="nq-row"><label>Sample
+<select class="dash-select" id="env-source" aria-label="Sample"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label></div>
+    <div class="nq-scroll">
+      <table id="env-table" data-source="environments" data-row-key="id">
+        <thead><tr><th data-field="env">Environment</th><th data-field="days">Days</th><th data-field="trades">Trades</th><th data-field="avg_size">Average size</th><th data-field="min_size">Smallest size</th><th data-field="total">Total</th><th data-field="per_day">Per day</th><th data-field="std_day">Daily swing</th><th data-field="sharpe">Sharpe</th><th data-field="t">t</th><th data-field="per_trade">Per trade</th><th data-field="win_trades">Winning trades</th><th data-field="unfiltered_full_size_total">Total, unfiltered at full size</th><th data-field="unfiltered_full_size_std">Swing, unfiltered at full size</th></tr></thead>
+        <tbody data-draw="env-body"></tbody>
+      </table>
+    </div>
+    <h3>High-volatility days by how volatile they were</h3>
+    <p class="nq-cap">Volatility ratio is the expected move over its 250-day median. Test years.</p>
+    <div class="nq-grid2">
+      <div><h3>Daily swing, reduced size against full size</h3><div class="nq-chart" id="sizing-std" data-draw="sizing-std" data-source="sizing"></div></div>
+      <div><h3>Average profit per day, reduced size against full size</h3><div class="nq-chart" id="sizing-mean" data-draw="sizing-mean" data-source="sizing"></div></div>
+    </div>
+    <div class="nq-scroll">
+      <table id="sizing-table" data-source="sizing" data-row-key="id">
+        <thead><tr><th data-field="bucket">Volatility ratio</th><th data-field="period" class="nq-l">Sample</th><th data-field="days">Days</th><th data-field="avg_size">Average size</th><th data-field="per_day">Per day, reduced</th><th data-field="per_day_full">Per day, full size</th><th data-field="std_day">Swing, reduced</th><th data-field="std_day_full">Swing, full size</th><th data-field="total">Total, reduced</th><th data-field="total_full">Total, full size</th></tr></thead>
+        <tbody data-draw="sizing-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="stats">
+    <h2>Every trade statistic</h2>
+    <p class="nq-cap">Per-day figures are for one baseline set over the whole calendar, including days not traded. Per-trade figures are for one MNQ at the size held that day.</p>
+    <div class="nq-scroll">
+      <table id="kpi-table" data-source="kpis" data-row-key="metric">
+        <thead><tr><th data-field="metric">Statistic</th><th data-field="dev">Strategy, test years</th><th data-field="dev_2x">Strategy, double cost</th><th data-field="wf">Strategy, walk-forward</th><th data-field="dev_noreduce">No size reduction</th><th data-field="dev_bench">All days, filtered</th><th data-field="dev_raw">All days, unfiltered</th></tr></thead>
+        <tbody data-draw="kpi-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="distributions">
+    <h2>Distribution of the daily result</h2>
+    <p class="nq-cap">Share of traded days in each $250 range, one baseline set. The end bars include everything beyond them.</p>
+    <div class="nq-row"><label>Sample
+<select class="dash-select" id="hist-period" aria-label="Sample"><option value="dev">Test years 2016 to Oct 2024</option><option value="wf">Walk-forward year</option></select></label></div>
+    <div class="nq-chart" id="hist-chart" data-draw="hist" data-source="histograms"></div>
+  </section>
+
+  <section id="breakdowns">
+    <h2>Trade breakdowns</h2>
+    <p class="nq-cap">Average result per trade for one MNQ at the size held.</p>
+    <div class="nq-row"><label>Split by
+      <select class="dash-select" id="bd-dim" data-draw="bd-dim" aria-label="Split by" data-source="breakdowns"></select></label></div>
+    <div class="nq-chart" id="breakdown-chart" data-draw="bd-chart" data-source="breakdowns"></div>
+    <div class="nq-scroll">
+      <table id="breakdown-table" data-source="breakdowns" data-row-key="id">
+        <thead><tr><th data-field="bucket">Bucket</th><th data-field="group" class="nq-l">Sample</th><th data-field="n">Trades</th><th data-field="win_rate">Winners</th><th data-field="avg_usd">Average</th><th data-field="total_usd">Total</th><th data-field="profit_factor">Profit factor</th><th data-field="t">t</th></tr></thead>
+        <tbody data-draw="bd-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="montecarlo">
+    <h2>Monte Carlo of the Combine and the funded account</h2>
+    <p class="nq-cap">Simulated, 4,000 attempts per point, days resampled in blocks from the whole calendar so waiting days count. Baseline is the MNQ held on a middle-volatility day when every setting is in. The control takes the same trades with the side chosen by a coin.</p>
+    <div class="nq-row"><label>Account
+<select class="dash-select" id="mc-account" aria-label="Account"><option value="50K">$50K</option><option value="100K">$100K</option><option value="150K">$150K</option></select></label><label>Days drawn from
+<select class="dash-select" id="mc-source" aria-label="Days drawn from"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label></div>
+    <div class="nq-grid2">
+      <div><h3>Pass within 30 trading days by baseline size</h3><div class="nq-chart" id="mc-pass30" data-draw="mc-pass30" data-source="montecarlo"></div></div>
+      <div><h3>Pass with no time limit by baseline size</h3><div class="nq-chart" id="mc-pass" data-draw="mc-pass" data-source="montecarlo"></div></div>
+    </div>
+    <h3>Each variant at the baseline chosen on test years</h3>
+    <div class="nq-scroll">
+      <table id="mc-variants" data-source="montecarlo" data-row-key="id">
+        <thead><tr><th data-field="variant">Variant</th><th data-field="contracts">Baseline MNQ</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="pass">Pass, no limit</th><th data-field="control_pass">Control, no limit</th><th data-field="breach">Loss limit hit</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="payout_rate_standard">Payout rate, standard</th><th data-field="payout_rate_consistency">Payout rate, consistency</th><th data-field="fees_per_account">Fees per account</th><th data-field="profit_per_account">Profit per account</th><th data-field="profit_per_account_30d">Profit per account, 30-day stop</th><th data-field="ben_score_30d">Payout per fee dollar per day, 30-day stop</th></tr></thead>
+        <tbody data-draw="mc-variants-body"></tbody>
+      </table>
+    </div>
+    <h3>The strategy at every baseline size</h3>
+    <div class="nq-scroll">
+      <table id="mc-sizes" data-source="montecarlo" data-row-key="id">
+        <thead><tr><th data-field="contracts">Baseline MNQ</th><th data-field="daily_std_usd">Daily swing</th><th data-field="std_over_limit">Swing over loss limit</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="pass">Pass, no limit</th><th data-field="breach">Loss limit hit</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="payout_rate_standard">Payout rate, standard</th><th data-field="payout_usd_standard">Average payout, standard</th><th data-field="xfa_days_to_first_payout">Funded days to first payout</th><th data-field="profit_per_account">Profit per account</th><th data-field="profit_per_account_30d">Profit per account, 30-day stop</th></tr></thead>
+        <tbody data-draw="mc-sizes-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details id="notes">
+    <summary>Method, definitions and what is measured, simulated or assumed</summary>
+    <ul>
+      <li>Volatility ratio: yesterday's close times 20-day volatility, divided by its own trailing 250-day median. Middle is between the lower-third cut and 1.2828; high is above 1.2828. Both cuts were fixed on development data in an earlier iteration and are known before the open.</li>
+      <li>Size on a high day is baseline times 1.2828 divided by the ratio, never above baseline. The test uses fractional sizes; live trading needs whole contracts, which matters most at small baselines.</li>
+      <li>The filter is the logistic regression trained walk-forward on all New York trades. It skips about the lowest-scored third of trades, here only on middle-volatility days.</li>
+      <li>The funded-account simulation applies Topstep's scaling plan to the baseline size, not the reduced size held on high days.</li>
+      <li>Selection: the choice to filter only middle-volatility days was made after seeing that the filter helped there and hurt in high volatility on these same test years. Test-year figures are therefore flattered; the walk-forward year is the fairer read.</li>
+      <li>Measured: trades and daily results on 1-minute bars. Assumed: 1.11 points per round trip per MNQ. Simulated: every pass, breach and payout rate.</li>
+      <li>Trials: this brings the project's count to 203.</li>
+    </ul>
+  </details>
+</div>
+<script src="app.js"></script>

@@ -572,3 +572,19 @@ Unfiltered: low Sharpe 1.23, middle 0.54, high 1.51. Daily swing grows with the 
 6. Walk-forward year, at the baseline chosen on test years: 30-day pass rate above the control.
 
 **Trials:** 2 (the strategy, and the variant without the reduction; the no-filter variant is a decomposition), total 203.
+
+**STRAT-01 results (research/strat01.py; test years 2016 to October 2024, 1,899 days; walk-forward year 212 days). Costs assumed 1.11 points per round trip; pass and payout rates simulated, 4,000 attempts. Dashboard page built in `dashboard4/` from `reports/dash04/`, not published at the time of writing.**
+
+| Variant, test years, one baseline set | Traded days | Total | Sharpe | t | Worst drawdown |
+|---|---|---|---|---|---|
+| The strategy | 779 | $94,092 | 1.23 | 3.38 | −$12,784 |
+| Same, no size reduction | 779 | $116,579 | 1.23 | 3.39 | −$14,614 |
+| Same, no filter | 905 | $71,252 | 0.83 | 2.27 | −$24,490 |
+| All days, filter everywhere, fixed size (iteration 25) | 1,011 | $127,497 | 1.39 | 3.81 | −$9,973 |
+| All days, unfiltered, fixed size | 1,424 | $133,368 | 1.15 | 3.16 | −$13,895 |
+
+Double cost: strategy $80,405, t 2.89. Walk-forward year: strategy $6,113, Sharpe 0.29, t 0.26 (unfiltered all days $7,197, Sharpe 0.23). In the walk-forward year the middle-volatility filtered trades lost (−$12.33 per trade, 351 trades); the high-volatility trades made $17.34.
+
+Criteria, $50K: 1 PASS (t 3.38). 2 PASS (t 2.89). 3 FAIL (30-day pass 14.7% at 18 MNQ against 20.9% for the benchmark at 12 MNQ). 4 PASS (14.7% against control 9.0%). 5 PASS (14.7% with the reduction against 14.6% without, inside simulation error). 6 FAIL (walk-forward 4.4% against control 9.5%).
+
+**Verdict: STRAT-01 not adopted, 4 of 6.** Profitable on test years but worse than trading every day with the filter, because skipping low-volatility days removes a third of the trading days and the 30-day clock keeps running. The size reduction lowers the drawdown and leaves the Sharpe ratio and pass rate unchanged. The filter on middle-volatility days did not hold in the walk-forward year. **Trials: 203.**

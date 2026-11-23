@@ -1,0 +1,8 @@
+id,criterion,result,evidence
+1,"1. Test years: profit positive, daily t at least 2",PASS,"total $94,092 per baseline set, t 3.38, Sharpe 1.23"
+2,2. The same at double cost,PASS,"total $80,405, t 2.89"
+3,"3. 30-day pass rate at least 2 points above the fixed-size, all-days benchmark",FAIL,14.7% at 18 MNQ against 20.9% at 12 MNQ (simulated)
+4,4. Beats the coin control by more than twice the simulation error,PASS,14.7% against control 9.0%
+5,5. Size reduction: 30-day pass rate not lower than without it,PASS,14.7% with the reduction against 14.6% without
+6,6. Walk-forward year: 30-day pass rate above the control,FAIL,4.4% against control 9.5% at 18 MNQ
+all,All six,FAIL,4 of 6 met
