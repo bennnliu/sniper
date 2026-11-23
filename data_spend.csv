@@ -7,3 +7,5 @@ date,dataset,schema,symbols,stype,start,end,estimate_usd,billable_mb,paid_from,n
 2026-11-22,GLBX.MDP3,ohlcv-1m,NQ.v.0,continuous,2025-11-01,2026-11-01,1.29,,free credit (expected),HOLDOUT year for the one-time NOISE-01B test; approved by Ben
 2026-11-23,GLBX.MDP3,ohlcv-1m,CL.v.0,continuous,2018-01-01,2025-11-01,0.30,,new key (Ben-approved $150),aborted stream (~2.2 MB of ~?); billed for bytes delivered; estimate
 2026-11-23,GLBX.MDP3,ohlcv-1m,"CL,GC,NG,RTY,YM,ZN,6E,6J,6B .v.0",continuous,2018-01-01,2025-11-01,87.31,,new key (Ben-approved $150),XM-01 batch jobs (ids in data/raw/xm/jobs.json); holdout not bought
+2026-11-23,GLBX.MDP3,statistics+definition,ES.OPT,parent,2024-01-10,2024-01-12,0.03,,new key (Ben-approved $150),two-day sample to check fields
+2026-11-23,GLBX.MDP3,statistics,ES.OPT,parent,2017-01-01,2025-11-01,29.28,,new key (Ben-approved $150),GEX-03 quarterly ES options OI + settlements; batch job GLBX-20261123-RYTUEMDATY; running total ~$116.95

@@ -18,6 +18,8 @@ _Started 23 Nov 2026 at Ben's request ("start from scratch again"). One running 
 |---|---|---|---|
 | 23 Nov 2026 | One-minute bars, CL GC NG RTY YM ZN 6E 6J 6B (front contract by volume), 1 Jan 2018 to 31 Oct 2025, nine batch jobs | $87.31 | $87.31 |
 | 23 Nov 2026 | Aborted first attempt by streaming (about 2 MB of crude bars before I switched to batch jobs) | about $0.30 (estimate) | $87.61 |
+| 23 Nov 2026 | Two-day sample of ES option statistics and definitions, to check the fields | $0.03 | $87.64 |
+| 23 Nov 2026 | ES quarterly options, statistics (open interest and settlements), 1 Jan 2017 to 31 Oct 2025 | $29.28 | $116.92 |
 
 ## Topstep rules for other markets (read 23 Nov 2026)
 
