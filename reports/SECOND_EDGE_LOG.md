@@ -621,3 +621,38 @@ Double cost: $107,857, t 3.17. Walk-forward year: $6,009, Sharpe 0.24, t 0.22; b
 Criteria, $50K: 1 PASS (t 3.93). 2 PASS (t 3.17). 3 FAIL (30-day pass 22.1% at 9 MNQ against 20.9% for the benchmark at 12 MNQ; 1.2 points, inside twice the simulation error, bar was 2). 4 PASS (22.1% against control 12.4%). 5 FAIL by a hair (22.1% with the reduction against 22.3% without, a tie within simulation error). 6 FAIL (walk-forward 7.8% against control 16.3%).
 
 **Verdict: STRAT-02 not adopted, 3 of 6.** It is the best version on the test years so far (highest Sharpe, 30-day pass rate 22.1% against 14.7% for STRAT-01), which confirms that dropping low-volatility days was the cost in iteration 26. It is statistically level with the simpler benchmark, the size reduction is neutral, and the walk-forward year again shows no pass-rate edge over the control. **Trials: 205.**
+
+---
+
+## Iteration 28 (23 Nov 2026): TIMING-01, entry and exit timing
+
+**Asked by Ben (23 Nov 2026, 2:56 AM ET):** research how entries and exits can be timed better, from the academic literature, and test varying methods. Goal: minimise loss while maximising gains.
+
+**Base rule under test:** the unfiltered nine-setting ensemble, all New York days, news days skipped (ENS-01). Entry and exit are both decided at half-hour checks; exit when price is back inside the higher of band and VWAP; flat at the close. No filter and no size rule, so that a timing change is measured on its own.
+
+**Literature and what each paper implies for this rule** (summaries from my reading of the abstracts and my memory of the papers; not re-derived here):
+- Zarattini, Aziz and Barbon (2024), "Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF (SPY)", Swiss Finance Institute paper 24-97. The source of the rule. Half-hour decisions, band plus VWAP as a trailing exit. https://ideas.repec.org/p/chf/rpseri/rp2497.html
+- Maróy (2025), "Improvements to Intraday Momentum Strategies Using Parameter Optimization and Different Exit Strategies". Tests alternative exits on the same rule, including VWAP-based and ladder exits. Implies: test the exit level and how often it is checked.
+- Kaminski and Lo (2014), "When Do Stop-Loss Rules Stop Losses?", Journal of Financial Markets 18. Stops add value only when returns have momentum (positive serial correlation); under a random walk they cost the risk premium. https://econpapers.repec.org/RePEc:eee:finmar:v:18:y:2014:i:c:p:234-254
+- Lo and Remorov (2017), "Stop-loss strategies with serial correlation, regime switching, and transaction costs", Journal of Financial Markets. Tight stops are eaten by costs and whipsaw; benefit needs strong trend persistence. Implies: trailing stops should be wide and tested at double cost.
+- Han, Zhou and Zhu (2016), "Taming Momentum Crashes: A Simple Stop-Loss Strategy". Stops cut the left tail of momentum. Implies: a stop may reduce the worst days even if it does not raise the mean.
+- Gao, Han, Li and Zhou (2018), "Market intraday momentum", Journal of Financial Economics 129. The first half-hour return predicts the last half-hour return. Implies: take only trades in the direction of the first half hour. https://econpapers.repec.org/RePEc:eee:jfinec:v:129:y:2018:i:2:p:394-414
+- Baltussen, Da, Lammers and Martens (2021), "Hedging demand and market intraday momentum", Journal of Financial Economics. Late-day continuation is driven by hedging flows into the close. Implies: holding to the close is where the edge is, so profit targets should hurt.
+- Handa and Schwartz (1996), "Limit order trading", Journal of Finance. A limit order fills when price comes back to it, which is adverse selection for a momentum entry. Implies: a pullback entry improves price but misses the days that run.
+- Prior project evidence: fixed stop at 0.25 daily moves, entry-count limits and entry-time cut-offs were rejected in iteration 11. Winners are trades held to the close (72%); losers are back inside within about an hour.
+
+**Hypotheses (13 trials, total 218). Each changes one thing from the base rule.**
+- *Decision frequency:* F1 exits checked every 5 minutes (entries stay half-hourly). F2 exits checked every minute. F3 entries and exits every 15 minutes. F4 entries and exits every 5 minutes. Claim: faster exits cut the loss on failed breakouts. Risk: whipsaw and cost (Lo and Remorov).
+- *Exit level:* X1 exit on VWAP alone. X2 exit on the band alone. Claim: one of the two levels does the work.
+- *Stops and targets, checked every minute, on top of the rule's exits:* S1 trailing stop 0.25 expected daily moves from the trade's best price. S2 trailing stop 0.5. S3 profit target at 1.0 expected daily move. S4 break-even stop once the trade has been 0.25 expected daily moves in profit. After a stop or target the setting may not re-enter in the same direction until a check finds price back inside the band. Claims: S1, S2, S4 reduce losses (Han et al.); S3 should hurt (Baltussen et al.).
+- *Entry timing:* N1 confirmation: price must also have been beyond the band five minutes before the check. N2 pullback: after a signal, enter with a limit at the band level, valid until the next check; no fill, no trade. N3 only trades in the direction of the first half hour (Gao et al.).
+
+**Adopt a method only if all hold on development data (all New York days to October 2024), then the walk-forward check:**
+1. Net profit of one set not lower than the base rule.
+2. Sharpe ratio higher than the base rule.
+3. Worst drawdown not deeper.
+4. Criteria 1 and 2 also hold at double cost.
+5. Sharpe ratio higher in both halves of the development period (to 2017, from 2018).
+6. The daily difference against the base rule has a t of at least 2.
+7. Walk-forward year (seen many times): Sharpe not lower than the base rule.
+Also reported for every method: average win, average loss, win rate, profit factor, worst day, worst open loss, and the same on high-volatility days. With 13 methods, one would be expected to clear a single t of 2 by chance about a third of the time, which is why all seven are required.
