@@ -1,8 +1,10 @@
 # STATE
 
-_Last updated: 22 Nov 2026_
+_Last updated: 23 Nov 2026_
 
 ## Where we are
+
+- **New strategy loop (23 Nov 2026, iterations 32 to 36):** log in reports/NEW_STRATEGY_LOG.md. Nine other markets, VIX measures, cross-market lead-lag, currency and gold session drift, dealer gamma: all fail. 290 trials. New Databento key: $116.92 of $150 spent. Dealer gamma and VIX term structure forecast range, not direction. Walk-forward year for the nine new markets is unopened; holdout not bought.
 
 - **Latest (23 Nov 2026):** iteration 31. Final rule (ENS-01 + LOSS-01 C3) is roll-robust but flat on the walk-forward year ($468) and lost $5,904 on Yahoo 16-20 Nov. 232 trials. See reports/SECOND_EDGE_LOG.md.
 - **Phase:** loop iteration 5 done. All tested families have failed; waiting on Ben's direction for iteration 6.

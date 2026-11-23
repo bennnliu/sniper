@@ -152,3 +152,5 @@ it31-ROLL-01,2026-11-23,pending,"research/roll01.py: final (C3) and base rule on
 it32-XM-01,2026-11-23,f512800,"research/xm01.py: frozen NOISE rule, NY session, 9 markets + equal-risk portfolio, micro costs",10,242,"FAIL 0/4 criteria: portfolio t -8.78, gross t per market -1.3..+1.4, 0/9 markets positive net; WF not opened"
 it33-IV,2026-11-23,pending,"research/iv01.py: VIX term structure, VVIX, VIX residual vs breakout and session returns, ES/NQ 2011-Oct 2024",10,252,"All fail. Best IV-01 NQ t 2.58 (ES 1.87), right sign; directional tests wrong sign"
 it34-XA-01,2026-11-23,pending,research/xa01.py: beta-scaled lagged ZN/6J/CL/GC returns vs ES/NQ next 1/5/15 min,24,276,"All fail: none positive-significant, edge <=0.25x micro cost"
+it35-FXS-GCS,2026-11-23,pending,"research/fxs01.py: currency and gold session drift, 6E/6B/6J/GC",8,284,All fail: net t -0.65 to -5.54
+it36-GEX-03,2026-11-23,pending,"research/gex_build.py + gex03.py: dealer gamma from ES quarterly option OI vs range, breakout, fade; ES/NQ",6,290,"Range passes (t -6.7/-5.3, 100% years); breakout and fade fail (t<1). No directional use"

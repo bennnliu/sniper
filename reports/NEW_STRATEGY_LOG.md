@@ -180,3 +180,22 @@ The New York leg of the currency pattern has the wrong sign since 2018; the loca
 - G3: the opposite side of every breakout entry, after costs, rises with the signal and is positive in the top third. Sign +.
 
 **Pass:** |t| at least 3.0 with the stated sign and the same sign in at least 70% of years. If G2 and G3 both pass on either market, the next step is a registered regime-switch rule (breakout on low-gamma days, fade on high-gamma days) that trades every day. If only G1 passes, the measure is real but not useful for direction.
+
+**Purchase.** ES quarterly option statistics, 2017 to October 2025: $29.28 (running total $116.92 of $150). 2,222 daily gamma readings built by `research/gex_build.py`.
+
+**Result (measured, development period, 1,461 ES and 1,467 NQ sessions).**
+
+| Test | Market | Slope t | Years same sign | Bottom third mean | Top third mean | Pass |
+|---|---|---|---|---|---|---|
+| G1 range | ES | -6.73 | 100% | 1.34 | 1.04 | yes |
+| G1 range | NQ | -5.25 | 100% | 1.32 | 1.10 | yes |
+| G2 breakout | ES | -0.19 | 43% | 0.024 | 0.018 | no |
+| G2 breakout | NQ | -0.64 | 43% | 0.045 | 0.021 | no |
+| G3 fade, net | ES | 0.33 | 57% | -0.068 | -0.056 | no |
+| G3 fade, net | NQ | 0.72 | 43% | -0.062 | -0.035 | no |
+
+The gamma measure is real: the New York range is about 25% wider on low-gamma days, every year. It says nothing about direction. The breakout rule does not earn more on low-gamma days, and fading loses after costs in every gamma state. **Verdict: KILL for direction; keep as a range forecast.** Since the partial measure shows no directional slope at all (t under 1), the $201 full option set is not worth requesting. Trials 6, total 290.
+
+## Summary of iterations 32 to 36
+
+Five new families, 58 trials (232 to 290), $116.92 spent. No signal reached t 3 after costs. What the round added: (1) the breakout rule's edge is specific to equity index futures and does not exist in oil, gold, gas, bonds or currencies; (2) other markets do not lead ES or NQ at 1 to 15 minutes by more than a quarter of the cost; (3) volatility and dealer-gamma measures forecast how far the market moves, not which way.
