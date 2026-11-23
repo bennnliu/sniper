@@ -21,10 +21,11 @@ from research.dl01_eval import sharpe  # noqa: E402
 from research.sv01 import GRID, sim  # noqa: E402
 from sniper.ensemble import days_from_trades  # noqa: E402
 
-OUT = ROOT / "reports" / "dash04"
+V2 = "v2" in sys.argv  # iteration 27: low-volatility days added, unfiltered, at baseline size
+OUT = ROOT / "reports" / ("dash05" if V2 else "dash04")
 OOF_START = pd.Timestamp("2016-01-01"); DEV_END = pd.Timestamp("2024-11-01")
 SRC = {("dev", 1): "Test years 2016 to Oct 2024", ("dev", 2): "Test years at double cost", ("wf", 1): "Walk-forward year"}
-NAMES = {"strat": "The strategy", "noreduce": "Same, no size reduction", "nofilter": "Same, no filter", "bench": "All days, filter everywhere, fixed size", "raw": "All days, unfiltered, fixed size"}
+NAMES = {"strat": "The strategy", "noreduce": "Same, no size reduction", "nofilter": "Same, no filter", "prev": "Without low-volatility days (previous version)", "bench": "All days, filter everywhere, fixed size", "raw": "All days, unfiltered, fixed size"}
 SCALE = ["net_pts", "gross_pts", "mae_pts", "mfe_pts", "max_pos"]
 
 
@@ -40,6 +41,10 @@ def main():
     one = pd.Series(1.0, index=alld.index)
     k = sc["keep"] == 1; mid = sc.regime == "mid"; high = sc.regime == "high"
     V = {"strat": ((mid & k) | high, reduced), "noreduce": ((mid & k) | high, flat), "nofilter": (mid | high, reduced), "bench": (k, one), "raw": (pd.Series(True, index=sc.index), one)}
+    if V2:
+        every = pd.Series(True, index=sc.index)
+        reduced_all = pd.Series(np.where(reg == "high", np.minimum(1.0, cut / ratio), 1.0), index=alld.index)
+        V = {"strat": (~mid | k, reduced_all), "noreduce": (~mid | k, one), "nofilter": (every, reduced_all), "prev": ((mid & k) | high, reduced), "bench": (k, one), "raw": (every, one)}
     S, T = {}, {}
     for v, (mask, mult) in V.items():
         for p in cal:
@@ -86,7 +91,7 @@ def main():
     E = []
     for (p, cm), src in SRC.items():
         dd = S["strat", p, cm]; t = T["strat", p, cm]
-        for e, en in (("mid", "Middle volatility, filtered, baseline size"), ("high", "High volatility, unfiltered, reduced size"), ("low", "Low volatility, not traded")):
+        for e, en in (("low", "Low volatility, unfiltered, baseline size" if V2 else "Low volatility, not traded"), ("mid", "Middle volatility, filtered, baseline size"), ("high", "High volatility, unfiltered, reduced size")):
             g = dd[dd.regime == e]; u = g["net_pts"] * PV; tt = t[t.regime == e]; raw = S["raw", p, cm]; ru = raw.loc[g.index, "net_pts"] * PV
             E.append({"id": f"{src}|{e}", "source": src, "env": en, "env_key": e, "days": len(g), "trades": len(tt), "total": float(u.sum()), "per_day": float(u.mean()) if len(g) else np.nan, "std_day": float(u.std()),
                       "sharpe": sharpe(u) if u.std() > 0 else np.nan, "t": tstat(u) if u.std() > 0 else np.nan, "avg_size": float(g["mult"].mean()), "min_size": float(g["mult"].min()),
@@ -141,7 +146,7 @@ def main():
     # ---------------- trade breakdowns for the strategy
     t = pd.concat([T["strat", "dev", 1], T["strat", "wf", 1]]); t["u"] = t["net_pts"] * PV; t["grp"] = np.where(t.period == "dev", "Test years", "Walk-forward year")
     et = t["ct_minute"] + 60; t["entry_time"] = (et // 60).astype(str) + ":" + (et % 60).astype(str).str.zfill(2)
-    B = [bucket_stats(t.u, np.where(t.regime == "mid", "Middle volatility", "High volatility"), "Environment", ["Middle volatility", "High volatility"], t.grp),
+    B = [bucket_stats(t.u, t.regime.map({"low": "Low volatility", "mid": "Middle volatility", "high": "High volatility"}).fillna("Unknown"), "Environment", ["Low volatility", "Middle volatility", "High volatility"], t.grp),
          bucket_stats(t.u, np.where(t["dir"] > 0, "Long", "Short"), "Direction", ["Long", "Short"], t.grp),
          bucket_stats(t.u, t.entry_time, "Entry time (New York time)", sorted(t.entry_time.unique(), key=lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1])), t.grp),
          bucket_stats(t.u, t["exit_reason"].map({"stop": "Back inside the band", "flip": "Reversed to the other side", "session_end": "Held to the close"}), "How the trade ended", ["Held to the close", "Back inside the band", "Reversed to the other side"], t.grp),

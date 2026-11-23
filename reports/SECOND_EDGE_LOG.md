@@ -604,3 +604,20 @@ Criteria, $50K: 1 PASS (t 3.38). 2 PASS (t 2.89). 3 FAIL (30-day pass 14.7% at 1
 **Pass criteria, $50K account:** the same six as iteration 26 (profit with daily t of at least 2; the same at double cost; best-baseline 30-day pass rate at least 2 points above the iteration 25 benchmark; beats the coin control by more than twice the simulation error; the size reduction does not lower the 30-day pass rate; walk-forward year pass rate above the control at the baseline chosen on test years).
 
 **Trials:** 2 (the rule, and the variant without the reduction), total 205.
+
+**STRAT-02 results (research/strat01.py v2; data in reports/dash05/). Costs assumed 1.11 points per round trip; pass and payout rates simulated, 4,000 attempts. No dashboard published.**
+
+| Variant, test years, one baseline set | Traded days | Total | Sharpe | t | Worst drawdown |
+|---|---|---|---|---|---|
+| STRAT-02 (all days; filter on middle; reduced size on high) | 1,298 | $133,721 | 1.43 | 3.93 | −$11,634 |
+| Same, no size reduction | 1,298 | $156,207 | 1.44 | 3.95 | −$12,264 |
+| Same, no filter | 1,424 | $110,881 | 1.09 | 3.00 | −$13,890 |
+| STRAT-01 (no low-volatility days) | 779 | $94,092 | 1.23 | 3.38 | −$12,784 |
+| All days, filter everywhere, fixed size | 1,011 | $127,497 | 1.39 | 3.81 | −$9,973 |
+| All days, unfiltered, fixed size | 1,424 | $133,368 | 1.15 | 3.16 | −$13,895 |
+
+Double cost: $107,857, t 3.17. Walk-forward year: $6,009, Sharpe 0.24, t 0.22; by environment low −$104, middle (filtered) −$4,327, high (reduced) +$10,440.
+
+Criteria, $50K: 1 PASS (t 3.93). 2 PASS (t 3.17). 3 FAIL (30-day pass 22.1% at 9 MNQ against 20.9% for the benchmark at 12 MNQ; 1.2 points, inside twice the simulation error, bar was 2). 4 PASS (22.1% against control 12.4%). 5 FAIL by a hair (22.1% with the reduction against 22.3% without, a tie within simulation error). 6 FAIL (walk-forward 7.8% against control 16.3%).
+
+**Verdict: STRAT-02 not adopted, 3 of 6.** It is the best version on the test years so far (highest Sharpe, 30-day pass rate 22.1% against 14.7% for STRAT-01), which confirms that dropping low-volatility days was the cost in iteration 26. It is statistically level with the simpler benchmark, the size reduction is neutral, and the walk-forward year again shows no pass-rate edge over the control. **Trials: 205.**
