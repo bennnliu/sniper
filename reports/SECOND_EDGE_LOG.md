@@ -588,3 +588,19 @@ Double cost: strategy $80,405, t 2.89. Walk-forward year: strategy $6,113, Sharp
 Criteria, $50K: 1 PASS (t 3.38). 2 PASS (t 2.89). 3 FAIL (30-day pass 14.7% at 18 MNQ against 20.9% for the benchmark at 12 MNQ). 4 PASS (14.7% against control 9.0%). 5 PASS (14.7% with the reduction against 14.6% without, inside simulation error). 6 FAIL (walk-forward 4.4% against control 9.5%).
 
 **Verdict: STRAT-01 not adopted, 4 of 6.** Profitable on test years but worse than trading every day with the filter, because skipping low-volatility days removes a third of the trading days and the 30-day clock keeps running. The size reduction lowers the drawdown and leaves the Sharpe ratio and pass rate unchanged. The filter on middle-volatility days did not hold in the walk-forward year. **Trials: 203.**
+
+---
+
+## Iteration 27 (23 Nov 2026): STRAT-02, STRAT-01 plus low-volatility days
+
+**Change asked by Ben (23 Nov 2026, 2:19 AM ET):** include low-volatility days without the filter. Rule made exact before testing:
+- Trade every New York day. Low-volatility days: every trade, baseline size N. Middle-volatility days: logistic filter (iteration 25 model, unchanged), baseline size N. High-volatility days: every trade, size N x (1.2828 / ratio).
+- Days in the first year with no volatility ratio do not occur in the test years.
+
+**Comparisons:** the same rule without the size reduction; STRAT-01; fixed size on all days with the filter everywhere (iteration 25 benchmark); the unfiltered rule on all days.
+
+**Honest prior:** still assembled after seeing the test years (filter only where it helped there). In iteration 26 the middle-volatility filter lost money in the walk-forward year. Adding low-volatility days restores the trading days whose absence cost STRAT-01 its 30-day pass rate, so criterion 3 is the one to watch.
+
+**Pass criteria, $50K account:** the same six as iteration 26 (profit with daily t of at least 2; the same at double cost; best-baseline 30-day pass rate at least 2 points above the iteration 25 benchmark; beats the coin control by more than twice the simulation error; the size reduction does not lower the 30-day pass rate; walk-forward year pass rate above the control at the baseline chosen on test years).
+
+**Trials:** 2 (the rule, and the variant without the reduction), total 205.
