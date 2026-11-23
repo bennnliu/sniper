@@ -1,0 +1,14 @@
+{
+ "contract_agreement_with_v0": {
+  "CAL": 0.9561381396521301,
+  "VOLP": 0.9926896899420217
+ },
+ "price_check": {
+  "matched_bars": 5206960,
+  "v0_bars": 5207702,
+  "identical_close_share": 0.9998993654646857,
+  "max_abs_diff": 6.75
+ },
+ "cal_rolls": 62,
+ "volp_rolls": 62
+}

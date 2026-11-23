@@ -766,3 +766,31 @@ Combine columns: $50K at 9 MNQ, 4,000 simulated attempts from 2016 to October 20
 - No trade reached the trailing stop (0.5 x ~610 points).
 
 **Reading:** consistent with the development record, where one losing week at this size is common; it neither confirms nor refutes the rule. It does show the specific way C3 can miss the biggest trend days. Dashboard: https://claude.ai/artifact/52XCQawvNLnbmE7Wa1cyPq. Code: research/live01_yf.py, outputs reports/live01/.
+
+## Iteration 31 (23 Nov 2026): ROLL-01, does the final rule depend on the roll? (written before running)
+
+**Data:** Ben's new Databento download (job GLBX-20260102-E4RLSRJ8B7, ohlcv-1m for every NQ contract and calendar spread, 6 Jun 2010 to 31 Dec 2025; plus job DL9NLQ7JRY, the same at 1 hour). Same market and years as the research data, so it adds no new out-of-sample period; Nov-Dec 2025 falls in the holdout year and is set aside unread. What it adds is the individual contracts, so the continuous series can be rebuilt independently of Databento's NQ.v.0.
+
+**Hypothesis:** the final rule (ENS-01 + C3) and the base rule earn from intraday moves of the front contract, so their record should not depend on the roll rule. Two rules fixed now: CAL (switch 8 calendar days before the third-Friday expiry) and VOLP (yesterday's volume leader). Kill criterion: if the development total or Sharpe of the final rule on either rebuilt series falls by more than a third against v.0, the earlier results depend on the vendor's roll and must be re-examined. The walk-forward year (Nov 2024 to Oct 2025) is also reported for the final rule, for the first time; it has been used for other variants many times, so it is weak evidence. 4 trials (2 series x 2 rules; v.0 reruns are reproductions), total 232.
+
+**Results (measured; one set of up to 9 MNQ, MNQ costs; Combine columns simulated, $50K at 9 MNQ):**
+
+Series check: the rebuilt contracts match v.0 on the same contract and minute (5.2 million bars, 99.99% identical closes, largest gap 6.75 points). Contract choice agrees with v.0 on 99.3% of days for VOLP and 95.6% for CAL (CAL rolls a few days earlier).
+
+| Series | Rule | Dev total | Dev Sharpe | Dev drawdown | WF-year total | WF Sharpe | WF drawdown | WF 30-day pass (control) |
+|---|---|---|---|---|---|---|---|---|
+| v.0 (rerun) | Base | $126,870 | 0.85 | −$17,973 | $7,197 | 0.23 | −$23,713 | 5.8% (14.9%) |
+| v.0 (rerun) | Final | $120,202 | 1.04 | −$12,676 | $468 | 0.03 | −$12,741 | 8.8% (15.1%) |
+| CAL | Base | $117,908 | 0.80 | −$18,161 | $5,702 | 0.18 | −$26,016 | 5.8% (14.6%) |
+| CAL | Final | $118,772 | 1.02 | −$12,640 | −$244 | −0.01 | −$12,862 | 8.6% (15.0%) |
+| VOLP | Base | $120,947 | 0.81 | −$18,122 | $7,387 | 0.24 | −$23,364 | 6.6% (14.0%) |
+| VOLP | Final | $118,618 | 1.02 | −$11,881 | $3,401 | 0.20 | −$12,753 | 10.0% (15.2%) |
+
+At double cost the final rule's development total is $82,297 to $83,923 on all three series; its walk-forward year is −$2,726 to +$941.
+
+**Verdict: roll robustness PASS; the final rule FAILS the walk-forward year.**
+- The v.0 rerun reproduces LOSS-01 (final $120,202 against $120,428; base $126,870 against $126,711; the small gap is the day list). Rebuilt series change the final rule's development total by 1 to 2% and its Sharpe by 0.02, far inside the one-third kill line. Earlier results do not depend on the vendor's roll.
+- Walk-forward year, opened for the final rule for the first time: about $0 (t 0.02 on v.0), drawdown −$12,741. It does keep the drawdown half the base rule's (−$23,713), so the loss cutting carries over, but the profit does not. Simulated 30-day pass at 9 MNQ is 8.8%, below the coin-flip control's 15.1%.
+- The 1-hour file (DL9NLQ7JRY) cannot run this rule, which decides on minute prices; it is stored, not used.
+
+**Reading:** two out-of-sample looks now agree (walk-forward year flat, last five sessions −$5,904). The final rule is a loss-reduced version of a strategy whose edge, if any, has not shown up after October 2024. I recommend not spending the holdout year on it and not moving it to a Practice-account forward test. 4 trials, total 232.

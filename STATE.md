@@ -4,7 +4,7 @@ _Last updated: 22 Nov 2026_
 
 ## Where we are
 
-- **Latest (23 Nov 2026):** iteration 30, LIVE-01: frozen final rule (ENS-01 + LOSS-01 C3) run on Yahoo NQ=F 16-20 Nov 2026 as a sanity check. 228 trials. See reports/SECOND_EDGE_LOG.md.
+- **Latest (23 Nov 2026):** iteration 31. Final rule (ENS-01 + LOSS-01 C3) is roll-robust but flat on the walk-forward year ($468) and lost $5,904 on Yahoo 16-20 Nov. 232 trials. See reports/SECOND_EDGE_LOG.md.
 - **Phase:** loop iteration 5 done. All tested families have failed; waiting on Ben's direction for iteration 6.
 - **Last verdict:** KILL (reports/iter_05.md). Order-flow imbalance has no forecast power at 1-15 minutes (best IC +0.007, t 0.5); limit-order reversal loses after fees. Trials run: 50.
 - **Account sizes:** test all three ($50K, $100K, $150K) and compare outcomes (Ben, 22 Nov 2026).
