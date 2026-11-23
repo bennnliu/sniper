@@ -162,3 +162,35 @@ This run on real history also confirms the corrected figure from iteration 13: f
 **CONF-01. Breakouts confirmed by ES continue; NQ-only breakouts fade.** *Claim:* an NQ breakout entry is better when ES is also outside its own noise area in the same direction at that check. When only NQ has broken out, the move is a tech-specific move against the broad market, and the measured tendency of the NQ/ES spread to revert works against the trade. *Why it fits the first edge:* it uses information the rule does not have (a second market) to remove the entries that our own data say should fail. It is the first filter in this project built from a relationship already measured as real (t −4.8) and not from the trade log. It was not among the features of the failed ML filter, which saw NQ only. *Why it may fail:* ES and NQ are 0.9 correlated, so nearly every NQ breakout may be confirmed and the filter would remove almost nothing.
 *Test:* for each trade of the frozen rule (NQ, New York, MNQ costs, news days skipped), compute the ES confirmation score = ES's signed move from its open at the entry check ÷ ES's 14-day noise width at that time. Confirmed means the score is at least 1. Compare the mean result in daily-move units of confirmed and unconfirmed trades (1 trial), then the daily results of the rule taking confirmed trades only (1 trial).
 *Adopt only if* confirmed minus unconfirmed has t at least 2 with the same sign before and after 2018, the filtered rule's 30-day pass rate at 8 MNQ rises by at least 3 points, and on the walk-forward year the kept trades do better than the skipped ones and the kept total is at least the unfiltered total (fifth use of that year for this rule).
+
+### Results (measured on development data; costs assumed)
+
+| Group | Trades | Mean per trade (daily-move units) | t | Dollars per MNQ |
+|---|---|---|---|---|
+| Confirmed by ES (score at least 1) | 1,779 | +0.017 | 1.40 | +$6.11 |
+| Not confirmed | 816 | +0.003 | 0.17 | +$2.17 |
+| Difference | | +0.015 | **0.76** | |
+
+**CONF-01: FAIL.** The sign is as predicted in both halves (+0.006 before 2018, +0.027 after), and unconfirmed breakouts earn nothing, but the difference is far from significant (t 0.76, needed 2). Trading confirmed entries only lifts the daily t from 1.30 to 1.40 and lowers the 30-day pass rate at 8 MNQ from 15.0% to 10.1%, because fewer trades means fewer chances to reach the target in time. Not adopted; walk-forward check not run.
+
+A fact worth keeping: 31% of NQ breakouts happen without ES. The filter is not empty, it is just weak.
+
+**Iteration 16: 2 trials. Running total 157. Verdict: KILL.**
+
+---
+
+## Iteration 17
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Gatev, Goetzmann and Rouwenhorst, "Pairs Trading: Performance of a Relative-Value Arbitrage Rule", *Review of Financial Studies* 19(3), 2006 | Peer reviewed | Citation only, from memory | Pairs of close substitutes that diverge tend to converge over the following days to months. |
+| Moskowitz and Grinblatt, "Do Industries Explain Momentum?", *Journal of Finance* 54(4), 1999 | Peer reviewed | Citation only, from memory | Industry relative returns continue at the one-month horizon. This predicts the opposite sign for tech against the broad market. |
+| Our RV-01 and RV-02 | Measured | — | Within a session the NQ/ES spread reverts at 15 minutes (t −4.8) and continues weakly from morning to afternoon (t +2.2). Both are below cost at intraday size. |
+
+I have not re-read the two papers this session, so their claims above are from memory and carry that label.
+
+### Hypothesis (written before testing)
+
+**PAIR-01. The NQ-against-ES spread is predictable over days, not minutes.** *Claim:* the beta-hedged relative return of NQ over ES in the last 1, 5 or 20 days predicts the relative return in the next session. The literature gives both signs (convergence of substitutes, or continuation of sector trends), so this is a two-sided test at the t ≥ 3 hurdle. *Why it fits the first edge:* a long-one, short-the-other position has almost no exposure to the market's direction, which is what the breakout rule bets on, so the two results should be uncorrelated. And unlike the intraday spread trades that died on costs, a position held for a whole session faces a two-leg cost of about 4.5 basis points against a daily spread move of roughly 50, so costs are no longer the binding problem. *Why it may fail:* it is the same two instruments again, and index-level relative value is among the most watched trades there is.
+*Test:* spread return = NQ return − beta × ES return, beta from the trailing 60 days. Signal = sum of the last 1, 5 and 20 daily (15:00 to 15:00 CT) spread returns. Target = next session's spread return, overnight (18:00-08:30 CT) and New York (08:30-15:00 CT) as separate tests. 6 trials. *Pass:* rank IC with t at least 3 (either sign, with the Bonferroni caveat that six two-sided tests are being run), then a sign rule net of 4.5 basis points with t at least 3 and 70% of years positive.
