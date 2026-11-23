@@ -361,3 +361,40 @@ The DP's own model promised 30% on the training data and delivered 14%. The mode
 **RISK-01. Constant-risk sizing is the right way to trade the first edge in a Combine.** *Claim:* sizing each day at contracts = R ÷ (expected daily move per MNQ), with one risk level R chosen on data before 2021, passes a $50K Combine within 30 trading days more often than fixed 8 MNQ, and by more than it helps a random-direction trader. *Why it fits the first edge:* the loss limit is a fixed $2,000 while NQ's daily move has ranged from $75 to over $500 per MNQ. A fixed contract count is far too small in calm years and a coin flip against the loss limit in volatile ones, which is exactly how the walk-forward year failed in iteration 11 (12.5% at 8 MNQ). Constant risk keeps every day the same size relative to the limit. It resolves SIZE-01, which was left "unresolved" in iteration 11 because the version tested there was scaled far too small. *Why it may fail:* the improvement may be only bold play; the control will show it.
 *Procedure fixed in advance:* (1) choose R from {1000, 1500, 2000, 3000, 4000} on data before 2021 by the largest pass-rate gain over the random control; (2) evaluate that single R on 2021 to October 2024; (3) one check on the walk-forward year, November 2024 to October 2025, its fourth use for this rule. 5 trials for the grid plus 1.
 *Success means:* in both the 2021-2024 test and the walk-forward year, the 30-day pass rate is at least 25%, beats fixed 8 MNQ, and exceeds the random control by at least 8 points. Results will also be given in Ben's measure and in dollars per attempt. Success here would be a sizing rule for the existing candidate, not a second source of profit, and would not change the candidate's promotion status (deflated Sharpe 0.81).
+
+### Results (simulated; 20,000 shuffled paths, and real consecutive 30-day windows)
+
+| Data before 2021 (step 1) | Pass within 30 days | Random control | Gain | Real windows |
+|---|---|---|---|---|
+| Fixed 8 MNQ | 6.7% | 4.1% | +2.6 | 8.3% |
+| Risk 1,000 | 10.4% | 5.9% | **+4.5** | 11.9% |
+| Risk 1,500 | 14.0% | 10.1% | +4.0 | 14.3% |
+| Risk 2,000 | 14.2% | 11.1% | +3.1 | 14.5% |
+| Risk 3,000 | 12.8% | 11.6% | +1.3 | 12.5% |
+| Risk 4,000 | 11.9% | 11.1% | +0.9 | 11.6% |
+
+The rule fixed in advance picks the level with the largest gain over the control: **risk 1,000**.
+
+| 2021 to Oct 2024 (step 2) | Pass within 30 days | Random control | Gain | Real windows |
+|---|---|---|---|---|
+| Fixed 8 MNQ | 24.5% | 17.3% | +7.2 | 26.9% |
+| Risk 1,000 (about 2 MNQ) | 10.8% | 5.1% | +5.6 | 10.6% |
+
+**RISK-01: FAIL.** The level chosen by my own procedure passes 10.8% in the test period, below fixed 8 MNQ and far below the 25% required. The walk-forward check was not run.
+
+What this says, read together with iteration 21:
+- **The edge's contribution is flat at about 3 to 7 points of pass rate whatever the size.** Bigger size raises the pass rate, but it raises the random trader's pass rate by the same amount. Size buys variance, not edge.
+- Had I chosen the risk level by raw pass rate, 2,000 would have been picked and would show 29.8% against fixed 8 MNQ's 24.7% in the test period (iteration 21). I did not register that criterion, and switching to it after seeing the answer would be exactly the kind of choice this project forbids. It is recorded here as an unregistered observation: at 2,000 risk units a random-direction trader passes 18.7%.
+- The practical upshot for the first edge is modest and does not need a test to justify: contracts should be set from the day's expected move, not fixed, so that a volatile year is not traded at a calm year's size. That is risk hygiene. It is not a second edge.
+
+**Iteration 22: 6 trials. Running total 184. Verdict: KILL.**
+
+### Where the loop stands after iteration 22
+
+| Iteration | Idea | Trials | Total | Verdict |
+|---|---|---|---|---|
+| 20 | Ensemble of nine breakout settings; ES with NQ | 2 | 177 | Fail |
+| 21 | Optimal sizing by dynamic programming, out of sample | 1 | 178 | Fail by 0.1 point; equals simple constant risk |
+| 22 | Constant-risk sizing, level chosen on early data | 6 | 184 | Fail |
+
+Ten iterations and 54 tests since Ben asked for the loop; none has succeeded. The sizing question is now closed from three directions (goal-based policies, exact optimisation, constant risk): with this edge, no sizing rule adds more than a few points of pass rate over what a random trader gets from the same size.

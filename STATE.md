@@ -47,6 +47,8 @@ Iteration 12 (reports/iter_12.md): search for a second unrelated edge on ES/NQ b
 
 Iterations 13-19 (reports/SECOND_EDGE_LOG.md, one running log; 23 Nov 2026): research loop for a second edge that complements the breakout rule. 45 tests, none succeeded, 175 trials in total. Real but below cost: overnight NQ/ES continuation (t 4.5), one-minute lead-lag. Near miss: pre-holiday long in New York hours (MES t 2.67, 7 days a year). Correction: with a hard stop at 30 trading days, fixed 8 MNQ passes about 15% against 10% for random direction (iteration 11's 28.9% counted passes after day 30). No filter on the first edge helps a 30-day Combine. The walk-forward year was not used again (no check was triggered); it stays at three uses for this rule.
 
+Iterations 20-22 (same log): parameter ensemble, ES+NQ, dynamic-programming sizing and constant-risk sizing all fail. 184 trials. Sizing is closed: the edge adds 3 to 7 points of 30-day pass rate at any size; larger size lifts the random control equally.
+
 ## Next actions
 
 1. Ben asked (22 Nov evening) for the loop to continue until a success or until he stops it. Next ideas: parameter/instrument ensemble of the breakout rule, full dynamic-programming sizing, weekday effects, and anything unlocked by new data.

@@ -136,3 +136,6 @@ it16-CONF-01,2026-11-23,2d0235f,it16,2,157,t diff 0.76 -> FAIL
 it17-PAIR-01,2026-11-23,2d0235f,it17,6,163,"overnight IC +0.089 t 4.54, gross 1.5 bp vs 4.5 bp cost -> not tradable"
 it18-backlog LEADLAG-01/TOX-02/MR-05/VOL-02,2026-11-23,2d0235f,it18,10,173,all fail or not tradable
 it19-VOL-05,2026-11-23,2d0235f,it19,2,175,"dev t diff 2.05, nothing since 2018, pass rate falls -> FAIL; WF not run"
+it20-ENS-01/ENS-02,2026-11-23,8fd1774,it20,2,177,pass 13.8% / 13.4% vs 14.7% -> FAIL
+it21-DP-01,2026-11-23,8fd1774,it21,1,178,"OOS 29.6% vs 24.7%, needed +5 -> FAIL"
+it22-RISK-01,2026-11-23,8fd1774,it22,6,184,chosen R=1000 passes 10.8% vs 24.5% -> FAIL; WF not run
