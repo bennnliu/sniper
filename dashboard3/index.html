@@ -1,0 +1,194 @@
+<meta name="dash-one-writer">
+<style>
+/* Layout: one column of sections, each a heading, one plain sentence, then charts and tables. */
+.nq { display: flex; flex-direction: column; gap: var(--cds-gap-xl, 32px); font-family: var(--font-anthropic-sans); color: var(--color-fg); font-size: var(--cds-font-size-body); }
+.nq h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.nq h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.nq h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.nq p { margin: 0; max-width: 72ch; line-height: 1.5; }
+.nq .nq-muted { color: var(--color-fg-muted); }
+.nq .nq-cap { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 80ch; }
+.nq section { display: flex; flex-direction: column; gap: var(--cds-gap-md, 12px); min-width: 0; }
+.nq .nq-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--cds-gap-md, 12px); }
+.nq .nq-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg, 16px); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.nq .nq-tile .nq-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.nq .nq-tile .nq-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.7em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.nq .nq-tile .nq-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.nq .nq-tag { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 8px; color: var(--color-fg-muted); white-space: nowrap; }
+.nq .nq-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md, 12px); align-items: center; }
+.nq .nq-row label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nq .nq-row select { max-width: 100%; }
+.nq .nq-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg, 20px); }
+.nq .nq-grid2 > div { min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-chart { position: relative; min-height: 240px; min-width: 0; }
+.nq .nq-chart.nq-short { min-height: 170px; }
+.nq .nq-chart svg { display: block; width: 100%; overflow: visible; }
+.nq .nq-chart svg text { fill: var(--cds-text-secondary, var(--color-fg-muted)); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.nq .nq-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: 4px; }
+.nq .nq-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.nq .nq-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.nq .nq-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover, var(--color-panel)); border: 1px solid var(--cds-border, var(--color-border-line)); box-shadow: var(--cds-shadow-popover, none); border-radius: var(--cds-radius); padding: 6px 9px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; z-index: 3; white-space: nowrap; color: var(--color-fg); }
+.nq .nq-tip b { font-weight: var(--cds-font-weight-medium); }
+.nq .nq-tip div { display: flex; justify-content: space-between; gap: 14px; }
+.nq .nq-tip div span:first-child { color: var(--cds-text-secondary, var(--color-fg-muted)); }
+.nq .nq-scroll { overflow-x: auto; min-width: 0; }
+.nq table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-caption); }
+.nq th, .nq td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.nq th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.nq th:first-child, .nq td:first-child { text-align: left; white-space: normal; min-width: 150px; }
+.nq td.nq-l, .nq th.nq-l { text-align: left; }
+.nq tr.nq-group td { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); background: var(--color-panel); text-align: left; }
+.nq .nq-pos { color: var(--color-ok); }
+.nq .nq-neg { color: var(--color-bad); }
+.nq .nq-heat td { text-align: center; padding: 4px 6px; border-bottom: 0; min-width: 44px; }
+.nq .nq-heat td:first-child, .nq .nq-heat th:first-child { min-width: 48px; text-align: left; white-space: nowrap; }
+.nq .nq-heat th { text-align: center; }
+.nq .nq-note { border-left: 3px solid var(--color-warn); padding: 6px 12px; background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+.nq details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.nq details ul { margin: 8px 0 0; padding-left: 20px; max-width: 80ch; line-height: 1.5; }
+.nq .nq-pass { color: var(--color-ok); font-weight: var(--cds-font-weight-medium); }
+.nq .nq-fail { color: var(--color-bad); font-weight: var(--cds-font-weight-medium); }
+.nq td.nq-wrap { white-space: normal; min-width: 220px; text-align: left; }
+</style>
+<div class="nq">
+  <div class="nq-head">
+    <h1 id="title">Volatility and contract size</h1>
+    <p id="takeaway">Volatility sets the dollar risk of each contract, but it does not tell you when to trade bigger. The daily swing of one set rises from <b data-draw="t-std-low">—</b> on low-volatility days to <b data-draw="t-std-high">—</b> on high-volatility days, so the same loss limit carries fewer contracts as volatility rises. The edge per unit of risk is no better in high volatility, and sizing each morning to a constant dollar risk passed a $50K Combine within 30 trading days <b data-draw="t-risk">—</b> of the time against <b data-draw="t-fixed">—</b> for one fixed size.</p>
+    <p class="nq-cap">Nine-setting NQ breakout ensemble with the logistic filter, all New York hours, every volatility environment. One set is one MNQ per setting, at most nine MNQ. Filter scores are out of sample: test years 2016 to October 2024 use a model trained on earlier years, and the walk-forward year (November 2024 to October 2025) has been looked at before. Costs are an assumed 1.11 NQ points per round trip. Pass rates are simulated. Research, not financial advice.</p>
+  </div>
+
+  <section id="verdict">
+    <h2>The three hypotheses, written before the test</h2>
+    <div class="nq-tiles" data-draw="verdict-tiles" data-source="verdicts"></div>
+    <div class="nq-scroll">
+      <table id="verdict-table" data-source="verdicts" data-row-key="id">
+        <thead><tr><th data-field="name">Hypothesis</th><th data-field="result" class="nq-l">Result</th><th data-field="evidence" class="nq-l">Evidence, logistic filter, test years</th></tr></thead>
+        <tbody data-draw="verdict-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-note" id="caution">Two cautions. In the walk-forward year no size and no sizing rule beat the same trades with the side chosen by a coin by more than simulation error, so nothing here is evidence the strategy passes Combines today. And the logistic filter, retrained on all days as asked, helped in middle volatility, did nothing in low, and removed profitable trades in high volatility. It is used here because it was requested, not because it has been adopted.</p>
+  </section>
+
+  <section id="environments">
+    <h2>The three environments side by side</h2>
+    <p class="nq-cap">A day's environment is its expected move (yesterday's close times 20-day volatility) against its own 250-day median, known before the open. Low is the bottom third of development days, high is above 1.28 times the median. Dollars are for one set.</p>
+    <div class="nq-row"><label>Sample
+<select class="dash-select" id="env-source" aria-label="Sample"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label></div>
+    <div class="nq-grid2">
+      <div><h3>Daily swing of one set (standard deviation)</h3><div class="nq-chart" id="env-std" data-draw="env-std" data-source="environments"></div></div>
+      <div><h3>Average profit per day</h3><div class="nq-chart" id="env-mean" data-draw="env-mean" data-source="environments"></div></div>
+      <div><h3>Sharpe ratio, annualised</h3><div class="nq-chart" id="env-sharpe" data-draw="env-sharpe" data-source="environments"></div></div>
+      <div><h3>MNQ that give a $500 daily swing</h3><div class="nq-chart" id="env-mnq" data-draw="env-mnq" data-source="environments"></div></div>
+    </div>
+    <div class="nq-scroll">
+      <table id="env-table" data-source="environments" data-row-key="id">
+        <thead><tr><th data-field="env">Environment</th><th data-field="variant" class="nq-l">Trades taken</th><th data-field="days">Days</th><th data-field="trades">Trades</th><th data-field="exp_move_set_usd">Expected move, one set</th><th data-field="total">Total</th><th data-field="per_day">Per day</th><th data-field="std_day">Daily swing</th><th data-field="std_over_exp">Swing over expected move</th><th data-field="sharpe">Sharpe</th><th data-field="t">t</th><th data-field="win_days">Winning days</th><th data-field="per_trade">Per trade</th><th data-field="win_trades">Winning trades</th><th data-field="worst_day">Worst day</th><th data-field="p05_day">Bad day, 1 in 20</th><th data-field="worst_open_loss">Worst open loss</th><th data-field="drawdown">Worst drawdown</th><th data-field="relative_optimal_size">Growth-optimal size against all days</th></tr></thead>
+        <tbody data-draw="env-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-cap">Growth-optimal size is average profit over variance, relative to all days. Above 1 means the arithmetic favours more contracts in that environment, below 1 fewer. It ignores the loss limit and the 30-day clock.</p>
+  </section>
+
+  <section id="relationship">
+    <h2>Risk against expected move</h2>
+    <p class="nq-cap">Test-year days sorted into ten equal groups by the expected move of one set in dollars. The low groups are mostly 2016 to 2019, when the index was a third of today's level, so this view mixes volatility with the passage of time.</p>
+    <div class="nq-grid2">
+      <div><h3>Daily swing of one set by expected move</h3><div class="nq-chart" id="vb-std" data-draw="vb-std" data-source="volbins"></div></div>
+      <div><h3>Sharpe ratio by expected move</h3><div class="nq-chart" id="vb-sharpe" data-draw="vb-sharpe" data-source="volbins"></div></div>
+    </div>
+    <p class="nq-cap">When the expected move doubles, the daily swing grows by a factor of <b data-draw="t-slope">—</b> (fitted across the ten groups, logistic filter). Risk rises with volatility a little less than in proportion.</p>
+    <div class="nq-scroll">
+      <table id="vb-table" data-source="volbins" data-row-key="id">
+        <thead><tr><th data-field="group">Group</th><th data-field="variant" class="nq-l">Trades taken</th><th data-field="exp_lo">Expected move from</th><th data-field="exp_hi">to</th><th data-field="first_day" class="nq-l">First day</th><th data-field="last_day" class="nq-l">Last day</th><th data-field="per_day">Per day</th><th data-field="std_day">Daily swing</th><th data-field="sharpe">Sharpe</th><th data-field="mnq_for_500_std">MNQ for a $500 swing</th></tr></thead>
+        <tbody data-draw="vb-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pnl">
+    <h2>Profit and loss over time by environment</h2>
+    <p class="nq-cap">Cumulative dollars for one set. Each coloured line adds only the days of its environment. The dashed line resizes every day to the same expected dollar move, which shows what constant-risk sizing does to the curve. The shaded year is the walk-forward year.</p>
+    <div class="nq-row"><label>Trades taken
+<select class="dash-select" id="eq-variant" aria-label="Trades taken"><option value="logit">Logistic filter</option><option value="none">Unfiltered</option></select></label></div>
+    <div class="nq-chart" id="equity-chart" data-draw="equity" data-source="daily"></div>
+    <h3>Expected daily move of one set</h3>
+    <div class="nq-chart nq-short" id="exp-chart" data-draw="expmove" data-source="daily"></div>
+  </section>
+
+  <section id="sizes">
+    <h2>Contract size inside each environment</h2>
+    <p class="nq-cap">Simulated Combine, 4,000 attempts per point, with days drawn only from the chosen environment, as if the market stayed in it. The control takes the same trades with the side chosen by a coin: a pass rate that does not beat it owes nothing to the strategy.</p>
+    <div class="nq-row"><label>Account
+<select class="dash-select" id="sz-account" aria-label="Account"><option value="50K">$50K</option><option value="100K">$100K</option><option value="150K">$150K</option></select></label><label>Days drawn from
+<select class="dash-select" id="sz-source" aria-label="Days drawn from"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label><label>Trades taken
+<select class="dash-select" id="sz-variant" aria-label="Trades taken"><option value="logit">Logistic filter</option><option value="none">Unfiltered</option></select></label></div>
+    <div class="nq-grid2">
+      <div><h3>Pass within 30 trading days</h3><div class="nq-chart" id="sz-pass30" data-draw="sz-pass30" data-source="mc_env"></div></div>
+      <div><h3>Pass with no time limit</h3><div class="nq-chart" id="sz-pass" data-draw="sz-pass" data-source="mc_env"></div></div>
+      <div><h3>Edge over the coin, within 30 days</h3><div class="nq-chart" id="sz-edge" data-draw="sz-edge" data-source="mc_env"></div></div>
+      <div><h3>Loss limit hit</h3><div class="nq-chart" id="sz-breach" data-draw="sz-breach" data-source="mc_env"></div></div>
+    </div>
+    <h3>Best size in each environment</h3>
+    <div class="nq-scroll">
+      <table id="best-table" data-source="best" data-row-key="id">
+        <thead><tr><th data-field="env">Environment</th><th data-field="objective" class="nq-l">Objective</th><th data-field="best_contracts">Best MNQ</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="pass">Pass, no limit</th><th data-field="breach">Loss limit hit</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="daily_std_usd">Daily swing at that size</th><th data-field="std_over_limit">Swing over loss limit</th></tr></thead>
+        <tbody data-draw="best-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-cap">Read the last column across environments: the size that passes most often within 30 days is the one whose daily swing is roughly 40% to 70% of the loss limit, whatever the volatility. That is the relationship. Volatility changes how many contracts that takes.</p>
+    <h3>Combine and funded account at one set per $50K, by environment</h3>
+    <div class="nq-scroll">
+      <table id="funded-table" data-source="funded" data-row-key="id">
+        <thead><tr><th data-field="env">Environment</th><th data-field="variant" class="nq-l">Trades taken</th><th data-field="contracts">MNQ</th><th data-field="pass">Pass, no limit</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="payout_rate_standard">Payout rate, standard</th><th data-field="payout_rate_consistency">Payout rate, consistency</th><th data-field="fees_per_account">Fees per account</th><th data-field="profit_per_account">Profit per account</th><th data-field="profit_per_account_30d">Profit per account, 30-day stop</th><th data-field="ben_score">Payout per fee dollar per day</th></tr></thead>
+        <tbody data-draw="funded-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="policies">
+    <h2>Sizing rules over the real calendar</h2>
+    <p class="nq-cap">Simulated Combine on the full sequence of days, all environments mixed as they occurred. Constant risk sets each morning's contracts so that the position's expected move is a fixed multiple of the loss limit. Rules that trade only some environments wait on the other days, and the 30-day clock keeps running.</p>
+    <div class="nq-row"><label>Account
+<select class="dash-select" id="po-account" aria-label="Account"><option value="50K">$50K</option><option value="100K">$100K</option><option value="150K">$150K</option></select></label><label>Days drawn from
+<select class="dash-select" id="po-source" aria-label="Days drawn from"><option>Test years 2016 to Oct 2024</option><option>Test years at double cost</option><option>Walk-forward year</option></select></label><label>Trades taken
+<select class="dash-select" id="po-variant" aria-label="Trades taken"><option value="logit">Logistic filter</option><option value="none">Unfiltered</option></select></label></div>
+    <div class="nq-grid2">
+      <div><h3>Pass within 30 trading days by average size</h3><div class="nq-chart" id="po-pass30" data-draw="po-pass30" data-source="policies"></div></div>
+      <div><h3>Pass with no time limit by average size</h3><div class="nq-chart" id="po-pass" data-draw="po-pass" data-source="policies"></div></div>
+    </div>
+    <h3>Each rule at the setting chosen on test years</h3>
+    <div class="nq-scroll">
+      <table id="po-table" data-source="policies" data-row-key="id">
+        <thead><tr><th data-field="policy">Sizing rule</th><th data-field="parameter">Setting</th><th data-field="unit" class="nq-l">Unit</th><th data-field="avg_contracts">Average MNQ</th><th data-field="min_contracts">Fewest</th><th data-field="max_contracts">Most</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="pass">Pass, no limit</th><th data-field="breach_30d">Loss limit hit within 30 days</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="fees_per_pass_30d">Fees per pass, 30-day stop</th></tr></thead>
+        <tbody data-draw="po-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="filter">
+    <h2>What the logistic filter did in each environment</h2>
+    <p class="nq-cap">Retrained on all New York trades. It skips about the lowest-scored third. Dollars per trade are for one MNQ; t resamples whole days. A working filter has skipped trades below zero and a t of 2 or more.</p>
+    <div class="nq-chart" id="filter-chart" data-draw="filter-chart" data-source="filter"></div>
+    <div class="nq-scroll">
+      <table id="filter-table" data-source="filter" data-row-key="id">
+        <thead><tr><th data-field="env">Environment</th><th data-field="period" class="nq-l">Sample</th><th data-field="trades">Trades</th><th data-field="skipped_share">Skipped</th><th data-field="auc">AUC</th><th data-field="auc_lo">Low</th><th data-field="auc_hi">High</th><th data-field="kept_avg">Kept, per trade</th><th data-field="skipped_avg">Skipped, per trade</th><th data-field="diff_t">t</th><th data-field="total_unfiltered">Total, unfiltered</th><th data-field="total_filtered">Total, filtered</th></tr></thead>
+        <tbody data-draw="filter-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details id="notes">
+    <summary>Method, definitions and what is measured, simulated or assumed</summary>
+    <ul>
+      <li>Size is quoted as MNQ held when all nine settings are in the market. Nine MNQ is one MNQ per setting. Sizes that are not multiples of nine are scaled results, not an exact contract schedule.</li>
+      <li>Size grids stop at the Topstep position limit: 50, 100 and 150 MNQ for the $50K, $100K and $150K accounts.</li>
+      <li>Simulation: days are resampled in blocks of five. Loss limit, profit target, consistency rule and minimum days follow the verified Topstep rules file. Monthly fees are charged every 21 trading days.</li>
+      <li>The best size in each table is picked from the same simulation that reports it, which flatters every row equally. Walk-forward rows in the sizing-rule table use the setting chosen on test years.</li>
+      <li>Single-environment simulations are hypothetical: real calendars mix environments, and the sizing-rule section is the realistic one.</li>
+      <li>Measured: trades and daily results on 1-minute bars. Assumed: 1.11 points per round trip per MNQ. Simulated: every pass, breach and payout rate.</li>
+      <li>Trials: one filter and five sizing rules bring the project's count to 201.</li>
+    </ul>
+  </details>
+</div>
+<script src="app.js"></script>

@@ -1,0 +1,4 @@
+id,name,result,evidence
+H1,H1: more volatility means fewer contracts,PARTLY SUPPORTED,"Daily swing of one set: $575 low, $718 middle, $942 high. Best size is smaller in high than in low volatility on 1 of 3 accounts (50K: 9 against 12 MNQ, 100K: 18 against 18 MNQ, 150K: 27 against 27 MNQ)."
+H2,H2: high volatility passes more often,NOT SUPPORTED,$50K at each environment's own best size: 20.8% within 30 days in high volatility against 21.2% in low. Sharpe ratio 1.22 high against 1.48 low.
+H3,H3: constant-risk sizing beats a fixed size,FAIL,"$50K within 30 trading days: constant risk 18.8% against fixed 20.9% on test years, 16.1% against 18.4% at double cost, 6.5% against 8.4% in the walk-forward year (simulated)."

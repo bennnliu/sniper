@@ -526,3 +526,25 @@ Unfiltered rule on New York high-volatility days: test years +$77,018 per set, S
 - *Why it may fail:* the 30-day limit rewards variance, so shrinking size on volatile days can remove the days that pass the Combine. The random-direction control at the same size is reported next to every pass rate.
 
 **Trials:** 6 (1 filter, 5 policies), total 201.
+
+**SIZEVOL-01 results (research/sv01.py; test years 2016 to October 2024 out-of-fold, 1,899 days; walk-forward year 212 days). Costs assumed 1.11 points per round trip; all pass rates simulated, 4,000 attempts. Dashboard: https://claude.ai/artifact/3HL4HUtN3Acp1qx1fdQyTd**
+
+*Filter retrained on all New York trades (LOGIT-ALL):* AUC 0.564 (0.545 to 0.583); kept $13.90 against skipped $1.07 per trade, t 2.40; total $127,497 against $133,368 unfiltered; Sharpe 1.39 against 1.15. By environment the filter is inconsistent: middle volatility kept $18.14 against skipped −$14.30 (t 3.0); low $11.49 against $1.43 (t 1.4); **high $13.48 against $16.18 (t −0.2), so it removed profitable trades there**, the opposite of iteration 24's high-only model. Walk-forward year: kept $5.81 against skipped $0.44, t 0.14. Not adopted.
+
+*Environments, one set, logistic filter, test years:*
+
+| Environment | Days | Per day | Daily swing | Sharpe | t | MNQ for a $500 swing |
+|---|---|---|---|---|---|---|
+| Low | 676 | $53.73 | $575 | 1.48 | 2.43 | 7.8 |
+| Middle | 511 | $77.42 | $718 | 1.71 | 2.44 | 6.3 |
+| High | 712 | $72.50 | $942 | 1.22 | 2.05 | 4.8 |
+| All | 1,899 | $67.14 | $767 | 1.39 | 3.81 | 5.9 |
+
+Unfiltered: low Sharpe 1.23, middle 0.54, high 1.51. Daily swing grows with the expected dollar move with an elasticity of about 0.7 (a doubling of the expected move raises the swing 1.63 times).
+
+- **H1 PARTLY SUPPORTED.** Daily swing rises low to high ($575, $718, $942). The pass-maximising size is smaller in high than in low volatility only on the $50K account (9 against 12 MNQ); the $100K and $150K grids tie (18 and 27). In every environment the best 30-day size is the one whose daily swing is about 40% to 70% of the loss limit.
+- **H2 NOT SUPPORTED.** At each environment's own best size, $50K passes within 30 days 20.8% in high volatility against 21.2% in low. With the filter, high volatility has the lowest Sharpe of the three.
+- **H3 FAIL.** $50K within 30 trading days, logistic filter: constant risk 18.8% against fixed 12 MNQ 20.9% (test years), 16.0% against 18.4% (double cost), 6.4% against 8.4% (walk-forward year). Same ordering on $100K and $150K. Trading only high-volatility days passes 7.6% within 30 days because the clock runs while waiting; skipping low-volatility days 12.9%. Constant-risk sizing confirms iteration 22.
+- **Walk-forward year:** no size or sizing rule beat the random-direction control beyond simulation error (fixed 12 MNQ 8.4% against control 14.5%). The expected move of one set was $4,515 in that year against a $2,276 test-year median, so the test-year best size of 12 MNQ is about twice too large for today's index level; the best fixed size there was 6 MNQ.
+
+**Verdict:** there is a relationship between volatility and contract size, and it is a risk relationship only: size should keep the daily dollar swing near half the loss limit, which means fewer contracts as the expected dollar move rises (today roughly half of what the 2016 to 2024 average suggests). Volatility does not identify days on which the edge justifies more risk, and varying size day by day did not raise the pass rate. No change adopted. **Trials: 201.**
