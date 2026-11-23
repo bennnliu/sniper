@@ -146,3 +146,35 @@ ES and NQ against ZN, 6J, CL, GC, New York session, 2018 to October 2024. Measur
 - GCS-01: long gold through Asia hours; short gold through New York hours. 2 trials.
 
 **Pass:** net t at least 3.0 with the stated sign, positive in at least 5 of 7 years, still positive at double cost.
+
+### Iteration 35 result: all eight FAIL
+
+2018 to October 2024, one position per session, news days skipped. Measured. `reports/fxs01/results.csv`.
+
+| Test | Market, session, side | Gross t | Net t | Years positive |
+|---|---|---|---|---|
+| FXS-01a | 6E, New York, long | -1.65 | -5.54 | 0 of 7 |
+| FXS-01a | 6B, New York, long | -0.46 | -3.15 | 1 of 7 |
+| FXS-01a | 6J, New York, long | -2.34 | -4.76 | 0 of 7 |
+| FXS-01b | 6E, London, short | 1.61 | -2.04 | 2 of 7 |
+| FXS-01b | 6B, London, short | 1.67 | -0.65 | 3 of 7 |
+| FXS-01b | 6J, Asia, short | 0.63 | -1.97 | 1 of 7 |
+| GCS-01 | Gold, Asia, long | 0.59 | -2.26 | 2 of 7 |
+| GCS-01 | Gold, New York, short | 0.91 | -0.81 | 3 of 7 |
+
+The New York leg of the currency pattern has the wrong sign since 2018; the local-hours leg has the right sign but is about half the cost of one round trip. Gold shows nothing. **Verdict: KILL.** Trials 8, total 284.
+
+## Iteration 36 (23 Nov 2026): GEX-03, dealer gamma from the quarterly ES options (written before buying or running)
+
+**Why.** IV-01 was the only result this round with the predicted sign in both markets (NQ t 2.58, ES 1.87). It is an indirect reading of dealer gamma. The direct measure needs open interest by strike. The full set of ES option products costs about $201, over budget; the quarterly options alone cost $27.65 and fit. Quarterlies miss the weekly and daily expiries, so this is a cheap probe: if a partial measure beats the VIX slope, the full set is worth asking Ben for; if it shows nothing, the lead is closed at low cost.
+
+**Source.** Baltussen et al. 2021 (read); Barbon and Buraschi, "Gamma Fragility", 2021 working paper (exists; not re-read): negative dealer gamma goes with intraday momentum and higher volatility, positive gamma with reversal and lower volatility.
+
+**Measure.** For each day D: every quarterly ES option's open interest and settlement price for D (both published before the next 8:30 CT open, checked on a sample). Forward from put-call parity at the strike where call and put prices are closest; implied volatility and gamma from Black's formula; expiries from 1 to 100 days out. Net gamma = sum over calls of gamma x open interest minus the same for puts (the usual convention that dealers are long calls and short puts). Signal = net gamma divided by total gamma, as a percentile of its trailing 250 days, used for the session of D+1.
+
+**Tests (6 trials, total 290), ES and NQ, 2018 to October 2024, news days skipped, volatility units:**
+- G1: the New York session's range (high minus low of minute closes, over the expected daily move) falls as the signal rises. Sign -. Checks that the measure means anything.
+- G2: the breakout rule's daily result falls as the signal rises. Sign -.
+- G3: the opposite side of every breakout entry, after costs, rises with the signal and is positive in the top third. Sign +.
+
+**Pass:** |t| at least 3.0 with the stated sign and the same sign in at least 70% of years. If G2 and G3 both pass on either market, the next step is a registered regime-switch rule (breakout on low-gamma days, fade on high-gamma days) that trades every day. If only G1 passes, the measure is real but not useful for direction.
