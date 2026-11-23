@@ -49,3 +49,94 @@ it06-zero-edge-stop20_target40,2026-11-22,129c024,iter06,1,47,"zero-edge baselin
 it06-zero-edge-stop40_target20,2026-11-22,129c024,iter06,1,48,"zero-edge baseline (simulated): 50K pass 22.3%, EV $10 at best size"
 it06-zero-edge-stop40_target80,2026-11-22,129c024,iter06,1,49,"zero-edge baseline (simulated): 50K pass 22.9%, EV $35 at best size"
 it06-zero-edge-stop60_target30,2026-11-22,129c024,iter06,1,50,"zero-edge baseline (simulated): 50K pass 23.0%, EV $37 at best size"
+it07-CAL-01-ES,2026-11-22,2be3243,iter07,1,51,"FOMC 8:30-12:55 CT mean -1.4 bp, t -0.35, n 67; t$ -0.41"
+it07-CAL-02-ES,2026-11-22,2be3243,iter07,1,52,"CPI rv x1.10, MR-04 -0.17x cost; NFP rv x1.10, MR-04 0.11x cost; FOMC rv x1.27, MR-04 -0.10x cost"
+it07-CAL-05-CPI-ES,2026-11-22,2be3243,iter07,1,53,IC +0.060 t +0.78 n 171 -> FAIL; t$ -0.28
+it07-CAL-05-NFP-ES,2026-11-22,2be3243,iter07,1,54,IC -0.061 t -0.78 n 167 -> FAIL; t$ -1.26
+it07-CAL-05-FOMC-ES,2026-11-22,2be3243,iter07,1,55,IC +0.157 t +1.28 n 67 -> FAIL; t$ -0.28
+it07-CAL-01-NQ,2026-11-22,2be3243,iter07,1,56,"FOMC 8:30-12:55 CT mean -7.5 bp, t -1.62, n 67; t$ -0.66"
+it07-CAL-02-NQ,2026-11-22,2be3243,iter07,1,57,"CPI rv x1.08, MR-04 -0.07x cost; NFP rv x1.04, MR-04 0.32x cost; FOMC rv x1.25, MR-04 0.08x cost"
+it07-CAL-05-CPI-NQ,2026-11-22,2be3243,iter07,1,58,IC +0.020 t +0.25 n 171 -> FAIL; t$ -0.47
+it07-CAL-05-NFP-NQ,2026-11-22,2be3243,iter07,1,59,IC -0.088 t -1.14 n 167 -> FAIL; t$ -1.60
+it07-CAL-05-FOMC-NQ,2026-11-22,2be3243,iter07,1,60,IC +0.103 t +0.83 n 67 -> FAIL; t$ -0.02
+it08-EOD-01-ES,2026-11-22,467581b,iter08,1,61,"IC +0.038 t +2.03 n 3513 -> FAIL; net $-25/trade, t$ -3.71, -0.56x cost"
+it08-IMOM-07-ES,2026-11-22,467581b,iter08,1,62,"IC -0.029 t -0.86 n 1018 -> FAIL; net $-41/trade, t$ -2.65, -1.51x cost"
+it08-OD-01-ES,2026-11-22,467581b,iter08,1,63,"mean +1.04 bp t +4.02 n 3556; net $-7/trade, t$ -1.97, 0.56x cost"
+it08-REG-01-ES,2026-11-22,467581b,iter08,1,64,"n 309; net $+49/trade, t$ +0.58, 4.01x cost"
+it08-NOISE-01A-ES,2026-11-22,467581b,iter08,1,65,"n 2128; net $+5/trade, t$ +0.20, 1.29x cost"
+it08-NOISE-01B-ES,2026-11-22,467581b,iter08,1,66,"n 2128; net $+50/trade, t$ +3.01, 4.06x cost"
+it08-EOD-01-NQ,2026-11-22,467581b,iter08,1,67,"IC +0.020 t +1.07 n 3514 -> FAIL; net $-19/trade, t$ -2.04, -0.39x cost"
+it08-IMOM-07-NQ,2026-11-22,467581b,iter08,1,68,"IC -0.017 t -0.51 n 1030 -> FAIL; net $-36/trade, t$ -1.85, -1.63x cost"
+it08-OD-01-NQ,2026-11-22,467581b,iter08,1,69,"mean +1.20 bp t +4.01 n 3353; net $-1/trade, t$ -0.24, 0.90x cost"
+it08-REG-01-NQ,2026-11-22,467581b,iter08,1,70,"n 315; net $-170/trade, t$ -1.38, -11.32x cost"
+it08-NOISE-01A-NQ,2026-11-22,467581b,iter08,1,71,"n 2103; net $+62/trade, t$ +1.73, 5.48x cost"
+it08-NOISE-01B-NQ,2026-11-22,467581b,iter08,1,72,"n 2103; net $+91/trade, t$ +3.59, 7.62x cost"
+it08-NOISE-01B-ES-base,2026-11-22,467581b,iter08,1,73,"$42/traded day, t 2.60, n 2126"
+it08-NOISE-01B-ES-lookback11,2026-11-22,467581b,iter08,1,74,"$42/traded day, t 2.58, n 2153"
+it08-NOISE-01B-ES-lookback17,2026-11-22,467581b,iter08,1,75,"$45/traded day, t 2.70, n 2070"
+it08-NOISE-01B-ES-vm0.8,2026-11-22,467581b,iter08,1,76,"$30/traded day, t 1.89, n 2420"
+it08-NOISE-01B-ES-vm1.2,2026-11-22,467581b,iter08,1,77,"$55/traded day, t 3.13, n 1800"
+it08-NOISE-01B-ES-no_vwap,2026-11-22,467581b,iter08,1,78,"$43/traded day, t 2.59, n 2128"
+it08-NOISE-01B-NQ-base,2026-11-22,467581b,iter08,1,79,"$83/traded day, t 3.30, n 2096"
+it08-NOISE-01B-NQ-lookback11,2026-11-22,467581b,iter08,1,80,"$82/traded day, t 3.21, n 2098"
+it08-NOISE-01B-NQ-lookback17,2026-11-22,467581b,iter08,1,81,"$95/traded day, t 3.71, n 2063"
+it08-NOISE-01B-NQ-vm0.8,2026-11-22,467581b,iter08,1,82,"$80/traded day, t 3.30, n 2430"
+it08-NOISE-01B-NQ-vm1.2,2026-11-22,467581b,iter08,1,83,"$83/traded day, t 3.08, n 1777"
+it08-NOISE-01B-NQ-no_vwap,2026-11-22,467581b,iter08,1,84,"$78/traded day, t 3.05, n 2103"
+it08-NOISE-01B-NQ-walkforward-cost1x,2026-11-22,63ec2dd,iter08,1,85,"$296/traded day, t 0.93, n 136"
+it09-NOISE-01B-NQ-vol-units,2026-11-22,7f241a1,iter09,1,86,vol-unit t 2.21; early -0.36 late 3.94
+it10-NOISE-01B-NQ-HOLDOUT,2026-11-22,9e1b3c6,iter10,1,87,"HOLDOUT PASS: $287/traded day, t 1.05, n 136; 50K pass at 2 MNQ 35.2%"
+it11-NOISE-NQ-NY-V0,2026-11-22,9662b50,iter11,1,88,"V0 base (frozen rule): t(vu) 1.15; best 15 MNQ pass 21.0% in 19d, score x1000 262.98"
+it11-NOISE-NQ-NY-V1,2026-11-22,9662b50,iter11,1,89,"V1 skip CPI/NFP/FOMC days: t(vu) 1.30; best 15 MNQ pass 20.3% in 19d, score x1000 210.54"
+it11-NOISE-NQ-NY-V2,2026-11-22,9662b50,iter11,1,90,"V2 skip FOMC days only: t(vu) 1.64; best 15 MNQ pass 21.6% in 20d, score x1000 258.89"
+it11-NOISE-NQ-NY-V3,2026-11-22,9662b50,iter11,1,91,"V3 one entry a day: t(vu) 1.87; best 15 MNQ pass 20.5% in 27d, score x1000 79.34"
+it11-NOISE-NQ-NY-V4,2026-11-22,9662b50,iter11,1,92,"V4 two entries a day: t(vu) 1.16; best 15 MNQ pass 20.8% in 21d, score x1000 222.81"
+it11-NOISE-NQ-NY-V5,2026-11-22,9662b50,iter11,1,93,"V5 9:00 CT check only: t(vu) 2.03; best 10 MNQ pass 26.6% in 70d, score x1000 22.72"
+it11-NOISE-NQ-NY-V6,2026-11-22,9662b50,iter11,1,94,"V6 no entries after 11:00 CT: t(vu) 1.78; best 15 MNQ pass 20.2% in 27d, score x1000 65.51"
+it11-NOISE-NQ-NY-V7,2026-11-22,9662b50,iter11,1,95,"V7 trade stop 0.25 daily moves: t(vu) 0.39; best 15 MNQ pass 21.2% in 21d, score x1000 249.20"
+it11-NOISE-NQ-NY-V8,2026-11-22,9662b50,iter11,1,96,"V8 trade stop 0.40 daily moves: t(vu) 0.99; best 15 MNQ pass 21.3% in 19d, score x1000 283.86"
+it11-NOISE-NQ-NY-V9,2026-11-22,9662b50,iter11,1,97,"V9 session stop 0.30 daily moves: t(vu) 1.72; best 15 MNQ pass 23.1% in 25d, score x1000 121.99"
+it11-NOISE-NQ-NY-V10,2026-11-22,9662b50,iter11,1,98,"V10 session stop 0.50 daily moves: t(vu) 0.92; best 15 MNQ pass 20.7% in 21d, score x1000 227.53"
+it11-NOISE-NQ-NY-V11,2026-11-22,9662b50,iter11,1,99,"V11 long only: t(vu) 1.59; best 15 MNQ pass 26.9% in 37d, score x1000 81.18"
+it11-NOISE-NQ-NY-V12,2026-11-22,9662b50,iter11,1,100,"V12 skip news + one entry: t(vu) 2.07; best 15 MNQ pass 19.7% in 26d, score x1000 76.24"
+it11-NOISE-NQ-NY-V13,2026-11-22,9662b50,iter11,1,101,"V13 skip news + one entry + session stop 0.50: t(vu) 1.76; best 15 MNQ pass 19.2% in 27d, score x1000 68.17"
+it11-META-01-logistic,2026-11-22,9662b50,iter11,1,102,OOS IC +0.120 t +5.45; kept $130 vs all $88 per trade; improvement t 1.32
+it11-META-01-boosted,2026-11-22,9662b50,iter11,1,103,OOS IC +0.045 t +2.03; kept $103 vs all $88 per trade; improvement t -0.70
+it11-WF-check-news-ml,2026-11-22,5cdab7c,iter11,1,104,WF year: kept $206 vs skipped $181 per trade; ML adopted: False
+it11-WF-sizing-posthoc,2026-11-22,post-hoc,iter11,1,105,post hoc look at fixed vs vol-scaled sizing on the walk-forward year (not pre-committed)
+it12-ON-01_long_ASIA-MES,2026-11-22,539b12f,iter12,1,106,"mean -0.13 pts, t(vu) -2.54, n 3097, years+ 13% -> FAIL"
+it12-ON-01_long_LONDON-MES,2026-11-22,539b12f,iter12,1,107,"mean -0.31 pts, t(vu) -2.54, n 3216, years+ 13% -> FAIL"
+it12-ON-01_long_OVERNIGHT-MES,2026-11-22,539b12f,iter12,1,108,"mean +0.21 pts, t(vu) -0.40, n 3102, years+ 47% -> FAIL"
+it12-ON-01_long_NY-MES,2026-11-22,539b12f,iter12,1,109,"mean +0.02 pts, t(vu) -0.53, n 3116, years+ 47% -> FAIL"
+it12-ON-02_fade_prior_NY_overnight-MES,2026-11-22,539b12f,iter12,1,110,"mean -0.43 pts, t(vu) -1.64, n 2969, years+ 40% -> FAIL"
+it12-ON-02_long_after_down_NY-MES,2026-11-22,539b12f,iter12,1,111,"mean +0.37 pts, t(vu) +0.68, n 1351, years+ 53% -> FAIL"
+it12-ON-02_long_after_up_NY_(control)-MES,2026-11-22,539b12f,iter12,1,112,"mean +0.10 pts, t(vu) -1.16, n 1618, years+ 33% -> FAIL"
+it12-ON-03_NY_fades_overnight_move-MES,2026-11-22,539b12f,iter12,1,113,"mean -0.34 pts, t(vu) -2.23, n 3038, years+ 27% -> FAIL"
+"it12-CAL-03_turn_of_month,_NY-MES",2026-11-22,539b12f,iter12,1,114,"mean -0.11 pts, t(vu) -0.92, n 604, years+ 40% -> FAIL"
+"it12-CAL-03_turn_of_month,_OVERNIGHT-MES",2026-11-22,539b12f,iter12,1,115,"mean -0.35 pts, t(vu) +0.36, n 585, years+ 47% -> FAIL"
+"it12-CAL-03_other_days,_OVERNIGHT_(control)-MES",2026-11-22,539b12f,iter12,1,116,"control, first logged with a sign bug; corrected: t(vu) -0.51 (MES) / +0.14 (MNQ) -> FAIL"
+it12-FADE-01_London_breakout_fade-MES,2026-11-22,539b12f,iter12,1,117,"mean -0.61 pts, t(vu) -6.59, n 2681, years+ 7% -> FAIL"
+it12-ON-01_long_ASIA-MNQ,2026-11-22,539b12f,iter12,1,118,"mean +0.67 pts, t(vu) -0.47, n 2303, years+ 33% -> FAIL"
+it12-ON-01_long_LONDON-MNQ,2026-11-22,539b12f,iter12,1,119,"mean -1.09 pts, t(vu) -2.59, n 3158, years+ 20% -> FAIL"
+it12-ON-01_long_OVERNIGHT-MNQ,2026-11-22,539b12f,iter12,1,120,"mean +1.15 pts, t(vu) +0.37, n 2707, years+ 47% -> FAIL"
+it12-ON-01_long_NY-MNQ,2026-11-22,539b12f,iter12,1,121,"mean +0.19 pts, t(vu) -0.27, n 3117, years+ 47% -> FAIL"
+it12-ON-02_fade_prior_NY_overnight-MNQ,2026-11-22,539b12f,iter12,1,122,"mean -0.82 pts, t(vu) -1.50, n 2617, years+ 53% -> FAIL"
+it12-ON-02_long_after_down_NY-MNQ,2026-11-22,539b12f,iter12,1,123,"mean +1.60 pts, t(vu) +0.64, n 1220, years+ 60% -> FAIL"
+it12-ON-02_long_after_up_NY_(control)-MNQ,2026-11-22,539b12f,iter12,1,124,"mean +0.71 pts, t(vu) -0.21, n 1397, years+ 40% -> FAIL"
+it12-ON-03_NY_fades_overnight_move-MNQ,2026-11-22,539b12f,iter12,1,125,"mean -1.18 pts, t(vu) -2.01, n 3065, years+ 27% -> FAIL"
+"it12-CAL-03_turn_of_month,_NY-MNQ",2026-11-22,539b12f,iter12,1,126,"mean +0.75 pts, t(vu) -0.52, n 604, years+ 47% -> FAIL"
+"it12-CAL-03_turn_of_month,_OVERNIGHT-MNQ",2026-11-22,539b12f,iter12,1,127,"mean -1.77 pts, t(vu) +0.45, n 517, years+ 60% -> FAIL"
+"it12-CAL-03_other_days,_OVERNIGHT_(control)-MNQ",2026-11-22,539b12f,iter12,1,128,"control, first logged with a sign bug; corrected: t(vu) -0.51 (MES) / +0.14 (MNQ) -> FAIL"
+it12-FADE-01_London_breakout_fade-MNQ,2026-11-22,539b12f,iter12,1,129,"mean -1.19 pts, t(vu) -6.33, n 2626, years+ 13% -> FAIL"
+it12-RV-02,2026-11-22,539b12f,iter12,1,130,"IC +0.039 t +2.17; net -3.53 bp (cost 4.49), t -8.20"
+it13-PERIOD-01/CAL-04/GOAL-01,2026-11-23,2d0235f,it13,11,141,all fail; hard 30-day pass of fixed 8 MNQ is 14.7% vs control 9.7%
+it14-CYCLE-01/HOL-01,2026-11-23,2d0235f,it14,12,153,CYCLE fails; HOL-01 NY MES t 2.67 (below 3)
+it15-VOL-01-start-rule,2026-11-23,2d0235f,it15,2,155,high-vol starts 13.1% vs low 16.5% -> FAIL
+it16-CONF-01,2026-11-23,2d0235f,it16,2,157,t diff 0.76 -> FAIL
+it17-PAIR-01,2026-11-23,2d0235f,it17,6,163,"overnight IC +0.089 t 4.54, gross 1.5 bp vs 4.5 bp cost -> not tradable"
+it18-backlog LEADLAG-01/TOX-02/MR-05/VOL-02,2026-11-23,2d0235f,it18,10,173,all fail or not tradable
+it19-VOL-05,2026-11-23,2d0235f,it19,2,175,"dev t diff 2.05, nothing since 2018, pass rate falls -> FAIL; WF not run"
+it20-ENS-01/ENS-02,2026-11-23,8fd1774,it20,2,177,pass 13.8% / 13.4% vs 14.7% -> FAIL
+it21-DP-01,2026-11-23,8fd1774,it21,1,178,"OOS 29.6% vs 24.7%, needed +5 -> FAIL"
+it22-RISK-01,2026-11-23,8fd1774,it22,6,184,chosen R=1000 passes 10.8% vs 24.5% -> FAIL; WF not run
+it23-ROSA-01/WKND-01/DOW-01,2026-11-23,a18bb03,it23,7,191,all fail
