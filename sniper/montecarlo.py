@@ -102,6 +102,7 @@ class XfaResult:
     to_trader: np.ndarray  # dollars received by the trader
     breached: np.ndarray
     days_to_first: np.ndarray
+    days_alive: np.ndarray | None = None  # trading days until breach or the end of the path
 
     def summary(self) -> dict:
         n = len(self.first_payout)
@@ -138,6 +139,7 @@ def simulate_xfa(rec: DayRecords, idx: np.ndarray, contracts: int, size: str, pa
     win_max = np.zeros(n_paths)
     win_n = np.zeros(n_paths, dtype=int)
     win_start = np.zeros(n_paths)
+    days_alive = np.zeros(n_paths, dtype=int)
     cap = spec.payout_cap_standard if path == "standard" else spec.payout_cap_consistency
     for t in range(length):
         # contracts allowed by the Scaling Plan at the start of the day
@@ -148,6 +150,7 @@ def simulate_xfa(rec: DayRecords, idx: np.ndarray, contracts: int, size: str, pa
         n = np.minimum(contracts, np.floor(lots / mini_eq + 1e-9))
         fee = rules.commission_per_side[rec.symbol] * 2 * n * cost_mult
         d = idx[:, t]
+        days_alive += alive
         tr = rec.traded[d] & alive & (n > 0)
         worst = b + rec.mae[d] * n - fee / 2
         hit = tr & (worst <= m + 1e-9)
@@ -180,7 +183,7 @@ def simulate_xfa(rec: DayRecords, idx: np.ndarray, contracts: int, size: str, pa
         win_start = np.where(elig, b, win_start)
         if not alive.any():
             break
-    return XfaResult(paid_once, n_pay, to_trader, breached, days_first)
+    return XfaResult(paid_once, n_pay, to_trader, breached, days_first, days_alive)
 
 
 def validate_against_topstepsim(day_events: list, rec: DayRecords, idx_row: np.ndarray, contracts: int,

@@ -794,3 +794,24 @@ At double cost the final rule's development total is $82,297 to $83,923 on all t
 - The 1-hour file (DL9NLQ7JRY) cannot run this rule, which decides on minute prices; it is stored, not used.
 
 **Reading:** two out-of-sample looks now agree (walk-forward year flat, last five sessions −$5,904). The final rule is a loss-reduced version of a strategy whose edge, if any, has not shown up after October 2024. I recommend not spending the holdout year on it and not moving it to a Practice-account forward test. 4 trials, total 232.
+
+## ECON-01 (23 Nov 2026): payout economics of the final rule (no new trial)
+
+Ben asked for accounts needed per payout, total profit, profit per account, cost per account and profit per trading day. All SIMULATED (4,000 bootstrapped paths, Combine then funded account under topstep_rules.yaml, standard path, 9/18/27 MNQ). "Random" is the random-direction control with the same costs. Code research/econ01.py, table reports/econ01/economics.csv.
+
+| Period | Account | Rule | Combine pass | Funded acct pays | Combines per paying funded acct | Cost per Combine (fees + activation share) | Paid to trader per Combine | Profit per Combine | Profit per trading day |
+|---|---|---|---|---|---|---|---|---|---|
+| Dev 2016-Oct 2024 | $50K | Final | 36% | 45% | 6.1 | $198 | $1,203 | $1,005 | $17.44 |
+| | $50K | Random | 18% | 29% | 19.4 | $142 | $138 | −$4 | −$0.16 |
+| | $100K | Final | 30% | 39% | 8.5 | $253 | $1,540 | $1,287 | $28.09 |
+| | $100K | Random | 15% | 27% | 24.3 | $193 | $173 | −$21 | −$1.08 |
+| | $150K | Final | 30% | 39% | 8.3 | $414 | $2,406 | $1,992 | $45.17 |
+| | $150K | Random | 15% | 29% | 22.9 | $326 | $276 | −$50 | −$2.67 |
+| WF Nov 2024-Oct 2025 | $50K | Final | 10% | 13% | 75.6 | $102 | $39 | −$63 | −$5.37 |
+| | $50K | Random | 17% | 19% | 31.3 | $111 | $112 | $0 | $0.03 |
+| | $100K | Final | 9% | 11% | 103.9 | $152 | $53 | −$99 | −$9.86 |
+| | $100K | Random | 15% | 17% | 40.7 | $160 | $154 | −$7 | −$0.63 |
+| | $150K | Final | 9% | 11% | 100.2 | $261 | $87 | −$174 | −$17.45 |
+| | $150K | Random | 15% | 17% | 39.2 | $269 | $251 | −$18 | −$1.65 |
+
+Per paying funded account on development days ($50K): about $1,201 of fees buys $7,303 of payouts (about 2 payouts per funded account on average, counted until breach or 400 days). On the walk-forward year: $7,695 of fees for $2,940. The development figures are in-sample (the rule's filters were chosen on those days), so they are an upper bound; the walk-forward year is the only out-of-sample estimate and it is worse than random direction.
