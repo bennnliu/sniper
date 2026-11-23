@@ -330,3 +330,34 @@ _Second round, 23 Nov 2026. The Cboe and FRED hosts are still blocked and no new
 ## Iteration 21
 
 **DP-01. The best possible sizing policy, by dynamic programming, tested out of sample.** *Claim:* the sizing policy that maximises the probability of passing within 30 trading days, solved exactly by backward induction over (profit so far, high-water mark, days left) from the rule's daily results before 2021, beats fixed 8 MNQ by at least 5 points on the unseen 2021 to October 2024 results. Sizes are in risk units (contracts × expected daily move) so that the policy carries across price levels. *Why it fits:* it is the upper limit of what sizing alone can add to the first edge, so it settles the question GOAL-01 left open. *Why it may fail:* the edge is small, so the optimum is mostly bold play that works equally for random direction. 1 trial, with fixed 8 MNQ and the random-direction control alongside. The consistency rule and minimum days are left out of the optimisation and enforced in the evaluation.
+
+### Results for iterations 20 and 21 (development data; pass rates simulated, 20,000 paths)
+
+| Version (8-contract equivalent) | Daily t, all years | Daily t, 2018 on | Pass within 30 days | Random control |
+|---|---|---|---|---|
+| Frozen single setting, 8 MNQ | 1.30 | 3.31 | 14.7% | 9.7% |
+| ENS-01, nine settings | 1.31 | 3.69 | 13.8% | 9.0% |
+| ENS-02, 4 MNQ + 6 MES | 0.33 | 3.28 | 13.4% | 9.3% |
+
+**ENS-01 and ENS-02: FAIL.** The nine settings are 0.88 correlated with each other, so averaging them cancels almost nothing; the pass rate does not rise. Adding ES lowers the result (the rule is weaker on ES, and the two versions are 0.67 correlated).
+
+| DP-01 | Fixed 8 MNQ | DP policy | Constant risk, 2,000 units |
+|---|---|---|---|
+| Train, to 2020: pass (control) | 7.2% (4.2%) | 13.9% (11.8%) | 14.6% (11.1%) |
+| **Test, 2021 to Oct 2024: pass (control)** | 24.7% (17.3%) | **29.6% (18.9%)** | **29.8% (18.7%)** |
+
+**DP-01: FAIL on the rule I set, by a hair, and it points somewhere useful.** Out of sample the optimal policy beats fixed 8 MNQ by 4.9 points; I required 5. More telling, the full optimisation is matched by the simplest policy there is: hold the number of contracts that makes the expected daily move equal to a fixed dollar amount ("constant risk"; 2,000 units means contracts = $2,000 ÷ today's expected daily move per MNQ). The DP learned nothing beyond that. Two honest caveats: the constant-risk line was a benchmark I added, not a registered hypothesis, and most of every pass rate here is bold play (the random-direction control passes 19%).
+
+The DP's own model promised 30% on the training data and delivered 14%. The model assumes independent days and ignores the consistency rule; real results come in streaks. That gap is a warning against trusting any pass rate computed from shuffled independent days.
+
+**Iterations 20 and 21: 3 trials. Running total 178. Verdict: KILL as written; constant-risk sizing carried to iteration 22.**
+
+---
+
+## Iteration 22
+
+### Hypothesis (written before testing)
+
+**RISK-01. Constant-risk sizing is the right way to trade the first edge in a Combine.** *Claim:* sizing each day at contracts = R ÷ (expected daily move per MNQ), with one risk level R chosen on data before 2021, passes a $50K Combine within 30 trading days more often than fixed 8 MNQ, and by more than it helps a random-direction trader. *Why it fits the first edge:* the loss limit is a fixed $2,000 while NQ's daily move has ranged from $75 to over $500 per MNQ. A fixed contract count is far too small in calm years and a coin flip against the loss limit in volatile ones, which is exactly how the walk-forward year failed in iteration 11 (12.5% at 8 MNQ). Constant risk keeps every day the same size relative to the limit. It resolves SIZE-01, which was left "unresolved" in iteration 11 because the version tested there was scaled far too small. *Why it may fail:* the improvement may be only bold play; the control will show it.
+*Procedure fixed in advance:* (1) choose R from {1000, 1500, 2000, 3000, 4000} on data before 2021 by the largest pass-rate gain over the random control; (2) evaluate that single R on 2021 to October 2024; (3) one check on the walk-forward year, November 2024 to October 2025, its fourth use for this rule. 5 trials for the grid plus 1.
+*Success means:* in both the 2021-2024 test and the walk-forward year, the 30-day pass rate is at least 25%, beats fixed 8 MNQ, and exceeds the random control by at least 8 points. Results will also be given in Ben's measure and in dollars per attempt. Success here would be a sizing rule for the existing candidate, not a second source of profit, and would not change the candidate's promotion status (deflated Sharpe 0.81).

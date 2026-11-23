@@ -1,0 +1,66 @@
+{
+ "ens_mean_pairwise_corr": 0.8845817373991613,
+ "es_nq_corr": 0.6694312536503699,
+ "frozen single setting": {
+  "t_daily": 1.295882871198178,
+  "t_daily_2018_on": 3.314545713894608,
+  "usd_per_day_8lot": 32.50285714285714,
+  "days_active": 1832,
+  "std_usd_8lot": 714.7373320568292,
+  "pass30": 0.1471,
+  "control": 0.0971,
+  "median_days": 18.0
+ },
+ "ENS-01 nine settings": {
+  "t_daily": 1.3090845650148477,
+  "t_daily_2018_on": 3.689314407223218,
+  "usd_per_day_8lot": 36.65222403008277,
+  "days_active": 2315,
+  "std_usd_8lot": 687.2106543637093,
+  "pass30": 0.13795,
+  "control": 0.09015,
+  "median_days": 18.0
+ },
+ "ENS-02 4 MNQ + 6 MES": {
+  "t_daily": 0.32508440884799,
+  "t_daily_2018_on": 3.2834079219519183,
+  "usd_per_day_8lot": 24.95909209241783,
+  "days_active": 2202,
+  "std_usd_8lot": 646.9457815131284,
+  "pass30": 0.13415,
+  "control": 0.09305,
+  "median_days": 17.0
+ },
+ "dp_value_at_start_train": 0.30006119413713706,
+ "dp_first_day_risk_units": 3000.0,
+ "DP train to 2020 fixed 8 MNQ": {
+  "pass30": 0.0724,
+  "control": 0.0422,
+  "median_days": 20.0
+ },
+ "DP train to 2020 DP policy": {
+  "pass30": 0.13925,
+  "control": 0.1178,
+  "median_days": 16.0
+ },
+ "DP train to 2020 fixed 2000 risk units": {
+  "pass30": 0.1463,
+  "control": 0.11125,
+  "median_days": 13.0
+ },
+ "DP test 2021 to Oct 2024 fixed 8 MNQ": {
+  "pass30": 0.2471,
+  "control": 0.1733,
+  "median_days": 11.0
+ },
+ "DP test 2021 to Oct 2024 DP policy": {
+  "pass30": 0.2957,
+  "control": 0.18905,
+  "median_days": 18.0
+ },
+ "DP test 2021 to Oct 2024 fixed 2000 risk units": {
+  "pass30": 0.2985,
+  "control": 0.1866,
+  "median_days": 15.0
+ }
+}
