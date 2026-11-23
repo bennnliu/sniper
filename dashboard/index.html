@@ -1,0 +1,259 @@
+<meta name="dash-one-writer">
+<style>
+/* Layout: one column of sections, each a heading, one plain sentence, then charts and tables. */
+.nq { display: flex; flex-direction: column; gap: var(--cds-gap-xl, 32px); font-family: var(--font-anthropic-sans); color: var(--color-fg); font-size: var(--cds-font-size-body); }
+.nq h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.nq h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.nq h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.nq p { margin: 0; max-width: 72ch; line-height: 1.5; }
+.nq .nq-muted { color: var(--color-fg-muted); }
+.nq .nq-cap { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 80ch; }
+.nq section { display: flex; flex-direction: column; gap: var(--cds-gap-md, 12px); min-width: 0; }
+.nq .nq-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--cds-gap-md, 12px); }
+.nq .nq-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg, 16px); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.nq .nq-tile .nq-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.nq .nq-tile .nq-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.7em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.nq .nq-tile .nq-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.nq .nq-tag { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 8px; color: var(--color-fg-muted); white-space: nowrap; }
+.nq .nq-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md, 12px); align-items: center; }
+.nq .nq-row label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nq .nq-row select { max-width: 100%; }
+.nq .nq-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg, 20px); }
+.nq .nq-grid2 > div { min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-chart { position: relative; min-height: 240px; min-width: 0; }
+.nq .nq-chart.nq-short { min-height: 170px; }
+.nq .nq-chart svg { display: block; width: 100%; overflow: visible; }
+.nq .nq-chart svg text { fill: var(--cds-text-secondary, var(--color-fg-muted)); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.nq .nq-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: 4px; }
+.nq .nq-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.nq .nq-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.nq .nq-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover, var(--color-panel)); border: 1px solid var(--cds-border, var(--color-border-line)); box-shadow: var(--cds-shadow-popover, none); border-radius: var(--cds-radius); padding: 6px 9px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; z-index: 3; white-space: nowrap; color: var(--color-fg); }
+.nq .nq-tip b { font-weight: var(--cds-font-weight-medium); }
+.nq .nq-tip div { display: flex; justify-content: space-between; gap: 14px; }
+.nq .nq-tip div span:first-child { color: var(--cds-text-secondary, var(--color-fg-muted)); }
+.nq .nq-scroll { overflow-x: auto; min-width: 0; }
+.nq table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-caption); }
+.nq th, .nq td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.nq th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.nq th:first-child, .nq td:first-child { text-align: left; white-space: normal; min-width: 150px; }
+.nq td.nq-l, .nq th.nq-l { text-align: left; }
+.nq tr.nq-group td { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); background: var(--color-panel); text-align: left; }
+.nq .nq-pos { color: var(--color-ok); }
+.nq .nq-neg { color: var(--color-bad); }
+.nq .nq-heat td { text-align: center; padding: 4px 6px; border-bottom: 0; min-width: 44px; }
+.nq .nq-heat td:first-child, .nq .nq-heat th:first-child { min-width: 48px; text-align: left; white-space: nowrap; }
+.nq .nq-heat th { text-align: center; }
+.nq .nq-note { border-left: 3px solid var(--color-warn); padding: 6px 12px; background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+.nq details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.nq details ul { margin: 8px 0 0; padding-left: 20px; max-width: 80ch; line-height: 1.5; }
+</style>
+
+<div class="nq">
+  <div class="nq-head">
+    <h1 id="title">NQ breakout, nine-setting ensemble</h1>
+    <p id="takeaway">On the data it was built on (June 2010 to October 2024) one set of nine MNQ made <b data-draw="t-dev-total" data-source="kpis" data-field="dev" data-where="metric=Total net profit">—</b> after costs at a Sharpe ratio of <b data-draw="t-dev-sharpe" data-source="kpis" data-field="dev" data-where="metric=Sharpe ratio, annualised, all days">—</b>. In the one out-of-sample year (November 2024 to October 2025) it made <b data-draw="t-wf-total" data-source="kpis" data-field="wf" data-where="metric=Total net profit">—</b> at a Sharpe ratio of <b data-draw="t-wf-sharpe" data-source="kpis" data-field="wf" data-where="metric=Sharpe ratio, annualised, all days">—</b>, and its best single day was <b data-draw="t-wf-best" data-source="kpis" data-field="wf" data-where="metric=Best day">—</b>.</p>
+    <p class="nq-cap">One set is one MNQ for each of the nine settings (lookback 7, 14 or 28 days by band width 0.8, 1.0 or 1.2), so at most nine MNQ. New York session only, CPI, payrolls and FOMC days skipped. Trade and day figures are measured on 1-minute bars with an assumed cost of 1.11 NQ points ($2.22) per round trip per MNQ. Monte Carlo figures are simulated. Research, not financial advice.</p>
+  </div>
+
+  <section id="headline">
+    <h2>Headline figures, one set</h2>
+    <div class="nq-tiles" data-draw="tiles" data-source="kpis checks"></div>
+    <p class="nq-note" id="size-warning">Dollar risk per contract has grown with the index. The standard deviation of a day for one set was <b data-draw="w-dev-std" data-source="kpis" data-field="dev" data-where="metric=Standard deviation of a day, all days">—</b> across the development years and <b data-draw="w-wf-std" data-source="kpis" data-field="wf" data-where="metric=Standard deviation of a day, all days">—</b> in the out-of-sample year, against a $2,000 loss limit on a $50K Combine. Any pass rate built from all the development years understates today's risk at the same contract count.</p>
+  </section>
+
+  <section id="pnl">
+    <h2>Profit and loss over time</h2>
+    <p class="nq-cap">Cumulative dollars for one set. The shaded span on every time chart is the out-of-sample year. Gross is before costs. Double cost charges 2.22 points per round trip.</p>
+    <div class="nq-row">
+      <label>Lines
+        <select class="dash-select" id="eq-view" aria-label="Lines to show">
+          <option value="cost">Net, double cost and gross</option>
+          <option value="side">Long and short trades</option>
+        </select>
+      </label>
+    </div>
+    <div class="nq-chart" id="equity-chart" data-draw="equity" data-source="daily"></div>
+    <h3>Drawdown from the previous high</h3>
+    <div class="nq-chart nq-short" id="drawdown-chart" data-draw="drawdown" data-source="daily"></div>
+    <div class="nq-grid2">
+      <div>
+        <h3>Sharpe ratio over the trailing 250 trading days</h3>
+        <div class="nq-chart nq-short" id="rolling-sharpe-chart" data-draw="rolling" data-source="daily"></div>
+      </div>
+      <div>
+        <h3>Standard deviation of a day, trailing 60 trading days</h3>
+        <div class="nq-chart nq-short" id="rolling-std-chart" data-draw="rollstd" data-source="daily"></div>
+      </div>
+    </div>
+    <h3>Result of each day</h3>
+    <div class="nq-chart nq-short" id="daily-chart" data-draw="dailybars" data-source="daily"></div>
+  </section>
+
+  <section id="years">
+    <h2>Year by year</h2>
+    <p class="nq-cap">Almost all the profit comes from 2018 onward. 2024 holds ten in-sample months and two out-of-sample months.</p>
+    <div class="nq-scroll">
+      <table id="yearly-table" data-source="yearly" data-row-key="year">
+        <thead><tr>
+          <th data-field="year">Year</th><th data-field="period" class="nq-l">Sample</th><th data-field="pnl">Net profit</th><th data-field="pnl_2x">At double cost</th><th data-field="sharpe">Sharpe</th><th data-field="per_day">Per day</th><th data-field="std_day">Std of a day</th><th data-field="win_days">Winning days</th><th data-field="days_150">Days $150+</th><th data-field="worst_day">Worst day</th><th data-field="best_day">Best day</th><th data-field="worst_drawdown">Worst drawdown</th><th data-field="trades">Trades</th><th data-field="avg_nq_price">NQ price</th>
+        </tr></thead>
+        <tbody data-draw="yearly-body"></tbody>
+      </table>
+    </div>
+    <h3>Net profit by month, $ thousands</h3>
+    <div class="nq-scroll" id="monthly-heat" data-draw="heat" data-source="monthly"></div>
+  </section>
+
+  <section id="stats">
+    <h2>Every trade statistic</h2>
+    <p class="nq-cap">Development is in-sample: the rule and its settings were chosen on those years. The walk-forward year is out-of-sample but has been looked at before. Dollar figures per day are for one set, per trade for one MNQ.</p>
+    <div class="nq-scroll">
+      <table id="kpi-table" data-source="kpis" data-row-key="metric">
+        <thead><tr><th data-field="metric">Statistic</th><th data-field="dev">Development</th><th data-field="dev_2x">Development, double cost</th><th data-field="wf">Walk-forward year</th><th data-field="wf_2x">Walk-forward, double cost</th></tr></thead>
+        <tbody data-draw="kpi-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="distributions">
+    <h2>Distributions</h2>
+    <p class="nq-cap">Share of observations in each range. The first and last bars include everything beyond them.</p>
+    <div class="nq-row">
+      <label>Show
+        <select class="dash-select" id="hist-what" aria-label="Distribution to show">
+          <option>Daily result, traded days ($, one set)</option>
+          <option>Trade result ($, one MNQ)</option>
+          <option>Worst open loss per trade ($, one MNQ)</option>
+          <option>Best open gain per trade ($, one MNQ)</option>
+          <option>Worst open loss per day ($, one set)</option>
+          <option>Minutes held</option>
+        </select>
+      </label>
+    </div>
+    <div class="nq-chart" id="hist-chart" data-draw="hist" data-source="histograms"></div>
+  </section>
+
+  <section id="breakdowns">
+    <h2>Where the profit comes from</h2>
+    <p class="nq-cap">Average result per trade (one MNQ) or per traded day (one set) in each bucket. Feature buckets are fifths of the development trades, Q1 lowest. The t column is a plain t-statistic and is not corrected for the number of cuts shown here.</p>
+    <div class="nq-row">
+      <label>Split by
+        <select class="dash-select" id="bd-dim" data-draw="bd-dim" aria-label="Split by" data-source="breakdowns"></select>
+      </label>
+    </div>
+    <div class="nq-chart" id="breakdown-chart" data-draw="bd-chart" data-source="breakdowns"></div>
+    <div class="nq-scroll">
+      <table id="breakdown-table" data-source="breakdowns" data-row-key="id">
+        <thead><tr><th data-field="bucket">Bucket</th><th data-field="period" class="nq-l">Sample</th><th data-field="n">Count</th><th data-field="win_rate">Winners</th><th data-field="avg_usd">Average</th><th data-field="total_usd">Total</th><th data-field="profit_factor">Profit factor</th><th data-field="t">t</th></tr></thead>
+        <tbody data-draw="bd-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="intraday">
+    <h2>Inside the session</h2>
+    <p class="nq-cap">New York time. Gross dollars earned in each half hour per day in the sample, one set, before costs, and the average number of MNQ held, counting days with no trade as zero.</p>
+    <div class="nq-grid2">
+      <div><h3>Gross profit per day by half hour</h3><div class="nq-chart nq-short" id="intraday-pnl" data-draw="intra-pnl" data-source="intraday"></div></div>
+      <div><h3>Average MNQ held by half hour</h3><div class="nq-chart nq-short" id="intraday-pos" data-draw="intra-pos" data-source="intraday"></div></div>
+    </div>
+  </section>
+
+  <section id="excursions">
+    <h2>How far trades go against and for the position</h2>
+    <p class="nq-cap">A sample of 1,800 trades, one MNQ each. Left: final result against the worst open loss on the way. Right: final result against the best open gain on the way. Axes are cut at the ends.</p>
+    <div class="nq-grid2">
+      <div><h3>Result against worst open loss</h3><div class="nq-chart" id="mae-chart" data-draw="mae" data-source="trade_sample"></div></div>
+      <div><h3>Result against best open gain</h3><div class="nq-chart" id="mfe-chart" data-draw="mfe" data-source="trade_sample"></div></div>
+    </div>
+    <h3>Best and worst days, one set</h3>
+    <div class="nq-scroll">
+      <table id="extreme-table" data-source="extreme_days" data-row-key="date">
+        <thead><tr><th data-field="date">Date</th><th data-field="kind" class="nq-l">Kind</th><th data-field="period" class="nq-l">Sample</th><th data-field="pnl">Result</th><th data-field="worst_open">Worst open loss</th><th data-field="trades">Trades</th><th data-field="regime" class="nq-l">Volatility</th></tr></thead>
+        <tbody data-draw="extreme-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sessions">
+    <h2>Sessions and volatility</h2>
+    <p class="nq-cap">The same nine settings run on each session separately. Volatility is the expected daily move against its trailing 250-day median, known before the day, cut into thirds on development data.</p>
+    <div class="nq-chart" id="session-chart" data-draw="sess-chart" data-source="session_curves"></div>
+    <div class="nq-scroll">
+      <table id="session-table" data-source="sessions" data-row-key="id">
+        <thead><tr><th data-field="session">Session</th><th data-field="regime" class="nq-l">Volatility</th><th data-field="period" class="nq-l">Sample</th><th data-field="days">Days</th><th data-field="per_day">Per day</th><th data-field="total">Total</th><th data-field="sharpe">Sharpe</th><th data-field="t_vol_units">t, volatility units</th><th data-field="win_days">Winning days</th><th data-field="std_day">Std of a day</th><th data-field="worst_day">Worst day</th></tr></thead>
+        <tbody data-draw="sess-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="montecarlo">
+    <h2>Monte Carlo of the Combine and the funded account</h2>
+    <p class="nq-cap">Simulated. Whole days are redrawn in blocks of about five from the chosen sample and replayed under Topstep's rules: the trailing loss limit applied to open losses, the profit target, and the 55% best-day rule. 6,000 attempts per row. The random-direction control takes the same trades with the side chosen by a coin, and is what no edge looks like at that size.</p>
+    <div class="nq-row">
+      <label>Account
+        <select class="dash-select" id="mc-account" aria-label="Account size">
+          <option value="50K">$50K</option><option value="100K">$100K</option><option value="150K">$150K</option>
+        </select>
+      </label>
+      <label>Days drawn from
+        <select class="dash-select" id="mc-source" aria-label="Days drawn from">
+          <option>Development, all years (in-sample)</option>
+          <option>2022 to Oct 2024 only (in-sample, today's price level)</option>
+          <option>Walk-forward year (out-of-sample, seen before)</option>
+          <option>Development at double cost</option>
+        </select>
+      </label>
+    </div>
+    <div class="nq-tiles" data-draw="mc-tiles" data-source="montecarlo"></div>
+    <div class="nq-grid2">
+      <div>
+        <h3>Pass rate by size</h3>
+        <div class="nq-chart" id="mc-size-chart" data-draw="mc-size" data-source="montecarlo"></div>
+      </div>
+      <div>
+        <h3>Expected profit per Combine account bought, by size</h3>
+        <div class="nq-chart" id="mc-profit-chart" data-draw="mc-profit" data-source="montecarlo"></div>
+      </div>
+    </div>
+    <h3>Balance paths over the first 60 trading days, at one set per $50K of account</h3>
+    <p class="nq-cap">Bands hold the middle 50% and 90% of attempts still running or finished. Thin lines are 30 single attempts, ending where they pass or breach. Shown for the two development samples.</p>
+    <div class="nq-chart" id="mc-fan-chart" data-draw="mc-fan" data-source="mc_paths"></div>
+    <h3>When attempts end</h3>
+    <div class="nq-chart nq-short" id="mc-days-chart" data-draw="mc-days" data-source="mc_days"></div>
+    <h3>Every size</h3>
+    <div class="nq-scroll">
+      <table id="mc-table" data-source="montecarlo" data-row-key="id">
+        <thead><tr><th data-field="contracts">MNQ</th><th data-field="pass">Pass, no time limit</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="breach">Breach</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="payout_rate_standard">Payout rate, standard</th><th data-field="payout_rate_consistency">Payout rate, consistency</th><th data-field="payout_usd_standard">Payout per funded account, standard</th><th data-field="fees_per_account">Fees per account</th><th data-field="profit_per_account">Profit per account</th><th data-field="profit_per_account_30d">Profit per account, 30-day stop</th><th data-field="ben_score">Payout per fee dollar per day</th></tr></thead>
+        <tbody data-draw="mc-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-cap">Payout per fee dollar per day is payout divided by (fees per account times accounts needed per pass times median days to pass). Sizes that are not multiples of nine would need a subset of the settings and are shown for the shape of the curve.</p>
+  </section>
+
+  <section id="checks">
+    <h2>Overfitting checks</h2>
+    <div class="nq-scroll">
+      <table id="checks-table" data-source="checks" data-row-key="check">
+        <thead><tr><th data-field="check">Check</th><th data-field="value">Value</th><th data-field="note" class="nq-l">Reading</th></tr></thead>
+        <tbody data-draw="checks-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details id="notes">
+    <summary>Definitions and what is measured, simulated or assumed</summary>
+    <ul>
+      <li>The rule: every 30 minutes from 10:00 New York time, go long if price is above the upper band and above VWAP, short if below the lower band and below VWAP, and exit when price comes back inside the band or VWAP. Bands are the open or prior close plus and minus the average move seen by that time of day over the lookback, times the width. Everything is flat by 4:00 PM New York time. Source: Zarattini, Aziz and Barbon (2024).</li>
+      <li>Measured: prices, trade entries and exits, open gains and losses, from 1-minute NQ bars. Orders fill one minute after the signal at that bar's close.</li>
+      <li>Assumed: 1.11 NQ points per round trip per MNQ for commission, fees and slippage. Double cost is 2.22 points.</li>
+      <li>Simulated: every Monte Carlo figure. Fees are $49, $99 and $199 a month for the three Combine sizes plus $29 a month for API access, and $149 to activate a funded account.</li>
+      <li>In-sample: June 2010 to October 2024. Out-of-sample: November 2024 to October 2025, which earlier work has already looked at several times. The final holdout year, November 2025 onward, was used once for the single-setting rule and is not shown.</li>
+      <li>Sharpe ratio: average daily result over its standard deviation, times the square root of 252, counting days with no trade as zero.</li>
+      <li>Deflated Sharpe ratio: the chance that the Sharpe is above what the best of 191 worthless rules would show by luck.</li>
+      <li>Worst open loss: the lowest point of the combined position's profit during the day, including costs paid so far.</li>
+    </ul>
+  </details>
+</div>
+<script src="app.js"></script>

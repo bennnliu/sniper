@@ -449,3 +449,18 @@ The loop resumes the moment any of these arrives:
 1. **Free volatility data** (Cboe VIX, VIX9D, VIX3M daily history; FRED rates). Opens: intraday momentum conditioned on implied volatility and its term structure, the gamma-theta breakeven with real implied volatility in place of our proxy, and the variance risk premium. These are the mechanisms the peer-reviewed papers actually name.
 2. **Other markets** (decision card of 22 Nov, $25.74 to $80.02). Opens: the frozen rule on unrelated markets, the only route to real diversification.
 3. **Options positioning data** (priced earlier at $48 to $104). Opens: the dealer-gamma hypothesis directly.
+
+---
+
+## Dashboard run 1 (23 Nov 2026): rerun of ENS-01, the nine-setting NQ breakout ensemble
+
+Ben selected ENS-01 as the strategy to improve. This run adds no hypothesis and no trial (191 total). It reruns the ensemble with a full trade log and the true combined intraday equity (`sniper/ensemble.py`, `research/dash01_run.py`, `research/dash01_analyze.py`; outputs in `reports/dash01/`; dashboard source in `dashboard/`).
+
+- **Reproduction:** $36.65 a day and $687 daily standard deviation at 8 MNQ-equivalent on development data, identical to iteration 20. Pass rate 30.2% (29.4% before; the difference is the more accurate worst-open-loss figure and simulation noise).
+- **Size convention from here on:** one set = one MNQ per setting = at most 9 MNQ.
+- **Development (in-sample), one set, measured with assumed costs:** +$126,711, Sharpe 0.85, 34.8% winning days, worst drawdown −$18,383. Sharpe −0.53 for 2010-2017 and +1.40 for 2018-Oct 2024. At double cost +$74,000, Sharpe 0.49.
+- **Walk-forward year (out-of-sample, fourth look for this family):** +$7,197, Sharpe 0.23, t 0.21. One day (9 Apr 2025, +$24,927) exceeds the year's total.
+- **Deflated Sharpe ratio 0.59** with 191 trials (bar 0.95).
+- **Dollar risk has tripled:** daily standard deviation of one set $773 over development, $2,312 in the walk-forward year (NQ near 22,000). Monte Carlo from all development days understates today's risk at a fixed contract count. Drawn from walk-forward days, 9 MNQ on $50K passes 6.3% against 13.9% for the random control (simulated).
+- **Structure of the edge:** trades held to the close win 79% and earn everything; trades that come back inside the band lose. Days on which all nine settings are in the market earn all the profit. The best 5% of traded days supply 55% of gross winnings. New York only; Asia and London lose in both samples.
+- **News days:** payrolls days, skipped by default, averaged +$177 per set (t 2.3) in development.

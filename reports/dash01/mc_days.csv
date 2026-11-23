@@ -1,0 +1,301 @@
+account,days_from,outcome,from_day,to_day,share
+50K,"Development, all years (in-sample)",Passed,1,5,0.0025
+50K,"Development, all years (in-sample)",Passed,6,10,0.0245
+50K,"Development, all years (in-sample)",Passed,11,15,0.028666666666666667
+50K,"Development, all years (in-sample)",Passed,16,20,0.0295
+50K,"Development, all years (in-sample)",Passed,21,25,0.029333333333333333
+50K,"Development, all years (in-sample)",Passed,26,30,0.025166666666666667
+50K,"Development, all years (in-sample)",Passed,31,35,0.022333333333333334
+50K,"Development, all years (in-sample)",Passed,36,40,0.018333333333333333
+50K,"Development, all years (in-sample)",Passed,41,45,0.013333333333333334
+50K,"Development, all years (in-sample)",Passed,46,50,0.014333333333333333
+50K,"Development, all years (in-sample)",Passed,51,55,0.011166666666666667
+50K,"Development, all years (in-sample)",Passed,56,60,0.009333333333333334
+50K,"Development, all years (in-sample)",Passed,61,65,0.008166666666666666
+50K,"Development, all years (in-sample)",Passed,66,70,0.007833333333333333
+50K,"Development, all years (in-sample)",Passed,71,75,0.005
+50K,"Development, all years (in-sample)",Passed,76,80,0.005333333333333333
+50K,"Development, all years (in-sample)",Passed,81,85,0.0033333333333333335
+50K,"Development, all years (in-sample)",Passed,86,90,0.0016666666666666668
+50K,"Development, all years (in-sample)",Passed,91,95,0.0021666666666666666
+50K,"Development, all years (in-sample)",Passed,96,100,0.0036666666666666666
+50K,"Development, all years (in-sample)",Passed,101,105,0.0015
+50K,"Development, all years (in-sample)",Passed,106,110,0.0026666666666666666
+50K,"Development, all years (in-sample)",Passed,111,115,0.0023333333333333335
+50K,"Development, all years (in-sample)",Passed,116,120,0.0026666666666666666
+50K,"Development, all years (in-sample)",Passed,121,400,0.013166666666666667
+50K,"Development, all years (in-sample)",Breached,1,5,0.07733333333333334
+50K,"Development, all years (in-sample)",Breached,6,10,0.1105
+50K,"Development, all years (in-sample)",Breached,11,15,0.09516666666666666
+50K,"Development, all years (in-sample)",Breached,16,20,0.09816666666666667
+50K,"Development, all years (in-sample)",Breached,21,25,0.08216666666666667
+50K,"Development, all years (in-sample)",Breached,26,30,0.059833333333333336
+50K,"Development, all years (in-sample)",Breached,31,35,0.042
+50K,"Development, all years (in-sample)",Breached,36,40,0.035666666666666666
+50K,"Development, all years (in-sample)",Breached,41,45,0.025
+50K,"Development, all years (in-sample)",Breached,46,50,0.022166666666666668
+50K,"Development, all years (in-sample)",Breached,51,55,0.014
+50K,"Development, all years (in-sample)",Breached,56,60,0.010166666666666666
+50K,"Development, all years (in-sample)",Breached,61,65,0.0065
+50K,"Development, all years (in-sample)",Breached,66,70,0.005666666666666667
+50K,"Development, all years (in-sample)",Breached,71,75,0.006
+50K,"Development, all years (in-sample)",Breached,76,80,0.003833333333333333
+50K,"Development, all years (in-sample)",Breached,81,85,0.0026666666666666666
+50K,"Development, all years (in-sample)",Breached,86,90,0.002
+50K,"Development, all years (in-sample)",Breached,91,95,0.0018333333333333333
+50K,"Development, all years (in-sample)",Breached,96,100,0.0016666666666666668
+50K,"Development, all years (in-sample)",Breached,101,105,0.0023333333333333335
+50K,"Development, all years (in-sample)",Breached,106,110,0.0006666666666666666
+50K,"Development, all years (in-sample)",Breached,111,115,0.001
+50K,"Development, all years (in-sample)",Breached,116,120,0.0005
+50K,"Development, all years (in-sample)",Breached,121,400,0.005166666666666667
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,1,5,0.017833333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,6,10,0.08583333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,11,15,0.06383333333333334
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,16,20,0.04033333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,21,25,0.0245
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,26,30,0.013
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,31,35,0.007666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,36,40,0.0075
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,41,45,0.0036666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,46,50,0.0025
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,51,55,0.0028333333333333335
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,56,60,0.002
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,61,65,0.0008333333333333334
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,66,70,0.001
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,71,75,0.0013333333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,76,80,0.0006666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,81,85,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,86,90,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,91,95,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,96,100,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,101,105,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,106,110,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,111,115,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,116,120,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,121,400,0.00016666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,1,5,0.278
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,6,10,0.24716666666666667
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,11,15,0.111
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,16,20,0.03833333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,21,25,0.022
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,26,30,0.011166666666666667
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,31,35,0.005333333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,36,40,0.0033333333333333335
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,41,45,0.002
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,46,50,0.0021666666666666666
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,51,55,0.0008333333333333334
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,56,60,0.0003333333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,61,65,0.0005
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,66,70,0.0008333333333333334
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,71,75,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,76,80,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,81,85,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,86,90,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,91,95,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,96,100,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,101,105,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,106,110,0.0003333333333333333
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,111,115,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,116,120,0.0
+50K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,121,400,0.00016666666666666666
+100K,"Development, all years (in-sample)",Passed,1,5,0.0023333333333333335
+100K,"Development, all years (in-sample)",Passed,6,10,0.023833333333333335
+100K,"Development, all years (in-sample)",Passed,11,15,0.027
+100K,"Development, all years (in-sample)",Passed,16,20,0.027
+100K,"Development, all years (in-sample)",Passed,21,25,0.025666666666666667
+100K,"Development, all years (in-sample)",Passed,26,30,0.021
+100K,"Development, all years (in-sample)",Passed,31,35,0.018333333333333333
+100K,"Development, all years (in-sample)",Passed,36,40,0.015166666666666667
+100K,"Development, all years (in-sample)",Passed,41,45,0.011166666666666667
+100K,"Development, all years (in-sample)",Passed,46,50,0.009666666666666667
+100K,"Development, all years (in-sample)",Passed,51,55,0.009
+100K,"Development, all years (in-sample)",Passed,56,60,0.006666666666666667
+100K,"Development, all years (in-sample)",Passed,61,65,0.0055
+100K,"Development, all years (in-sample)",Passed,66,70,0.004333333333333333
+100K,"Development, all years (in-sample)",Passed,71,75,0.0031666666666666666
+100K,"Development, all years (in-sample)",Passed,76,80,0.0036666666666666666
+100K,"Development, all years (in-sample)",Passed,81,85,0.0025
+100K,"Development, all years (in-sample)",Passed,86,90,0.0011666666666666668
+100K,"Development, all years (in-sample)",Passed,91,95,0.0021666666666666666
+100K,"Development, all years (in-sample)",Passed,96,100,0.0018333333333333333
+100K,"Development, all years (in-sample)",Passed,101,105,0.0013333333333333333
+100K,"Development, all years (in-sample)",Passed,106,110,0.0016666666666666668
+100K,"Development, all years (in-sample)",Passed,111,115,0.001
+100K,"Development, all years (in-sample)",Passed,116,120,0.0021666666666666666
+100K,"Development, all years (in-sample)",Passed,121,400,0.008833333333333334
+100K,"Development, all years (in-sample)",Breached,1,5,0.11533333333333333
+100K,"Development, all years (in-sample)",Breached,6,10,0.14916666666666667
+100K,"Development, all years (in-sample)",Breached,11,15,0.12283333333333334
+100K,"Development, all years (in-sample)",Breached,16,20,0.1075
+100K,"Development, all years (in-sample)",Breached,21,25,0.07783333333333334
+100K,"Development, all years (in-sample)",Breached,26,30,0.0545
+100K,"Development, all years (in-sample)",Breached,31,35,0.035166666666666666
+100K,"Development, all years (in-sample)",Breached,36,40,0.029833333333333333
+100K,"Development, all years (in-sample)",Breached,41,45,0.016833333333333332
+100K,"Development, all years (in-sample)",Breached,46,50,0.0145
+100K,"Development, all years (in-sample)",Breached,51,55,0.008666666666666666
+100K,"Development, all years (in-sample)",Breached,56,60,0.006666666666666667
+100K,"Development, all years (in-sample)",Breached,61,65,0.0028333333333333335
+100K,"Development, all years (in-sample)",Breached,66,70,0.0045
+100K,"Development, all years (in-sample)",Breached,71,75,0.0031666666666666666
+100K,"Development, all years (in-sample)",Breached,76,80,0.0023333333333333335
+100K,"Development, all years (in-sample)",Breached,81,85,0.0013333333333333333
+100K,"Development, all years (in-sample)",Breached,86,90,0.0015
+100K,"Development, all years (in-sample)",Breached,91,95,0.0008333333333333334
+100K,"Development, all years (in-sample)",Breached,96,100,0.0013333333333333333
+100K,"Development, all years (in-sample)",Breached,101,105,0.0018333333333333333
+100K,"Development, all years (in-sample)",Breached,106,110,0.0005
+100K,"Development, all years (in-sample)",Breached,111,115,0.00016666666666666666
+100K,"Development, all years (in-sample)",Breached,116,120,0.0005
+100K,"Development, all years (in-sample)",Breached,121,400,0.004166666666666667
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,1,5,0.017833333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,6,10,0.08233333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,11,15,0.055
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,16,20,0.033666666666666664
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,21,25,0.020666666666666667
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,26,30,0.011166666666666667
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,31,35,0.005833333333333334
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,36,40,0.006166666666666667
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,41,45,0.0031666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,46,50,0.0023333333333333335
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,51,55,0.0021666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,56,60,0.0013333333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,61,65,0.0006666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,66,70,0.001
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,71,75,0.0011666666666666668
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,76,80,0.0006666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,81,85,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,86,90,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,91,95,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,96,100,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,101,105,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,106,110,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,111,115,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,116,120,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,121,400,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,1,5,0.3765
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,6,10,0.2295
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,11,15,0.0815
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,16,20,0.027833333333333335
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,21,25,0.017166666666666667
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,26,30,0.007833333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,31,35,0.0045
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,36,40,0.0028333333333333335
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,41,45,0.0013333333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,46,50,0.0021666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,51,55,0.0006666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,56,60,0.00016666666666666666
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,61,65,0.0005
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,66,70,0.0008333333333333334
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,71,75,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,76,80,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,81,85,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,86,90,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,91,95,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,96,100,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,101,105,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,106,110,0.0003333333333333333
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,111,115,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,116,120,0.0
+100K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,121,400,0.0
+150K,"Development, all years (in-sample)",Passed,1,5,0.0023333333333333335
+150K,"Development, all years (in-sample)",Passed,6,10,0.023833333333333335
+150K,"Development, all years (in-sample)",Passed,11,15,0.027
+150K,"Development, all years (in-sample)",Passed,16,20,0.027
+150K,"Development, all years (in-sample)",Passed,21,25,0.025666666666666667
+150K,"Development, all years (in-sample)",Passed,26,30,0.021
+150K,"Development, all years (in-sample)",Passed,31,35,0.018333333333333333
+150K,"Development, all years (in-sample)",Passed,36,40,0.015166666666666667
+150K,"Development, all years (in-sample)",Passed,41,45,0.011166666666666667
+150K,"Development, all years (in-sample)",Passed,46,50,0.009666666666666667
+150K,"Development, all years (in-sample)",Passed,51,55,0.009
+150K,"Development, all years (in-sample)",Passed,56,60,0.006666666666666667
+150K,"Development, all years (in-sample)",Passed,61,65,0.0055
+150K,"Development, all years (in-sample)",Passed,66,70,0.004333333333333333
+150K,"Development, all years (in-sample)",Passed,71,75,0.0031666666666666666
+150K,"Development, all years (in-sample)",Passed,76,80,0.0036666666666666666
+150K,"Development, all years (in-sample)",Passed,81,85,0.0025
+150K,"Development, all years (in-sample)",Passed,86,90,0.0011666666666666668
+150K,"Development, all years (in-sample)",Passed,91,95,0.0021666666666666666
+150K,"Development, all years (in-sample)",Passed,96,100,0.0018333333333333333
+150K,"Development, all years (in-sample)",Passed,101,105,0.0013333333333333333
+150K,"Development, all years (in-sample)",Passed,106,110,0.0016666666666666668
+150K,"Development, all years (in-sample)",Passed,111,115,0.001
+150K,"Development, all years (in-sample)",Passed,116,120,0.0021666666666666666
+150K,"Development, all years (in-sample)",Passed,121,400,0.008833333333333334
+150K,"Development, all years (in-sample)",Breached,1,5,0.11533333333333333
+150K,"Development, all years (in-sample)",Breached,6,10,0.14916666666666667
+150K,"Development, all years (in-sample)",Breached,11,15,0.12283333333333334
+150K,"Development, all years (in-sample)",Breached,16,20,0.1075
+150K,"Development, all years (in-sample)",Breached,21,25,0.07783333333333334
+150K,"Development, all years (in-sample)",Breached,26,30,0.0545
+150K,"Development, all years (in-sample)",Breached,31,35,0.035166666666666666
+150K,"Development, all years (in-sample)",Breached,36,40,0.029833333333333333
+150K,"Development, all years (in-sample)",Breached,41,45,0.016833333333333332
+150K,"Development, all years (in-sample)",Breached,46,50,0.0145
+150K,"Development, all years (in-sample)",Breached,51,55,0.008666666666666666
+150K,"Development, all years (in-sample)",Breached,56,60,0.006666666666666667
+150K,"Development, all years (in-sample)",Breached,61,65,0.0028333333333333335
+150K,"Development, all years (in-sample)",Breached,66,70,0.0045
+150K,"Development, all years (in-sample)",Breached,71,75,0.0031666666666666666
+150K,"Development, all years (in-sample)",Breached,76,80,0.0023333333333333335
+150K,"Development, all years (in-sample)",Breached,81,85,0.0013333333333333333
+150K,"Development, all years (in-sample)",Breached,86,90,0.0015
+150K,"Development, all years (in-sample)",Breached,91,95,0.0008333333333333334
+150K,"Development, all years (in-sample)",Breached,96,100,0.0013333333333333333
+150K,"Development, all years (in-sample)",Breached,101,105,0.0018333333333333333
+150K,"Development, all years (in-sample)",Breached,106,110,0.0005
+150K,"Development, all years (in-sample)",Breached,111,115,0.00016666666666666666
+150K,"Development, all years (in-sample)",Breached,116,120,0.0005
+150K,"Development, all years (in-sample)",Breached,121,400,0.004166666666666667
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,1,5,0.017833333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,6,10,0.08233333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,11,15,0.055
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,16,20,0.033666666666666664
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,21,25,0.020666666666666667
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,26,30,0.011166666666666667
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,31,35,0.005833333333333334
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,36,40,0.006166666666666667
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,41,45,0.0031666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,46,50,0.0023333333333333335
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,51,55,0.0021666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,56,60,0.0013333333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,61,65,0.0006666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,66,70,0.001
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,71,75,0.0011666666666666668
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,76,80,0.0006666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,81,85,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,86,90,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,91,95,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,96,100,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,101,105,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,106,110,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,111,115,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,116,120,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Passed,121,400,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,1,5,0.3765
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,6,10,0.2295
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,11,15,0.0815
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,16,20,0.027833333333333335
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,21,25,0.017166666666666667
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,26,30,0.007833333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,31,35,0.0045
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,36,40,0.0028333333333333335
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,41,45,0.0013333333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,46,50,0.0021666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,51,55,0.0006666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,56,60,0.00016666666666666666
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,61,65,0.0005
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,66,70,0.0008333333333333334
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,71,75,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,76,80,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,81,85,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,86,90,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,91,95,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,96,100,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,101,105,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,106,110,0.0003333333333333333
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,111,115,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,116,120,0.0
+150K,"2022 to Oct 2024 only (in-sample, today's price level)",Breached,121,400,0.0

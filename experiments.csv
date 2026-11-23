@@ -140,3 +140,4 @@ it20-ENS-01/ENS-02,2026-11-23,8fd1774,it20,2,177,pass 13.8% / 13.4% vs 14.7% -> 
 it21-DP-01,2026-11-23,8fd1774,it21,1,178,"OOS 29.6% vs 24.7%, needed +5 -> FAIL"
 it22-RISK-01,2026-11-23,8fd1774,it22,6,184,chosen R=1000 passes 10.8% vs 24.5% -> FAIL; WF not run
 it23-ROSA-01/WKND-01/DOW-01,2026-11-23,a18bb03,it23,7,191,all fail
+it-dash01-ENS-01-rerun,2026-11-23,8c6abd0,dash01,0,191,"rerun reproduces it20; dev Sharpe 0.85, WF 0.23, DSR 0.59; dashboard built"

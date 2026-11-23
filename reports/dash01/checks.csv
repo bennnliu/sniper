@@ -1,0 +1,9 @@
+check,value,unit,note
+"Deflated Sharpe ratio, development",0.5862678393129503,x,Bar is 0.95. Chance the Sharpe is real after 191 trials.
+Sharpe a worthless rule would show as best of 191,0.7876275396608722,x,Annualised.
+"Sharpe, development",0.8466632683756505,x,"Annualised, all days, in-sample."
+"Sharpe, 2010 to 2017",-0.5281915284012207,x,First half of development.
+"Sharpe, 2018 to Oct 2024",1.3966303611723283,x,Second half of development.
+"Sharpe, walk-forward year",0.23308586523039634,x,"Out-of-sample, looked at before."
+"t-statistic, walk-forward year",0.2135836053610775,x,Needs about 2 to stand alone.
+Trials counted so far,191.0,n,This rerun adds none.

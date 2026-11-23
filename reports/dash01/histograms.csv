@@ -1,0 +1,287 @@
+what,period,lo,hi,count,share
+"Daily result, traded days ($, one set)",dev,-1500.0,-1400.0,58,0.025053995680345574
+"Daily result, traded days ($, one set)",dev,-1400.0,-1300.0,6,0.002591792656587473
+"Daily result, traded days ($, one set)",dev,-1300.0,-1200.0,10,0.004319654427645789
+"Daily result, traded days ($, one set)",dev,-1200.0,-1100.0,17,0.00734341252699784
+"Daily result, traded days ($, one set)",dev,-1100.0,-1000.0,16,0.006911447084233261
+"Daily result, traded days ($, one set)",dev,-1000.0,-900.0,9,0.0038876889848812094
+"Daily result, traded days ($, one set)",dev,-900.0,-800.0,26,0.01123110151187905
+"Daily result, traded days ($, one set)",dev,-800.0,-700.0,32,0.013822894168466522
+"Daily result, traded days ($, one set)",dev,-700.0,-600.0,38,0.016414686825053995
+"Daily result, traded days ($, one set)",dev,-600.0,-500.0,58,0.025053995680345574
+"Daily result, traded days ($, one set)",dev,-500.0,-400.0,56,0.024190064794816415
+"Daily result, traded days ($, one set)",dev,-400.0,-300.0,97,0.041900647948164144
+"Daily result, traded days ($, one set)",dev,-300.0,-200.0,186,0.08034557235421166
+"Daily result, traded days ($, one set)",dev,-200.0,-100.0,315,0.13606911447084233
+"Daily result, traded days ($, one set)",dev,-100.0,0.0,586,0.2531317494600432
+"Daily result, traded days ($, one set)",dev,0.0,100.0,198,0.08552915766738661
+"Daily result, traded days ($, one set)",dev,100.0,200.0,118,0.050971922246220304
+"Daily result, traded days ($, one set)",dev,200.0,300.0,81,0.03498920086393088
+"Daily result, traded days ($, one set)",dev,300.0,400.0,48,0.020734341252699785
+"Daily result, traded days ($, one set)",dev,400.0,500.0,36,0.015550755939524838
+"Daily result, traded days ($, one set)",dev,500.0,600.0,45,0.019438444924406047
+"Daily result, traded days ($, one set)",dev,600.0,700.0,27,0.011663066954643628
+"Daily result, traded days ($, one set)",dev,700.0,800.0,20,0.008639308855291577
+"Daily result, traded days ($, one set)",dev,800.0,900.0,23,0.009935205183585313
+"Daily result, traded days ($, one set)",dev,900.0,1000.0,15,0.0064794816414686825
+"Daily result, traded days ($, one set)",dev,1000.0,1100.0,11,0.004751619870410367
+"Daily result, traded days ($, one set)",dev,1100.0,1200.0,20,0.008639308855291577
+"Daily result, traded days ($, one set)",dev,1200.0,1300.0,11,0.004751619870410367
+"Daily result, traded days ($, one set)",dev,1300.0,1400.0,12,0.005183585313174946
+"Daily result, traded days ($, one set)",dev,1400.0,1500.0,140,0.06047516198704104
+"Trade result ($, one MNQ)",dev,-300.0,-280.0,111,0.004674865229110512
+"Trade result ($, one MNQ)",dev,-280.0,-260.0,13,0.0005475067385444744
+"Trade result ($, one MNQ)",dev,-260.0,-240.0,68,0.0028638814016172507
+"Trade result ($, one MNQ)",dev,-240.0,-220.0,69,0.00290599730458221
+"Trade result ($, one MNQ)",dev,-220.0,-200.0,62,0.0026111859838274932
+"Trade result ($, one MNQ)",dev,-200.0,-180.0,133,0.005601415094339622
+"Trade result ($, one MNQ)",dev,-180.0,-160.0,109,0.004590633423180593
+"Trade result ($, one MNQ)",dev,-160.0,-140.0,211,0.00888645552560647
+"Trade result ($, one MNQ)",dev,-140.0,-120.0,288,0.012129380053908356
+"Trade result ($, one MNQ)",dev,-120.0,-100.0,352,0.014824797843665768
+"Trade result ($, one MNQ)",dev,-100.0,-80.0,642,0.027038409703504043
+"Trade result ($, one MNQ)",dev,-80.0,-60.0,874,0.03680929919137466
+"Trade result ($, one MNQ)",dev,-60.0,-40.0,1395,0.0587516846361186
+"Trade result ($, one MNQ)",dev,-40.0,-20.0,3090,0.13013814016172506
+"Trade result ($, one MNQ)",dev,-20.0,0.0,7615,0.3207126010781671
+"Trade result ($, one MNQ)",dev,0.0,20.0,3099,0.1305171832884097
+"Trade result ($, one MNQ)",dev,20.0,40.0,1487,0.06262634770889487
+"Trade result ($, one MNQ)",dev,40.0,60.0,890,0.037483153638814014
+"Trade result ($, one MNQ)",dev,60.0,80.0,616,0.025943396226415096
+"Trade result ($, one MNQ)",dev,80.0,100.0,401,0.01688847708894879
+"Trade result ($, one MNQ)",dev,100.0,120.0,319,0.013434973045822102
+"Trade result ($, one MNQ)",dev,120.0,140.0,322,0.013561320754716982
+"Trade result ($, one MNQ)",dev,140.0,160.0,197,0.008296832884097036
+"Trade result ($, one MNQ)",dev,160.0,180.0,183,0.007707210242587601
+"Trade result ($, one MNQ)",dev,180.0,200.0,153,0.0064437331536388144
+"Trade result ($, one MNQ)",dev,200.0,220.0,121,0.005096024258760108
+"Trade result ($, one MNQ)",dev,220.0,240.0,168,0.007075471698113208
+"Trade result ($, one MNQ)",dev,240.0,260.0,96,0.004043126684636119
+"Trade result ($, one MNQ)",dev,260.0,280.0,80,0.0033692722371967657
+"Trade result ($, one MNQ)",dev,280.0,300.0,580,0.02442722371967655
+"Worst open loss per trade ($, one MNQ)",dev,-300.0,-285.0,164,0.006907008086253369
+"Worst open loss per trade ($, one MNQ)",dev,-285.0,-270.0,12,0.0005053908355795149
+"Worst open loss per trade ($, one MNQ)",dev,-270.0,-255.0,19,0.0008002021563342318
+"Worst open loss per trade ($, one MNQ)",dev,-255.0,-240.0,112,0.0047169811320754715
+"Worst open loss per trade ($, one MNQ)",dev,-240.0,-225.0,65,0.002737533692722372
+"Worst open loss per trade ($, one MNQ)",dev,-225.0,-210.0,55,0.0023163746630727763
+"Worst open loss per trade ($, one MNQ)",dev,-210.0,-195.0,38,0.0016004043126684635
+"Worst open loss per trade ($, one MNQ)",dev,-195.0,-180.0,173,0.007286051212938006
+"Worst open loss per trade ($, one MNQ)",dev,-180.0,-165.0,140,0.00589622641509434
+"Worst open loss per trade ($, one MNQ)",dev,-165.0,-150.0,193,0.008128369272237196
+"Worst open loss per trade ($, one MNQ)",dev,-150.0,-135.0,268,0.011287061994609165
+"Worst open loss per trade ($, one MNQ)",dev,-135.0,-120.0,301,0.01267688679245283
+"Worst open loss per trade ($, one MNQ)",dev,-120.0,-105.0,453,0.019078504043126686
+"Worst open loss per trade ($, one MNQ)",dev,-105.0,-90.0,559,0.023542789757412398
+"Worst open loss per trade ($, one MNQ)",dev,-90.0,-75.0,787,0.03314521563342318
+"Worst open loss per trade ($, one MNQ)",dev,-75.0,-60.0,994,0.04186320754716981
+"Worst open loss per trade ($, one MNQ)",dev,-60.0,-45.0,1484,0.0625
+"Worst open loss per trade ($, one MNQ)",dev,-45.0,-30.0,2334,0.09829851752021564
+"Worst open loss per trade ($, one MNQ)",dev,-30.0,-15.0,4679,0.19706030997304583
+"Worst open loss per trade ($, one MNQ)",dev,-15.0,0.0,10914,0.45965296495956875
+"Best open gain per trade ($, one MNQ)",dev,0.0,15.0,9763,0.41117756064690025
+"Best open gain per trade ($, one MNQ)",dev,15.0,30.0,3677,0.15486017520215634
+"Best open gain per trade ($, one MNQ)",dev,30.0,45.0,2323,0.09783524258760108
+"Best open gain per trade ($, one MNQ)",dev,45.0,60.0,1460,0.061489218328840974
+"Best open gain per trade ($, one MNQ)",dev,60.0,75.0,1101,0.04636960916442048
+"Best open gain per trade ($, one MNQ)",dev,75.0,90.0,677,0.028512466307277627
+"Best open gain per trade ($, one MNQ)",dev,90.0,105.0,627,0.02640667115902965
+"Best open gain per trade ($, one MNQ)",dev,105.0,120.0,401,0.01688847708894879
+"Best open gain per trade ($, one MNQ)",dev,120.0,135.0,481,0.020257749326145554
+"Best open gain per trade ($, one MNQ)",dev,135.0,150.0,339,0.014277291105121295
+"Best open gain per trade ($, one MNQ)",dev,150.0,165.0,276,0.01162398921832884
+"Best open gain per trade ($, one MNQ)",dev,165.0,180.0,289,0.012171495956873316
+"Best open gain per trade ($, one MNQ)",dev,180.0,195.0,268,0.011287061994609165
+"Best open gain per trade ($, one MNQ)",dev,195.0,210.0,219,0.009223382749326145
+"Best open gain per trade ($, one MNQ)",dev,210.0,225.0,109,0.004590633423180593
+"Best open gain per trade ($, one MNQ)",dev,225.0,240.0,174,0.007328167115902965
+"Best open gain per trade ($, one MNQ)",dev,240.0,255.0,172,0.0072439353099730455
+"Best open gain per trade ($, one MNQ)",dev,255.0,270.0,127,0.005348719676549866
+"Best open gain per trade ($, one MNQ)",dev,270.0,285.0,89,0.0037483153638814015
+"Best open gain per trade ($, one MNQ)",dev,285.0,300.0,120,0.005053908355795148
+"Best open gain per trade ($, one MNQ)",dev,300.0,315.0,92,0.00387466307277628
+"Best open gain per trade ($, one MNQ)",dev,315.0,330.0,172,0.0072439353099730455
+"Best open gain per trade ($, one MNQ)",dev,330.0,345.0,94,0.003958894878706199
+"Best open gain per trade ($, one MNQ)",dev,345.0,360.0,29,0.0012213611859838275
+"Best open gain per trade ($, one MNQ)",dev,360.0,375.0,74,0.003116576819407008
+"Best open gain per trade ($, one MNQ)",dev,375.0,390.0,54,0.002274258760107817
+"Best open gain per trade ($, one MNQ)",dev,390.0,405.0,68,0.0028638814016172507
+"Best open gain per trade ($, one MNQ)",dev,405.0,420.0,45,0.0018952156334231807
+"Best open gain per trade ($, one MNQ)",dev,420.0,435.0,37,0.001558288409703504
+"Best open gain per trade ($, one MNQ)",dev,435.0,450.0,387,0.016298854447439354
+Minutes held,dev,0.0,30.0,1059,0.04460074123989218
+Minutes held,dev,30.0,60.0,8362,0.3521731805929919
+Minutes held,dev,60.0,90.0,3604,0.15178571428571427
+Minutes held,dev,90.0,120.0,2153,0.09067553908355795
+Minutes held,dev,120.0,150.0,1419,0.05976246630727763
+Minutes held,dev,150.0,180.0,1061,0.044684973045822106
+Minutes held,dev,180.0,210.0,953,0.04013645552560647
+Minutes held,dev,210.0,240.0,939,0.039546832884097036
+Minutes held,dev,240.0,270.0,904,0.03807277628032345
+Minutes held,dev,270.0,300.0,895,0.03769373315363882
+Minutes held,dev,300.0,330.0,803,0.03381907008086253
+Minutes held,dev,330.0,360.0,1592,0.06704851752021564
+Minutes held,dev,360.0,390.0,0,0.0
+"Worst open loss per day ($, one set)",dev,-2000.0,-1900.0,45,0.019438444924406047
+"Worst open loss per day ($, one set)",dev,-1900.0,-1800.0,7,0.003023758099352052
+"Worst open loss per day ($, one set)",dev,-1800.0,-1700.0,7,0.003023758099352052
+"Worst open loss per day ($, one set)",dev,-1700.0,-1600.0,5,0.0021598272138228943
+"Worst open loss per day ($, one set)",dev,-1600.0,-1500.0,9,0.0038876889848812094
+"Worst open loss per day ($, one set)",dev,-1500.0,-1400.0,14,0.006047516198704104
+"Worst open loss per day ($, one set)",dev,-1400.0,-1300.0,13,0.005615550755939525
+"Worst open loss per day ($, one set)",dev,-1300.0,-1200.0,18,0.007775377969762419
+"Worst open loss per day ($, one set)",dev,-1200.0,-1100.0,22,0.009503239740820735
+"Worst open loss per day ($, one set)",dev,-1100.0,-1000.0,23,0.009935205183585313
+"Worst open loss per day ($, one set)",dev,-1000.0,-900.0,37,0.015982721382289417
+"Worst open loss per day ($, one set)",dev,-900.0,-800.0,43,0.018574514038876888
+"Worst open loss per day ($, one set)",dev,-800.0,-700.0,43,0.018574514038876888
+"Worst open loss per day ($, one set)",dev,-700.0,-600.0,56,0.024190064794816415
+"Worst open loss per day ($, one set)",dev,-600.0,-500.0,78,0.033693304535637146
+"Worst open loss per day ($, one set)",dev,-500.0,-400.0,109,0.04708423326133909
+"Worst open loss per day ($, one set)",dev,-400.0,-300.0,148,0.06393088552915767
+"Worst open loss per day ($, one set)",dev,-300.0,-200.0,271,0.11706263498920086
+"Worst open loss per day ($, one set)",dev,-200.0,-100.0,447,0.19308855291576674
+"Worst open loss per day ($, one set)",dev,-100.0,0.0,920,0.39740820734341253
+"Daily result, traded days ($, one set)",wf,-1500.0,-1400.0,26,0.174496644295302
+"Daily result, traded days ($, one set)",wf,-1400.0,-1300.0,0,0.0
+"Daily result, traded days ($, one set)",wf,-1300.0,-1200.0,2,0.013422818791946308
+"Daily result, traded days ($, one set)",wf,-1200.0,-1100.0,2,0.013422818791946308
+"Daily result, traded days ($, one set)",wf,-1100.0,-1000.0,3,0.020134228187919462
+"Daily result, traded days ($, one set)",wf,-1000.0,-900.0,3,0.020134228187919462
+"Daily result, traded days ($, one set)",wf,-900.0,-800.0,8,0.053691275167785234
+"Daily result, traded days ($, one set)",wf,-800.0,-700.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,-700.0,-600.0,6,0.040268456375838924
+"Daily result, traded days ($, one set)",wf,-600.0,-500.0,5,0.03355704697986577
+"Daily result, traded days ($, one set)",wf,-500.0,-400.0,4,0.026845637583892617
+"Daily result, traded days ($, one set)",wf,-400.0,-300.0,5,0.03355704697986577
+"Daily result, traded days ($, one set)",wf,-300.0,-200.0,13,0.087248322147651
+"Daily result, traded days ($, one set)",wf,-200.0,-100.0,7,0.04697986577181208
+"Daily result, traded days ($, one set)",wf,-100.0,0.0,11,0.0738255033557047
+"Daily result, traded days ($, one set)",wf,0.0,100.0,6,0.040268456375838924
+"Daily result, traded days ($, one set)",wf,100.0,200.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,200.0,300.0,6,0.040268456375838924
+"Daily result, traded days ($, one set)",wf,300.0,400.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,400.0,500.0,4,0.026845637583892617
+"Daily result, traded days ($, one set)",wf,500.0,600.0,5,0.03355704697986577
+"Daily result, traded days ($, one set)",wf,600.0,700.0,2,0.013422818791946308
+"Daily result, traded days ($, one set)",wf,700.0,800.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,800.0,900.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,900.0,1000.0,3,0.020134228187919462
+"Daily result, traded days ($, one set)",wf,1000.0,1100.0,0,0.0
+"Daily result, traded days ($, one set)",wf,1100.0,1200.0,2,0.013422818791946308
+"Daily result, traded days ($, one set)",wf,1200.0,1300.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,1300.0,1400.0,1,0.006711409395973154
+"Daily result, traded days ($, one set)",wf,1400.0,1500.0,19,0.12751677852348994
+"Trade result ($, one MNQ)",wf,-300.0,-280.0,81,0.049876847290640396
+"Trade result ($, one MNQ)",wf,-280.0,-260.0,16,0.009852216748768473
+"Trade result ($, one MNQ)",wf,-260.0,-240.0,44,0.027093596059113302
+"Trade result ($, one MNQ)",wf,-240.0,-220.0,25,0.01539408866995074
+"Trade result ($, one MNQ)",wf,-220.0,-200.0,39,0.02401477832512315
+"Trade result ($, one MNQ)",wf,-200.0,-180.0,20,0.012315270935960592
+"Trade result ($, one MNQ)",wf,-180.0,-160.0,63,0.03879310344827586
+"Trade result ($, one MNQ)",wf,-160.0,-140.0,52,0.03201970443349754
+"Trade result ($, one MNQ)",wf,-140.0,-120.0,97,0.05972906403940887
+"Trade result ($, one MNQ)",wf,-120.0,-100.0,58,0.03571428571428571
+"Trade result ($, one MNQ)",wf,-100.0,-80.0,43,0.02647783251231527
+"Trade result ($, one MNQ)",wf,-80.0,-60.0,149,0.0917487684729064
+"Trade result ($, one MNQ)",wf,-60.0,-40.0,104,0.06403940886699508
+"Trade result ($, one MNQ)",wf,-40.0,-20.0,92,0.05665024630541872
+"Trade result ($, one MNQ)",wf,-20.0,0.0,134,0.08251231527093596
+"Trade result ($, one MNQ)",wf,0.0,20.0,97,0.05972906403940887
+"Trade result ($, one MNQ)",wf,20.0,40.0,53,0.03263546798029557
+"Trade result ($, one MNQ)",wf,40.0,60.0,70,0.04310344827586207
+"Trade result ($, one MNQ)",wf,60.0,80.0,67,0.04125615763546798
+"Trade result ($, one MNQ)",wf,80.0,100.0,35,0.021551724137931036
+"Trade result ($, one MNQ)",wf,100.0,120.0,25,0.01539408866995074
+"Trade result ($, one MNQ)",wf,120.0,140.0,26,0.01600985221674877
+"Trade result ($, one MNQ)",wf,140.0,160.0,25,0.01539408866995074
+"Trade result ($, one MNQ)",wf,160.0,180.0,20,0.012315270935960592
+"Trade result ($, one MNQ)",wf,180.0,200.0,12,0.007389162561576354
+"Trade result ($, one MNQ)",wf,200.0,220.0,20,0.012315270935960592
+"Trade result ($, one MNQ)",wf,220.0,240.0,11,0.0067733990147783255
+"Trade result ($, one MNQ)",wf,240.0,260.0,9,0.005541871921182266
+"Trade result ($, one MNQ)",wf,260.0,280.0,11,0.0067733990147783255
+"Trade result ($, one MNQ)",wf,280.0,300.0,126,0.07758620689655173
+"Worst open loss per trade ($, one MNQ)",wf,-300.0,-285.0,99,0.06096059113300493
+"Worst open loss per trade ($, one MNQ)",wf,-285.0,-270.0,22,0.013546798029556651
+"Worst open loss per trade ($, one MNQ)",wf,-270.0,-255.0,11,0.0067733990147783255
+"Worst open loss per trade ($, one MNQ)",wf,-255.0,-240.0,53,0.03263546798029557
+"Worst open loss per trade ($, one MNQ)",wf,-240.0,-225.0,18,0.011083743842364532
+"Worst open loss per trade ($, one MNQ)",wf,-225.0,-210.0,22,0.013546798029556651
+"Worst open loss per trade ($, one MNQ)",wf,-210.0,-195.0,44,0.027093596059113302
+"Worst open loss per trade ($, one MNQ)",wf,-195.0,-180.0,49,0.03017241379310345
+"Worst open loss per trade ($, one MNQ)",wf,-180.0,-165.0,43,0.02647783251231527
+"Worst open loss per trade ($, one MNQ)",wf,-165.0,-150.0,57,0.035098522167487683
+"Worst open loss per trade ($, one MNQ)",wf,-150.0,-135.0,60,0.03694581280788178
+"Worst open loss per trade ($, one MNQ)",wf,-135.0,-120.0,77,0.04741379310344827
+"Worst open loss per trade ($, one MNQ)",wf,-120.0,-105.0,85,0.05233990147783251
+"Worst open loss per trade ($, one MNQ)",wf,-105.0,-90.0,80,0.04926108374384237
+"Worst open loss per trade ($, one MNQ)",wf,-90.0,-75.0,107,0.06588669950738917
+"Worst open loss per trade ($, one MNQ)",wf,-75.0,-60.0,127,0.07820197044334976
+"Worst open loss per trade ($, one MNQ)",wf,-60.0,-45.0,150,0.09236453201970443
+"Worst open loss per trade ($, one MNQ)",wf,-45.0,-30.0,125,0.0769704433497537
+"Worst open loss per trade ($, one MNQ)",wf,-30.0,-15.0,164,0.10098522167487685
+"Worst open loss per trade ($, one MNQ)",wf,-15.0,0.0,231,0.14224137931034483
+"Best open gain per trade ($, one MNQ)",wf,0.0,15.0,359,0.2210591133004926
+"Best open gain per trade ($, one MNQ)",wf,15.0,30.0,132,0.0812807881773399
+"Best open gain per trade ($, one MNQ)",wf,30.0,45.0,157,0.09667487684729065
+"Best open gain per trade ($, one MNQ)",wf,45.0,60.0,94,0.05788177339901478
+"Best open gain per trade ($, one MNQ)",wf,60.0,75.0,81,0.049876847290640396
+"Best open gain per trade ($, one MNQ)",wf,75.0,90.0,56,0.034482758620689655
+"Best open gain per trade ($, one MNQ)",wf,90.0,105.0,68,0.04187192118226601
+"Best open gain per trade ($, one MNQ)",wf,105.0,120.0,74,0.04556650246305419
+"Best open gain per trade ($, one MNQ)",wf,120.0,135.0,56,0.034482758620689655
+"Best open gain per trade ($, one MNQ)",wf,135.0,150.0,55,0.033866995073891626
+"Best open gain per trade ($, one MNQ)",wf,150.0,165.0,58,0.03571428571428571
+"Best open gain per trade ($, one MNQ)",wf,165.0,180.0,22,0.013546798029556651
+"Best open gain per trade ($, one MNQ)",wf,180.0,195.0,35,0.021551724137931036
+"Best open gain per trade ($, one MNQ)",wf,195.0,210.0,12,0.007389162561576354
+"Best open gain per trade ($, one MNQ)",wf,210.0,225.0,30,0.01847290640394089
+"Best open gain per trade ($, one MNQ)",wf,225.0,240.0,18,0.011083743842364532
+"Best open gain per trade ($, one MNQ)",wf,240.0,255.0,34,0.020935960591133004
+"Best open gain per trade ($, one MNQ)",wf,255.0,270.0,3,0.0018472906403940886
+"Best open gain per trade ($, one MNQ)",wf,270.0,285.0,33,0.020320197044334975
+"Best open gain per trade ($, one MNQ)",wf,285.0,300.0,4,0.0024630541871921183
+"Best open gain per trade ($, one MNQ)",wf,300.0,315.0,56,0.034482758620689655
+"Best open gain per trade ($, one MNQ)",wf,315.0,330.0,1,0.0006157635467980296
+"Best open gain per trade ($, one MNQ)",wf,330.0,345.0,11,0.0067733990147783255
+"Best open gain per trade ($, one MNQ)",wf,345.0,360.0,0,0.0
+"Best open gain per trade ($, one MNQ)",wf,360.0,375.0,12,0.007389162561576354
+"Best open gain per trade ($, one MNQ)",wf,375.0,390.0,4,0.0024630541871921183
+"Best open gain per trade ($, one MNQ)",wf,390.0,405.0,5,0.003078817733990148
+"Best open gain per trade ($, one MNQ)",wf,405.0,420.0,1,0.0006157635467980296
+"Best open gain per trade ($, one MNQ)",wf,420.0,435.0,11,0.0067733990147783255
+"Best open gain per trade ($, one MNQ)",wf,435.0,450.0,142,0.0874384236453202
+Minutes held,wf,0.0,30.0,80,0.04926108374384237
+Minutes held,wf,30.0,60.0,601,0.37007389162561577
+Minutes held,wf,60.0,90.0,261,0.16071428571428573
+Minutes held,wf,90.0,120.0,143,0.08805418719211823
+Minutes held,wf,120.0,150.0,113,0.06958128078817734
+Minutes held,wf,150.0,180.0,77,0.04741379310344827
+Minutes held,wf,180.0,210.0,49,0.03017241379310345
+Minutes held,wf,210.0,240.0,31,0.019088669950738917
+Minutes held,wf,240.0,270.0,45,0.02770935960591133
+Minutes held,wf,270.0,300.0,37,0.022783251231527094
+Minutes held,wf,300.0,330.0,78,0.0480295566502463
+Minutes held,wf,330.0,360.0,109,0.06711822660098522
+Minutes held,wf,360.0,390.0,0,0.0
+"Worst open loss per day ($, one set)",wf,-2000.0,-1900.0,21,0.14093959731543623
+"Worst open loss per day ($, one set)",wf,-1900.0,-1800.0,2,0.013422818791946308
+"Worst open loss per day ($, one set)",wf,-1800.0,-1700.0,3,0.020134228187919462
+"Worst open loss per day ($, one set)",wf,-1700.0,-1600.0,4,0.026845637583892617
+"Worst open loss per day ($, one set)",wf,-1600.0,-1500.0,2,0.013422818791946308
+"Worst open loss per day ($, one set)",wf,-1500.0,-1400.0,2,0.013422818791946308
+"Worst open loss per day ($, one set)",wf,-1400.0,-1300.0,6,0.040268456375838924
+"Worst open loss per day ($, one set)",wf,-1300.0,-1200.0,6,0.040268456375838924
+"Worst open loss per day ($, one set)",wf,-1200.0,-1100.0,3,0.020134228187919462
+"Worst open loss per day ($, one set)",wf,-1100.0,-1000.0,7,0.04697986577181208
+"Worst open loss per day ($, one set)",wf,-1000.0,-900.0,4,0.026845637583892617
+"Worst open loss per day ($, one set)",wf,-900.0,-800.0,6,0.040268456375838924
+"Worst open loss per day ($, one set)",wf,-800.0,-700.0,6,0.040268456375838924
+"Worst open loss per day ($, one set)",wf,-700.0,-600.0,6,0.040268456375838924
+"Worst open loss per day ($, one set)",wf,-600.0,-500.0,2,0.013422818791946308
+"Worst open loss per day ($, one set)",wf,-500.0,-400.0,13,0.087248322147651
+"Worst open loss per day ($, one set)",wf,-400.0,-300.0,14,0.09395973154362416
+"Worst open loss per day ($, one set)",wf,-300.0,-200.0,14,0.09395973154362416
+"Worst open loss per day ($, one set)",wf,-200.0,-100.0,10,0.06711409395973154
+"Worst open loss per day ($, one set)",wf,-100.0,0.0,18,0.12080536912751678
