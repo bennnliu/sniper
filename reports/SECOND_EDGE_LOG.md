@@ -656,3 +656,30 @@ Criteria, $50K: 1 PASS (t 3.93). 2 PASS (t 3.17). 3 FAIL (30-day pass 22.1% at 9
 6. The daily difference against the base rule has a t of at least 2.
 7. Walk-forward year (seen many times): Sharpe not lower than the base rule.
 Also reported for every method: average win, average loss, win rate, profit factor, worst day, worst open loss, and the same on high-volatility days. With 13 methods, one would be expected to clear a single t of 2 by chance about a third of the time, which is why all seven are required.
+
+**TIMING-01 results (sniper/timing.py, research/timing01.py; tables in reports/timing01/). Development data, all New York days to October 2024, one set, costs assumed 1.11 points per round trip. The engine reproduces the frozen rule trade for trade (tests/test_timing.py).**
+
+| Method | Trades | Total | Sharpe | Worst drawdown | Total at double cost | Avg win | Avg loss | Winners | t of daily difference | Criteria met (of 6) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| B0 base rule | 23,744 | $126,711 | 0.85 | −$18,383 | $74,000 | $81.82 | −$38.99 | 37% | | |
+| F1 exits every 5 min | 30,498 | $110,268 | 0.83 | −$21,570 | $42,563 | $74.30 | −$25.62 | 29% | −1.08 | 0 |
+| F2 exits every minute | 34,073 | $96,746 | 0.75 | −$29,248 | $21,104 | $68.54 | −$21.53 | 27% | −1.72 | 0 |
+| F3 15-minute decisions | 34,073 | $124,597 | 0.76 | −$18,063 | $48,955 | $75.40 | −$30.78 | 32% | −0.11 | 1 |
+| F4 5-minute decisions | 60,627 | $65,482 | 0.39 | −$48,650 | −$69,110 | $59.43 | −$20.76 | 27% | −2.42 | 0 |
+| X1 exit on VWAP alone | 20,250 | $153,834 | 0.93 | −$19,623 | $108,879 | $93.44 | −$52.27 | 41% | 1.81 | 4 |
+| X2 exit on band alone | 22,963 | $128,587 | 0.85 | −$17,215 | $77,609 | $84.87 | −$40.96 | 37% | 0.25 | 3 |
+| S1 trailing stop 0.25 | 23,009 | $65,513 | 0.64 | −$18,983 | $14,433 | $56.13 | −$29.42 | 38% | −2.04 | 0 |
+| S2 trailing stop 0.5 | 23,226 | $124,467 | 0.94 | −$15,790 | $72,906 | $72.53 | −$35.79 | 38% | −0.12 | 3 |
+| S3 profit target 1.0 | 23,645 | $134,262 | 0.93 | −$18,596 | $81,770 | $81.44 | −$39.17 | 37% | 0.56 | 3 |
+| S4 break-even stop | 23,447 | $110,297 | 0.80 | −$17,416 | $58,244 | $77.57 | −$33.30 | 34% | −1.12 | 1 |
+| N1 confirmed entry | 21,002 | $131,725 | 0.92 | −$16,831 | $85,101 | $85.18 | −$40.63 | 37% | 0.61 | 5 |
+| N2 pullback entry | 16,222 | −$92,310 | −1.24 | −$93,304 | −$128,323 | $50.14 | −$28.24 | 29% | −6.76 | 0 |
+| N3 first half hour's direction | 19,023 | $118,755 | 0.87 | −$13,942 | $76,524 | $82.63 | −$38.49 | 37% | −0.44 | 3 |
+
+**Verdict: no method adopted; the walk-forward year was not opened for any of them.**
+- Faster exits (F1, F2, F4) do cut the average loss (−$39 to about −$21) but cut winners more and multiply trades; at double cost they lose most or all of the profit. This is the whipsaw cost Lo and Remorov describe.
+- A tight trailing stop (S1) halves the profit; a wide one (S2) lowers the worst day (−$4,064 against −$5,151) and drawdown at no gain in profit. The break-even stop hurts.
+- The pullback entry (N2) loses heavily: the limit fills on the breakouts that fail and misses the ones that run, as Handa and Schwartz predict.
+- The profit target (S3) did not hurt as predicted; it was roughly neutral (t 0.56).
+- Near misses: exiting on VWAP alone (X1) raised profit by $27,123 and held at double cost, by letting more trades reach the close (50% against 35%), but with a larger average loss, a deeper drawdown and a t of 1.81. The confirmed entry (N1) met five of six and failed only on significance (t 0.61).
+- Reading: losses in this rule are the price of staying in for the trend days. Methods that shrink the average loss shrink the gains by more; the one direction with support is the opposite, a looser exit. **Trials: 218.**
