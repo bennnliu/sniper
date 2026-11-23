@@ -108,3 +108,41 @@ A filter alone cannot help a 30-day Combine (iterations 13 to 19), so IV-01 and 
 **Pass:** rank correlation t at least 3.0 with a positive sign (the smaller of the overlapping and non-overlapping t), same sign in 70% of years, and the average next-k move in the top and bottom tenths of the signal at least twice the micro cost (MES 0.5 points, MNQ 1.11 points).
 
 **Trials:** 4 predictors x 2 targets x 3 horizons = 24. Total 276.
+
+### Iteration 33 result: all ten FAIL (best t 2.58)
+
+ES and NQ, June 2011 to October 2024, news days skipped, micro costs, volatility units. Measured. `reports/iv01/results.csv`, `research/iv01.py`. Raw VIX history saved to `/mnt/project-files/data/raw/yfinance/iv_daily.csv`.
+
+| Test | Market | Slope t | Years same sign | Top third mean (t) | Bottom third mean (t) |
+|---|---|---|---|---|---|
+| IV-01 breakout vs VIX/VIX3M | ES | 1.87 | 64% | +0.010 (0.56) | -0.027 (-2.03) |
+| IV-01 breakout vs VIX/VIX3M | NQ | 2.58 | 79% | +0.045 (2.98) | -0.005 (-0.36) |
+| IV-02 breakout vs VVIX | ES / NQ | 0.62 / 1.01 | 50% / 57% | | |
+| IV-03 long New York vs slope | ES / NQ | -0.48 / -0.70 | wrong sign | | |
+| IV-04 long after a VIX overshoot, New York | ES / NQ | -0.16 / -1.30 | wrong sign | | |
+| IV-04 long after a VIX overshoot, Asia | ES / NQ | -0.84 / -1.10 | wrong sign | | |
+
+- IV-01 has the sign the theory predicts in both markets: the breakout earns in the third of days when short-dated implied volatility is high against 3-month, and nothing or less in the calm third. At t 2.58 and 1.87 it is below the bar, and as a filter it would remove two thirds of trading days, which the 30-day clock cannot afford. Recorded as a near miss that supports the dealer-gamma reading, not as a rule.
+- The directional ideas (IV-03, IV-04) have no signal; a long position in New York hours loses its costs in every regime.
+**Verdict: KILL all four.** Trials 10, total 252.
+
+### Iteration 34 result: all 24 FAIL (wrong sign, and under a quarter of the cost)
+
+ES and NQ against ZN, 6J, CL, GC, New York session, 2018 to October 2024. Measured. `reports/xa01/results.csv`, `research/xa01.py`.
+
+- Not one of the 24 has a significant positive rank correlation. Twelve are significantly negative (t -2.4 to -4.8), meaning the index slightly reverses the move the other market implied. That is the index's own short-term reversal seen through a correlated market (MR-04 found the same in iteration 3), not information arriving from bonds or yen.
+- Size: trading the top and bottom tenths of the signal earns between -0.46 and +0.27 points per trade before costs, against a cost of 0.74 points (MES) or 1.11 (MNQ). The largest is a quarter of the cost.
+**Verdict: KILL XA-01 and close LEADLAG-04.** Trials 24, total 276.
+
+## Iteration 35 (23 Nov 2026): FXS-01 and GCS-01, session drifts in currencies and gold (written before running)
+
+**Source.** Breedon and Ranaldo, "Intraday Patterns in FX Returns and Order Flow", Journal of Money, Credit and Banking 45(5), 2013 (exists; recalled from the abstract, not re-read today): a currency tends to fall during its own country's working hours and rise during the other country's, because local firms and investors are net buyers of foreign currency in their own day. The effect was reported as large against spot spreads. Gold's rise in Asian hours and fall in London and New York hours is a practitioner observation with no peer-reviewed source I can confirm, so it is low priority.
+
+**Why now.** Iteration 32 showed daily results in currencies, gold and the index are nearly uncorrelated. A one-trade-a-day drift in each would be the every-day, uncorrelated stream the 30-day goal needs. The bars are already paid for.
+
+**Tests (8 trials, total 284).** One position per session, entered at the session start and closed at its end, 2018 to October 2024, news days skipped, costs on, volatility units. Sessions as before: Asia 18:00 to 01:00 CT, London 02:00 to 08:30, New York 08:30 to 15:00.
+- FXS-01a: long 6E, long 6B, long 6J through New York hours (the dollar falls in US hours). 3 trials.
+- FXS-01b: short 6E and short 6B through London hours; short 6J through Asia hours. 3 trials.
+- GCS-01: long gold through Asia hours; short gold through New York hours. 2 trials.
+
+**Pass:** net t at least 3.0 with the stated sign, positive in at least 5 of 7 years, still positive at double cost.
