@@ -49,13 +49,14 @@ Iterations 13-19 (reports/SECOND_EDGE_LOG.md, one running log; 23 Nov 2026): res
 
 Iterations 20-22 (same log): parameter ensemble, ES+NQ, dynamic-programming sizing and constant-risk sizing all fail. 184 trials. Sizing is closed: the edge adds 3 to 7 points of 30-day pass rate at any size; larger size lifts the random control equally.
 
+Iteration 23 (same log): thresholded overnight-to-close, weekend and weekday effects all fail. 191 trials. **The research loop is paused, waiting on data**: every idea family testable on ES/NQ bars has been tested; further rounds would be data mining.
+
 ## Next actions
 
-1. Ben asked (22 Nov evening) for the loop to continue until a success or until he stops it. Next ideas: parameter/instrument ensemble of the breakout rule, full dynamic-programming sizing, weekday effects, and anything unlocked by new data.
-2. Waiting on Ben: other-markets data purchase ($25.74 to $80.02); allowing cdn.cboe.com and fred.stlouisfed.org in the environment network settings (or uploading VIX CSVs) for free volatility data.
-3. Before any other-markets test: read Topstep's "Prohibited Conduct" page for micro-contract restrictions.
+1. Resume the loop when any of these arrives: free VIX/FRED data (hosts cdn.cboe.com and fred.stlouisfed.org are blocked by the environment network policy; Ben can allow them or upload CSVs), other-markets bars (decision card of 22 Nov, unapproved), or options positioning data (priced earlier).
+2. Before any other-markets test: read Topstep's "Prohibited Conduct" page for micro-contract restrictions.
 
 ## Open questions for Ben
 
-1. The data purchase and the network allowance above.
+1. Which of the three data routes to open.
 2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).

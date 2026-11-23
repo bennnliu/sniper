@@ -65,3 +65,6 @@ ENS-01,ensemble,Averaging the breakout rule over nine settings raises daily t an
 ENS-02,ensemble,Trading the rule on MES and MNQ together raises the pass rate,Diversification,,,,,,,,filter_rejected,1,Rule corr 0.67; pass 13.4% vs 14.7%; ES weaker
 DP-01,sizing,Optimal sizing by dynamic programming beats fixed 8 MNQ by 5 points out of sample,Exact solution of the goal-by-deadline problem,,,,,,,,filter_rejected,1,OOS 29.6% vs 24.7% (4.9 pts); equals constant risk 2000; control 18.9%
 RISK-01,sizing,Constant-risk sizing with R chosen pre-2021 passes >=25% in 30 days and beats fixed 8 MNQ,Loss limit is fixed while the daily move varies 7x,,,,,,,,filter_rejected,6,Procedure chose R=1000: test pass 10.8% vs fixed 8 at 24.5%. Edge adds 3-7 points at any size
+ROSA-01,intraday_momentum,"After an overnight move above half the expected daily move, the last half hour continues it",Thresholded overnight-to-close momentum (Rosa 2022),,,,,,,,signal_fail,2,"Wrong sign: gross -0.6x / -1.3x cost, t net -3.4 / -3.0"
+WKND-01,calendar,Sunday-night and Friday New York returns differ from other days,Weekend effect in futures (Singal-Tayal 2020),,,,,,,,signal_fail,4,Difference t between -1.6 and +0.2
+DOW-01,filter,The breakout rule's result differs by weekday,Day-of-week seasonality,,,,,,,,filter_rejected,1,F-test p 0.31

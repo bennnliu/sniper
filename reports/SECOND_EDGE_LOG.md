@@ -416,3 +416,36 @@ _Third round, 23 Nov 2026. Cboe and FRED hosts still blocked; no new upload; no 
 - **ROSA-01.** When the overnight move (prior 15:00 CT close to 08:30 CT) is larger than half the expected daily move, the last half hour (14:30 to 15:00 CT) continues in its direction. ES and NQ, 2 trials. *Fit with the first edge:* a 30-minute trade at the end of the day on days that opened with a large gap; the breakout rule is usually already positioned by then, so this would add size when two signals agree. *Prior:* low; IMOM-03 (the always-on version) failed and the paper says the effect is gone.
 - **WKND-01.** Returns around the weekend differ from other days: the Sunday-night session (18:00 Sunday to 08:30 Monday CT) and the Friday New York session, each against the same session on other days, ES and NQ. Two-sided, 4 trials. *Fit:* a calendar position unrelated to trend. *Prior:* low.
 - **DOW-01.** The breakout rule's result differs by weekday. One F-test across five weekdays, 1 trial. *Fit:* a filter. *Prior:* very low; a filter that removes days has already been shown to cost pass rate, so only a large effect (F-test p below 0.01, same ordering before and after 2018) would matter.
+
+### Results (measured on development data; costs assumed)
+
+| Test | MES | MNQ | Verdict |
+|---|---|---|---|
+| ROSA-01, last half hour follows a large overnight move | Gross −0.30 points (−0.6x cost), t net −3.4, 13% of years | Gross −1.46 points (−1.3x cost), t net −3.0, 20% of years | Fail, wrong sign |
+| WKND-01, Sunday night against other nights | Difference t +0.17 | Difference t +0.01 | Fail |
+| WKND-01, Friday New York against other days | Difference t −0.70 | Difference t −1.60 | Fail |
+| DOW-01, breakout rule by weekday | F-test p = 0.31; best days differ before and after 2018 | | Fail |
+
+- After a large overnight move the last half hour leans the other way, not the same way, by about one cost on MNQ. This matches the wrong-sign result of EOD-01 in iteration 8. Fading it would gross 1.3 times the cost, short of the factor of 2 required, and it was not the registered direction.
+- No weekend or weekday pattern.
+
+**Iteration 23: 7 trials. Running total 191. Verdict: KILL all three.**
+
+---
+
+## Status after iteration 23: the loop is waiting on data
+
+| Round | Iterations | Tests | Passed |
+|---|---|---|---|
+| First (evening of 22 Nov) | 13 to 19 | 45 | 0 |
+| Second | 20 to 22 | 9 | 0 |
+| Third | 23 | 7 | 0 |
+| **Since the loop began** | **11 iterations** | **61** | **0** |
+| Whole project | 23 iterations | 191 trials | 1 unpromoted candidate (NOISE-01B) |
+
+I have stopped scheduling new rounds on the ES and NQ bars, and want to be plain about why, since the instruction was to continue until success. Every family of idea that these bars can test has now been tested: trend, intraday momentum, mean reversion, relative value at minutes and at days, lead-lag, bar-based order flow, volatility regimes, calendar (FOMC, FOMC cycle, releases, turn of month, expiration, holidays, weekdays, weekends), overnight and session effects, periodicity, filters on the first edge, an ML filter, ensembles, and sizing from three directions. What remains is variations of ideas already rejected. Running those would be data mining in the strict sense: with 191 trials behind us, the next "pass" on the same data would most likely be a false one, and I would have to advise against trading it.
+
+The loop resumes the moment any of these arrives:
+1. **Free volatility data** (Cboe VIX, VIX9D, VIX3M daily history; FRED rates). Opens: intraday momentum conditioned on implied volatility and its term structure, the gamma-theta breakeven with real implied volatility in place of our proxy, and the variance risk premium. These are the mechanisms the peer-reviewed papers actually name.
+2. **Other markets** (decision card of 22 Nov, $25.74 to $80.02). Opens: the frozen rule on unrelated markets, the only route to real diversification.
+3. **Options positioning data** (priced earlier at $48 to $104). Opens: the dealer-gamma hypothesis directly.
