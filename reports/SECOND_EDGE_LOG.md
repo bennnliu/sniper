@@ -398,3 +398,21 @@ What this says, read together with iteration 21:
 | 22 | Constant-risk sizing, level chosen on early data | 6 | 184 | Fail |
 
 Ten iterations and 54 tests since Ben asked for the loop; none has succeeded. The sizing question is now closed from three directions (goal-based policies, exact optimisation, constant risk): with this edge, no sizing rule adds more than a few points of pass rate over what a random trader gets from the same size.
+
+---
+
+## Iteration 23: the last ideas that need only our bars
+
+_Third round, 23 Nov 2026. Cboe and FRED hosts still blocked; no new upload; no purchase approved._
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Rosa, *Journal of Futures Markets* 42(12), 2022 (cited in iteration 13) | Peer reviewed | Abstract | "A strategy with thresholds delivers higher returns than a strategy that is always active"; the overnight return predicts the last half hour only when the signal is strong; gone out of sample. |
+| Singal and Tayal, "Risky Short Positions and Investor Sentiment: Evidence from the Weekend Effect in Futures Markets", *Journal of Futures Markets* 40(3), 2020 | Peer reviewed | Title and listing only | A weekend effect exists in futures and is tied to short sellers avoiding weekend risk. I have not read the size or sign, so the test is two-sided. |
+| French, "Stock Returns and the Weekend Effect", *Journal of Financial Economics* 8(1), 1980 | Peer reviewed | From memory | Monday returns were negative on average in 1953-1977. |
+
+### Hypotheses (written before testing)
+- **ROSA-01.** When the overnight move (prior 15:00 CT close to 08:30 CT) is larger than half the expected daily move, the last half hour (14:30 to 15:00 CT) continues in its direction. ES and NQ, 2 trials. *Fit with the first edge:* a 30-minute trade at the end of the day on days that opened with a large gap; the breakout rule is usually already positioned by then, so this would add size when two signals agree. *Prior:* low; IMOM-03 (the always-on version) failed and the paper says the effect is gone.
+- **WKND-01.** Returns around the weekend differ from other days: the Sunday-night session (18:00 Sunday to 08:30 Monday CT) and the Friday New York session, each against the same session on other days, ES and NQ. Two-sided, 4 trials. *Fit:* a calendar position unrelated to trend. *Prior:* low.
+- **DOW-01.** The breakout rule's result differs by weekday. One F-test across five weekdays, 1 trial. *Fit:* a filter. *Prior:* very low; a filter that removes days has already been shown to cost pass rate, so only a large effect (F-test p below 0.01, same ordering before and after 2018) would matter.
