@@ -489,3 +489,20 @@ Ben selected ENS-01 as the strategy to improve. This run adds no hypothesis and 
 4. Conditions 2 and 3 also hold at double cost.
 5. The 30-day Combine pass rate ($50K, one set) is not lower than unfiltered (simulated).
 6. In the walk-forward year the kept trades average more than the skipped ones.
+
+**META-02 results (research/dl01_model.py, research/dl01_eval.py; out-of-fold test years 2016 to October 2024: 5,400 trades on 712 high-volatility days; walk-forward year: 602 trades on 87 days). Costs assumed 1.11 points per round trip; Monte Carlo simulated. Dashboard: https://claude.ai/artifact/Pigfz7om1vfyMiFjGjNf4a**
+
+Unfiltered rule on New York high-volatility days: test years +$77,018 per set, Sharpe 1.51, t 2.55; walk-forward year +$13,311, Sharpe 0.80. $50K at 9 MNQ: 30-day pass 8.2% against 5.9% control, 34% with no time limit.
+
+| Model | AUC (95% interval) | Kept / skipped per trade | t | Total filtered | Sharpe | 30-day pass | WF kept / skipped | Criteria |
+|---|---|---|---|---|---|---|---|---|
+| Convolutional network (primary) | 0.547 (0.508 to 0.583) | $16.83 / $9.98 | 0.69 | $56,811 | 1.52 | 7.4% | $44.23 / −$11.03 | 2 of 6 |
+| Network on the table | 0.552 | $15.59 / $12.15 | 0.33 | $51,720 | n/a | n/a | −$36.77 / $111.54 | 1 of 6 |
+| Boosted trees | 0.554 | $27.27 / −$5.91 | 3.42 | $89,537 | 2.17 | 7.8% | $67.82 / −$67.73 | 5 of 6 |
+| Logistic regression | 0.553 (0.517 to 0.591) | $22.80 / −$0.12 | 2.18 | $77,263 | 2.00 | 9.3% | $76.91 / −$46.64 | 6 of 6 |
+
+**Verdict: META-02 REJECTED.** The deep-learning filter (the model the hypothesis names) fails criteria 2, 3, 4 and 5. Its skipped trades were still profitable, so removing them cut total profit by a quarter. The predicted failure mode held: a win/loss label cannot tell a small loser from a missed large winner.
+
+**Side finding, not adopted:** the two simple models rank trades slightly better than chance, and the logistic regression met all six criteria (worst drawdown −$6,659 against −$14,284; pass with no time limit 49% against 34%, simulated). It is not promoted because (a) it was a comparison model, not the pre-declared primary, so choosing it now is selection after the fact; (b) t 2.18 is before correction for 195 trials; (c) kept beat skipped in only 4 of 8 test years, with the gain concentrated in 2022 and 2024; (d) the same family failed walk-forward in iteration 11. Its largest weights: straightness of the move since the open (+), move in the last 30 minutes (−), distance past the band (+), overnight gap in the trade's direction (+), the set's closed result so far today (−).
+
+**Trials: 195.** Next candidate if Ben wants it: pre-register the logistic filter as its own hypothesis (LOGIT-01) and judge it only on data it has not seen, which means paper tracking forward, since the holdout and walk-forward years are used.

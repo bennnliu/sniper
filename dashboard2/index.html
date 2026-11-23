@@ -1,0 +1,222 @@
+<meta name="dash-one-writer">
+<style>
+/* Layout: one column of sections, each a heading, one plain sentence, then charts and tables. */
+.nq { display: flex; flex-direction: column; gap: var(--cds-gap-xl, 32px); font-family: var(--font-anthropic-sans); color: var(--color-fg); font-size: var(--cds-font-size-body); }
+.nq h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.nq h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.nq h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.nq p { margin: 0; max-width: 72ch; line-height: 1.5; }
+.nq .nq-muted { color: var(--color-fg-muted); }
+.nq .nq-cap { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 80ch; }
+.nq section { display: flex; flex-direction: column; gap: var(--cds-gap-md, 12px); min-width: 0; }
+.nq .nq-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--cds-gap-md, 12px); }
+.nq .nq-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg, 16px); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.nq .nq-tile .nq-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.nq .nq-tile .nq-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.7em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.nq .nq-tile .nq-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.nq .nq-tag { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 8px; color: var(--color-fg-muted); white-space: nowrap; }
+.nq .nq-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md, 12px); align-items: center; }
+.nq .nq-row label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nq .nq-row select { max-width: 100%; }
+.nq .nq-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg, 20px); }
+.nq .nq-grid2 > div { min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm, 8px); }
+.nq .nq-chart { position: relative; min-height: 240px; min-width: 0; }
+.nq .nq-chart.nq-short { min-height: 170px; }
+.nq .nq-chart svg { display: block; width: 100%; overflow: visible; }
+.nq .nq-chart svg text { fill: var(--cds-text-secondary, var(--color-fg-muted)); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.nq .nq-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: 4px; }
+.nq .nq-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.nq .nq-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.nq .nq-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover, var(--color-panel)); border: 1px solid var(--cds-border, var(--color-border-line)); box-shadow: var(--cds-shadow-popover, none); border-radius: var(--cds-radius); padding: 6px 9px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; z-index: 3; white-space: nowrap; color: var(--color-fg); }
+.nq .nq-tip b { font-weight: var(--cds-font-weight-medium); }
+.nq .nq-tip div { display: flex; justify-content: space-between; gap: 14px; }
+.nq .nq-tip div span:first-child { color: var(--cds-text-secondary, var(--color-fg-muted)); }
+.nq .nq-scroll { overflow-x: auto; min-width: 0; }
+.nq table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-caption); }
+.nq th, .nq td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.nq th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.nq th:first-child, .nq td:first-child { text-align: left; white-space: normal; min-width: 150px; }
+.nq td.nq-l, .nq th.nq-l { text-align: left; }
+.nq tr.nq-group td { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); background: var(--color-panel); text-align: left; }
+.nq .nq-pos { color: var(--color-ok); }
+.nq .nq-neg { color: var(--color-bad); }
+.nq .nq-heat td { text-align: center; padding: 4px 6px; border-bottom: 0; min-width: 44px; }
+.nq .nq-heat td:first-child, .nq .nq-heat th:first-child { min-width: 48px; text-align: left; white-space: nowrap; }
+.nq .nq-heat th { text-align: center; }
+.nq .nq-note { border-left: 3px solid var(--color-warn); padding: 6px 12px; background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+.nq details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.nq details ul { margin: 8px 0 0; padding-left: 20px; max-width: 80ch; line-height: 1.5; }
+.nq .nq-pass { color: var(--color-ok); font-weight: var(--cds-font-weight-medium); }
+.nq .nq-fail { color: var(--color-bad); font-weight: var(--cds-font-weight-medium); }
+.nq td.nq-wrap { white-space: normal; min-width: 220px; text-align: left; }
+</style>
+
+<div class="nq">
+  <div class="nq-head">
+    <h1 id="title">Losing-trade filter, New York high-volatility days</h1>
+    <p id="takeaway">The deep-learning filter does not work: the trades it skipped still made <b data-draw="t-skip" data-source="models" data-field="dev_skipped_avg" data-where="key=cnn">—</b> each on average, so removing them cut profit from <b data-draw="t-base" data-source="models" data-field="dev_total_unfiltered" data-where="key=cnn">—</b> to <b data-draw="t-filt" data-source="models" data-field="dev_total_filtered" data-where="key=cnn">—</b>. It met <b data-draw="t-cnn-n" data-source="criteria" data-field="evidence" data-where="id=cnn|all">—</b> of the criteria set before training. The plain logistic regression met <b data-draw="t-log-n" data-source="criteria" data-field="evidence" data-where="id=logistic|all">—</b>, with a kept-minus-skipped t-statistic of <b data-draw="t-log-t" data-source="models" data-field="dev_diff_t" data-where="key=logistic">—</b>.</p>
+    <p class="nq-cap">Nine-setting NQ breakout ensemble, New York session, only on days whose expected move is above 1.28 times its 250-day median. One set is one MNQ per setting. Every model score is out of sample: the model for a year was trained on earlier years only (test years 2016 to October 2024), and the walk-forward year (November 2024 to October 2025) was scored by a model trained on all earlier data. That year has been looked at before. Costs are an assumed 1.11 NQ points per round trip; Monte Carlo figures are simulated. Research, not financial advice.</p>
+  </div>
+
+  <section id="verdict">
+    <h2>Verdict against the criteria written before training</h2>
+    <div class="nq-tiles" data-draw="verdict-tiles" data-source="criteria"></div>
+    <div class="nq-row">
+      <label>Model
+        <select class="dash-select" id="crit-model" aria-label="Model">
+          <option value="cnn">Convolutional network (primary)</option><option value="mlp">Neural network on the table</option><option value="boosted">Boosted trees</option><option value="logistic">Logistic regression</option>
+        </select>
+      </label>
+    </div>
+    <div class="nq-scroll">
+      <table id="criteria-table" data-source="criteria" data-row-key="id">
+        <thead><tr><th data-field="criterion">Criterion</th><th data-field="result" class="nq-l">Result</th><th data-field="evidence" class="nq-l">Evidence, test years 2016 to Oct 2024</th></tr></thead>
+        <tbody data-draw="crit-body"></tbody>
+      </table>
+    </div>
+    <p class="nq-note" id="caution">The logistic result is thin. Its t-statistic is before any correction for the 195 trials run so far, its kept trades beat its skipped trades in only half of the test years, and most of the gain comes from 2022 and 2024. An earlier logistic filter on all days failed its walk-forward check in iteration 11.</p>
+  </section>
+
+  <section id="winlose">
+    <h2>Why winners and losers differ</h2>
+    <p class="nq-cap">Development data, in-sample, 7,680 trades on 752 high-volatility days. AUC measures how well one feature alone ranks winners above losers: 0.50 is a coin, 1.00 is perfect. The line is the 95% interval from resampling whole days. Nothing known at entry gets past 0.55. What separates them is what happens after entry: winners keep going to the close, losers come back inside the band within about an hour.</p>
+    <div class="nq-chart" id="winlose-chart" data-draw="wl-chart" data-source="winlose"></div>
+    <div class="nq-scroll">
+      <table id="winlose-table" data-source="winlose" data-row-key="feature">
+        <thead><tr><th data-field="feature">Feature</th><th data-field="kind" class="nq-l">When known</th><th data-field="winners_mean">Winners, mean</th><th data-field="losers_mean">Losers, mean</th><th data-field="std_diff">Difference in standard deviations</th><th data-field="auc">AUC</th><th data-field="auc_lo">Low</th><th data-field="auc_hi">High</th></tr></thead>
+        <tbody data-draw="wl-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="models">
+    <h2>The four filters side by side</h2>
+    <p class="nq-cap">Each filter skips about the lowest-scored third of trades. Dollars per trade are for one MNQ, totals for one set. Random filters skip the same share of trades by chance.</p>
+    <div class="nq-row">
+      <label>Sample
+        <select class="dash-select" id="model-period" aria-label="Sample"><option value="dev">Test years 2016 to Oct 2024</option><option value="wf">Walk-forward year</option></select>
+      </label>
+    </div>
+    <div class="nq-scroll">
+      <table id="models-table" data-source="models" data-row-key="key">
+        <thead><tr><th data-field="model">Model</th><th>AUC</th><th>AUC interval</th><th>Trades skipped</th><th>Kept, per trade</th><th>Skipped, per trade</th><th>t of the difference</th><th>Total, unfiltered</th><th>Total, filtered</th><th>Sharpe, unfiltered</th><th>Sharpe, filtered</th><th>Beats random filters</th><th>Worst drawdown, unfiltered</th><th>Worst drawdown, filtered</th><th>Winners kept</th><th>Losers skipped</th></tr></thead>
+        <tbody data-draw="models-body"></tbody>
+      </table>
+    </div>
+    <h3>Does a higher score mean a better trade?</h3>
+    <p class="nq-cap">Trades sorted into fifths by model score. A working filter shows bars rising from left to right, with the lowest fifth below zero.</p>
+    <div class="nq-row">
+      <label>Model
+        <select class="dash-select" id="fifth-model" aria-label="Model for score fifths">
+          <option value="cnn">Convolutional network (primary)</option><option value="mlp">Neural network on the table</option><option value="boosted">Boosted trees</option><option value="logistic">Logistic regression</option>
+        </select>
+      </label>
+    </div>
+    <div class="nq-chart" id="fifths-chart" data-draw="fifths" data-source="score_fifths"></div>
+    <h3>What the logistic regression leans on</h3>
+    <p class="nq-cap">Largest weights when fitted on all development high-volatility trades, features standardised. Positive raises the predicted chance of a win.</p>
+    <div class="nq-chart" id="weights-chart" data-draw="weights" data-source="logistic_weights"></div>
+  </section>
+
+  <section id="pnl">
+    <h2>Profit and loss over time, high-volatility days only</h2>
+    <p class="nq-cap">Cumulative dollars for one set across the test years and the walk-forward year (shaded). Flat stretches are periods with no high-volatility days.</p>
+    <div class="nq-row">
+      <label>Costs
+        <select class="dash-select" id="eq-cost" aria-label="Costs"><option value="1">Assumed cost</option><option value="2">Double cost</option></select>
+      </label>
+    </div>
+    <div class="nq-chart" id="equity-chart" data-draw="equity" data-source="daily"></div>
+    <h3>Drawdown from the previous high</h3>
+    <div class="nq-chart nq-short" id="drawdown-chart" data-draw="drawdown" data-source="daily"></div>
+  </section>
+
+  <section id="years">
+    <h2>Year by year</h2>
+    <p class="nq-cap">Net profit of one set on high-volatility days. 2023 had none. AUC below 0.50 means the filter ranked that year's trades backwards.</p>
+    <div class="nq-scroll">
+      <table id="yearly-table" data-source="yearly" data-row-key="id">
+        <thead><tr><th data-field="year">Year</th><th data-field="period" class="nq-l">Sample</th><th data-field="days">Days</th><th data-field="trades">Trades</th><th data-field="pnl_none">Unfiltered</th><th data-field="pnl_cnn">Convolutional network</th><th data-field="pnl_mlp">Neural network</th><th data-field="pnl_boosted">Boosted trees</th><th data-field="pnl_logistic">Logistic</th><th data-field="auc_cnn">AUC, convolutional</th><th data-field="auc_boosted">AUC, boosted</th></tr></thead>
+        <tbody data-draw="yearly-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="stats">
+    <h2>Every trade statistic, unfiltered against the primary filter</h2>
+    <p class="nq-cap">Per-day figures are for one set over high-volatility days, per-trade figures for one MNQ.</p>
+    <div class="nq-scroll">
+      <table id="kpi-table" data-source="kpis" data-row-key="metric">
+        <thead><tr><th data-field="metric">Statistic</th><th data-field="dev_base">Test years, unfiltered</th><th data-field="dev_filter">Test years, filtered</th><th data-field="dev_base_2x">Unfiltered, double cost</th><th data-field="dev_filter_2x">Filtered, double cost</th><th data-field="wf_base">Walk-forward, unfiltered</th><th data-field="wf_filter">Walk-forward, filtered</th></tr></thead>
+        <tbody data-draw="kpi-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="distributions">
+    <h2>Distribution of the daily result</h2>
+    <p class="nq-cap">Share of traded high-volatility days in each $250 range, one set. The end bars include everything beyond them.</p>
+    <div class="nq-row">
+      <label>Sample
+        <select class="dash-select" id="hist-period" aria-label="Sample for the distribution"><option value="dev">Test years 2016 to Oct 2024</option><option value="wf">Walk-forward year</option></select>
+      </label>
+    </div>
+    <div class="nq-chart" id="hist-chart" data-draw="hist" data-source="histograms"></div>
+  </section>
+
+  <section id="breakdowns">
+    <h2>What the primary filter kept and skipped</h2>
+    <p class="nq-cap">Average result per trade, one MNQ.</p>
+    <div class="nq-row">
+      <label>Split by
+        <select class="dash-select" id="bd-dim" data-draw="bd-dim" aria-label="Split by" data-source="breakdowns"></select>
+      </label>
+    </div>
+    <div class="nq-chart" id="breakdown-chart" data-draw="bd-chart" data-source="breakdowns"></div>
+    <div class="nq-scroll">
+      <table id="breakdown-table" data-source="breakdowns" data-row-key="id">
+        <thead><tr><th data-field="bucket">Bucket</th><th data-field="group" class="nq-l">Group</th><th data-field="n">Count</th><th data-field="win_rate">Winners</th><th data-field="avg_usd">Average</th><th data-field="total_usd">Total</th><th data-field="profit_factor">Profit factor</th><th data-field="t">t</th></tr></thead>
+        <tbody data-draw="bd-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="montecarlo">
+    <h2>Monte Carlo of the Combine and the funded account</h2>
+    <p class="nq-cap">Simulated, 6,000 attempts per row. Days are drawn in blocks from the whole calendar of the sample, and days outside the high-volatility regime count as days without a trade, so days to pass are real trading days including the waiting. The control takes the same trades with the side chosen by a coin.</p>
+    <div class="nq-row">
+      <label>Account
+        <select class="dash-select" id="mc-account" aria-label="Account size"><option value="50K">$50K</option><option value="100K">$100K</option><option value="150K">$150K</option></select>
+      </label>
+      <label>Days drawn from
+        <select class="dash-select" id="mc-source" aria-label="Days drawn from"><option>Test years 2016 to Oct 2024 (out-of-fold)</option><option>Test years at double cost</option><option>Walk-forward year (seen before)</option></select>
+      </label>
+    </div>
+    <h3>Each filter at one set per $50K of account</h3>
+    <div class="nq-scroll">
+      <table id="mc-variants" data-source="montecarlo" data-row-key="id">
+        <thead><tr><th data-field="variant">Filter</th><th data-field="contracts">MNQ</th><th data-field="pass">Pass, no time limit</th><th data-field="pass_30d">Pass within 30 days</th><th data-field="control_pass_30d">Control within 30 days</th><th data-field="breach">Breach</th><th data-field="median_days_to_pass">Median days to pass</th><th data-field="payout_rate_standard">Payout rate, standard</th><th data-field="payout_rate_consistency">Payout rate, consistency</th><th data-field="fees_per_account">Fees per account</th><th data-field="profit_per_account">Profit per account</th><th data-field="profit_per_account_30d">Profit per account, 30-day stop</th><th data-field="ben_score">Payout per fee dollar per day</th></tr></thead>
+        <tbody data-draw="mc-variants-body"></tbody>
+      </table>
+    </div>
+    <div class="nq-grid2">
+      <div><h3>Pass rate with no time limit, by size</h3><div class="nq-chart" id="mc-pass-chart" data-draw="mc-pass" data-source="montecarlo"></div></div>
+      <div><h3>Pass within 30 trading days, by size</h3><div class="nq-chart" id="mc-pass30-chart" data-draw="mc-pass30" data-source="montecarlo"></div></div>
+    </div>
+  </section>
+
+  <details id="notes">
+    <summary>Method, definitions and what is measured, simulated or assumed</summary>
+    <ul>
+      <li>Label: a trade is a winner when its result after costs is above zero. Trades of the nine settings on one day are near-copies, so every interval and t-statistic resamples whole days.</li>
+      <li>Inputs: 33 numbers known at the decision minute (band distance, VWAP distance, volume, time of day, overnight and previous-day moves, ES confirmation, what the other settings are doing) and, for the convolutional network, the last 60 one-minute price changes.</li>
+      <li>Models: logistic regression; gradient-boosted trees; a network with three hidden layers; a network with two convolution layers over the price path joined to the same table. Architectures were fixed in advance and not tuned. Each network is the average of three random starts.</li>
+      <li>Walk-forward: for each test year the model sees only earlier years. The last 15% of the training days are held back to stop training and to set the skip threshold at the 33rd percentile of scores.</li>
+      <li>Skipping a trade means not taking that setting's position from its entry to its exit. The rule's own bookkeeping is unchanged.</li>
+      <li>Measured: trade entries, exits and results on 1-minute bars. Assumed: 1.11 points per round trip per MNQ. Simulated: all Monte Carlo figures.</li>
+      <li>Trials: these four models bring the project's count to 195.</li>
+    </ul>
+  </details>
+</div>
+<script src="app.js"></script>

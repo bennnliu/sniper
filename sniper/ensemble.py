@@ -45,3 +45,22 @@ def run_ensemble(sd: SessionData, cost_pts: float, skip_days: set | None = None,
     days = d.reindex(base.index).fillna(0.0)
     days["dvol_pts"] = base["dvol_pts"]
     return trades, days
+
+
+def days_from_trades(trades: pd.DataFrame, index: pd.DatetimeIndex, px_days: pd.DatetimeIndex, px: np.ndarray,
+                     net_col: str = "net_pts") -> pd.DataFrame:
+    """Daily record (per set, points) for any subset of logged trades, with the combined intraday equity.
+    ``index`` is the list of days to report; days without trades are zero."""
+    pos_of = {d: i for i, d in enumerate(px_days)}
+    n = px.shape[1] - 1
+    rows = {}
+    for day, g in trades.groupby("day"):
+        c = px[pos_of[day]]
+        eq, pos = np.zeros(n + 1), np.zeros(n + 1)
+        for dr, a, b, ep, net, gross in zip(g["dir"], g["fill"], g["exit_min"], g["entry_px"], g[net_col], g["gross_pts"]):
+            eq[a:b] += dr * (c[a:b] - ep) - (gross - net) / 2
+            eq[b:] += net
+            pos[a:b] += dr
+        rows[day] = (g[net_col].sum(), g["gross_pts"].sum(), float(len(g)), min(eq.min(), 0.0), max(eq.max(), 0.0), float(np.abs(pos).max()))
+    d = pd.DataFrame.from_dict(rows, orient="index", columns=["net_pts", "gross_pts", "round_trips", "mae_pts", "mfe_pts", "max_pos"])
+    return d.reindex(index).fillna(0.0)

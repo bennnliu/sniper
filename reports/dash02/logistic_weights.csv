@@ -1,0 +1,34 @@
+feature,weight
+Straightness of the move since the open,0.262
+Move in the last 30 minutes,-0.234
+Distance past the band,0.2
+Overnight gap in the trade's direction,0.187
+All settings' closed result so far today,-0.157
+Move in the last 5 minutes,-0.157
+Minutes since the open,0.133
+Share of the session left,-0.133
+Volume so far against normal,-0.126
+"Other settings already in, same direction",-0.111
+NQ move minus ES move,0.098
+Direction (long = 1),0.093
+Overnight range,-0.093
+Deepest pullback in the last hour,-0.092
+Share of volume in the last 30 minutes,0.09
+Today's range so far,0.082
+Noise width at this time of day (%),0.079
+Where price sits in today's range (1 = at the extreme),0.073
+"Other settings entering now, same direction",0.072
+Setting: band width,0.069
+Weekday,0.063
+First half hour's move in the trade's direction,-0.044
+Previous day's move in the trade's direction,-0.041
+Previous day's range,0.033
+Overnight move in the trade's direction,-0.032
+Expected daily move against its 250-day median,0.031
+"Entry number today, this setting",-0.03
+This setting's result so far today,0.028
+Move from the open,-0.026
+Distance from VWAP,-0.026
+ES move from the open in the trade's direction,0.019
+Setting: lookback,-0.015
+20-day volatility (%),0.008

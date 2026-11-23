@@ -1,0 +1,29 @@
+id,model,key,criterion,result,evidence
+logistic|1.,Logistic regression,logistic,1. AUC at least 0.53 and interval above 0.50,PASS,"AUC 0.553, interval 0.517 to 0.591"
+logistic|2.,Logistic regression,logistic,2. Skipped trades lose money and kept minus skipped has t of at least 2,PASS,"skipped average $-0.12, kept $22.80, t 2.18"
+logistic|3.,Logistic regression,logistic,"3. More dollars, higher Sharpe, and above 95% of random filters",PASS,"total $77,263 against $77,018; Sharpe 2.00 against 1.51; beats 100% of random filters"
+logistic|4.,Logistic regression,logistic,4. The same at double cost,PASS,"total $69,740 against $65,030; t 2.18; beats 100% of random filters"
+logistic|5.,Logistic regression,logistic,5. 30-day Combine pass rate not lower,PASS,9.3% against 8.2% (simulated)
+logistic|6.,Logistic regression,logistic,6. Walk-forward year: kept trades average more than skipped,PASS,"kept $76.91, skipped $-46.64"
+logistic|all,Logistic regression,logistic,All six,ADOPT,6 of 6 passed
+boosted|1.,Boosted trees,boosted,1. AUC at least 0.53 and interval above 0.50,PASS,"AUC 0.554, interval 0.516 to 0.586"
+boosted|2.,Boosted trees,boosted,2. Skipped trades lose money and kept minus skipped has t of at least 2,PASS,"skipped average $-5.91, kept $27.27, t 3.42"
+boosted|3.,Boosted trees,boosted,"3. More dollars, higher Sharpe, and above 95% of random filters",PASS,"total $89,537 against $77,018; Sharpe 2.17 against 1.51; beats 100% of random filters"
+boosted|4.,Boosted trees,boosted,4. The same at double cost,PASS,"total $82,249 against $65,030; t 3.42; beats 100% of random filters"
+boosted|5.,Boosted trees,boosted,5. 30-day Combine pass rate not lower,FAIL,7.8% against 8.2% (simulated)
+boosted|6.,Boosted trees,boosted,6. Walk-forward year: kept trades average more than skipped,PASS,"kept $67.82, skipped $-67.73"
+boosted|all,Boosted trees,boosted,All six,REJECT,5 of 6 passed
+mlp|1.,Neural network on the table,mlp,1. AUC at least 0.53 and interval above 0.50,PASS,"AUC 0.552, interval 0.516 to 0.590"
+mlp|2.,Neural network on the table,mlp,2. Skipped trades lose money and kept minus skipped has t of at least 2,FAIL,"skipped average $12.15, kept $15.59, t 0.33"
+mlp|3.,Neural network on the table,mlp,"3. More dollars, higher Sharpe, and above 95% of random filters",FAIL,"total $51,720 against $77,018; Sharpe 1.60 against 1.51; beats 80% of random filters"
+mlp|4.,Neural network on the table,mlp,4. The same at double cost,FAIL,"total $44,354 against $65,030; t 0.33; beats 80% of random filters"
+mlp|5.,Neural network on the table,mlp,5. 30-day Combine pass rate not lower,FAIL,7.0% against 8.2% (simulated)
+mlp|6.,Neural network on the table,mlp,6. Walk-forward year: kept trades average more than skipped,FAIL,"kept $-36.77, skipped $111.54"
+mlp|all,Neural network on the table,mlp,All six,REJECT,1 of 6 passed
+cnn|1.,Convolutional network (primary),cnn,1. AUC at least 0.53 and interval above 0.50,PASS,"AUC 0.547, interval 0.508 to 0.583"
+cnn|2.,Convolutional network (primary),cnn,2. Skipped trades lose money and kept minus skipped has t of at least 2,FAIL,"skipped average $9.98, kept $16.83, t 0.69"
+cnn|3.,Convolutional network (primary),cnn,"3. More dollars, higher Sharpe, and above 95% of random filters",FAIL,"total $56,811 against $77,018; Sharpe 1.52 against 1.51; beats 96% of random filters"
+cnn|4.,Convolutional network (primary),cnn,4. The same at double cost,FAIL,"total $49,316 against $65,030; t 0.69; beats 96% of random filters"
+cnn|5.,Convolutional network (primary),cnn,5. 30-day Combine pass rate not lower,FAIL,7.4% against 8.2% (simulated)
+cnn|6.,Convolutional network (primary),cnn,6. Walk-forward year: kept trades average more than skipped,PASS,"kept $44.23, skipped $-11.03"
+cnn|all,Convolutional network (primary),cnn,All six,REJECT,2 of 6 passed
