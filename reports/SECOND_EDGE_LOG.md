@@ -234,3 +234,32 @@ Four hypotheses have sat in the registry since the first literature pass and can
 - **MR-05.** The first touch of the prior day's New York high or low reverses over the next 30 minutes. ES and NQ. 2 trials. *Fit:* a fade trade that earns on range days, the days the breakout rule loses.
 - **VOL-02.** A compressed overnight range (bottom third against the expected daily move) is followed by a larger New York range, and the breakout rule does better on those days. 2 trials (range relation, rule filter). *Fit:* a filter for the first edge.
 Pass rules as before: t at least 3 after micro costs for trades; t at least 2 on the difference for a filter, then the walk-forward check.
+
+### Results (measured on development data; costs assumed)
+
+| Test | Result | Verdict |
+|---|---|---|
+| LEADLAG-01, NQ leads ES, 1 minute | Controlling for ES's own last minute, IC +0.062 (t +48). Trading it: gross −0.03 bp against a cost of 1.81 bp | Real, not tradable |
+| LEADLAG-01, ES leads NQ, 1 minute | Partial IC +0.019 (t +18); gross −0.01 bp against 1.45 bp | Real, not tradable |
+| LEADLAG-01, 5 minutes, both ways | Partial IC +0.014 and +0.016 (t 6 to 7); gross −0.13 bp | Real, not tradable |
+| TOX-02, bar-based flow imbalance, MES and MNQ | Gross −0.01x and +0.18x the cost. It carries the same information as the plain past return | Fail |
+| MR-05, fade first touch of prior day's high or low | MES gross −0.70x cost (t net −7.5); MNQ +0.17x cost (t net −4.4) | Fail |
+| VOL-02, compressed overnight range then a bigger day | Opposite: after a quiet night the New York range is 0.94 expected daily moves against 1.37 otherwise (t −18.5). Quiet follows quiet | Fail (wrong sign) |
+| VOL-02 as a filter for the breakout rule | Opposite to the hypothesis: the rule earns −0.012 a day after quiet nights (456 days) and +0.052 otherwise, difference t −2.27 | Hypothesis fails; the reverse is carried to iteration 19 |
+
+- NQ does lead ES by a minute, strongly in statistical terms, and the effect is one sixtieth of the cost.
+- The raw rank ICs for TOX-02 (−0.085) are an artifact: a rank correlation computed inside each day over 12 intervals is biased by about −1/12. The gross result in points is the honest number, and it is zero.
+
+**Mistake:** I registered VOL-02 years of folklore the wrong way round. The peer-reviewed fact (volatility clusters) predicted what the data show.
+
+**Iteration 18: 10 trials. Running total 173. Verdict: KILL all four as written.**
+
+---
+
+## Iteration 19
+
+### Hypothesis (written before the tests below; its motivating number came from iteration 18)
+
+**VOL-05. Skip the breakout rule after a quiet overnight session.** *Claim:* when the overnight range (18:00 to 08:30 CT) divided by the expected daily move is in the bottom third of its trailing 250 days, the New York session will be quiet too, the dealer-hedging mechanism behind intraday momentum is not active (Gao et al. 2018; Baltussen et al. 2021), and the rule's breakouts are noise. Standing aside on those days improves the first edge. *Why it fits:* it is a same-morning filter known at 08:30 CT that removes the days on which the first edge has no reason to work. It differs from the regime filter that failed in iteration 15, which used a 20-day average; this uses the night just ended.
+*Honest status of the evidence:* the −2.27 was found while testing the opposite idea, after 170 trials, so by itself it is worth little. The test that counts is out of sample.
+*Tests (3 trials):* (1) development data: the difference must have the same sign before and after 2018, and the filtered rule must have a higher daily t-statistic; (2) 30-day pass rate at 8 MNQ, filtered against unfiltered, with random-direction controls; (3) one check on the walk-forward year, fixed in advance: days kept must average more than days skipped, and the kept total must be at least the unfiltered total. This is the walk-forward year's fifth use for this rule. *Adopt only if all three hold.*
