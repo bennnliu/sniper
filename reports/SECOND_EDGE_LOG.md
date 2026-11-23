@@ -548,3 +548,27 @@ Unfiltered: low Sharpe 1.23, middle 0.54, high 1.51. Daily swing grows with the 
 - **Walk-forward year:** no size or sizing rule beat the random-direction control beyond simulation error (fixed 12 MNQ 8.4% against control 14.5%). The expected move of one set was $4,515 in that year against a $2,276 test-year median, so the test-year best size of 12 MNQ is about twice too large for today's index level; the best fixed size there was 6 MNQ.
 
 **Verdict:** there is a relationship between volatility and contract size, and it is a risk relationship only: size should keep the daily dollar swing near half the loss limit, which means fewer contracts as the expected dollar move rises (today roughly half of what the 2016 to 2024 average suggests). Volatility does not identify days on which the edge justifies more risk, and varying size day by day did not raise the pass rate. No change adopted. **Trials: 201.**
+
+---
+
+## Iteration 26 (23 Nov 2026): STRAT-01, Ben's combined strategy
+
+**Rule as given by Ben (23 Nov 2026, 2:09 AM ET), made exact before testing:**
+- Trade the nine-setting ensemble in New York hours only on middle- and high-volatility days (expected move over its 250-day median above the lower-third cut fixed in iteration 24). No trading on low-volatility days.
+- On middle-volatility days apply the logistic filter (the all-days model of iteration 25, unchanged, same scores). On high-volatility days take every trade.
+- Baseline size N on middle-volatility days. On high-volatility days hold N x (1.2828 / ratio), where ratio is that morning's expected move over its 250-day median and 1.2828 is the high-volatility cut. The size therefore falls smoothly from N at the cut, in proportion to how far volatility is above it, and never rises above N. Known before the open. Whole-contract rounding is ignored in the test.
+- Baseline grid: the iteration 25 size grid for each account.
+
+**Comparisons (not new ideas):** the same rule without the size reduction; the same rule without the filter; iteration 25's fixed size on all days with the filter everywhere; the unfiltered rule on all days.
+
+**Honest prior:** this rule was assembled after seeing iteration 25, which showed the filter helped in middle volatility and hurt in high. Choosing where to apply it from those same test years is selection after the fact, so test-year results are flattered. Iteration 25 also found that skipping low-volatility days and scaling size down in volatility each lowered the 30-day pass rate. The walk-forward year is the only check not used in that choice, and it has been viewed many times.
+
+**Pass criteria for the strategy, $50K account:**
+1. Test years: net profit positive with a daily t of at least 2.
+2. Still positive with t of at least 2 at double cost.
+3. Best-baseline 30-day pass rate at least 2 points above the iteration 25 benchmark (fixed size, all days, filter everywhere) at its best size.
+4. That pass rate beats the random-direction control by more than twice the simulation error.
+5. The size reduction earns its place: 30-day pass rate not lower than the same rule without it, each at its best baseline.
+6. Walk-forward year, at the baseline chosen on test years: 30-day pass rate above the control.
+
+**Trials:** 2 (the strategy, and the variant without the reduction; the no-filter variant is a decomposition), total 203.
