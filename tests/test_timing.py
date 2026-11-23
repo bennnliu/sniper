@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 from sniper.session_rule import SessionData, run_session
-from sniper.timing import run_flex
+from sniper.timing import apply_day_stop, run_flex
 
 
 def _sd(seed=0, days=80, n=390):
@@ -51,3 +51,18 @@ def test_pullback_enters_at_the_band_or_not_at_all():
     base = run_flex(sd, 0.0)
     pb = run_flex(sd, 0.0, pullback=True)
     assert 0 < len(pb) <= len(base)
+
+
+def test_day_stop_only_removes_or_shortens_trades():
+    sd = _sd(3)
+    base = pd.concat([run_flex(sd, 1.0, lookback=lb) for lb in (7, 14)], ignore_index=True)
+    st = apply_day_stop(base, sd.days, sd.px, 0.05, 1.0, n_set=2)
+    assert len(st) <= len(base) and (st["exit_reason"] == "day_stop").any()
+    wide = apply_day_stop(base, sd.days, sd.px, 50.0, 1.0, n_set=2)
+    assert len(wide) == len(base) and np.allclose(wide["net_pts"].sum(), base["net_pts"].sum())
+
+
+def test_first_entry_min_delays_entries():
+    sd = _sd(4)
+    late = run_flex(sd, 0.0, first_entry_min=60)
+    assert len(late) and (late["check_min"] >= 60).all()

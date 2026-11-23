@@ -16,6 +16,7 @@ def run_flex(sd: SessionData, cost_pts: float, lookback: int = 14, vm: float = 1
              entry_step: int = 30, exit_step: int = 30, exit_mode: str = "both",
              trail_k: float | None = None, target_k: float | None = None, breakeven_k: float | None = None,
              confirm_lag: int | None = None, pullback: bool = False, first30: bool = False,
+             first_entry_min: int | None = None,
              skip_days: set | None = None) -> pd.DataFrame:
     """Trade log for one setting (points of one contract).
 
@@ -26,6 +27,7 @@ def run_flex(sd: SessionData, cost_pts: float, lookback: int = 14, vm: float = 1
     confirm_lag  entry also needs price beyond the band this many minutes before the check
     pullback     enter with a limit at the band level, valid until the next entry check; no fill, no trade
     first30      only trades in the direction of the first half hour's move
+    first_entry_min  no new positions at checks earlier than this many minutes after the open
     After a stop or target, no re-entry in that direction until an entry check finds price back inside the band.
     """
     n = sd.n
@@ -110,6 +112,8 @@ def run_flex(sd: SessionData, cost_pts: float, lookback: int = 14, vm: float = 1
                     ok = (c[q] > ub[q]) if sgn == 1 else (c[q] < lb[q])
                 if ok and first30:
                     ok = t >= 30 and f30 == sgn
+                if ok and first_entry_min is not None:
+                    ok = t >= first_entry_min
                 new = sgn if ok else (0 if pos == -sgn else pos)
             elif t in xset or t in eset:
                 if pos == 1:
@@ -141,3 +145,36 @@ def run_flex(sd: SessionData, cost_pts: float, lookback: int = 14, vm: float = 1
             else:
                 close(n, "session_end")
     return pd.DataFrame(trades)
+
+
+def apply_day_stop(trades: pd.DataFrame, px_days: pd.DatetimeIndex, px: np.ndarray, k: float, cost_pts: float, n_set: int = 9, delay: int = 1) -> pd.DataFrame:
+    """Daily loss stop on the combined position of all settings. Once the set's result for the day, open positions
+    included and costs paid, is at or below -k x expected daily move x n_set (points), everything is closed
+    ``delay`` minutes later and nothing more is opened that day. Returns the changed trade log."""
+    pos_of = {d: i for i, d in enumerate(px_days)}
+    n = px.shape[1] - 1
+    half = cost_pts / 2
+    out = []
+    for day, g in trades.groupby("day", sort=False):
+        c = px[pos_of[day]]
+        dvol = g["dvol_pts"].iloc[0]
+        if not np.isfinite(dvol):
+            out.append(g); continue
+        eq = np.zeros(n + 1)
+        for dr, a, b, ep, gross in zip(g["dir"], g["fill"], g["exit_min"], g["entry_px"], g["gross_pts"]):
+            eq[a:b] += dr * (c[a:b] - ep) - half
+            eq[b:] += gross - cost_pts
+        h = np.nonzero(eq <= -k * dvol * n_set)[0]
+        if not h.size:
+            out.append(g); continue
+        s = min(int(h[0]) + delay, n)
+        g = g[g["fill"] < s].copy()
+        cutm = (g["exit_min"] > s).to_numpy()
+        if cutm.any():
+            for ix in g.index[cutm]:
+                dr, a, ep = g.at[ix, "dir"], int(g.at[ix, "fill"]), g.at[ix, "entry_px"]
+                path = dr * (c[a:s + 1] - ep)
+                g.at[ix, "exit_min"] = s; g.at[ix, "exit_px"] = c[s]; g.at[ix, "gross_pts"] = dr * (c[s] - ep); g.at[ix, "net_pts"] = dr * (c[s] - ep) - cost_pts
+                g.at[ix, "mae_pts"] = float(min(path.min(), 0)); g.at[ix, "mfe_pts"] = float(max(path.max(), 0)); g.at[ix, "exit_reason"] = "day_stop"; g.at[ix, "minutes_held"] = s - a
+        out.append(g)
+    return pd.concat(out, ignore_index=True)

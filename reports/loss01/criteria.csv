@@ -1,0 +1,89 @@
+id,key,method,criterion,result,evidence
+S2|1,S2,"Trailing stop, 0.5 daily moves (iteration 28)",1. Worst drawdown at least 15% shallower,FAIL,"$-15,790 against $-18,383 (+14%)"
+S2|2,S2,"Trailing stop, 0.5 daily moves (iteration 28)",2. Sum of losing days at least 10% smaller,PASS,"$-412,335 against $-473,980 (+13%)"
+S2|3,S2,"Trailing stop, 0.5 daily moves (iteration 28)",3. Worst day not worse,PASS,"$-4,064 against $-5,151"
+S2|4,S2,"Trailing stop, 0.5 daily moves (iteration 28)",4. Profit at least 90% of base and Sharpe higher,PASS,"$124,467 (98% of base), Sharpe 0.94 against 0.85"
+S2|5,S2,"Trailing stop, 0.5 daily moves (iteration 28)",5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-39,319 against $-44,073 (+11%); profit $72,906 against $74,000; Sharpe 0.55 against 0.49"
+S2|6,S2,"Trailing stop, 0.5 daily moves (iteration 28)",6. Drawdown shallower in both halves,FAIL,"to 2017: $-14,053 against $-18,383; from 2018: $-15,790 against $-13,895"
+S2|7,S2,"Trailing stop, 0.5 daily moves (iteration 28)","7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",PASS,loss limit hit 67.8% against 70.2%; 30-day pass 21.0% against 20.6% (simulated)
+S2|8,S2,"Trailing stop, 0.5 daily moves (iteration 28)","8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+N1|1,N1,Entry confirmed 5 minutes earlier (iteration 28),1. Worst drawdown at least 15% shallower,FAIL,"$-16,831 against $-18,383 (+8%)"
+N1|2,N1,Entry confirmed 5 minutes earlier (iteration 28),2. Sum of losing days at least 10% smaller,FAIL,"$-438,156 against $-473,980 (+8%)"
+N1|3,N1,Entry confirmed 5 minutes earlier (iteration 28),3. Worst day not worse,PASS,"$-4,841 against $-5,151"
+N1|4,N1,Entry confirmed 5 minutes earlier (iteration 28),4. Profit at least 90% of base and Sharpe higher,PASS,"$131,725 (104% of base), Sharpe 0.92 against 0.85"
+N1|5,N1,Entry confirmed 5 minutes earlier (iteration 28),5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-37,676 against $-44,073 (+15%); profit $85,101 against $74,000; Sharpe 0.59 against 0.49"
+N1|6,N1,Entry confirmed 5 minutes earlier (iteration 28),6. Drawdown shallower in both halves,FAIL,"to 2017: $-15,114 against $-18,383; from 2018: $-16,831 against $-13,895"
+N1|7,N1,Entry confirmed 5 minutes earlier (iteration 28),"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 68.8% against 70.2%; 30-day pass 20.2% against 20.6% (simulated)
+N1|8,N1,Entry confirmed 5 minutes earlier (iteration 28),"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+N3|1,N3,First half hour's direction only (iteration 28),1. Worst drawdown at least 15% shallower,PASS,"$-13,942 against $-18,383 (+24%)"
+N3|2,N3,First half hour's direction only (iteration 28),2. Sum of losing days at least 10% smaller,PASS,"$-382,844 against $-473,980 (+19%)"
+N3|3,N3,First half hour's direction only (iteration 28),3. Worst day not worse,PASS,"$-5,151 against $-5,151"
+N3|4,N3,First half hour's direction only (iteration 28),4. Profit at least 90% of base and Sharpe higher,PASS,"$118,755 (94% of base), Sharpe 0.87 against 0.85"
+N3|5,N3,First half hour's direction only (iteration 28),5. Criteria 1 and 4 hold at double cost,PASS,"drawdown $-34,338 against $-44,073 (+22%); profit $76,524 against $74,000; Sharpe 0.56 against 0.49"
+N3|6,N3,First half hour's direction only (iteration 28),6. Drawdown shallower in both halves,PASS,"to 2017: $-13,942 against $-18,383; from 2018: $-12,637 against $-13,895"
+N3|7,N3,First half hour's direction only (iteration 28),"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 69.1% against 70.2%; 30-day pass 18.9% against 20.6% (simulated)
+N3|8,N3,First half hour's direction only (iteration 28),"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+C1|1,C1,Confirmed entry + trailing stop 0.5,1. Worst drawdown at least 15% shallower,PASS,"$-14,547 against $-18,383 (+21%)"
+C1|2,C1,Confirmed entry + trailing stop 0.5,2. Sum of losing days at least 10% smaller,PASS,"$-376,318 against $-473,980 (+21%)"
+C1|3,C1,Confirmed entry + trailing stop 0.5,3. Worst day not worse,PASS,"$-4,125 against $-5,151"
+C1|4,C1,Confirmed entry + trailing stop 0.5,4. Profit at least 90% of base and Sharpe higher,PASS,"$128,159 (101% of base), Sharpe 1.02 against 0.85"
+C1|5,C1,Confirmed entry + trailing stop 0.5,5. Criteria 1 and 4 hold at double cost,PASS,"drawdown $-33,858 against $-44,073 (+23%); profit $82,680 against $74,000; Sharpe 0.66 against 0.49"
+C1|6,C1,Confirmed entry + trailing stop 0.5,6. Drawdown shallower in both halves,FAIL,"to 2017: $-11,731 against $-18,383; from 2018: $-14,547 against $-13,895"
+C1|7,C1,Confirmed entry + trailing stop 0.5,"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",PASS,loss limit hit 65.8% against 70.2%; 30-day pass 20.8% against 20.6% (simulated)
+C1|8,C1,Confirmed entry + trailing stop 0.5,"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+C2|1,C2,Confirmed entry + first half hour's direction,1. Worst drawdown at least 15% shallower,FAIL,"$-15,679 against $-18,383 (+15%)"
+C2|2,C2,Confirmed entry + first half hour's direction,2. Sum of losing days at least 10% smaller,PASS,"$-351,237 against $-473,980 (+26%)"
+C2|3,C2,Confirmed entry + first half hour's direction,3. Worst day not worse,PASS,"$-4,841 against $-5,151"
+C2|4,C2,Confirmed entry + first half hour's direction,4. Profit at least 90% of base and Sharpe higher,PASS,"$123,799 (98% of base), Sharpe 0.94 against 0.85"
+C2|5,C2,Confirmed entry + first half hour's direction,5. Criteria 1 and 4 hold at double cost,PASS,"drawdown $-29,707 against $-44,073 (+33%); profit $86,270 against $74,000; Sharpe 0.66 against 0.49"
+C2|6,C2,Confirmed entry + first half hour's direction,6. Drawdown shallower in both halves,FAIL,"to 2017: $-11,665 against $-18,383; from 2018: $-15,679 against $-13,895"
+C2|7,C2,Confirmed entry + first half hour's direction,"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 67.1% against 70.2%; 30-day pass 19.2% against 20.6% (simulated)
+C2|8,C2,Confirmed entry + first half hour's direction,"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+C3|1,C3,Confirmed entry + first half hour + trailing stop 0.5,1. Worst drawdown at least 15% shallower,PASS,"$-12,676 against $-18,383 (+31%)"
+C3|2,C3,Confirmed entry + first half hour + trailing stop 0.5,2. Sum of losing days at least 10% smaller,PASS,"$-303,125 against $-473,980 (+36%)"
+C3|3,C3,Confirmed entry + first half hour + trailing stop 0.5,3. Worst day not worse,PASS,"$-4,125 against $-5,151"
+C3|4,C3,Confirmed entry + first half hour + trailing stop 0.5,4. Profit at least 90% of base and Sharpe higher,PASS,"$120,428 (95% of base), Sharpe 1.04 against 0.85"
+C3|5,C3,Confirmed entry + first half hour + trailing stop 0.5,5. Criteria 1 and 4 hold at double cost,PASS,"drawdown $-24,086 against $-44,073 (+45%); profit $84,034 against $74,000; Sharpe 0.72 against 0.49"
+C3|6,C3,Confirmed entry + first half hour + trailing stop 0.5,6. Drawdown shallower in both halves,PASS,"to 2017: $-6,488 against $-18,383; from 2018: $-12,676 against $-13,895"
+C3|7,C3,Confirmed entry + first half hour + trailing stop 0.5,"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 63.7% against 70.2%; 30-day pass 18.4% against 20.6% (simulated)
+C3|8,C3,Confirmed entry + first half hour + trailing stop 0.5,"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+T1|1,T1,"Trailing stop, 0.35 daily moves",1. Worst drawdown at least 15% shallower,FAIL,"$-18,384 against $-18,383 (-0%)"
+T1|2,T1,"Trailing stop, 0.35 daily moves",2. Sum of losing days at least 10% smaller,PASS,"$-375,185 against $-473,980 (+21%)"
+T1|3,T1,"Trailing stop, 0.35 daily moves",3. Worst day not worse,PASS,"$-4,272 against $-5,151"
+T1|4,T1,"Trailing stop, 0.35 daily moves",4. Profit at least 90% of base and Sharpe higher,PASS,"$117,928 (93% of base), Sharpe 0.96 against 0.85"
+T1|5,T1,"Trailing stop, 0.35 daily moves",5. Criteria 1 and 4 hold at double cost,PASS,"drawdown $-36,996 against $-44,073 (+16%); profit $66,601 against $74,000; Sharpe 0.54 against 0.49"
+T1|6,T1,"Trailing stop, 0.35 daily moves",6. Drawdown shallower in both halves,FAIL,"to 2017: $-11,258 against $-18,383; from 2018: $-18,384 against $-13,895"
+T1|7,T1,"Trailing stop, 0.35 daily moves","7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",PASS,loss limit hit 63.3% against 70.2%; 30-day pass 22.8% against 20.6% (simulated)
+T1|8,T1,"Trailing stop, 0.35 daily moves","8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+T2|1,T2,"Trailing stop, 0.75 daily moves",1. Worst drawdown at least 15% shallower,FAIL,"$-17,458 against $-18,383 (+5%)"
+T2|2,T2,"Trailing stop, 0.75 daily moves",2. Sum of losing days at least 10% smaller,FAIL,"$-455,048 against $-473,980 (+4%)"
+T2|3,T2,"Trailing stop, 0.75 daily moves",3. Worst day not worse,PASS,"$-5,052 against $-5,151"
+T2|4,T2,"Trailing stop, 0.75 daily moves",4. Profit at least 90% of base and Sharpe higher,FAIL,"$118,161 (93% of base), Sharpe 0.83 against 0.85"
+T2|5,T2,"Trailing stop, 0.75 daily moves",5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-43,088 against $-44,073 (+2%); profit $65,916 against $74,000; Sharpe 0.46 against 0.49"
+T2|6,T2,"Trailing stop, 0.75 daily moves",6. Drawdown shallower in both halves,FAIL,"to 2017: $-17,458 against $-18,383; from 2018: $-14,220 against $-13,895"
+T2|7,T2,"Trailing stop, 0.75 daily moves","7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 70.7% against 70.2%; 30-day pass 19.8% against 20.6% (simulated)
+T2|8,T2,"Trailing stop, 0.75 daily moves","8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+D1|1,D1,"Daily loss stop, 0.5 daily moves",1. Worst drawdown at least 15% shallower,FAIL,"$-17,547 against $-18,383 (+5%)"
+D1|2,D1,"Daily loss stop, 0.5 daily moves",2. Sum of losing days at least 10% smaller,FAIL,"$-468,331 against $-473,980 (+1%)"
+D1|3,D1,"Daily loss stop, 0.5 daily moves",3. Worst day not worse,PASS,"$-3,759 against $-5,151"
+D1|4,D1,"Daily loss stop, 0.5 daily moves",4. Profit at least 90% of base and Sharpe higher,FAIL,"$114,810 (91% of base), Sharpe 0.79 against 0.85"
+D1|5,D1,"Daily loss stop, 0.5 daily moves",5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-41,796 against $-44,073 (+5%); profit $64,547 against $74,000; Sharpe 0.44 against 0.49"
+D1|6,D1,"Daily loss stop, 0.5 daily moves",6. Drawdown shallower in both halves,PASS,"to 2017: $-17,547 against $-18,383; from 2018: $-13,860 against $-13,895"
+D1|7,D1,"Daily loss stop, 0.5 daily moves","7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 69.5% against 70.2%; 30-day pass 19.9% against 20.6% (simulated)
+D1|8,D1,"Daily loss stop, 0.5 daily moves","8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+D2|1,D2,"Daily loss stop, 0.75 daily moves",1. Worst drawdown at least 15% shallower,FAIL,"$-17,268 against $-18,383 (+6%)"
+D2|2,D2,"Daily loss stop, 0.75 daily moves",2. Sum of losing days at least 10% smaller,FAIL,"$-477,363 against $-473,980 (-1%)"
+D2|3,D2,"Daily loss stop, 0.75 daily moves",3. Worst day not worse,PASS,"$-4,005 against $-5,151"
+D2|4,D2,"Daily loss stop, 0.75 daily moves",4. Profit at least 90% of base and Sharpe higher,FAIL,"$117,327 (93% of base), Sharpe 0.79 against 0.85"
+D2|5,D2,"Daily loss stop, 0.75 daily moves",5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-42,410 against $-44,073 (+4%); profit $65,548 against $74,000; Sharpe 0.44 against 0.49"
+D2|6,D2,"Daily loss stop, 0.75 daily moves",6. Drawdown shallower in both halves,PASS,"to 2017: $-17,268 against $-18,383; from 2018: $-13,804 against $-13,895"
+D2|7,D2,"Daily loss stop, 0.75 daily moves","7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 70.1% against 70.2%; 30-day pass 20.4% against 20.6% (simulated)
+D2|8,D2,"Daily loss stop, 0.75 daily moves","8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met
+E1|1,E1,No entries before 10:30 AM ET,1. Worst drawdown at least 15% shallower,FAIL,"$-19,787 against $-18,383 (-8%)"
+E1|2,E1,No entries before 10:30 AM ET,2. Sum of losing days at least 10% smaller,PASS,"$-424,436 against $-473,980 (+10%)"
+E1|3,E1,No entries before 10:30 AM ET,3. Worst day not worse,PASS,"$-4,947 against $-5,151"
+E1|4,E1,No entries before 10:30 AM ET,4. Profit at least 90% of base and Sharpe higher,FAIL,"$107,855 (85% of base), Sharpe 0.79 against 0.85"
+E1|5,E1,No entries before 10:30 AM ET,5. Criteria 1 and 4 hold at double cost,FAIL,"drawdown $-43,126 against $-44,073 (+2%); profit $60,547 against $74,000; Sharpe 0.44 against 0.49"
+E1|6,E1,No entries before 10:30 AM ET,6. Drawdown shallower in both halves,FAIL,"to 2017: $-19,787 against $-18,383; from 2018: $-12,373 against $-13,895"
+E1|7,E1,No entries before 10:30 AM ET,"7. $50K Combine at 9 MNQ: loss limit hit less often, 30-day pass not lower",FAIL,loss limit hit 69.3% against 70.2%; 30-day pass 19.2% against 20.6% (simulated)
+E1|8,E1,No entries before 10:30 AM ET,"8. Walk-forward year: drawdown not deeper, Sharpe not lower",NOT CHECKED,development criteria not all met

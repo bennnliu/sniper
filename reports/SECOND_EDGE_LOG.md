@@ -708,3 +708,38 @@ Also reported for every method: average win, average loss, win rate, profit fact
 7. $50K Combine at 9 MNQ (simulated, days from 2016 to October 2024): loss limit hit less often and 30-day pass rate not lower.
 8. Then the walk-forward year (seen many times): drawdown not deeper and Sharpe not lower.
 The three single methods from iteration 28 are shown against the same criteria for reference; they were chosen for this list after their results were seen, so they are not fresh tests.
+
+### Iteration 29 result: no method met all the criteria; two came within one. Walk-forward year not opened.
+
+Development data (2011 to October 2024), one set (up to 9 MNQ), costs on. Measured unless marked simulated. Files: `reports/loss01/methods.csv`, `reports/loss01/criteria.csv`. Code: `research/loss01.py`, `sniper/timing.py`.
+
+| Method | Profit | Sharpe | Worst drawdown | Sum of losing days | Worst day | Profit, double cost | Drawdown, double cost | Loss limit hit (sim.) | 30-day pass (sim.) | Criteria met |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Base rule | $126,711 | 0.85 | −$18,383 | −$473,980 | −$5,151 | $74,000 | −$44,073 | 70.2% | 20.6% | |
+| C1 confirmed entry + trail 0.5 | $128,159 | 1.02 | −$14,547 | −$376,318 | −$4,125 | $82,680 | −$33,858 | 65.8% | 20.8% | 6 of 7 |
+| C2 confirmed entry + first half hour | $123,799 | 0.94 | −$15,679 | −$351,237 | −$4,841 | $86,270 | −$29,707 | 67.1% | 19.2% | 4 of 7 |
+| C3 all three | $120,428 | 1.04 | −$12,676 | −$303,125 | −$4,125 | $84,034 | −$24,086 | 63.7% | 18.4% | 6 of 7 |
+| T1 trail 0.35 | $117,928 | 0.96 | −$18,384 | −$375,185 | −$4,272 | $66,601 | −$36,996 | 63.3% | 22.8% | 5 of 7 |
+| T2 trail 0.75 | $118,161 | 0.83 | −$17,458 | −$455,048 | −$5,052 | $65,916 | −$43,088 | 70.7% | 19.8% | 1 of 7 |
+| D1 daily loss stop 0.5 | $114,810 | 0.79 | −$17,547 | −$468,331 | −$3,759 | $64,547 | −$41,796 | 69.5% | 19.9% | 2 of 7 |
+| D2 daily loss stop 0.75 | $117,327 | 0.79 | −$17,269 | −$477,363 | −$4,005 | $65,548 | −$42,410 | 70.1% | 20.4% | 2 of 7 |
+| E1 no entries before 10:30 | $107,855 | 0.79 | −$19,787 | −$424,436 | −$4,947 | $60,547 | −$43,126 | 69.3% | 19.2% | 2 of 7 |
+| Reference: trail 0.5 alone | $124,467 | 0.94 | −$15,790 | −$412,335 | −$4,064 | $72,906 | −$39,319 | 67.8% | 21.0% | 4 of 7 |
+| Reference: confirmed entry alone | $131,725 | 0.92 | −$16,831 | −$438,156 | −$4,841 | $85,101 | −$37,676 | 68.8% | 20.2% | 2 of 7 |
+| Reference: first half hour alone | $118,755 | 0.87 | −$13,942 | −$382,844 | −$5,151 | $76,524 | −$34,338 | 69.1% | 18.9% | 6 of 7 |
+
+Combine columns: $50K at 9 MNQ, 4,000 simulated attempts from 2016 to October 2024 days; standard error about 0.7 points; the coin-flip control passes about 13% in 30 days. "Loss limit hit" is over the whole attempt.
+
+**Verdicts (all eight REJECT under the criteria as written):**
+- **C1, confirmed entry + trailing stop 0.5: 6 of 7.** Losing days sum 21% smaller, drawdown 21% shallower, worst day 20% better, profit and Sharpe higher, holds at double cost, loss limit hit less often with the pass rate unchanged. Failed criterion 6: from 2018 its drawdown was −$14,547 against −$13,895 for the base rule (5% deeper), while to 2017 it was 36% shallower.
+- **C3, all three: 6 of 7.** The largest loss reduction of anything tested: losing days sum 36% smaller, drawdown 31% shallower (45% at double cost), shallower in both halves. Failed criterion 7: the 30-day pass rate fell from 20.6% to 18.4% (simulated, about 2.4 standard errors), because it trades on fewer days and so reaches the target more slowly, even though it hits the loss limit less often (63.7% against 70.2%).
+- **T1, trail 0.35: 5 of 7.** Best Combine numbers (loss limit 63.3%, 30-day pass 22.8%), but its worst drawdown is unchanged and deeper from 2018.
+- **Daily loss stop (D1, D2): rejected clearly.** It caps the worst day (−$3,759) but does not reduce the sum of losing days at all and costs 7 to 9% of profit. Days that are down half a daily move recover often enough that stopping loses as much as it saves. This agrees with Kaminski and Lo's condition: a stop only helps when losses persist, and within the day they do not.
+- **T2 and E1: rejected.** A wide trail does almost nothing; skipping the 10:00 check gives up 15% of profit and deepens the drawdown.
+
+**What the evidence says about minimising loss:**
+1. Losses fall when bad trades are avoided at entry (confirmation, first half hour's direction) and when a trade that has turned is cut by a trail about half a daily move wide. The three effects add: each alone cuts the sum of losing days by 8 to 19%, together by 36%.
+2. Losses do not fall from account-level stops, later starts, or faster exit checks (iteration 28). Those cut winners as much as losers.
+3. Lower loss did not turn into a higher 30-day Combine pass rate. Every loss-reducing method also reduced gains (winning days sum fell 16 to 29%), so the account breaches less but also reaches the target less quickly.
+
+**My reading and where I disagree with my own bar:** by the rule written before the test, nothing is adopted and the walk-forward year stays closed. C1's single failure is a 5% drawdown difference in one half, which is inside what I would call noise, and C3's single failure is on pass speed, which is not a loss measure. If the objective is strictly "lose less", C3 is the answer on development data and C1 is the version that gives up nothing. Opening the walk-forward year for them would be a change to the bar, which is Ben's decision, and that year has been looked at many times so a pass there is weak evidence either way. Trials: 226. Research, not financial advice.
