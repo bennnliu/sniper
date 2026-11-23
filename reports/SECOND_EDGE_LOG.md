@@ -506,3 +506,23 @@ Unfiltered rule on New York high-volatility days: test years +$77,018 per set, S
 **Side finding, not adopted:** the two simple models rank trades slightly better than chance, and the logistic regression met all six criteria (worst drawdown −$6,659 against −$14,284; pass with no time limit 49% against 34%, simulated). It is not promoted because (a) it was a comparison model, not the pre-declared primary, so choosing it now is selection after the fact; (b) t 2.18 is before correction for 195 trials; (c) kept beat skipped in only 4 of 8 test years, with the gain concentrated in 2022 and 2024; (d) the same family failed walk-forward in iteration 11. Its largest weights: straightness of the move since the open (+), move in the last 30 minutes (−), distance past the band (+), overnight gap in the trade's direction (+), the set's closed result so far today (−).
 
 **Trials: 195.** Next candidate if Ben wants it: pre-register the logistic filter as its own hypothesis (LOGIT-01) and judge it only on data it has not seen, which means paper tracking forward, since the holdout and walk-forward years are used.
+
+---
+
+## Iteration 25 (23 Nov 2026): SIZEVOL-01, volatility and contract size with the logistic filter, all New York hours
+
+**Scope set by Ben (23 Nov 2026, 1:49 AM ET):** use the logistic regression as the filter; all New York trading hours and all volatility environments (not only high-volatility days); vary contract size and volatility; find out whether the two are related; compare the environments.
+
+**Set-up, fixed before any result was seen.**
+- *Filter (LOGIT-ALL, 1 trial):* the same logistic regression, 33 features, skip threshold and walk-forward protocol as iteration 24, but trained on all New York trades instead of high-volatility trades only. Test years 2016 to October 2024 out-of-fold; walk-forward year scored once (sixth use for this family). Note: the iteration 24 logistic was a side finding, not an adopted filter, and the all-days logistic in iteration 11 failed walk-forward. This iteration uses the filter because Ben asked for it; it does not promote it.
+- *Environments:* low, middle and high volatility by the day's expected move over its 250-day median, with the cuts fixed in iteration 24 (thirds of development days; high is above 1.2828). Known before the open. A second, descriptive view sorts days by expected move in dollars.
+- *Size grid:* MNQ held when every setting is in. $50K: 3, 6, 9, 12, 18, 27, 36, 50. $100K: 9, 18, 27, 36, 54, 72, 100. $150K: 9, 18, 27, 36, 54, 81, 108, 150. Capped at the Topstep position limit.
+
+**Hypothesis.**
+- *H1 (risk):* the dollar swing of one set rises in proportion to the expected daily move, so the contract count that maximises the Combine pass rate falls as volatility rises. *Test:* in a Monte Carlo that draws days from one environment only, the best size on high-volatility days is smaller than on low-volatility days for every account, and daily standard deviation per set rises across the three environments.
+- *H2 (edge):* the edge per unit of risk is higher in high volatility (iteration 24 found Sharpe 1.5 there against 0.85 on all days), so at its own best size the high-volatility environment passes more often than the low one.
+- *H3 (policy, the decision that matters):* over the full calendar, a size set each morning as a fixed dollar risk divided by the expected move (constant-risk sizing) passes the Combine within 30 trading days more often than the best fixed size. *Pass bar:* at least 2 percentage points better than the best fixed size on test years, larger than twice the Monte Carlo standard error, also better at double cost, and not worse on the walk-forward year. *Prior evidence against:* constant-risk sizing failed in iteration 22 on the unfiltered rule.
+- *Policies tested (5 trials):* fixed size; constant-risk; fixed size on high-volatility days only; constant-risk on high-volatility days only; fixed size on middle and high days (skip low). Each over a grid of its one parameter, compared at its best value and with the full curve shown. Choosing the best grid point in-sample flatters every policy equally; the walk-forward year uses the parameter chosen on test years.
+- *Why it may fail:* the 30-day limit rewards variance, so shrinking size on volatile days can remove the days that pass the Combine. The random-direction control at the same size is reported next to every pass rate.
+
+**Trials:** 6 (1 filter, 5 policies), total 201.
