@@ -464,3 +464,28 @@ Ben selected ENS-01 as the strategy to improve. This run adds no hypothesis and 
 - **Dollar risk has tripled:** daily standard deviation of one set $773 over development, $2,312 in the walk-forward year (NQ near 22,000). Monte Carlo from all development days understates today's risk at a fixed contract count. Drawn from walk-forward days, 9 MNQ on $50K passes 6.3% against 13.9% for the random control (simulated).
 - **Structure of the edge:** trades held to the close win 79% and earn everything; trades that come back inside the band lose. Days on which all nine settings are in the market earn all the profit. The best 5% of traded days supply 55% of gross winnings. New York only; Asia and London lose in both samples.
 - **News days:** payrolls days, skipped by default, averaged +$177 per set (t 2.3) in development.
+
+---
+
+## Iteration 24 (23 Nov 2026): META-02, a deep-learning filter for losing trades on New York high-volatility days
+
+**Scope set by Ben (23 Nov 2026):** all testing is now on New York high-volatility days only. A day is high-volatility when its expected daily move (prior close times 20-day volatility), divided by its trailing 250-day median, is above 1.2828. That number is the upper-third cut on development data and is fixed from here on. It is known before the day starts.
+
+**Winners against losers, development data, in-sample, descriptive (research/dl01_winlose.py; 7,680 trades on 752 days; 38.2% win).** The 33 entry-time features were fixed before this table was made.
+- Nothing known at entry separates winners from losers well. The best single features have an AUC of 0.55 (0.50 is a coin): the noise width, minutes since the open, depth of the last hour's pullback, volume against normal, and direction (longs win more often).
+- What separates them is known only after entry: winners are held 186 minutes on average and 72% of them reach the close; losers are held 66 minutes and 10% reach the close (AUC 0.79 to 0.88).
+- Reading: with the same entry conditions, the outcome is decided by whether the day keeps trending after the entry. The filter has to forecast that from the entry-time state, and the single-feature evidence says the forecastable part is small.
+
+**Prior evidence:** META-01 in iteration 11 (logistic and boosted trees, 15 features, all volatility regimes) failed its walk-forward check.
+
+**META-02 hypothesis, written before any model was trained.** *Claim:* a neural network that reads the last 60 one-minute price changes before the entry (1-D convolutions) together with 33 entry-time features can score each New York high-volatility trade so that the lowest-scored third are net losers, and skipping them raises profit and the Combine pass rate. *Why it might work:* the shape of the path into the breakout (steady grind against spike, depth of pullbacks) is not captured by the summary features that failed in META-01, and losing breakouts are the ones that reverse quickly. *Why it may fail:* the edge is a few large trend days; a win/loss label treats a $20 win like a $600 win, so the filter can remove small losers and large winners together. 7,680 trades is small for a network. Trades of the nine settings on one day are near-copies, so the effective sample is about 750 days.
+
+*Models (4 trials, total 195):* logistic regression and boosted trees on the table (baselines), a three-layer network on the table, and the convolutional network (primary). Fixed architecture, no tuning. *Protocol:* walk-forward by calendar year from 2016; train on earlier years only; last 15% of training days held back for early stopping and for the skip threshold (33rd percentile of held-back scores). The walk-forward year (November 2024 to October 2025) is scored once by a model trained on all development years; this is at least its fifth use for this rule family.
+
+*Adopt only if all of these hold for the primary model on the out-of-fold development trades (2016 to October 2024):*
+1. AUC at least 0.53, with the 95% interval from resampling whole days above 0.50.
+2. Skipped trades lose money on average, and kept minus skipped has a day-clustered t of at least 2.
+3. The filtered set earns at least as many dollars per day as the unfiltered set, has a higher Sharpe ratio, and its total beats the 95th percentile of random filters that skip the same share of trades.
+4. Conditions 2 and 3 also hold at double cost.
+5. The 30-day Combine pass rate ($50K, one set) is not lower than unfiltered (simulated).
+6. In the walk-forward year the kept trades average more than the skipped ones.
