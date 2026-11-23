@@ -45,12 +45,15 @@ Iteration 11 (reports/iter_11.md): Ben's new goals applied (sessions tested sepa
 
 Iteration 12 (reports/iter_12.md): search for a second unrelated edge on ES/NQ bars. Overnight and session drift, day/night reversal, turn of month, London fade and NQ-over-ES continuation all fail (25 tests, news days skipped, micro costs). 130 trials. Conclusion: ES/NQ bars are exhausted; an unrelated edge needs another market.
 
+Iterations 13-19 (reports/SECOND_EDGE_LOG.md, one running log; 23 Nov 2026): research loop for a second edge that complements the breakout rule. 45 tests, none succeeded, 175 trials in total. Real but below cost: overnight NQ/ES continuation (t 4.5), one-minute lead-lag. Near miss: pre-holiday long in New York hours (MES t 2.67, 7 days a year). Correction: with a hard stop at 30 trading days, fixed 8 MNQ passes about 15% against 10% for random direction (iteration 11's 28.9% counted passes after day 30). No filter on the first edge helps a 30-day Combine. The walk-forward year was not used again (no check was triggered); it stays at three uses for this rule.
+
 ## Next actions
 
-1. Waiting on Ben: approve buying 1-minute bars for other Topstep-permitted markets (CL, GC, RTY, ZN, 6E; $42.76 from 2018 or $80.02 full history) to test the frozen breakout rule there.
-2. Before that test: read Topstep's "Prohibited Conduct" page for the restrictions on micro contracts, and add the products and fees to `topstep_rules.yaml`.
+1. Ben asked (22 Nov evening) for the loop to continue until a success or until he stops it. Next ideas: parameter/instrument ensemble of the breakout rule, full dynamic-programming sizing, weekday effects, and anything unlocked by new data.
+2. Waiting on Ben: other-markets data purchase ($25.74 to $80.02); allowing cdn.cboe.com and fred.stlouisfed.org in the environment network settings (or uploading VIX CSVs) for free volatility data.
+3. Before any other-markets test: read Topstep's "Prohibited Conduct" page for micro-contract restrictions.
 
 ## Open questions for Ben
 
-1. The data purchase above.
+1. The data purchase and the network allowance above.
 2. Confirm on Databento's billing page that the free credit covered the spend so far (estimated $114.86 in total).

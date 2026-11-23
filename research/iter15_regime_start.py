@@ -19,7 +19,6 @@ def main():
     wf = "--wf" in sys.argv
     dd = stream(WALK_FORWARD_END if wf else DEV_END, news())
     dev_end = DEV_END.tz_localize(None)
-    rel = dd["dvol_pts"] / dd["net_pts"].index.map(lambda d: 1.0)  # placeholder to keep index
     rv = dd["dvol_pts"] / (dd["dvol_pts"].rolling(250, min_periods=120).median())
     med_dvol = float((dd["dvol_pts"][dd.index < dev_end] * 2).median())
     n = len(dd)

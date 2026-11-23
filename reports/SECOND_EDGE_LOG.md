@@ -263,3 +263,46 @@ Pass rules as before: t at least 3 after micro costs for trades; t at least 2 on
 **VOL-05. Skip the breakout rule after a quiet overnight session.** *Claim:* when the overnight range (18:00 to 08:30 CT) divided by the expected daily move is in the bottom third of its trailing 250 days, the New York session will be quiet too, the dealer-hedging mechanism behind intraday momentum is not active (Gao et al. 2018; Baltussen et al. 2021), and the rule's breakouts are noise. Standing aside on those days improves the first edge. *Why it fits:* it is a same-morning filter known at 08:30 CT that removes the days on which the first edge has no reason to work. It differs from the regime filter that failed in iteration 15, which used a 20-day average; this uses the night just ended.
 *Honest status of the evidence:* the −2.27 was found while testing the opposite idea, after 170 trials, so by itself it is worth little. The test that counts is out of sample.
 *Tests (3 trials):* (1) development data: the difference must have the same sign before and after 2018, and the filtered rule must have a higher daily t-statistic; (2) 30-day pass rate at 8 MNQ, filtered against unfiltered, with random-direction controls; (3) one check on the walk-forward year, fixed in advance: days kept must average more than days skipped, and the kept total must be at least the unfiltered total. This is the walk-forward year's fifth use for this rule. *Adopt only if all three hold.*
+
+### Results (measured on development data; pass rates simulated)
+
+| Measure | All days | Quiet nights skipped |
+|---|---|---|
+| Mean result on quiet-night days / other days (daily-move units) | −0.008 / +0.050 | difference t 2.05 |
+| Difference before 2018 / from 2018 | +0.123 / **+0.008** | |
+| Daily t-statistic of the rule | 2.19 | 2.57 |
+| Dollars per MNQ over the period | $13,115 | $10,560 |
+| Pass within 30 days, 8 MNQ (random control) | 17.7% (11.7%) | 11.9% (9.3%) |
+| Pass within 30 days, 12 MNQ (random control) | 17.5% (12.4%) | 12.8% (10.4%) |
+
+**VOL-05: FAIL.** Test 1 passes only on paper: the whole difference comes from 2011-2017, when the rule did not work anyway. Since 2018, the period in which the first edge exists, quiet nights are no worse (+0.008, negative in four of seven years). Test 2 fails outright: skipping a third of the trading days cuts the 30-day pass rate from 17.7% to 11.9%, because the filter removes chances to reach the target and, in dollars, removes profit. The walk-forward check was not run, so that year was not used again.
+
+(The all-days pass rate here is 17.7%, against 14.7% in iteration 13, because this sample starts later: the filter needs 250 days of history.)
+
+**Iteration 19: 2 trials. Running total 175. Verdict: KILL.**
+
+---
+
+## Where the loop stands after iteration 19
+
+| Iteration | Idea | Trials | Total | Verdict |
+|---|---|---|---|---|
+| 13 | Same-half-hour pattern; expiration-day filter; goal-based sizing | 11 | 141 | All fail |
+| 14 | FOMC-cycle weeks; pre-holiday days | 12 | 153 | Fail (pre-holiday t 2.67, near miss, 7 days a year) |
+| 15 | Start attempts only in volatile regimes | 2 | 155 | Fail |
+| 16 | NQ breakouts confirmed by ES | 2 | 157 | Fail (right sign, t 0.76) |
+| 17 | NQ against ES over days | 6 | 163 | Real overnight (t 4.5), below cost |
+| 18 | Backlog: lead-lag, flow imbalance, prior-day levels, overnight compression | 10 | 173 | Fail or below cost |
+| 19 | Skip days after a quiet night | 2 | 175 | Fail |
+
+**No test has succeeded.** Three things are now established with some confidence:
+
+1. **Everything real in these bars is smaller than a micro contract's cost.** Five separate effects pass t ≥ 3 before costs (5-minute reversal, intraday NQ/ES reversion, 1-2 AM drift, overnight NQ/ES continuation, one-minute lead-lag) and none comes within a factor of three of the cost.
+2. **Filters on the first edge do not help a 30-day Combine.** Every filter tried (news, expiration, volatility regime, ES confirmation, quiet nights, the ML model) either had no effect or reduced the pass rate by removing trading days. With a deadline, fewer trades is a cost in itself.
+3. **The first edge inside a strict 30 trading days is worth about 5 points of pass rate** (roughly 15% against 10% for random direction at 8 MNQ, simulated). Iteration 11's 28.9% included attempts that passed after day 30.
+
+**Where I disagree with the instruction to loop until success.** With 175 trials on the same two correlated instruments, a "success" at t ≥ 3 is now more likely to be luck than not, unless it also survives data it has never seen. Only one unseen year remains for ES (the unbought holdout) and none for NQ. Continuing to mine the same bars will eventually produce a pass, and that pass would be the least trustworthy result of the project. The loop continues as instructed, but from here each new idea needs either a mechanism that predicts something the data have not already shown, or data the loop has not seen.
+
+**What would open new ground (none costs money except the first):**
+- Other markets (the open decision: $25.74 to $80.02).
+- Free daily data that this environment's network policy blocks: Cboe VIX history and FRED rates. Every peer-reviewed explanation of intraday momentum runs through option dealers' hedging, and implied volatility is the cheapest window onto it. Allowing `cdn.cboe.com` and `fred.stlouisfed.org` in the environment's network settings, or uploading the CSV files, would make those tests possible.

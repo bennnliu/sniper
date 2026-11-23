@@ -129,3 +129,10 @@ it12-ON-03_NY_fades_overnight_move-MNQ,2026-11-22,539b12f,iter12,1,125,"mean -1.
 "it12-CAL-03_other_days,_OVERNIGHT_(control)-MNQ",2026-11-22,539b12f,iter12,1,128,"control, first logged with a sign bug; corrected: t(vu) -0.51 (MES) / +0.14 (MNQ) -> FAIL"
 it12-FADE-01_London_breakout_fade-MNQ,2026-11-22,539b12f,iter12,1,129,"mean -1.19 pts, t(vu) -6.33, n 2626, years+ 13% -> FAIL"
 it12-RV-02,2026-11-22,539b12f,iter12,1,130,"IC +0.039 t +2.17; net -3.53 bp (cost 4.49), t -8.20"
+it13-PERIOD-01/CAL-04/GOAL-01,2026-11-23,2d0235f,it13,11,141,all fail; hard 30-day pass of fixed 8 MNQ is 14.7% vs control 9.7%
+it14-CYCLE-01/HOL-01,2026-11-23,2d0235f,it14,12,153,CYCLE fails; HOL-01 NY MES t 2.67 (below 3)
+it15-VOL-01-start-rule,2026-11-23,2d0235f,it15,2,155,high-vol starts 13.1% vs low 16.5% -> FAIL
+it16-CONF-01,2026-11-23,2d0235f,it16,2,157,t diff 0.76 -> FAIL
+it17-PAIR-01,2026-11-23,2d0235f,it17,6,163,"overnight IC +0.089 t 4.54, gross 1.5 bp vs 4.5 bp cost -> not tradable"
+it18-backlog LEADLAG-01/TOX-02/MR-05/VOL-02,2026-11-23,2d0235f,it18,10,173,all fail or not tradable
+it19-VOL-05,2026-11-23,2d0235f,it19,2,175,"dev t diff 2.05, nothing since 2018, pass rate falls -> FAIL; WF not run"

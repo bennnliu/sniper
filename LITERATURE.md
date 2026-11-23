@@ -219,3 +219,7 @@ Requested by Ben after 60 trials found nothing. Each source below was fetched on
 - Zhang and Hua, "Market Predictability Before the Closing Bell Rings" (*Risks* 12(11), 2024): SPY and QQQ last-half-hour predictors, which the authors report have diminished; overlaps IMOM-01 to 03, already failed here.
 - Da, Filippou and co-authors, "Intraday Option Return Predictability" (2026): about single-stock option returns.
 - Not retrieved (site refused): "Cross-Market Intraday Time-Series Momentum" (SSRN 4651331); Bahcivan, "Day and Night Expected Returns Under Overnight Information Shocks" (SSRN 5240716).
+
+## Third literature pass (23 Nov 2026)
+
+Sources, read status and claims for iterations 13 to 19 are tabled inside `reports/SECOND_EDGE_LOG.md` under each iteration: Heston-Korajczyk-Sadka (JF 2010), Browne (AAP 1999), Golez-Jackwerth (JFE 2012), Rosa (JFM 2022), Huang et al. (JBF 2023), Cieslak-Morse-Vissing-Jorgensen (JF 2019), Ariel (JF 1990), Ko-Yang (CFR 2024), and three working papers marked as not peer reviewed.
