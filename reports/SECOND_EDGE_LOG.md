@@ -130,3 +130,35 @@ Our own data agree: the breakout rule's t-statistic by volatility tercile is 0.7
 **VOL-01 (as a start rule). Begin Combine attempts only when volatility is high.** *Claim:* an attempt started on a day when the trailing 20-day volatility is above its trailing 250-day median passes within 30 trading days more often than one started when it is below, by at least 10 points, with the size scaled so that every attempt risks the same share of the loss limit. *Why it fits the first edge:* it adds no new signal. The trader chooses when to pay for an attempt, and the mechanism behind the first edge (dealer hedging) is only active in volatile markets, so attempts should be bought only then. This changes "accounts needed" in Ben's measure without changing the rule. *Why it may fail:* volatility regimes end; a start in a volatile month can run into a calm one. And volatile periods have fatter tails against a fixed loss limit.
 *Test:* every development day is a possible start. Run the actual following 30 trading days (real history, not shuffled) through the Combine rules. Two sizings fixed in advance: 8 MNQ, and volatility-scaled contracts = 8 × (median expected daily move ÷ today's expected daily move), set each day. Compare starts in the high regime with starts in the low regime, each against a random-direction control (average of 20 random draws). 2 trials. Windows overlap heavily, so the standard error is estimated from non-overlapping windows.
 *Adopt only if* high-regime starts pass at least 10 points more often than low-regime starts and at least 10 points above their own random control, on development data, and the same direction shows on the walk-forward year (fifth use of that year for this rule, stated plainly).
+
+### Results (simulated on real 30-day windows of development data)
+
+| Sizing | Start in high volatility | Start in low volatility | All starts |
+|---|---|---|---|
+| Fixed 8 MNQ: pass within 30 days (random control) | 13.1% (8.4%) | 16.5% (8.6%) | 14.5% (8.5%) |
+| Volatility-scaled: pass within 30 days (random control) | 3.7% (2.7%) | 8.8% (3.8%) | 5.8% (3.2%) |
+
+Standard errors are 4 to 6 points because 30-day windows overlap.
+
+**VOL-01 as a start rule: FAIL.** Starting in a volatile regime does not raise the pass rate; it is slightly lower (13.1% against 16.5%, not a significant difference). The edge per day is larger in volatile markets, but so are the swings against a fixed $2,000 loss limit, and the two cancel. The walk-forward check was not run. Volatility-scaled sizing keyed to the long-run median trades too small to reach the target in 30 days.
+
+This run on real history also confirms the corrected figure from iteration 13: fixed 8 MNQ passes within 30 trading days about 14.5% of the time, against 8.5% for random direction.
+
+**Iteration 15: 2 trials. Running total 155. Verdict: KILL.**
+
+---
+
+## Iteration 16
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Our own RV-01 result (iteration 3) | Measured | — | The NQ/ES spread reverts within the session (IC −0.018, t −4.8, 80% of years). Too small to trade by itself. |
+| Pitkäjärvi, Suominen and Vaittinen, "Cross-Asset Signals and Time Series Momentum", *Journal of Financial Economics* 136(1), 2020 | Peer reviewed | Citation only, not read this session | Trend signals confirmed by a related market predict better than a market's own trend alone (monthly, bonds and equities). |
+| Hasbrouck, "Intraday Price Formation in U.S. Equity Index Markets", *Journal of Finance* 58(6), 2003 | Peer reviewed | Citation only | Index price discovery happens mostly in the E-mini futures. |
+
+### Hypothesis (written before testing)
+
+**CONF-01. Breakouts confirmed by ES continue; NQ-only breakouts fade.** *Claim:* an NQ breakout entry is better when ES is also outside its own noise area in the same direction at that check. When only NQ has broken out, the move is a tech-specific move against the broad market, and the measured tendency of the NQ/ES spread to revert works against the trade. *Why it fits the first edge:* it uses information the rule does not have (a second market) to remove the entries that our own data say should fail. It is the first filter in this project built from a relationship already measured as real (t −4.8) and not from the trade log. It was not among the features of the failed ML filter, which saw NQ only. *Why it may fail:* ES and NQ are 0.9 correlated, so nearly every NQ breakout may be confirmed and the filter would remove almost nothing.
+*Test:* for each trade of the frozen rule (NQ, New York, MNQ costs, news days skipped), compute the ES confirmation score = ES's signed move from its open at the entry check ÷ ES's 14-day noise width at that time. Confirmed means the score is at least 1. Compare the mean result in daily-move units of confirmed and unconfirmed trades (1 trial), then the daily results of the rule taking confirmed trades only (1 trial).
+*Adopt only if* confirmed minus unconfirmed has t at least 2 with the same sign before and after 2018, the filtered rule's 30-day pass rate at 8 MNQ rises by at least 3 points, and on the walk-forward year the kept trades do better than the skipped ones and the kept total is at least the unfiltered total (fifth use of that year for this rule).

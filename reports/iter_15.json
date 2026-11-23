@@ -1,0 +1,56 @@
+[
+ {
+  "data": "DEV",
+  "sizing": "fixed 8 MNQ",
+  "start_regime": "high",
+  "starts": 1616,
+  "pass30": 0.13056930693069307,
+  "se": 0.04628071912373477,
+  "control": 0.08415841584158416
+ },
+ {
+  "data": "DEV",
+  "sizing": "fixed 8 MNQ",
+  "start_regime": "low",
+  "starts": 1177,
+  "pass30": 0.16482582837723025,
+  "se": 0.05941127292603697,
+  "control": 0.08585386576040781
+ },
+ {
+  "data": "DEV",
+  "sizing": "fixed 8 MNQ",
+  "start_regime": "all",
+  "starts": 2793,
+  "pass30": 0.14500537056928034,
+  "se": 0.03651171752929742,
+  "control": 0.08487289652703187
+ },
+ {
+  "data": "DEV",
+  "sizing": "volatility-scaled",
+  "start_regime": "high",
+  "starts": 1616,
+  "pass30": 0.03650990099009901,
+  "se": 0.025762678915472653,
+  "control": 0.027320544554455446
+ },
+ {
+  "data": "DEV",
+  "sizing": "volatility-scaled",
+  "start_regime": "low",
+  "starts": 1177,
+  "pass30": 0.08836023789294817,
+  "se": 0.045447266215616,
+  "control": 0.03827527612574341
+ },
+ {
+  "data": "DEV",
+  "sizing": "volatility-scaled",
+  "start_regime": "all",
+  "starts": 2793,
+  "pass30": 0.058360186179735055,
+  "se": 0.02430856189020467,
+  "control": 0.03193698532044397
+ }
+]
