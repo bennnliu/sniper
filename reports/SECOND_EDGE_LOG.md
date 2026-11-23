@@ -306,3 +306,27 @@ Pass rules as before: t at least 3 after micro costs for trades; t at least 2 on
 **What would open new ground (none costs money except the first):**
 - Other markets (the open decision: $25.74 to $80.02).
 - Free daily data that this environment's network policy blocks: Cboe VIX history and FRED rates. Every peer-reviewed explanation of intraday momentum runs through option dealers' hedging, and implied volatility is the cheapest window onto it. Allowing `cdn.cboe.com` and `fred.stlouisfed.org` in the environment's network settings, or uploading the CSV files, would make those tests possible.
+
+---
+
+## Iteration 20
+
+_Second round, 23 Nov 2026. The Cboe and FRED hosts are still blocked and no new data has been approved, so this round stays on our bars._
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Rapach, Strauss and Zhou, "Out-of-Sample Equity Premium Prediction: Combination Forecasts and Links to the Real Economy", *Review of Financial Studies* 23(2), 2010 | Peer reviewed | From memory, not re-read | Averaging many weak forecasts beats any single one out of sample because it cancels estimation noise. |
+| Search for academic work on passing prop-firm evaluations | — | Searched | Nothing peer reviewed found; only blogs and vendor pages. Browne (1999) remains the closest theory. |
+
+### Hypotheses (written before testing)
+
+**ENS-01. An ensemble of breakout settings is steadier than one setting.** *Claim:* averaging the rule over lookbacks of 7, 14 and 28 days and band widths of 0.8, 1.0 and 1.2 (nine versions, equal weight) gives a higher daily t-statistic than the single frozen setting, and a higher 30-day pass rate at the same total size. *Why it fits:* it is the first edge itself with the luck of one parameter choice averaged out, and entries spread over more checks, which smooths the daily result against the loss limit. *Why it may fail:* the nine versions are highly correlated, so there is little noise to cancel. 1 trial.
+
+**ENS-02. Trade the rule on ES and NQ together.** *Claim:* splitting the same dollar risk between MNQ and MES (4 MNQ plus 6 MES against 8 MNQ) raises the daily t-statistic and the pass rate. *Why it may fail:* the rule was weaker on ES, and the two are 0.9 correlated. 1 trial.
+
+*Adopt either only if* the daily t-statistic rises and the 30-day pass rate rises by at least 3 points with the gain over the random control not smaller.
+
+## Iteration 21
+
+**DP-01. The best possible sizing policy, by dynamic programming, tested out of sample.** *Claim:* the sizing policy that maximises the probability of passing within 30 trading days, solved exactly by backward induction over (profit so far, high-water mark, days left) from the rule's daily results before 2021, beats fixed 8 MNQ by at least 5 points on the unseen 2021 to October 2024 results. Sizes are in risk units (contracts × expected daily move) so that the policy carries across price levels. *Why it fits:* it is the upper limit of what sizing alone can add to the first edge, so it settles the question GOAL-01 left open. *Why it may fail:* the edge is small, so the optimum is mostly bold play that works equally for random direction. 1 trial, with fixed 8 MNQ and the random-direction control alongside. The consistency rule and minimum days are left out of the optimisation and enforced in the evaluation.
