@@ -194,3 +194,43 @@ I have not re-read the two papers this session, so their claims above are from m
 
 **PAIR-01. The NQ-against-ES spread is predictable over days, not minutes.** *Claim:* the beta-hedged relative return of NQ over ES in the last 1, 5 or 20 days predicts the relative return in the next session. The literature gives both signs (convergence of substitutes, or continuation of sector trends), so this is a two-sided test at the t ≥ 3 hurdle. *Why it fits the first edge:* a long-one, short-the-other position has almost no exposure to the market's direction, which is what the breakout rule bets on, so the two results should be uncorrelated. And unlike the intraday spread trades that died on costs, a position held for a whole session faces a two-leg cost of about 4.5 basis points against a daily spread move of roughly 50, so costs are no longer the binding problem. *Why it may fail:* it is the same two instruments again, and index-level relative value is among the most watched trades there is.
 *Test:* spread return = NQ return − beta × ES return, beta from the trailing 60 days. Signal = sum of the last 1, 5 and 20 daily (15:00 to 15:00 CT) spread returns. Target = next session's spread return, overnight (18:00-08:30 CT) and New York (08:30-15:00 CT) as separate tests. 6 trials. *Pass:* rank IC with t at least 3 (either sign, with the Bonferroni caveat that six two-sided tests are being run), then a sign rule net of 4.5 basis points with t at least 3 and 70% of years positive.
+
+### Results (measured on development data; costs assumed)
+
+| Session | Lookback | Rank IC (t) | Years with that sign | Gross per day | Net of 4.5 bp |
+|---|---|---|---|---|---|
+| Overnight | 1 day | **+0.089 (t +4.54)** | 80% | +1.46 bp | −3.03 bp |
+| Overnight | 5 days | +0.070 (t +3.55) | 87% | +1.41 bp | −3.08 bp |
+| Overnight | 20 days | +0.057 (t +2.88) | 47% | +0.64 bp | −3.85 bp |
+| New York | 1 day | −0.023 (t −1.28) | 67% | +1.06 bp | −3.43 bp |
+| New York | 5 days | −0.021 (t −1.13) | 67% | +0.75 bp | −3.74 bp |
+| New York | 20 days | −0.001 (t −0.03) | 67% | −0.32 bp | −4.81 bp |
+
+**PAIR-01: real overnight, NOT TRADABLE.** When NQ beat ES during the day, it keeps beating ES overnight (t 4.5 at one day, the same sign in 80% of years, and it survives a Bonferroni correction for six tests). This is a new measured fact. But the move is 1.5 basis points against a two-leg micro cost of 4.5, and commissions alone are about 1.2. In New York hours there is nothing.
+
+**I was wrong in the hypothesis** about the size of the spread's daily move: I wrote roughly 50 basis points; measured, it is 22 overnight and 39 in New York. Costs are still the binding problem.
+
+This is the fourth signal in this project that is statistically real and smaller than the cost of trading it (with the 5-minute reversal, the intraday NQ/ES spread, and the 1-2 AM drift). The pattern is consistent: what can be found in these bars is real and priced to within the cost of a retail micro trade.
+
+**Iteration 17: 6 trials. Running total 163. Verdict: KILL (not tradable).**
+
+---
+
+## Iteration 18: clearing the untested backlog
+
+Four hypotheses have sat in the registry since the first literature pass and can be tested with bars. They are tested now so that no idea is left unexamined.
+
+### Sources
+| Source | Status | Claim used |
+|---|---|---|
+| Easley, López de Prado and O'Hara, "Flow Toxicity and Liquidity in a High-Frequency World", *Review of Financial Studies* 25(5), 2012 | Peer reviewed (read in the first pass) | Order imbalance can be estimated from bars by bulk volume classification. |
+| Hasbrouck (2003), cited above | Peer reviewed | Index futures lead each other by seconds, not minutes. |
+| Prior-day high and low as reversal levels | Trader lore, no peer-reviewed source found | Listed as such. |
+| Volatility clustering (Andersen and Bollerslev, *Journal of Empirical Finance* 4, 1997) | Peer reviewed (from memory) | Quiet periods follow quiet periods; the "compression then expansion" idea predicts the opposite. |
+
+### Hypotheses (written before testing)
+- **LEADLAG-01.** NQ's return over the last 1 or 5 minutes predicts ES's next 1 or 5 minutes, and the reverse. New York session. 4 trials. *Fit with the first edge:* none needed if it worked; it is a separate fast trade. *Prior:* very low after costs.
+- **TOX-02.** Bulk-volume-classified imbalance over the last 30 minutes predicts the next 30-minute return. ES and NQ, New York. 2 trials. *Fit:* the breakout rule decides at the same half-hour checks, so a real flow signal could confirm or veto its entries.
+- **MR-05.** The first touch of the prior day's New York high or low reverses over the next 30 minutes. ES and NQ. 2 trials. *Fit:* a fade trade that earns on range days, the days the breakout rule loses.
+- **VOL-02.** A compressed overnight range (bottom third against the expected daily move) is followed by a larger New York range, and the breakout rule does better on those days. 2 trials (range relation, rule filter). *Fit:* a filter for the first edge.
+Pass rules as before: t at least 3 after micro costs for trades; t at least 2 on the difference for a filter, then the walk-forward check.
