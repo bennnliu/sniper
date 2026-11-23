@@ -78,3 +78,33 @@ Development data, 1 Jan 2018 to 31 Oct 2024, news days skipped, costs on. Measur
 - Reading: the NQ result of 2018 to 2024 looks more like one market's good run than a general hedging-demand effect. That fits its failure after October 2024.
 
 **Verdict: KILL XM-01.** The walk-forward year for these markets was not opened. Trials: 10, total 242.
+
+## Options positioning data: priced, not bought (23 Nov 2026)
+
+Dealer gamma is the mechanism every paper names for trend days versus choppy days, so I priced the open-interest data to compute it. A two-day sample ($0.03) showed the "ES options" product holds only the quarterly options; the weekly and daily expiries, where most short-dated gamma now sits, are sixteen separate products. Open interest for all of them from 2018 costs about $201, and the quarterlies alone $27.65. The full set is over the remaining budget and the quarterlies alone would be a poor proxy after 2020, so nothing was bought. Running total: $87.64. This stays an open option for Ben.
+
+Free alternative found: Yahoo (already allowed in this environment) serves daily history for the VIX, its 9-day and 3-month versions, the VVIX and the Nasdaq VXN back to 2009-2011. Implied volatility and its term structure are the cheapest window onto the same mechanism, and the old loop was paused waiting for exactly this data.
+
+## Iteration 33 (23 Nov 2026): IV-01 to IV-04, implied volatility as a regime and direction signal (written before running)
+
+**Sources.** Baltussen et al. 2021 (momentum stronger when dealer gamma is negative; read). Cheng, "The VIX Premium", Review of Financial Studies 2019 (exists; abstract only: the premium embedded in VIX futures falls or turns negative when risk rises, and predicts returns). Both name states that the VIX term structure reveals: when the VIX is above its 3-month version the market is stressed and dealers are typically short gamma.
+
+**Data.** Yahoo daily closes of ^VIX, ^VIX3M, ^VVIX. Every signal uses the close of the day before the session it predicts. ES and NQ bars, development period June 2011 to October 2024, news days skipped, micro costs, results in volatility units.
+
+**Tests (10 trials, total 252).** Each is a regression of a daily result on the signal's percentile within its own trailing 250 days; pass needs t at least 3.0 with the stated sign, the same sign in at least 70% of years, and for a pass the difference between the top and bottom thirds must exceed twice the cost.
+- IV-01 (2 trials: ES, NQ): the breakout rule's daily result rises with the term-structure slope VIX / VIX3M. Sign +.
+- IV-02 (2 trials): the breakout rule's daily result rises with the VVIX. Sign +.
+- IV-03 (2 trials): a long position through the New York session earns more after a high slope (stress premium). Sign +.
+- IV-04 (4 trials: ES and NQ, New York session and Asia session): after a day when the VIX rose by more than the index return explains (residual of a trailing 250-day regression of VIX change on index return), the next session rises. Sign +.
+
+A filter alone cannot help a 30-day Combine (iterations 13 to 19), so IV-01 and IV-02 matter only if strong enough to switch between two rules; IV-03 and IV-04 trade every day.
+
+## Iteration 34 (23 Nov 2026): XA-01, do bonds, yen, crude and gold lead the index by minutes? (written before running)
+
+**Source.** Registered since Phase 3 as LEADLAG-04 (rates react first to macro news) and never testable; the new bars make it so. Hasbrouck 2003 on price discovery across index products (in LITERATURE.md).
+
+**Hypothesis.** The move in ZN, 6J, CL or GC over the last k minutes, multiplied by that market's trailing 20-day beta to the index at the same horizon (so the sign is set by past data, not by me), predicts the index's next k minutes. k = 1, 5, 15. Targets ES and NQ, New York session, 2018 to October 2024.
+
+**Pass:** rank correlation t at least 3.0 with a positive sign (the smaller of the overlapping and non-overlapping t), same sign in 70% of years, and the average next-k move in the top and bottom tenths of the signal at least twice the micro cost (MES 0.5 points, MNQ 1.11 points).
+
+**Trials:** 4 predictors x 2 targets x 3 horizons = 24. Total 276.
