@@ -172,3 +172,54 @@ Link: https://nber.org/papers/w20592
 - The ORB paper is by **Zarattini and Aziz** (SSRN 4416622), as the brief says. Its 33% figure is net of commissions only; an independent-ish replication finds the edge vanishes after spread and slippage.
 - Xu, Gould and Howison and Cont, Kukanov and Stoikov both measure **contemporaneous** relationships. They show order flow explains price moves in the same interval, not that it forecasts the next one.
 - The Andersen and Bondarenko critique is in *Journal of Financial Markets* 17 (2014); SSRN 2062450 is the original authors' reply, not the critique.
+
+---
+
+## Second literature pass: 2024 onward, niche features (22 Nov 2026)
+
+Requested by Ben after 60 trials found nothing. Each source below was fetched on 22 Nov 2026; long PDFs were read verbatim for roughly the first 40,000 characters and the rest through a machine summary. Numbers from the summarised part are marked **(S)** and are unverified.
+
+### BDS2023. Baltussen, Da and Soebhag, "End-of-Day Reversal", working paper dated October 2023 (EFMA 2024 Lisbon). **read in part**
+- **Claim:** the return from the prior close to 15:00 ET predicts the last half hour (15:30-16:00 ET) with a **negative** sign in the cross-section of US stocks, 1993-2019; panel t −5.70, stronger for negative returns (t −6.28). Long-short 3.45 bp a day, t 10.49.
+- **Costs:** the authors say it "might not be exploitable" after costs.
+- **Mechanism:** transitory price pressure, short-seller end-of-day risk management, partly gamma hedging.
+- **For us:** the paper is about single stocks. Whether the index shows it is an open question, and it points the opposite way to the late-day momentum idea (IMOM-04) that failed. Feature EOD-01.
+
+### ZAB2025. Zarattini, Aziz and Barbon, "Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF (SPY)", first version May 2024, this version February 2025. **read in part**
+- **Claim:** go with the move when SPY leaves a "noise area" around the open, defined by the 14-day average absolute move from the open to that time of day. Checked on the hour and half hour, trailing stop at the band or VWAP, flat at the close. SPY 2007-2024, Sharpe 1.33 net of $0.0035 a share commission and $0.001 slippage.
+- **Caveats:** no formal out-of-sample test; no t-statistic in the text read; assumed slippage is about a tenth of a cent a share, far below our assumed futures cost in relative terms; published by practitioners with a commercial interest.
+- **For us:** fully computable from bars. Feature NOISE-01.
+
+### GTBR2024. "Where does gamma hedge drive the intraday market move?", working paper dated 2 June 2024 (AFA submission; authors not shown in the text read). **read in part**
+- **Claim:** the first half hour predicts the last half hour mainly on days when the move has crossed the option market makers' gamma-theta breakeven, roughly ± implied volatility ÷ √365. Interaction coefficient 0.96 to 1.18 (t 5.00 to 6.07, **(S)**), single stocks.
+- **For us:** the short-gamma condition needs option data. The breakeven threshold can be approximated from bars with trailing realized volatility (**assumed** proxy). Feature IMOM-07. Close to the killed IMOM-04, so the prior is low.
+
+### BLW2022. Boyarchenko, Larsen and Whelan, "The Overnight Drift", NY Fed Staff Report 917, February 2020, revised August 2022. **read in part**
+- **Not from 2024**, included because it is niche, specific to E-mini futures, and falls inside Topstep's permitted hours.
+- **Claim:** E-mini S&P 500 returns between 2:00 and 3:00 AM ET average 1.48 bp a day (t 7.1), 1998-2020, positive in 20 of 23 years, larger after a sell-off into the prior close.
+- **Costs:** Sharpe 1.1 before costs and **−0.5 after bid-ask spreads**; a conditional version is reported at 1.1 after costs **(S)**.
+- **Mechanism:** dealers absorb end-of-day order imbalance and unload it when European liquidity arrives.
+- **For us:** the conditioning variable is signed volume, which needs quotes; the sign of the 15:15-16:15 ET price change is used as a bars-only proxy (**assumed**). Feature OD-01.
+
+### MES2026. Mesfin, "A Validated Volatility-Volume-Gap Classifier for Regime Identification in MNQ Intraday Data", arXiv 2605.11423 v3, September 2026. **abstract only**
+- **Claim:** on MNQ days where the overnight gap, the first 30-minute move and opening volume are all elevated (about 40 of 947 days, 2021-2025), 77.6% reverse from the intraday peak. The author's own directional tests did not pass (best t 1.46).
+- **For us:** thresholds are not in the abstract, so ours are **assumed** (each above its trailing 20-day 67th percentile). Feature REG-01. Single-author preprint, small sample, low prior.
+
+### ADEFOV2026. Adams, Dim, Eraker, Fontaine, Ornthanalai and Vilkov, "Do S&P 500 Options Increase Market Volatility? Evidence from 0DTEs", draft July 2026. **read in part**
+- **Claim:** higher market-maker net gamma lowers next-10-minute E-mini volatility and weakens intraday momentum (top minus bottom gamma quartile −1.78 bp at 1 hour, t −3.93, **(S)**), 2018-2024.
+- **For us:** needs Cboe Open-Close data (market-maker positions). Registered as GEX-02, **not testable without a purchase**.
+
+### ABS2025. Aleti, Bollerslev and Siggaard, "Intraday Market Return Predictability Culled from the Factor Zoo", *Management Science* 71(9), 2025. **read in part**
+- **Claim:** lagged 15-minute returns on 272 factor portfolios predict the next 15-minute market return; out-of-sample R² 0.21%, SPY Sharpe 1.37 after costs, 2004-2020.
+- **For us:** needs intraday returns on hundreds of stock portfolios. Registered as LEADLAG-05, **not testable with our data**.
+
+### Read and set aside
+- Zhao, "Preying on Leveraged ETFs" (arXiv 2608.03703, 2026): Korean single stocks; the paper says the effect is one to two orders of magnitude smaller for US index products.
+- Lou, Polk and Skouras, "The Day Destroys the Night, Night Extends the Day" (LSE FMG DP 961, 2026): predicts the next quarter's return, not a session.
+- Zhang and Hua, "Market Predictability Before the Closing Bell Rings" (*Risks* 12(11), 2024): SPY and QQQ last-half-hour predictors, which the authors report have diminished; overlaps IMOM-01 to 03, already failed here.
+- Da, Filippou and co-authors, "Intraday Option Return Predictability" (2026): about single-stock option returns.
+- Not retrieved (site refused): "Cross-Market Intraday Time-Series Momentum" (SSRN 4651331); Bahcivan, "Day and Night Expected Returns Under Overnight Information Shocks" (SSRN 5240716).
+
+## Third literature pass (23 Nov 2026)
+
+Sources, read status and claims for iterations 13 to 19 are tabled inside `reports/SECOND_EDGE_LOG.md` under each iteration: Heston-Korajczyk-Sadka (JF 2010), Browne (AAP 1999), Golez-Jackwerth (JFE 2012), Rosa (JFM 2022), Huang et al. (JBF 2023), Cieslak-Morse-Vissing-Jorgensen (JF 2019), Ariel (JF 1990), Ko-Yang (CFR 2024), and three working papers marked as not peer reviewed.

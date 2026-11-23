@@ -1,0 +1,38 @@
+[
+ {
+  "run": "it08-NOISE-01B-NQ-walkforward-cost1x",
+  "symbol": "NQ",
+  "variant": "wf cost 1x",
+  "days": 241,
+  "traded": 136,
+  "usd_per_traded_day": 295.8632352941175,
+  "t": 0.9296245949344595,
+  "hit": 0.4485294117647059,
+  "round_trips": 1.4852941176470589,
+  "years_pos": 1.0,
+  "worst_day_usd": -5091.400000000001,
+  "median_mae_usd": -993.8,
+  "by_year": {
+   "2024": 301.7,
+   "2025": 294.6
+  }
+ },
+ {
+  "run": "it08-NOISE-01B-NQ-walkforward-cost2x",
+  "symbol": "NQ",
+  "variant": "wf cost 2x",
+  "days": 241,
+  "traded": 136,
+  "usd_per_traded_day": 275.36617647058824,
+  "t": 0.8647561422089598,
+  "hit": 0.4485294117647059,
+  "round_trips": 1.4852941176470589,
+  "years_pos": 1.0,
+  "worst_day_usd": -5132.799999999999,
+  "median_mae_usd": -1007.5999999999999,
+  "by_year": {
+   "2024": 282.4,
+   "2025": 273.8
+  }
+ }
+]

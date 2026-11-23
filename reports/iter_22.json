@@ -1,0 +1,59 @@
+{
+ "train to 2020|fixed 8 MNQ": {
+  "pass30": 0.0668,
+  "control": 0.0412,
+  "gain": 0.025599999999999998,
+  "median_days": 20.0,
+  "pass30_real_windows": 0.0832579185520362
+ },
+ "train to 2020|risk 1000": {
+  "pass30": 0.10395,
+  "control": 0.05905,
+  "gain": 0.0449,
+  "median_days": 19.0,
+  "pass30_real_windows": 0.11855203619909502
+ },
+ "train to 2020|risk 1500": {
+  "pass30": 0.1401,
+  "control": 0.1005,
+  "gain": 0.039599999999999996,
+  "median_days": 16.0,
+  "pass30_real_windows": 0.1425339366515837
+ },
+ "train to 2020|risk 2000": {
+  "pass30": 0.1424,
+  "control": 0.11145,
+  "gain": 0.030950000000000005,
+  "median_days": 14.0,
+  "pass30_real_windows": 0.14479638009049775
+ },
+ "train to 2020|risk 3000": {
+  "pass30": 0.1284,
+  "control": 0.1156,
+  "gain": 0.012799999999999992,
+  "median_days": 12.0,
+  "pass30_real_windows": 0.1248868778280543
+ },
+ "train to 2020|risk 4000": {
+  "pass30": 0.11945,
+  "control": 0.11075,
+  "gain": 0.0087,
+  "median_days": 11.0,
+  "pass30_real_windows": 0.116289592760181
+ },
+ "chosen": "risk 1000",
+ "test 2021-Oct 2024|fixed 8 MNQ": {
+  "pass30": 0.2448,
+  "control": 0.17305,
+  "gain": 0.07174999999999998,
+  "median_days": 11.0,
+  "pass30_real_windows": 0.26899128268991285
+ },
+ "test 2021-Oct 2024|risk 1000": {
+  "pass30": 0.10755,
+  "control": 0.05135,
+  "gain": 0.05620000000000001,
+  "median_days": 23.0,
+  "pass30_real_windows": 0.10585305105853052
+ }
+}
