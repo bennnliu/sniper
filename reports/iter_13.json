@@ -1,0 +1,147 @@
+{
+ "period": [
+  {
+   "test": "PERIOD-01 NY",
+   "symbol": "MES",
+   "days": 3116,
+   "ic": -0.005650536005674418,
+   "ic_t": -1.0890758984293325,
+   "gross_pts_per_trade": -0.030352029228794312,
+   "gross_x_cost": -0.06131723076524104,
+   "t_gross": -1.3828700550292232,
+   "t_net": -26.800935652192777,
+   "years_pos": 0.0,
+   "passes": false
+  },
+  {
+   "test": "PERIOD-01 ASIA",
+   "symbol": "MES",
+   "days": 3094,
+   "ic": 0.002732003768287896,
+   "ic_t": 0.5335693281050023,
+   "gross_pts_per_trade": -0.00670075722596731,
+   "gross_x_cost": -0.013536883284782444,
+   "t_gross": 0.8780979204878936,
+   "t_net": -52.79387571482611,
+   "years_pos": 0.0,
+   "passes": false
+  },
+  {
+   "test": "PERIOD-01 LONDON",
+   "symbol": "MES",
+   "days": 3216,
+   "ic": -0.002753559214369952,
+   "ic_t": -0.5351357630214774,
+   "gross_pts_per_trade": -0.013370646766169154,
+   "gross_x_cost": -0.027011407608422532,
+   "t_gross": -0.03452724263048422,
+   "t_net": -41.15422841411477,
+   "years_pos": 0.0,
+   "passes": false
+  },
+  {
+   "test": "PERIOD-01 NY",
+   "symbol": "MNQ",
+   "days": 3117,
+   "ic": -0.00993502048575352,
+   "ic_t": -1.880853778634636,
+   "gross_pts_per_trade": -0.30301572024382417,
+   "gross_x_cost": -0.2729871353547965,
+   "t_gross": -2.1750929614184438,
+   "t_net": -22.47931483396071,
+   "years_pos": 0.0,
+   "passes": false
+  },
+  {
+   "test": "PERIOD-01 ASIA",
+   "symbol": "MNQ",
+   "days": 2291,
+   "ic": -0.000183472231565088,
+   "ic_t": -0.03055793088158969,
+   "gross_pts_per_trade": -0.054795161189748705,
+   "gross_x_cost": -0.049365010080854685,
+   "t_gross": -0.18355152687364154,
+   "t_net": -29.274022692254167,
+   "years_pos": 0.0,
+   "passes": false
+  },
+  {
+   "test": "PERIOD-01 LONDON",
+   "symbol": "MNQ",
+   "days": 3158,
+   "ic": 0.00026571564555046207,
+   "ic_t": 0.05111069114510574,
+   "gross_pts_per_trade": -0.07329980026306815,
+   "gross_x_cost": -0.06603585609285419,
+   "t_gross": -0.5691721162740134,
+   "t_net": -36.47054067021991,
+   "years_pos": 0.0,
+   "passes": false
+  }
+ ],
+ "cal04": {
+  "n_opex": 84,
+  "mean_opex": 0.044254063143260775,
+  "mean_other": 0.016504243900567622,
+  "mean_other_fridays": 0.057441926209967006,
+  "t_diff": 0.4402131766564152,
+  "usd_opex": 2.4773809523809516,
+  "usd_other": 7.023489702517159,
+  "diff_first_half": 0.09882380166062847,
+  "diff_second_half": -0.0341081334711104
+ },
+ "goal": [
+  {
+   "data": "DEV",
+   "policy": "F8 fixed 8 MNQ",
+   "pass30": 0.1471,
+   "median_days": 18.0,
+   "control_pass30": 0.0971,
+   "edge_gain": 0.05,
+   "ev_per_attempt": 52.67469778045,
+   "control_ev": -18.254839194549987
+  },
+  {
+   "data": "DEV",
+   "policy": "C0.75",
+   "pass30": 0.1359,
+   "median_days": 15.0,
+   "control_pass30": 0.10045,
+   "edge_gain": 0.035449999999999995,
+   "ev_per_attempt": 36.786481498049994,
+   "control_ev": -13.50256021722501
+  },
+  {
+   "data": "DEV",
+   "policy": "C1.25",
+   "pass30": 0.15095,
+   "median_days": 11.0,
+   "control_pass30": 0.1274,
+   "edge_gain": 0.023549999999999988,
+   "ev_per_attempt": 58.13627212752499,
+   "control_ev": 24.728460212300007
+  },
+  {
+   "data": "DEV",
+   "policy": "B Browne-style",
+   "pass30": 0.1105,
+   "median_days": 26.0,
+   "control_pass30": 0.05795,
+   "edge_gain": 0.05255,
+   "ev_per_attempt": 0.7542767147500058,
+   "control_ev": -73.792666645975
+  },
+  {
+   "data": "DEV",
+   "policy": "CL lock-in",
+   "pass30": 0.1671,
+   "median_days": 13.0,
+   "control_pass30": 0.13035,
+   "edge_gain": 0.036750000000000005,
+   "ev_per_attempt": 81.04651257044998,
+   "control_ev": 28.913302893824977
+  }
+ ],
+ "typ": 0.4082167220636663,
+ "payout": 1567.5907395
+}

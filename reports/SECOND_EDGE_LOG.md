@@ -40,3 +40,54 @@ I also tried to fetch free daily VIX history from Cboe for volatility-conditione
 - B: Browne-style. Contracts = profit still needed ÷ (√days left × typical daily result per MNQ), capped at the C1.5 size.
 - CL: C1.0, and once three quarters of the target is banked, never more contracts than needed to finish in one typical day.
 All capped at 50 MNQ (Topstep's limit on $50K) and at least 1. *Measure:* share of attempts that pass within 30 trading days (block bootstrap of development days, simulated), and expected dollars per attempt. *Adopt only if* the 30-day pass rate beats fixed 8 MNQ by at least 5 points on development data, the gain over the random control is not smaller than for fixed 8 MNQ, and one check on the walk-forward year (its fourth use for this rule) is not worse than fixed 8 MNQ.
+
+### Results (measured on development data; costs assumed; pass rates simulated)
+
+**PERIOD-01: FAIL in all six tests.** The same-half-hour pattern does not exist in ES or NQ.
+
+| Session | MES rank IC (t) | MNQ rank IC (t) | Gross per trade against cost |
+|---|---|---|---|
+| New York | −0.006 (−1.1) | −0.010 (−1.9) | −0.06x / −0.27x |
+| Asia | +0.003 (+0.5) | 0.000 (0.0) | −0.01x / −0.05x |
+| London | −0.003 (−0.5) | 0.000 (0.1) | −0.03x / −0.07x |
+
+The gross result is slightly negative before any cost. The stock-level pattern does not carry over to the index.
+
+**CAL-04: FAIL.** On 84 monthly expiration Fridays the breakout rule earned +0.044 daily-move units a day against +0.017 on other days (difference t +0.4, the wrong sign for the hypothesis; first half +0.10, second half −0.03). No evidence that pinning hurts the rule. No filter adopted.
+
+**GOAL-01: FAIL.** No sizing policy beat fixed 8 MNQ by the required 5 points.
+
+| Policy | Pass within 30 trading days | Random-direction control | Gain from the edge | Dollars per attempt |
+|---|---|---|---|---|
+| Fixed 8 MNQ | 14.7% | 9.7% | +5.0 | +$53 |
+| Cushion 0.75 | 13.6% | 10.0% | +3.5 | +$37 |
+| Cushion 1.25 | 15.1% | 12.7% | +2.4 | +$58 |
+| Browne-style | 11.1% | 5.8% | +5.3 | +$1 |
+| Cushion 1.0 with lock-in | 16.7% | 13.0% | +3.7 | +$81 |
+
+The best policy adds 2 points. The walk-forward check was not run because no policy qualified.
+
+**A correction this test exposed.** Iteration 11 reported 28.9% for fixed 8 MNQ with a median of 29 to 30 days to pass. That figure counted attempts that passed after day 30. With a hard stop at 30 trading days the pass rate is **14.7%**, against 9.7% for random direction (simulated, 20,000 paths). The earlier number was not wrong for what it measured, but it overstated what a strict 30-day rule delivers. The first edge adds about 5 points of pass rate inside 30 days.
+
+### Mistakes and critique
+- Browne's policy was taken from the abstract only; my version is an approximation with a cushion cap, so "Browne-style fails" is a statement about my approximation.
+- The sizing family is small. A full dynamic-programming solution could do better than these four, but the random control shows most of any gain would be bold play that works without an edge, so the ceiling is low.
+
+**Iteration 13: 11 trials. Running total 141. Verdict: KILL all three.**
+
+---
+
+## Iteration 14
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Cieslak, Morse and Vissing-Jorgensen, "Stock Returns over the FOMC Cycle", *Journal of Finance* 74(5), 2019 | Peer reviewed (I read the 2015 working-paper draft) | Main text in part | Since 1994 the equity premium is earned in even weeks counted from scheduled FOMC meetings. Day 0 is the meeting day, weekends excluded. Week 0 is days −1 to 3, week 2 days 9 to 13, week 4 days 19 to 23, week 6 days 29 to 33. Days in week 0 earn 13.6 bp more and days in weeks 2, 4, 6 earn 10 bp more than odd-week days (both significant at 1%), 1994-2013. Nothing shown after 2013. |
+| Ariel, "High Stock Returns before Holidays", *Journal of Finance* 45(5), 1990 | Peer reviewed | Citation only | Pre-holiday days earn 9 to 14 times the ordinary daily return. |
+| Ko and Yang, "The Pre-Holiday Premium of Ariel (1990) Has Largely Become a Small-Firm Effect Out of Sample", *Critical Finance Review* 13(3-4), 2024 | Peer reviewed | Abstract | 1983-2019: for large firms the pre-holiday difference is "insignificant, and especially after 1990". |
+
+### Hypotheses (written before testing)
+
+**CYCLE-01. FOMC-cycle even weeks.** *Claim:* a long position in ES or NQ earns more on days in even FOMC-cycle weeks (0, 2, 4, 6) than in odd weeks, and enough to cover micro costs. *Why it fits the first edge:* it is a long-only calendar position, set days ahead, with no link to whether the day trends. The breakout rule is long and short about equally and earns on big moves, so the two should be nearly uncorrelated, which is what raises a combined Sharpe ratio. *Why it may fail:* published 2019 on data to 2016; widely known; our sample starts 2010. *Test:* long from session open to close on even-week days, FOMC day itself and other news days skipped. New York session and the overnight session each as its own test, MES and MNQ (4 trials), plus odd weeks as a control (4 trials). *Pass:* t at least 3 in daily-move units after costs, 70% of years positive, gross at least twice the cost, and even minus odd difference positive with t at least 2. FOMC dates for 2021-2023 in our calendar are marked unverified; a result that depends on those years will be flagged.
+
+**HOL-01. Pre-holiday days.** *Claim:* a long position on the trading day before a US market holiday earns a positive mean after costs. *Prior:* low, because Ko and Yang report it gone for large firms. Tested because it is cheap and peer reviewed in both directions. *Test:* New York and overnight sessions, MES and MNQ (4 trials). About 9 days a year, so the t-test has little power; same pass rule.
