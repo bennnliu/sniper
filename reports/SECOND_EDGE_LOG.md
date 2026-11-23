@@ -91,3 +91,42 @@ The best policy adds 2 points. The walk-forward check was not run because no pol
 **CYCLE-01. FOMC-cycle even weeks.** *Claim:* a long position in ES or NQ earns more on days in even FOMC-cycle weeks (0, 2, 4, 6) than in odd weeks, and enough to cover micro costs. *Why it fits the first edge:* it is a long-only calendar position, set days ahead, with no link to whether the day trends. The breakout rule is long and short about equally and earns on big moves, so the two should be nearly uncorrelated, which is what raises a combined Sharpe ratio. *Why it may fail:* published 2019 on data to 2016; widely known; our sample starts 2010. *Test:* long from session open to close on even-week days, FOMC day itself and other news days skipped. New York session and the overnight session each as its own test, MES and MNQ (4 trials), plus odd weeks as a control (4 trials). *Pass:* t at least 3 in daily-move units after costs, 70% of years positive, gross at least twice the cost, and even minus odd difference positive with t at least 2. FOMC dates for 2021-2023 in our calendar are marked unverified; a result that depends on those years will be flagged.
 
 **HOL-01. Pre-holiday days.** *Claim:* a long position on the trading day before a US market holiday earns a positive mean after costs. *Prior:* low, because Ko and Yang report it gone for large firms. Tested because it is cheap and peer reviewed in both directions. *Test:* New York and overnight sessions, MES and MNQ (4 trials). About 9 days a year, so the t-test has little power; same pass rule.
+
+### Results (measured on development data; costs assumed)
+
+| Test | MES: mean per trade, t, years positive | MNQ: mean per trade, t, years positive |
+|---|---|---|
+| Even weeks, New York | −$0.46, t −0.50, 33% | +$0.41, t −0.26, 33% |
+| Odd weeks, New York (control) | −$0.32, t −0.39, 53% | −$0.99, t −0.29, 47% |
+| Even weeks, overnight | −$0.95, t −1.13, 40% | −$0.49, t −0.57, 47% |
+| Odd weeks, overnight (control) | +$2.87, t +0.59, 53% | +$4.51, t +1.16, 60% |
+| Pre-holiday, New York | **+$25.09, t +2.67, 93%** (97 days) | +$26.08, t +2.18, 80% (97 days) |
+| Pre-holiday, overnight | −$0.39, t −0.53, 47% | +$9.64, t +0.64, 60% |
+
+- **CYCLE-01: FAIL.** Even weeks are no better than odd weeks in 2010-2024 (difference t between −1.2 and 0.0). The published pattern is not in our sample. As predicted, the position was nearly uncorrelated with the breakout rule (−0.13 and −0.03), which would have been useful had it earned anything.
+- **HOL-01: FAIL on the rule, and the closest miss of the loop.** A long position through the New York session on the day before a market holiday earned about $25 per micro, 11 to 13 times the cost, positive in 93% of years on MES. But t is 2.67 and 2.18, below the bar of 3, with only 97 days, and after 153 trials a t of 2.7 is what luck alone is expected to produce at least once. It also cannot matter to a 30-day Combine: it trades about 7 days a year. Not adopted. Noted as a harmless bias: there is no reason to avoid being long on those days.
+
+### Mistakes and critique
+- I read the 2015 draft of the FOMC-cycle paper, not the 2019 journal version; the week definitions could differ slightly.
+- FOMC dates for 2021-2023 remain unverified. The result does not depend on them: 2018 onward and before 2018 both fail.
+- Holiday list is built from standard rules (New Year, King, Presidents, Good Friday, Memorial, Juneteenth from 2022, Independence, Labor, Thanksgiving, Christmas) and not checked against the exchange calendar.
+
+**Iteration 14: 12 trials. Running total 153. Verdict: KILL both.**
+
+---
+
+## Iteration 15
+
+### Sources
+| Source | Status | Read | Claim |
+|---|---|---|---|
+| Gao, Han, Li and Zhou, "Market Intraday Momentum", *Journal of Financial Economics* 129(2), 2018 | Peer reviewed | Read in the first literature pass | Intraday momentum is stronger on high-volatility, high-volume and news days. |
+| Baltussen, Da, Lammers and Martens, "Hedging Demand and Market Intraday Momentum", *Journal of Financial Economics* 142(1), 2021 | Peer reviewed | Read in the first pass | Intraday momentum comes from option dealers hedging when they are short gamma, which happens in volatile, falling markets. Holds across 60+ futures. |
+
+Our own data agree: the breakout rule's t-statistic by volatility tercile is 0.76, 1.12, 2.37 (iteration 11). That split was seen after the fact, so development data cannot confirm it again.
+
+### Hypothesis (written before testing)
+
+**VOL-01 (as a start rule). Begin Combine attempts only when volatility is high.** *Claim:* an attempt started on a day when the trailing 20-day volatility is above its trailing 250-day median passes within 30 trading days more often than one started when it is below, by at least 10 points, with the size scaled so that every attempt risks the same share of the loss limit. *Why it fits the first edge:* it adds no new signal. The trader chooses when to pay for an attempt, and the mechanism behind the first edge (dealer hedging) is only active in volatile markets, so attempts should be bought only then. This changes "accounts needed" in Ben's measure without changing the rule. *Why it may fail:* volatility regimes end; a start in a volatile month can run into a calm one. And volatile periods have fatter tails against a fixed loss limit.
+*Test:* every development day is a possible start. Run the actual following 30 trading days (real history, not shuffled) through the Combine rules. Two sizings fixed in advance: 8 MNQ, and volatility-scaled contracts = 8 × (median expected daily move ÷ today's expected daily move), set each day. Compare starts in the high regime with starts in the low regime, each against a random-direction control (average of 20 random draws). 2 trials. Windows overlap heavily, so the standard error is estimated from non-overlapping windows.
+*Adopt only if* high-regime starts pass at least 10 points more often than low-regime starts and at least 10 points above their own random control, on development data, and the same direction shows on the walk-forward year (fifth use of that year for this rule, stated plainly).
