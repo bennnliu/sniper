@@ -1,0 +1,332 @@
+<meta name="dash-one-writer">
+<style>
+.lv { display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.lv h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.lv h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); text-wrap: balance; }
+.lv p { margin: 0; max-width: 70ch; line-height: 1.5; }
+.lv .muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.lv .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); color: var(--color-fg-muted); letter-spacing: .02em; }
+.lv .pill.bad { color: var(--color-bad); border-color: var(--color-bad); }
+.lv .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-md); }
+.lv .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.lv .tile .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .05em; }
+.lv .tile .v { font-family: var(--font-anthropic-serif); font-size: 1.9rem; font-variant-numeric: tabular-nums; }
+.lv .tile .s { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.lv .neg { color: var(--color-bad); } .lv .pos { color: var(--color-ok); }
+.lv .chart { position: relative; min-height: 280px; }
+.lv .chart svg { display: block; width: 100%; }
+.lv .chart text { fill: var(--cds-text-secondary, var(--color-fg-muted)); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.lv .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-xs); }
+.lv .legend i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 6px; border-radius: 2px; }
+.lv .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover, var(--color-bg)); border: 1px solid var(--cds-border, var(--color-border-line)); box-shadow: var(--cds-shadow-popover, none); border-radius: var(--cds-radius); padding: 6px 10px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; z-index: 2; white-space: nowrap; }
+.lv .tip div { display: flex; justify-content: space-between; gap: 14px; color: var(--cds-text-secondary, var(--color-fg-muted)); }
+.lv .days { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); margin-bottom: var(--cds-gap-sm); }
+.lv .days button { font: inherit; font-size: var(--cds-font-size-caption); padding: 4px 12px; border-radius: 999px; border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); cursor: pointer; }
+.lv .days button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+.lv .days button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.lv .scroll { overflow-x: auto; }
+.lv table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.lv th, .lv td { padding: 6px 10px; border-bottom: 1px solid var(--color-border-line); text-align: right; white-space: nowrap; }
+.lv th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.lv th:first-child, .lv td:first-child, .lv td.l, .lv th.l { text-align: left; }
+.lv .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--cds-gap-xl); }
+.lv .grid2 > * { min-width: 0; }
+.lv details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.lv details ul { margin: var(--cds-gap-sm) 0 0; padding-left: 1.2em; line-height: 1.5; max-width: 75ch; }
+</style>
+
+<div class="lv">
+  <header id="top" style="display:flex;flex-direction:column;gap:var(--cds-gap-sm)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--cds-gap-xs)"><span class="pill bad">Live-data sanity check, not a test</span><span class="pill">NQ=F from Yahoo Finance</span><span class="pill">16 to 20 Nov 2026, New York hours</span></div>
+    <h1>Final Breakout: Last 5 Sessions</h1>
+    <p>The frozen final strategy lost <b data-draw="k-final-net" data-source="kpis" data-field="value" data-where="key=final|net_usd">—</b> over the last five New York sessions at one set of up to 9 MNQ, costs on. The base rule without the loss-minimiser filters made <b data-draw="k-base-net" data-source="kpis" data-field="value" data-where="key=base|net_usd">—</b> on the same days. Both would have hit a $50K Combine's $2,000 loss limit on <b data-draw="k-breach" data-source="kpis" data-field="value" data-where="key=final|combine50_breach_day">—</b> at this size. Five days cannot say whether the strategy works.</p>
+  </header>
+
+  <section id="kpis">
+    <div class="tiles">
+      <div class="tile"><span class="k">Net P&amp;L</span><span class="v" data-draw="t-net" data-source="kpis" data-field="value" data-where="key=final|net_usd">—</span><span class="s">at double cost <span data-draw="t-net2" data-source="kpis" data-field="value" data-where="key=final|net2_usd">—</span></span></div>
+      <div class="tile"><span class="k">Trades</span><span class="v" data-draw="t-trades" data-source="kpis" data-field="value" data-where="key=final|trades">—</span><span class="s">on <span data-draw="t-dtr" data-source="kpis" data-field="value" data-where="key=final|days_traded">—</span> of 5 days</span></div>
+      <div class="tile"><span class="k">Win rate</span><span class="v" data-draw="t-wr" data-source="kpis" data-field="value" data-where="key=final|win_rate">—</span><span class="s">avg win <span data-draw="t-aw" data-source="kpis" data-field="value" data-where="key=final|avg_win_usd">—</span>, avg loss <span data-draw="t-al" data-source="kpis" data-field="value" data-where="key=final|avg_loss_usd">—</span></span></div>
+      <div class="tile"><span class="k">Worst day</span><span class="v" data-draw="t-wd" data-source="kpis" data-field="value" data-where="key=final|worst_day_usd">—</span><span class="s">days at $150 or more: <span data-draw="t-150" data-source="kpis" data-field="value" data-where="key=final|days_150">—</span></span></div>
+      <div class="tile"><span class="k">Base rule, same days</span><span class="v" data-draw="t-bnet" data-source="kpis" data-field="value" data-where="key=base|net_usd">—</span><span class="s"><span data-draw="t-btr" data-source="kpis" data-field="value" data-where="key=base|trades">—</span> trades, worst day <span data-draw="t-bwd" data-source="kpis" data-field="value" data-where="key=base|worst_day_usd">—</span></span></div>
+    </div>
+  </section>
+
+  <section id="equity">
+    <h2>Running P&amp;L across the five sessions</h2>
+    <p class="muted">Open and closed P&amp;L every 5 minutes, one set of up to 9 MNQ, costs on. Dashed lines are the $50K Combine's $3,000 target and $2,000 loss limit from a $0 start.</p>
+    <div class="legend"><span><i style="background:var(--cds-chart-1, currentColor)" data-draw="lg1"></i>Final strategy</span><span><i data-draw="lg2"></i>Base rule (reference)</span></div>
+    <div class="chart" data-draw="eqchart" data-source="equity"></div>
+  </section>
+
+  <div class="grid2">
+    <section id="daily">
+      <h2>Result per day</h2>
+      <p class="muted">Net P&amp;L per session. The final rule took no trades on 18, 19 and 20 Nov.</p>
+      <div class="chart" data-draw="daybars" data-source="days" style="min-height:240px"></div>
+    </section>
+    <section id="why">
+      <h2>Why the two rules split</h2>
+      <p>On 19 and 20 Nov NQ fell about <b data-draw="w-move19" data-source="days" data-field="day_move_pts" data-where="date=2026-11-19">—</b> and <b data-draw="w-move20" data-source="days" data-field="day_move_pts" data-where="date=2026-11-20">—</b> points, the kind of trend day the breakout lives on. The first half hour went up on both days (<b data-draw="w-f19" data-source="days" data-field="first30_pts" data-where="date=2026-11-19">—</b> and <b data-draw="w-f20" data-source="days" data-field="first30_pts" data-where="date=2026-11-20">—</b> points), so the "first half hour's direction" filter blocked every short. The base rule shorted and made most of its week on those two days.</p>
+      <p style="margin-top:var(--cds-gap-sm)">On 17 Nov all nine settings shorted together at 11:01 ET and were stopped out as price chopped around the lower band, which is the chop case the rule is known to lose on.</p>
+    </section>
+  </div>
+
+  <section id="daytable">
+    <h2>Per-day detail</h2>
+    <div class="scroll">
+      <table data-source="days" data-row-key="date">
+        <thead><tr><th data-field="date">Day</th><th data-field="day_move_pts">NQ move, pts</th><th data-field="first30_pts">First 30 min, pts</th><th data-field="expected_move_pts">Expected move, pts</th><th data-field="final_trades">Trades</th><th data-field="final_net_usd">Final net</th><th data-field="final_net2_usd">At 2x cost</th><th data-field="final_worst_open_usd">Worst open</th><th data-field="base_trades">Base trades</th><th data-field="base_net_usd">Base net</th></tr></thead>
+        <tbody data-draw="daytbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pricechart">
+    <h2>Price, band and trades by day</h2>
+    <p class="muted">NQ every 5 minutes with the middle setting's band (14-day lookback, width 1.0) and VWAP. Triangles are the final rule's entries, all nine settings; circles are exits.</p>
+    <div class="days" role="group" aria-label="Pick a day">
+      <button type="button" id="d-2026-11-16" data-day="2026-11-16" aria-pressed="false">Mon 16</button>
+      <button type="button" id="d-2026-11-17" data-day="2026-11-17" aria-pressed="true">Tue 17</button>
+      <button type="button" id="d-2026-11-18" data-day="2026-11-18" aria-pressed="false">Wed 18</button>
+      <button type="button" id="d-2026-11-19" data-day="2026-11-19" aria-pressed="false">Thu 19</button>
+      <button type="button" id="d-2026-11-20" data-day="2026-11-20" aria-pressed="false">Fri 20</button>
+    </div>
+    <div class="chart" data-draw="pxchart" data-source="equity trades" style="min-height:300px"></div>
+  </section>
+
+  <section id="trades">
+    <h2>Every trade of the final rule</h2>
+    <p class="muted">One row per setting per trade, one MNQ each. "Signal exit" is the rule's own band or VWAP exit; no trade reached the trailing stop.</p>
+    <div class="scroll">
+      <table data-source="trades" data-row-key="date,setting,entry_et">
+        <thead><tr><th data-field="date">Day</th><th data-field="setting" class="l">Setting</th><th data-field="side" class="l">Side</th><th data-field="entry_et">In (ET)</th><th data-field="exit_et">Out (ET)</th><th data-field="entry_px">Entry</th><th data-field="exit_px">Exit</th><th data-field="net_usd">Net</th><th data-field="net2_usd">At 2x cost</th><th data-field="mae_usd">Worst open</th><th data-field="mfe_usd">Best open</th><th data-field="exit_reason" class="l">Exit</th></tr></thead>
+        <tbody data-draw="trtbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="feed">
+    <h2>Yahoo feed against the research data</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th class="l">Check</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>New York minutes present, 16 to 20 Nov (of 1,950)</td><td data-draw="f1" data-source="feed" data-field="value" data-where="check=yahoo_1m_rth_minutes">—</td></tr>
+          <tr><td>New York minutes with zero volume</td><td data-draw="f2" data-source="feed" data-field="value" data-where="check=yahoo_1m_zero_volume_rth">—</td></tr>
+          <tr><td>5-minute bars compared with Databento, Oct 2026</td><td data-draw="f3" data-source="feed" data-field="value" data-where="check=dbn_overlap_5m_bars">—</td></tr>
+          <tr><td>Share of 5-minute closes identical to Databento</td><td data-draw="f4" data-source="feed" data-field="value" data-where="check=dbn_exact_match_share">—</td></tr>
+          <tr><td>Median gap to Databento, points</td><td data-draw="f5" data-source="feed" data-field="value" data-where="check=dbn_abs_diff_median_pts">—</td></tr>
+          <tr><td>99th percentile gap to Databento, points</td><td data-draw="f6" data-source="feed" data-field="value" data-where="check=dbn_abs_diff_p99_pts">—</td></tr>
+          <tr><td>Median gap if Yahoo were one bar early, points</td><td data-draw="f7" data-source="feed" data-field="value" data-where="check=dbn_abs_diff_median_if_shift_1">—</td></tr>
+          <tr><td>Yahoo 1-minute vs Yahoo 5-minute, largest gap, points</td><td data-draw="f8" data-source="feed" data-field="value" data-where="check=yahoo_1m_vs_5m_max_abs_pts">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin-top:var(--cds-gap-sm)">Yahoo's bars are labelled by their start time like Databento's: shifting by one bar makes the gap jump to about 10 points, so the timestamps line up. Prices match to the tick most of the time; small gaps come from late trades and bar-close timing. Both feeds were on the December contract for the whole window (the September roll is before the 28-day lookback starts), so there is no roll to adjust.</p>
+  </section>
+
+  <details id="method">
+    <summary>What was run, and what this does and does not show</summary>
+    <ul>
+      <li>Strategy, frozen: nine-setting NQ noise-area breakout (lookback 7, 14 or 28 days; band width 0.8, 1.0 or 1.2), checks every 30 minutes from 10:00 to 15:30 ET, long only above VWAP and short only below, flat at 16:00 ET. Plus the loss minimiser: entry only if price was already beyond the band 5 minutes before the check, a trailing stop at half an expected daily move from the trade's best point, and trades only in the first half hour's direction.</li>
+      <li>Data: Yahoo 1-minute bars for the five test sessions (Yahoo serves only about 8 days at 1 minute). The band's lookback and the 20-day volatility use Yahoo 5-minute bars from 15 Sep 2026; every earlier price the rule reads falls on a 5-minute boundary, so this is exact. No strategy was run on the Databento holdout year; it was only used to compare prices.</li>
+      <li>Costs: 1.11 points per MNQ round trip ($2.22), and again at double. Fills one minute after each decision at that minute's close.</li>
+      <li>News: no CPI, jobs report or FOMC fell in the week (CPI was 10 Nov, jobs 6 Nov, FOMC 8 to 9 Dec), so no day was skipped.</li>
+      <li>Not checked: Topstep's own fill prices, the TopstepX feed, and the Dec contract's front-month status on TopstepX. 23 Nov is excluded because its New York session had not opened.</li>
+      <li>Five sessions carry no statistical weight. The development record shows losing weeks like this one are normal for the rule. This is trial 227 in the project log. Research, not financial advice.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+(function () {
+  const C = dash.colors;
+  const MLL = -2000, TARGET = 3000; // $50K Combine rules, topstep_rules.yaml (verified 22 Nov 2026)
+  const BAD = 'var(--color-bad)', OK = 'var(--color-ok)', GRID = 'var(--cds-chart-grid, var(--color-border-line))', AXIS = 'var(--cds-chart-axis, var(--color-border-line))', REF = 'var(--cds-chart-reference, var(--color-fg-muted))', MUTED = 'var(--cds-chart-muted, var(--color-fg-muted))';
+  const n = (v) => (v === null || v === undefined || v === '' ? NaN : +v);
+  const usd = (v) => (isFinite(v) ? (v < 0 ? '−' : '') + d3.format('$,.0f')(Math.abs(v)) : '—');
+  const sgn = (v) => (isFinite(v) ? (v < 0 ? '−' : '+') + d3.format('$,.0f')(Math.abs(v)) : '—');
+  const pts = (v) => (isFinite(v) ? (v < 0 ? '−' : '+') + d3.format(',.1f')(Math.abs(v)) : '—');
+  const rows = (id) => { const g = dash.data(id); return g.status === 'ok' ? g.data : null; };
+  const kv = (key) => { const r = rows('kpis'); if (!r) return null; const x = r.find((d) => d.key === key); return x ? x.value : null; };
+  const fDay = (s) => d3.utcFormat('%a %-d %b')(d3.utcParse('%Y-%m-%d')(s));
+  window.lvDay = window.lvDay || '2026-11-17';
+
+  function txt(name, key, fmt, colour) {
+    dash.draw(name, (el) => {
+      const v = kv(key);
+      if (v === null) { el.textContent = '—'; return; }
+      el.textContent = fmt(v);
+      if (colour) { el.classList.toggle('neg', n(v) < 0); el.classList.toggle('pos', n(v) > 0); }
+    });
+  }
+  txt('k-final-net', 'final|net_usd', (v) => usd(n(v)));
+  txt('k-base-net', 'base|net_usd', (v) => usd(n(v)));
+  txt('k-breach', 'final|combine50_breach_day', (v) => (v === 'none' ? 'no day' : fDay(v)));
+  txt('t-net', 'final|net_usd', (v) => usd(n(v)), true);
+  txt('t-net2', 'final|net2_usd', (v) => usd(n(v)));
+  txt('t-trades', 'final|trades', (v) => d3.format(',')(n(v)));
+  txt('t-dtr', 'final|days_traded', (v) => String(n(v)));
+  txt('t-wr', 'final|win_rate', (v) => d3.format('.0%')(n(v)));
+  txt('t-aw', 'final|avg_win_usd', (v) => usd(n(v)));
+  txt('t-al', 'final|avg_loss_usd', (v) => usd(n(v)));
+  txt('t-wd', 'final|worst_day_usd', (v) => usd(n(v)), true);
+  txt('t-150', 'final|days_150', (v) => String(n(v)));
+  txt('t-bnet', 'base|net_usd', (v) => usd(n(v)), true);
+  txt('t-btr', 'base|trades', (v) => String(n(v)));
+  txt('t-bwd', 'base|worst_day_usd', (v) => usd(n(v)));
+  dash.draw('lg1', (el) => { el.style.background = C[0]; });
+  dash.draw('lg2', (el) => { el.style.background = MUTED; });
+
+  function dayField(name, date, field) {
+    dash.draw(name, (el) => { const r = rows('days'); const x = r && r.find((d) => d.date === date); el.textContent = x ? (field === 'day_move_pts' ? d3.format(',.0f')(Math.abs(n(x[field]))) : pts(n(x[field]))) : '—'; });
+  }
+  dayField('w-move19', '2026-11-19', 'day_move_pts'); dayField('w-move20', '2026-11-20', 'day_move_pts');
+  dayField('w-f19', '2026-11-19', 'first30_pts'); dayField('w-f20', '2026-11-20', 'first30_pts');
+
+  const feedFmt = {f1: (v) => d3.format(',')(n(v)), f2: (v) => String(n(v)), f3: (v) => d3.format(',')(n(v)), f4: (v) => d3.format('.0%')(n(v)), f5: (v) => d3.format('.2f')(n(v)), f6: (v) => d3.format('.2f')(n(v)), f7: (v) => d3.format('.2f')(n(v)), f8: (v) => d3.format('.2f')(n(v))};
+  const feedKey = {f1: 'yahoo_1m_rth_minutes', f2: 'yahoo_1m_zero_volume_rth', f3: 'dbn_overlap_5m_bars', f4: 'dbn_exact_match_share', f5: 'dbn_abs_diff_median_pts', f6: 'dbn_abs_diff_p99_pts', f7: 'dbn_abs_diff_median_if_shift_1', f8: 'yahoo_1m_vs_5m_max_abs_pts'};
+  Object.keys(feedKey).forEach((k) => dash.draw(k, (el) => { const r = rows('feed'); const x = r && r.find((d) => d.check === feedKey[k]); el.textContent = x ? feedFmt[k](x.value) : '—'; }));
+
+  function tipper(host) {
+    const t = document.createElement('div'); t.className = 'tip'; t.hidden = true; host.append(t);
+    return {
+      show(x, y, title, lines) {
+        t.replaceChildren(); const b = document.createElement('b'); b.textContent = title; t.append(b);
+        lines.forEach(([a, v]) => { const d = document.createElement('div'); const s1 = document.createElement('span'); s1.textContent = a; const s2 = document.createElement('span'); s2.textContent = v; d.append(s1, s2); t.append(d); });
+        t.hidden = false; const w = t.offsetWidth, hw = host.clientWidth;
+        t.style.left = Math.max(0, Math.min(hw - w, x + 14 + w > hw ? x - w - 14 : x + 14)) + 'px'; t.style.top = Math.max(0, y - 10) + 'px';
+      },
+      hide() { t.hidden = true; },
+    };
+  }
+  function frame(host, h, labels, label) {
+    const w = Math.max(280, host.clientWidth);
+    const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${w} ${h}`).attr('height', h).attr('role', 'img').attr('aria-label', label);
+    const probe = svg.append('text').text(labels.reduce((a, b) => (a.length >= b.length ? a : b), ''));
+    const left = Math.ceil(probe.node().getComputedTextLength() || 44) + 10; probe.remove();
+    const m = {top: 10, right: 12, bottom: 24, left};
+    return {svg, w, h, m, iw: w - m.left - m.right, ih: h - m.top - m.bottom};
+  }
+  function yGrid(f, y, fmt) {
+    const t = y.ticks(5);
+    f.svg.append('g').selectAll('line').data(t).join('line').attr('x1', f.m.left).attr('x2', f.w - f.m.right).attr('y1', y).attr('y2', y).style('stroke', (d) => (d === 0 ? AXIS : GRID));
+    f.svg.append('g').selectAll('text').data(t).join('text').attr('x', f.m.left - 6).attr('y', y).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmt);
+  }
+  function failed(host, id) { const g = dash.data(id); if (g.status === 'error') { host.textContent = 'This chart could not load its data.'; return true; } if (g.status !== 'ok') { host.textContent = '—'; return true; } return false; }
+
+  dash.draw('eqchart', (host) => {
+    host.replaceChildren(); if (failed(host, 'equity')) return;
+    const r = rows('equity').map((d, i) => ({i, date: d.date, et: d.et, f: n(d.final_cum_usd), b: n(d.base_cum_usd)}));
+    const lo = Math.min(MLL, d3.min(r, (d) => Math.min(d.f, d.b))), hi = Math.max(TARGET, d3.max(r, (d) => Math.max(d.f, d.b)));
+    const y0 = d3.scaleLinear().domain([lo, hi]).nice(5);
+    const f = frame(host, 300, y0.ticks(5).map((v) => usd(v)), 'Running P&L of the final strategy and the base rule across 16 to 20 Nov 2026');
+    const x = d3.scaleLinear().domain([0, r.length - 1]).range([f.m.left, f.w - f.m.right]);
+    const y = y0.range([f.h - f.m.bottom, f.m.top]);
+    yGrid(f, y, (v) => usd(v));
+    const days = d3.groups(r, (d) => d.date);
+    days.forEach(([dte, g], k) => {
+      if (k > 0) f.svg.append('line').attr('x1', x(g[0].i)).attr('x2', x(g[0].i)).attr('y1', f.m.top).attr('y2', f.h - f.m.bottom).style('stroke', GRID).style('stroke-dasharray', '2 3');
+      f.svg.append('text').attr('x', x((g[0].i + g[g.length - 1].i) / 2)).attr('y', f.h - 6).attr('text-anchor', 'middle').text(fDay(dte).replace(/ \w+$/, ''));
+    });
+    [[MLL, 'Loss limit −$2,000'], [TARGET, 'Target +$3,000']].forEach(([v, lab]) => {
+      f.svg.append('line').attr('x1', f.m.left).attr('x2', f.w - f.m.right).attr('y1', y(v)).attr('y2', y(v)).style('stroke', v < 0 ? BAD : OK).style('stroke-dasharray', '5 4');
+      f.svg.append('text').attr('x', f.m.left + 4).attr('y', y(v) - 4).text(lab);
+    });
+    days.forEach(([, g]) => {
+      [['b', MUTED, 1.5], ['f', C[0], 2.2]].forEach(([k, col, sw]) => f.svg.append('path').datum(g).attr('d', d3.line().x((d) => x(d.i)).y((d) => y(d[k]))).style('fill', 'none').style('stroke', col).style('stroke-width', sw));
+    });
+    const last = r[r.length - 1];
+    f.svg.append('circle').attr('cx', x(last.i)).attr('cy', y(last.f)).attr('r', 3.5).style('fill', C[0]);
+    const tp = tipper(host);
+    const cross = f.svg.append('line').attr('y1', f.m.top).attr('y2', f.h - f.m.bottom).style('stroke', REF).style('opacity', 0);
+    f.svg.append('rect').attr('x', f.m.left).attr('y', f.m.top).attr('width', f.iw).attr('height', f.ih).style('fill', 'transparent')
+      .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev); const i = Math.max(0, Math.min(r.length - 1, Math.round(x.invert(px)))); const d = r[i]; cross.attr('x1', x(i)).attr('x2', x(i)).style('opacity', 1); tp.show(x(i), py, fDay(d.date) + ', ' + d.et + ' ET', [['Final strategy', sgn(d.f)], ['Base rule', sgn(d.b)]]); })
+      .on('pointerleave', () => { cross.style('opacity', 0); tp.hide(); });
+  });
+
+  dash.draw('daybars', (host) => {
+    host.replaceChildren(); if (failed(host, 'days')) return;
+    const r = rows('days').map((d) => ({date: d.date, f: n(d.final_net_usd), b: n(d.base_net_usd)}));
+    const y0 = d3.scaleLinear().domain([Math.min(0, d3.min(r, (d) => Math.min(d.f, d.b))), Math.max(0, d3.max(r, (d) => Math.max(d.f, d.b)))]).nice(5);
+    const f = frame(host, 240, y0.ticks(5).map((v) => usd(v)), 'Net P&L per day, final strategy against base rule');
+    const x = d3.scaleBand().domain(r.map((d) => d.date)).range([f.m.left, f.w - f.m.right]).padding(0.25);
+    const xi = d3.scaleBand().domain(['f', 'b']).range([0, x.bandwidth()]).padding(0.1);
+    const y = y0.range([f.h - f.m.bottom, f.m.top]);
+    yGrid(f, y, (v) => usd(v));
+    const tp = tipper(host);
+    r.forEach((d) => {
+      [['f', C[0]], ['b', MUTED]].forEach(([k, col]) => {
+        const v = d[k];
+        f.svg.append('rect').attr('x', x(d.date) + xi(k)).attr('width', xi.bandwidth()).attr('y', y(Math.max(0, v))).attr('height', Math.max(v === 0 ? 1 : 0, Math.abs(y(v) - y(0)))).style('fill', col)
+          .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, host); tp.show(px, py, fDay(d.date), [['Final strategy', sgn(d.f)], ['Base rule', sgn(d.b)]]); })
+          .on('pointerleave', () => tp.hide());
+      });
+      f.svg.append('text').attr('x', x(d.date) + x.bandwidth() / 2).attr('y', f.h - 6).attr('text-anchor', 'middle').text(fDay(d.date).replace(/ \w+$/, ''));
+    });
+  });
+
+  dash.draw('daytbody', (tb) => {
+    tb.replaceChildren(); const r = rows('days'); if (!r) return;
+    r.forEach((d) => {
+      const tr = document.createElement('tr');
+      [[fDay(d.date)], [pts(n(d.day_move_pts))], [pts(n(d.first30_pts))], [d3.format(',.0f')(n(d.expected_move_pts))], [d.final_trades], [usd(n(d.final_net_usd)), n(d.final_net_usd)], [usd(n(d.final_net2_usd))], [usd(n(d.final_worst_open_usd))], [d.base_trades], [usd(n(d.base_net_usd)), n(d.base_net_usd)]].forEach(([t, c]) => {
+        const td = document.createElement('td'); td.textContent = t; if (c < 0) td.className = 'neg'; else if (c > 0) td.className = 'pos'; tr.append(td);
+      });
+      tr.setAttribute('data-key', d.date); tb.append(tr);
+    });
+  });
+
+  dash.draw('trtbody', (tb) => {
+    tb.replaceChildren(); const r = rows('trades'); if (!r) return;
+    r.forEach((d) => {
+      const tr = document.createElement('tr');
+      const why = {stop: 'Signal exit', session_end: 'Close 16:00', trail: 'Trailing stop', flip: 'Flip'}[d.exit_reason] || d.exit_reason;
+      [[fDay(d.date)], [d.setting, 0, 'l'], [d.side, 0, 'l'], [d.entry_et], [d.exit_et], [d3.format(',.2f')(n(d.entry_px))], [d3.format(',.2f')(n(d.exit_px))], [usd(n(d.net_usd)), n(d.net_usd)], [usd(n(d.net2_usd))], [usd(n(d.mae_usd))], [usd(n(d.mfe_usd))], [why, 0, 'l']].forEach(([t, c, cl]) => {
+        const td = document.createElement('td'); td.textContent = t; td.className = [cl || '', c < 0 ? 'neg' : c > 0 ? 'pos' : ''].join(' ').trim(); tr.append(td);
+      });
+      tr.setAttribute('data-key', [d.date, d.setting, d.entry_et].map(encodeURIComponent).join(',')); tb.append(tr);
+    });
+  });
+
+  dash.draw('pxchart', (host) => {
+    host.replaceChildren(); if (failed(host, 'equity')) return;
+    const day = window.lvDay;
+    const r = rows('equity').filter((d) => d.date === day).map((d, i) => ({i, et: d.et, p: n(d.price), u: n(d.ub14), l: n(d.lb14), v: n(d.vwap)}));
+    const tr = (rows('trades') || []).filter((d) => d.date === day);
+    const idx = (et) => { const k = r.findIndex((d) => d.et >= et); return k < 0 ? r.length - 1 : k; };
+    const vals = r.flatMap((d) => [d.p, d.v, d.i >= 6 ? d.u : NaN, d.i >= 6 ? d.l : NaN]).filter(isFinite);
+    const y0 = d3.scaleLinear().domain(d3.extent(vals)).nice(5);
+    const f = frame(host, 300, y0.ticks(5).map((v) => d3.format(',')(v)), 'NQ price with band and VWAP on ' + day + ', with the final rule\'s trades');
+    const x = d3.scaleLinear().domain([0, r.length - 1]).range([f.m.left, f.w - f.m.right]);
+    const y = y0.range([f.h - f.m.bottom, f.m.top]);
+    yGrid(f, y, (v) => d3.format(',')(v));
+    r.filter((d) => d.et.endsWith(':00') && +d.et.slice(0, 2) % 1 === 0 && d.et >= '10:00').forEach((d) => f.svg.append('text').attr('x', x(d.i)).attr('y', f.h - 6).attr('text-anchor', 'middle').text(d.et.slice(0, 2).replace(/^0/, '')));
+    const band = r.filter((d) => d.i >= 6);
+    [['u', BAD], ['l', BAD]].forEach(([k, col]) => f.svg.append('path').datum(band).attr('d', d3.line().x((d) => x(d.i)).y((d) => y(d[k]))).style('fill', 'none').style('stroke', MUTED).style('stroke-dasharray', '4 3'));
+    f.svg.append('path').datum(r).attr('d', d3.line().x((d) => x(d.i)).y((d) => y(d.v))).style('fill', 'none').style('stroke', C[1] || MUTED).style('stroke-width', 1.2);
+    f.svg.append('path').datum(r).attr('d', d3.line().x((d) => x(d.i)).y((d) => y(d.p))).style('fill', 'none').style('stroke', C[0]).style('stroke-width', 2);
+    const tp = tipper(host);
+    const seen = new Set();
+    tr.forEach((d) => {
+      const kIn = d.entry_et + d.side, kOut = d.exit_et + d.exit_px;
+      if (!seen.has(kIn)) { seen.add(kIn); const cx = x(idx(d.entry_et)), cy = y(n(d.entry_px)), s = d.side === 'long' ? -1 : 1;
+        f.svg.append('path').attr('d', `M${cx},${cy + 7 * s}l-6,${-10 * s}h12z`).style('fill', d.side === 'long' ? OK : BAD).on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, host); tp.show(px, py, d.side + ' entry ' + d.entry_et + ' ET', [['Price', d3.format(',.2f')(n(d.entry_px))], ['Settings in', String(tr.filter((t) => t.entry_et === d.entry_et).length)]]); }).on('pointerleave', () => tp.hide()); }
+      if (!seen.has(kOut)) { seen.add(kOut);
+        f.svg.append('circle').attr('cx', x(idx(d.exit_et))).attr('cy', y(n(d.exit_px))).attr('r', 4).style('fill', 'var(--color-bg)').style('stroke', 'var(--color-fg)').style('stroke-width', 1.5).on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, host); tp.show(px, py, 'Exit ' + d.exit_et + ' ET', [['Price', d3.format(',.2f')(n(d.exit_px))], ['Net per MNQ', usd(n(d.net_usd))]]); }).on('pointerleave', () => tp.hide()); }
+    });
+    if (!tr.length) f.svg.append('text').attr('x', f.m.left + 8).attr('y', f.m.top + 14).text('No trades by the final rule this day');
+    const cross = f.svg.append('line').attr('y1', f.m.top).attr('y2', f.h - f.m.bottom).style('stroke', REF).style('opacity', 0).style('pointer-events', 'none');
+    f.svg.insert('rect', 'path').attr('x', f.m.left).attr('y', f.m.top).attr('width', f.iw).attr('height', f.ih).style('fill', 'transparent')
+      .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev); const i = Math.max(0, Math.min(r.length - 1, Math.round(x.invert(px)))); const d = r[i]; cross.attr('x1', x(i)).attr('x2', x(i)).style('opacity', 1); tp.show(x(i), py, d.et + ' ET', [['NQ', d3.format(',.2f')(d.p)], ['Upper band', d.i >= 6 ? d3.format(',.0f')(d.u) : '—'], ['Lower band', d.i >= 6 ? d3.format(',.0f')(d.l) : '—'], ['VWAP', d3.format(',.0f')(d.v)]]); })
+      .on('pointerleave', () => { cross.style('opacity', 0); tp.hide(); });
+  });
+
+  document.querySelectorAll('.lv .days button').forEach((b) => b.addEventListener('click', () => {
+    window.lvDay = b.getAttribute('data-day');
+    document.querySelectorAll('.lv .days button').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    dash.draw('pxchart');
+  }));
+})();
+</script>

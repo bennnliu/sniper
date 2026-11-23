@@ -1,0 +1,67 @@
+{
+ "trial": 227,
+ "test_days": [
+  "2026-11-16",
+  "2026-11-17",
+  "2026-11-18",
+  "2026-11-19",
+  "2026-11-20"
+ ],
+ "history_days_5m": 44,
+ "first_history_day": "2026-09-15",
+ "final": {
+  "trades": 36,
+  "net_usd": -5903.920000000001,
+  "net2_usd": -5983.839999999999,
+  "win_rate": 0.1111111111111111,
+  "avg_win_usd": 126.155,
+  "avg_loss_usd": -200.26687500000003,
+  "profit_factor": 0.0787418039054137,
+  "worst_day_usd": -5237.280000000001,
+  "best_day_usd": 0.0,
+  "days_150": 0,
+  "worst_open_usd": -5237.28,
+  "exit_reasons": {
+   "stop": 23,
+   "session_end": 13
+  }
+ },
+ "base": {
+  "trades": 61,
+  "net_usd": 11777.579999999998,
+  "net2_usd": 11642.16,
+  "win_rate": 0.36065573770491804,
+  "avg_win_usd": 883.6890909090909,
+  "avg_loss_usd": -196.50205128205135,
+  "profit_factor": 2.5368248259951605,
+  "worst_day_usd": -5483.500000000001,
+  "best_day_usd": 15091.52,
+  "days_150": 2,
+  "worst_open_usd": -5483.500000000001,
+  "exit_reasons": {
+   "session_end": 31,
+   "stop": 30
+  }
+ },
+ "feed": {
+  "yahoo_1m_rth_minutes": 1950,
+  "yahoo_1m_rth_expected": 1950,
+  "yahoo_1m_zero_volume_rth": 0,
+  "yahoo_1m_first": "2026-11-15 18:10:00-05:00",
+  "yahoo_1m_last": "2026-11-23 03:37:00-05:00",
+  "yahoo_1m_vs_5m_bars": 1323,
+  "yahoo_1m_vs_5m_max_abs_pts": 0.0,
+  "dbn_overlap_5m_bars": 6017,
+  "dbn_overlap_rth_bars": 1715,
+  "dbn_overlap_period": "2026-10-01 00:00:00+00:00 to 2026-10-30 20:55:00+00:00",
+  "dbn_abs_diff_median_pts": 0.0,
+  "dbn_abs_diff_p99_pts": 2.0,
+  "dbn_abs_diff_rth_median_pts": 0.0,
+  "dbn_exact_match_share": 0.7536978560744557,
+  "dbn_symbols": [
+   "NQ.v.0"
+  ],
+  "dbn_abs_diff_median_if_shift_-1": 10.0,
+  "dbn_abs_diff_median_if_shift_1": 9.75
+ }
+}

@@ -743,3 +743,26 @@ Combine columns: $50K at 9 MNQ, 4,000 simulated attempts from 2016 to October 20
 3. Lower loss did not turn into a higher 30-day Combine pass rate. Every loss-reducing method also reduced gains (winning days sum fell 16 to 29%), so the account breaches less but also reaches the target less quickly.
 
 **My reading and where I disagree with my own bar:** by the rule written before the test, nothing is adopted and the walk-forward year stays closed. C1's single failure is a 5% drawdown difference in one half, which is inside what I would call noise, and C3's single failure is on pass speed, which is not a loss measure. If the objective is strictly "lose less", C3 is the answer on development data and C1 is the version that gives up nothing. Opening the walk-forward year for them would be a change to the bar, which is Ben's decision, and that year has been looked at many times so a pass there is weak evidence either way. Trials: 226. Research, not financial advice.
+
+## Iteration 30 (23 Nov 2026): LIVE-01, the frozen final strategy on the last 5 sessions of Yahoo data
+
+**Ask (Ben):** freeze the strategy with the "B" loss minimiser (LOSS-01 method C3) as final and run it on the most recent 7 days of data from yfinance, results in a dashboard. Labelled in advance as a live-data sanity check: five sessions carry no statistical weight, and no verdict on the strategy follows from them. 1 trial (the base rule is shown beside it as a reference and is counted too): 2 trials, total 228.
+
+**Frozen rule:** ENS-01 (N 7/14/28 x width 0.8/1.0/1.2, checks every 30 min 10:00-15:30 ET, VWAP condition, flat 16:00 ET) + entry confirmed 5 minutes before the check + trailing stop at 0.5 expected daily moves from the trade's best point + trades only in the first half hour's direction. Code: `run_flex(confirm_lag=5, first30=True, trail_k=0.5)`.
+
+**Data:** Yahoo NQ=F 1-minute bars 15 Nov 18:10 ET to 23 Nov 03:37 ET (Yahoo serves ~8 days at 1 minute), so 5 full New York sessions, 16-20 Nov 2026. Lookback (up to 28 days) and rv20 from Yahoo 5-minute bars from 15 Sep 2026; every prior-day price the rule reads sits on a 5-minute boundary, so this is exact. No news day in the week (bls.gov: CPI 10 Nov, NFP 6 Nov; FOMC 8-9 Dec). Raw copies: /mnt/project-files/data/raw/yfinance/. Environment: Yahoo hosts were blocked; Ben approved adding them on 23 Nov.
+
+**Feed check (measured):** all 1,950 New York minutes present, none with zero volume. Against Databento NQ.v.0 over October 2026 (6,017 five-minute closes): 75% identical, median gap 0, 99th percentile 2 points; a one-bar shift raises the median gap to ~10 points, so both label bars by start time. Both on the December contract for the whole window used. The Databento holdout file was only used for this price comparison; no strategy ran on it.
+
+**Result (measured on this data, one set of up to 9 MNQ, MNQ costs 1.11 pts RT):**
+
+| | Trades | Net | Net at 2x cost | Win rate | Worst day | Days traded |
+|---|---|---|---|---|---|---|
+| Final (C3) | 36 | −$5,904 | −$5,984 | 11% | −$5,237 (17 Nov) | 2 of 5 |
+| Base rule | 61 | +$11,778 | +$11,642 | 36% | −$5,483 (17 Nov) | 4 of 5 |
+
+- 17 Nov: all settings shorted at 11:01 ET near the lower band and were whipsawed out three times; a $50K Combine's $2,000 loss limit would have been hit that day by both rules at 9 MNQ.
+- 19 and 20 Nov: NQ fell 1,073 and 1,180 points, but the first half hour was up both days, so the first-half-hour filter blocked every short. The base rule made +$18,369 on those two days. This is the cost of C3 noted in LOSS-01 (fewer trading days, smaller gains), seen on live data.
+- No trade reached the trailing stop (0.5 x ~610 points).
+
+**Reading:** consistent with the development record, where one losing week at this size is common; it neither confirms nor refutes the rule. It does show the specific way C3 can miss the biggest trend days. Dashboard: https://claude.ai/artifact/52XCQawvNLnbmE7Wa1cyPq. Code: research/live01_yf.py, outputs reports/live01/.

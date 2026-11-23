@@ -1,0 +1,18 @@
+check,value
+yahoo_1m_rth_minutes,1950
+yahoo_1m_rth_expected,1950
+yahoo_1m_zero_volume_rth,0
+yahoo_1m_first,2026-11-15 18:10:00-05:00
+yahoo_1m_last,2026-11-23 03:37:00-05:00
+yahoo_1m_vs_5m_bars,1323
+yahoo_1m_vs_5m_max_abs_pts,0.0
+dbn_overlap_5m_bars,6017
+dbn_overlap_rth_bars,1715
+dbn_overlap_period,2026-10-01 00:00:00+00:00 to 2026-10-30 20:55:00+00:00
+dbn_abs_diff_median_pts,0.0
+dbn_abs_diff_p99_pts,2.0
+dbn_abs_diff_rth_median_pts,0.0
+dbn_exact_match_share,0.7536978560744557
+dbn_symbols,['NQ.v.0']
+dbn_abs_diff_median_if_shift_-1,10.0
+dbn_abs_diff_median_if_shift_1,9.75
