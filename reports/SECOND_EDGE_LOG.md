@@ -605,7 +605,7 @@ Criteria, $50K: 1 PASS (t 3.38). 2 PASS (t 2.89). 3 FAIL (30-day pass 14.7% at 1
 
 **Trials:** 2 (the rule, and the variant without the reduction), total 205.
 
-**STRAT-02 results (research/strat01.py v2; data in reports/dash05/). Costs assumed 1.11 points per round trip; pass and payout rates simulated, 4,000 attempts. No dashboard published.**
+**STRAT-02 results (research/strat01.py v2; data in reports/dash05/; page source dashboard5/). Costs assumed 1.11 points per round trip; pass and payout rates simulated, 4,000 attempts. Dashboard, published after Ben said to: https://claude.ai/artifact/V69E2CJQEtoiZaBuDvAX3J**
 
 | Variant, test years, one baseline set | Traded days | Total | Sharpe | t | Worst drawdown |
 |---|---|---|---|---|---|
